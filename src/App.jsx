@@ -1,27 +1,55 @@
-import { Route, Routes } from 'react-router-dom';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
-import FirstPage from 'pages/FirstPage/FirstPage';
-import SecondPage from 'pages/SecondPage/SecondPage';
-import HalfPage from 'pages/HalfPage/HalfPage';
-import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import { AppWrapper } from './App.styled';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { lazy } from "react";
 
-const test = import.meta.env.VITE_API_TEST;
+import PublicRoute from "./route/PublicRoute/PublicRoute";
+import PrivateRoute from "./route/PrivateRoutes/PrivateRoutes";
 
-function App() {
-  console.log(test);
+import SharedLayout from "./components/SharedLayout/SharedLayout";
+
+const Welcome = lazy(() => import("./pages/PublicPage/Welcome/Welcome"));
+const SignUp = lazy(() => import("./pages/PublicPage/SignUp/SignUp"));
+const SignIn = lazy(() => import("./pages//PublicPage/SignIn/SignIn"));
+const ForgotPassword = lazy(() =>import("./pages/PublicPage/ForgotPassword/ForgotPassword"));
+const Main = lazy(() => import("./pages/PrivatePage/Main/Main"));
+const Dashboard = lazy(() => import("./pages/PrivatePage/Dashboard/Dashboard"));
+const Diary = lazy(() => import("./pages/PrivatePage/Diary/Diary"));
+const RecommendedFood = lazy(() =>import("./pages/PrivatePage/RecommendedFood/RecommendedFood"));
+const Settings = lazy(() => import("./pages/PrivatePage/Settings/Settings"));
+
+
+const App = () => {
+  const isLoggedIn = false;
+
   return (
-    <AppWrapper>
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/first" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />}>
-            <Route path=":half" element={<HalfPage />} />
+          <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
+            <Route index element={<Welcome />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
           </Route>
-          <Route path="*" element={<ErrorPage />} />
+          <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+            <Route path="main" element={<Main />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="diary" element={<Diary />} />
+            <Route path="recommended-food" element={<RecommendedFood />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </AppWrapper>
+    </div>
   );
-}
+};
+
 export default App;
