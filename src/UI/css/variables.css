@@ -1,0 +1,18 @@
+:root {
+
+    /* primary-color */
+
+    --color-primary-white: #FFFFFF;
+    --color-primary-black: #050505;
+    --color-primary-violet: #B6C3FF;
+    --color-primary-black-2: #0F0F0F;
+    --color-primary-lite-green: #45FFBC;
+    --color-primary-grey: #B6B6B6;
+    --color-primary-green-lite: #E3FFA8;
+
+    /* secondary-color */
+
+    --secondary-color-grey-1: #292928;
+    --secondary-color-pink: #FFC4F7;
+    --secondary-color-yellow: #FFF3B7;
+}
