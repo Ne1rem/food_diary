@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import PublicRoute from "./route/PublicRoute/PublicRoute";
 import PrivateRoute from "./route/PrivateRoutes/PrivateRoutes";
-
+import './main.css';
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 
 const Welcome = lazy(() => import("./pages/PublicPage/Welcome/Welcome"));
