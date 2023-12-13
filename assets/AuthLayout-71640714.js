@@ -1,4 +1,4 @@
-import{s as i,j as t}from"./index-7ab8d3dd.js";const e="/food_diary/assets/Illustration-9c0f4b06.png",x=i.div`
+import{s as i,j as t}from"./index-627848b1.js";const e="/food_diary/assets/Illustration-9c0f4b06.png",x=i.div`
   display: flex;
   flex-direction: column;
   align-items: center;

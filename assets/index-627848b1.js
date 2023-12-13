@@ -71,25 +71,24 @@ Error generating stack: `+o.message+`
   background-color: var(--color-primary-black-2);
   width: 100%;
 `,k0=Ut.div`
-  padding: 20px;
+  padding: 34px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
 `,x0=Ut.nav`
   display: flex;
-  margin-right: 34px;
   align-items: center;
 `,Ya=Ut(yd)`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
+  padding: 0px 3px;
   line-height: 20px;
   letter-spacing: 0em;
   text-align: right;
   color: var(--color-primary-white);
 `,E0=Ut.p`
-  margin: 0;
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
@@ -106,8 +105,8 @@ Error generating stack: `+o.message+`
   letter-spacing: 0em;
   text-align: left;
 `,_0=Ut.svg`
-fill: white;
+fill: var(--color-primary-white);
 width: 28px;
 height: 28px;
 padding-left: 6px;
-`,P0="/food_diary/assets/avatar-sign-in-16bf14a7.svg",N0=()=>T.jsx(S0,{children:T.jsxs(k0,{children:[T.jsx(C0,{children:"HealthyHub"}),T.jsxs(x0,{children:[T.jsx(Ya,{to:"/signin",children:"Sign in"}),T.jsx(E0,{children:"/"}),T.jsx(Ya,{to:"/signup",children:"Sign up"}),T.jsx(_0,{children:T.jsx("use",{href:`${P0}#avatar-sign-in`})})]})]})}),R0=()=>T.jsxs(T.Fragment,{children:[T.jsx(N0,{}),T.jsx(E.Suspense,{fallback:null,children:T.jsx(fs,{})})]}),T0=E.lazy(()=>ht(()=>import("./Welcome-f969b745.js"),["assets/Welcome-f969b745.js","assets/AuthLayout-efd35c24.js"])),L0=E.lazy(()=>ht(()=>import("./SignUp-81f86b76.js"),["assets/SignUp-81f86b76.js","assets/AuthLayout-efd35c24.js"])),z0=E.lazy(()=>ht(()=>import("./SignIn-ae316d84.js"),["assets/SignIn-ae316d84.js","assets/AuthLayout-efd35c24.js"])),O0=E.lazy(()=>ht(()=>import("./ForgotPassword-544ee447.js"),[])),I0=E.lazy(()=>ht(()=>import("./Main-35ce7a48.js"),[])),$0=E.lazy(()=>ht(()=>import("./Dashboard-6aba5de7.js"),[])),j0=E.lazy(()=>ht(()=>import("./Diary-66955571.js"),[])),D0=E.lazy(()=>ht(()=>import("./RecommendedFood-0518809b.js"),[])),M0=E.lazy(()=>ht(()=>import("./Settings-d6ec1d15.js"),[])),A0=()=>T.jsx("div",{style:{height:"100vh",display:"flex",justifyContent:"flex-start",alignItems:"center",flexDirection:"column"},children:T.jsxs(ev,{children:[T.jsxs(ve,{path:"/",element:T.jsx(R0,{}),children:[T.jsxs(ve,{element:T.jsx(mv,{isLoggedIn:!1}),children:[T.jsx(ve,{index:!0,element:T.jsx(T0,{})}),T.jsx(ve,{path:"signup",element:T.jsx(L0,{})}),T.jsx(ve,{path:"signin",element:T.jsx(z0,{})}),T.jsx(ve,{path:"forgot-password",element:T.jsx(O0,{})})]}),T.jsxs(ve,{element:T.jsx(vv,{isLoggedIn:!1}),children:[T.jsx(ve,{path:"main",element:T.jsx(I0,{})}),T.jsx(ve,{path:"dashboard/:selectedMonth?",element:T.jsx($0,{})}),T.jsx(ve,{path:"diary",element:T.jsx(j0,{})}),T.jsx(ve,{path:"recommended-food",element:T.jsx(D0,{})}),T.jsx(ve,{path:"settings",element:T.jsx(M0,{})})]})]}),T.jsx(ve,{path:"*",element:T.jsx(cs,{to:"/"})})]})});ou.createRoot(document.getElementById("root")).render(T.jsx(en.StrictMode,{children:T.jsx(uv,{basename:"/food_diary",children:T.jsx(A0,{})})}));export{U0 as N,np as R,dm as a,hd as b,F0 as c,T as j,B0 as m,E as r,Ut as s,Dv as u};
+`,P0="/food_diary/assets/avatar-sign-in-16bf14a7.svg",N0=()=>T.jsx(S0,{children:T.jsxs(k0,{children:[T.jsx(C0,{children:"HealthyHub"}),T.jsxs(x0,{children:[T.jsx(Ya,{to:"/signin",children:"Sign in"}),T.jsx(E0,{children:" / "}),T.jsx(Ya,{to:"/signup",children:"Sign up"}),T.jsx(_0,{children:T.jsx("use",{href:`${P0}#avatar-sign-in`})})]})]})}),R0=()=>T.jsxs(T.Fragment,{children:[T.jsx(N0,{}),T.jsx(E.Suspense,{fallback:null,children:T.jsx(fs,{})})]}),T0=E.lazy(()=>ht(()=>import("./Welcome-a997af79.js"),["assets/Welcome-a997af79.js","assets/AuthLayout-71640714.js"])),L0=E.lazy(()=>ht(()=>import("./SignUp-004d5c1a.js"),["assets/SignUp-004d5c1a.js","assets/AuthLayout-71640714.js"])),z0=E.lazy(()=>ht(()=>import("./SignIn-83ed6724.js"),["assets/SignIn-83ed6724.js","assets/AuthLayout-71640714.js"])),O0=E.lazy(()=>ht(()=>import("./ForgotPassword-a06b2da2.js"),[])),I0=E.lazy(()=>ht(()=>import("./Main-e32d3ef6.js"),[])),$0=E.lazy(()=>ht(()=>import("./Dashboard-c9286bc7.js"),[])),j0=E.lazy(()=>ht(()=>import("./Diary-c7de113e.js"),[])),D0=E.lazy(()=>ht(()=>import("./RecommendedFood-be05fb11.js"),[])),M0=E.lazy(()=>ht(()=>import("./Settings-a777dfdb.js"),[])),A0=()=>T.jsx("div",{style:{height:"100vh",display:"flex",justifyContent:"flex-start",alignItems:"center",flexDirection:"column"},children:T.jsxs(ev,{children:[T.jsxs(ve,{path:"/",element:T.jsx(R0,{}),children:[T.jsxs(ve,{element:T.jsx(mv,{isLoggedIn:!1}),children:[T.jsx(ve,{index:!0,element:T.jsx(T0,{})}),T.jsx(ve,{path:"signup",element:T.jsx(L0,{})}),T.jsx(ve,{path:"signin",element:T.jsx(z0,{})}),T.jsx(ve,{path:"forgot-password",element:T.jsx(O0,{})})]}),T.jsxs(ve,{element:T.jsx(vv,{isLoggedIn:!1}),children:[T.jsx(ve,{path:"main",element:T.jsx(I0,{})}),T.jsx(ve,{path:"dashboard/:selectedMonth?",element:T.jsx($0,{})}),T.jsx(ve,{path:"diary",element:T.jsx(j0,{})}),T.jsx(ve,{path:"recommended-food",element:T.jsx(D0,{})}),T.jsx(ve,{path:"settings",element:T.jsx(M0,{})})]})]}),T.jsx(ve,{path:"*",element:T.jsx(cs,{to:"/"})})]})});ou.createRoot(document.getElementById("root")).render(T.jsx(en.StrictMode,{children:T.jsx(uv,{basename:"/food_diary",children:T.jsx(A0,{})})}));export{U0 as N,np as R,dm as a,hd as b,F0 as c,T as j,B0 as m,E as r,Ut as s,Dv as u};
