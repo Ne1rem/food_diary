@@ -1,7 +1,11 @@
+import { Hero } from '../../../components/Settings/Hero';
+
 const Settings = () => {
-    return ( <>
-    Settings
-    </> );
-}
- 
+  return (
+    <>
+      <Hero></Hero>
+    </>
+  );
+};
+
 export default Settings;
