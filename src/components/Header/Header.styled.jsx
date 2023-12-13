@@ -7,7 +7,7 @@ export const Headerdiv = styled.header`
 `;
 
 export const HeaderContainer = styled.div`
-  padding: 20px;
+  padding: 34px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,7 +16,6 @@ export const HeaderContainer = styled.div`
 
 export const Navigation = styled.nav`
   display: flex;
-  margin-right: 34px;
   align-items: center;
 `;
 
@@ -24,6 +23,7 @@ export const StyledLink = styled(Link)`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
+  padding: 0px 3px;
   line-height: 20px;
   letter-spacing: 0em;
   text-align: right;
@@ -31,7 +31,6 @@ export const StyledLink = styled(Link)`
 `;
 
 export const SlashBetween = styled.p`
-  margin: 0;
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
@@ -52,7 +51,7 @@ export const NameOfSite = styled.p`
 `;
 
 export const HeaderAvatarSvg = styled.svg`
-fill: white;
+fill: var(--color-primary-white);
 width: 28px;
 height: 28px;
 padding-left: 6px;
