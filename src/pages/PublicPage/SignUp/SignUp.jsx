@@ -1,6 +1,8 @@
+import AuthLayout from "../../../components/Auth/AuthLayout/AuthLayout";
+
 const SignUp = () => {
     return ( <>
-    SignUp
+      <AuthLayout>fffffffff</AuthLayout>
     </> );
 }
  
