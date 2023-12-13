@@ -1,6 +1,6 @@
 const ForgotPassword = () => {
     return ( <>
-    ForgotPassword
+    console.log(ForgotPassword);
     </> );
 }
  
