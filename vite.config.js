@@ -12,5 +12,5 @@ export default defineConfig({
           assets: '/src/assets'
         },
       },
-      base: '/HealthyHub',
+      base: '/food_diary',
     });
