@@ -1,20 +1,23 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { lazy } from "react";
-import PublicRoute from "./route/PublicRoute/PublicRoute";
-import PrivateRoute from "./route/PrivateRoutes/PrivateRoutes";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
+import PublicRoute from './route/PublicRoute/PublicRoute';
+import PrivateRoute from './route/PrivateRoutes/PrivateRoutes';
 
-import SharedLayout from "./components/SharedLayout/SharedLayout";
+import SharedLayout from './components/SharedLayout/SharedLayout';
 
-const Welcome = lazy(() => import("./pages/PublicPage/Welcome/Welcome"));
-const SignUp = lazy(() => import("./pages/PublicPage/SignUp/SignUp"));
-const SignIn = lazy(() => import("./pages//PublicPage/SignIn/SignIn"));
-const ForgotPassword = lazy(() =>import("./pages/PublicPage/ForgotPassword/ForgotPassword"));
-const Main = lazy(() => import("./pages/PrivatePage/Main/Main"));
-const Dashboard = lazy(() => import("./pages/PrivatePage/Dashboard/Dashboard"));
-const Diary = lazy(() => import("./pages/PrivatePage/Diary/Diary"));
-const RecommendedFood = lazy(() =>import("./pages/PrivatePage/RecommendedFood/RecommendedFood"));
-const Settings = lazy(() => import("./pages/PrivatePage/Settings/Settings"));
-
+const Welcome = lazy(() => import('./pages/PublicPage/Welcome/Welcome'));
+const SignUp = lazy(() => import('./pages/PublicPage/SignUp/SignUp'));
+const SignIn = lazy(() => import('./pages//PublicPage/SignIn/SignIn'));
+const ForgotPassword = lazy(() =>
+  import('./pages/PublicPage/ForgotPassword/ForgotPassword')
+);
+const Main = lazy(() => import('./pages/PrivatePage/Main/Main'));
+const Dashboard = lazy(() => import('./pages/PrivatePage/Dashboard/Dashboard'));
+const Diary = lazy(() => import('./pages/PrivatePage/Diary/Diary'));
+const RecommendedFood = lazy(() =>
+  import('./pages/PrivatePage/RecommendedFood/RecommendedFood')
+);
+const Settings = lazy(() => import('./pages/PrivatePage/Settings/Settings'));
 
 const App = () => {
   const isLoggedIn = false;
@@ -22,11 +25,11 @@ const App = () => {
   return (
     <div
       style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        flexDirection: "column",
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        flexDirection: 'column',
       }}
     >
       <Routes>
@@ -39,7 +42,7 @@ const App = () => {
           </Route>
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
             <Route path="main" element={<Main />} />
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="dashboard/:selectedMonth?" element={<Dashboard />} />
             <Route path="diary" element={<Diary />} />
             <Route path="recommended-food" element={<RecommendedFood />} />
             <Route path="settings" element={<Settings />} />
