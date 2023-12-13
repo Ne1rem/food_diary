@@ -1,5 +1,5 @@
 @import 'node_modules/modern-normalize/modern-normalize.css';
-
+@import 'normalize.css';
 @import url('./styles/theme.css');
 
 body {
