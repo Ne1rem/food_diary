@@ -1,29 +1,27 @@
 import {
   HeaderContainer,
+  NameOfSite,
   Navigation,
+  SlashBetween,
   StyledLink,
-  IconWrapper,
+  Headerdiv,
+  HeaderAvatarSvg,
+
 } from './Header.styled';
-import sprite from 'assets/sprite.svg';
+import avatar from '../../assets/avatar-sign-in.svg'
 
 export const Header = () => {
-
   return (
+    <Headerdiv>
     <HeaderContainer>
+      <NameOfSite>HealthyHub</NameOfSite>
       <Navigation>
-        <StyledLink to="/signup">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          signup
-        </StyledLink>
-        <StyledLink to="/signin">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          signin
-        </StyledLink>
+        <StyledLink to="/signin">Sign in</StyledLink>
+        <SlashBetween>/</SlashBetween>
+        <StyledLink to="/signup">Sign up</StyledLink>
+        <HeaderAvatarSvg><use href={`${avatar}#avatar-sign-in`} /></HeaderAvatarSvg>
       </Navigation>
     </HeaderContainer>
+    </Headerdiv>
   );
 };

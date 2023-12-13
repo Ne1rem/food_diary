@@ -1,51 +1,59 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const Headerdiv = styled.header`
+  background-color: var(--color-primary-black-2);
+  width: 100%;
+`;
+
 export const HeaderContainer = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
 `;
 
 export const Navigation = styled.nav`
   display: flex;
-  justify-content: center;
+  margin-right: 34px;
   align-items: center;
 `;
 
 export const StyledLink = styled(Link)`
-  padding: 8px 16px;
-  color: #ffffff; /* White text color */
-  text-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
-  transition:
-    color 0.3s,
-    text-shadow 0.3s;
-
-  &:hover,
-  &:focus {
-    color: #00baff; /* Blue text color on hover/focus */
-    text-shadow:
-      0 0 5px #00baff,
-      0 0 10px #00baff,
-      0 0 20px #00baff,
-      0 0 40px #00baff,
-      0 0 80px #00baff;
-  }
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: var(--color-primary-white);
 `;
 
-export const IconWrapper = styled.svg`
-  width: ${(props) => props.size || '12px'};
-  height: ${(props) => props.size || '12px'};
-  fill: ${(props) => props.color || '#ffffff'};
-  display: inline-block;
-  margin-right: 5px;
-  box-shadow:
-    0 0 5px #00baff,
-    0 0 10px #00baff,
-    0 0 20px #00baff,
-    0 0 40px #00baff,
-    0 0 80px #00baff;
+export const SlashBetween = styled.p`
+  margin: 0;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  color: var(--color-primary-white);
 `;
+
+export const NameOfSite = styled.p`
+  margin: 0;
+  color: var(--color-primary-grey);
+  font-family: Poppins;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+
+export const HeaderAvatarSvg = styled.svg`
+fill: white;
+width: 28px;
+height: 28px;
+padding-left: 6px;
+`
