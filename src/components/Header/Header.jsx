@@ -11,7 +11,7 @@ import avatar from '../../assets/header/avatar-sign-in.svg'
 import UserMenu from './userMenu';
 
 export const Header = () => {
- const isLoggedIn = true
+ const isLoggedIn = false
   return (
     <Headerdiv>
     <HeaderContainer>
