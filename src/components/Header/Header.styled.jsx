@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 10px;
+  gap: 38px;
 `;
 
 export const Navigation = styled.nav`
@@ -39,7 +39,7 @@ export const SlashBetween = styled.p`
   color: var(--color-primary-white);
 `;
 
-export const NameOfSite = styled.p`
+export const NameOfSite = styled(Link)`
   margin: 0;
   color: var(--color-primary-grey);
   font-family: Poppins;
