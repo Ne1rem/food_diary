@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <>
       <MonthSelector selectedMonthFromPath={selectedMonth} />
-      <CaloriesChart />
+      <CaloriesChart selectedMonth={selectedMonth} />
       <WaterChart />
       <WeightChart />
     </>
