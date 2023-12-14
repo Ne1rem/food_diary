@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 
+import { Container } from './MonthSelector.styled';
+
 const MonthSelector = ({ selectedMonthFromPath }) => {
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [months, setMonths] = useState([]);
@@ -42,7 +44,7 @@ const MonthSelector = ({ selectedMonthFromPath }) => {
   };
 
   return (
-    <>
+    <Container>
       <Select
         options={months}
         value={selectedMonth}
@@ -50,7 +52,7 @@ const MonthSelector = ({ selectedMonthFromPath }) => {
         placeholder="Month"
       />
       {selectedMonth && <p>{selectedMonth.label}</p>}
-    </>
+    </Container>
   );
 };
 

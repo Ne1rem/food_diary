@@ -53,7 +53,7 @@ function CaloriesChart({ selectedMonth }) {
     datasets: [
       {
         label: 'Calories',
-        data: [1, 1.2, 1, 1.2, 1, 1, 1.5, 1.4, 1, 1, 1.2, 1.2, 1.6, 1.4, 1.5, 1.6, 1.8], // temporarily
+        data: [1, 1.2, 1, 1.2, 1, 1, 1.5, 1.4, 1, 1, 1.2, 1.2, 1.6, 1.4, 1.5, 1.6, 1.8, 3, 2.5], // temporarily
         backgroundColor: 'transparent',
         borderColor: 'red',
         pointBorderColor: 'transparent',
@@ -86,7 +86,7 @@ function CaloriesChart({ selectedMonth }) {
   };
 
   return (
-    <div style={{ width: '1176px', height: '382px', padding: '34px' }}>
+    <div style={{ width: '676px', height: '382px', padding: '6px' }}>
       <h1>Calories</h1>
       {selectedMonth && <p>{selectedMonth}</p>}
       <Line data={data} options={options}></Line>
