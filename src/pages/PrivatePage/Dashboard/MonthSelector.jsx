@@ -1,7 +1,8 @@
+// temporarily written on state, need to change to redux
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-
 
 const MonthSelector = ({ selectedMonthFromPath }) => {
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -10,9 +11,10 @@ const MonthSelector = ({ selectedMonthFromPath }) => {
 
   useEffect(() => {
     const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+
     const generatedMonths = Array.from({ length: 6 }, (_, index) => {
-      const date = new Date();
-      date.setMonth(currentMonth - index);
+      const date = new Date(currentYear, currentMonth - index, 1);
       return {
         value: date.toLocaleString('en', { month: 'long' }).toLowerCase(),
         label: date.toLocaleString('en', { month: 'long' }),
