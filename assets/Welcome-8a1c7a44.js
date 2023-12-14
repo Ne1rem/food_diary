@@ -1,4 +1,4 @@
-import{s as i,N as r,j as e}from"./index-063ab9bb.js";import{A as o}from"./AuthLayout-7611b76e.js";const l=i.div`
+import{s as i,N as r,j as e}from"./index-8c0c225d.js";import{A as o}from"./AuthLayout-ace12ca9.js";const l=i.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
