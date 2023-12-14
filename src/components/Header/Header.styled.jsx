@@ -7,7 +7,7 @@ export const Headerdiv = styled.header`
 `;
 
 export const HeaderContainer = styled.div`
-  padding: 34px;
+  padding: 26px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,7 +23,7 @@ export const StyledLink = styled(Link)`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
-  padding: 0px 3px;
+  padding: 6px 3px;
   line-height: 20px;
   letter-spacing: 0em;
   text-align: right;
