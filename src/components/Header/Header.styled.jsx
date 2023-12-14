@@ -7,8 +7,8 @@ export const HeaderContainer = styled.div`
 
 export const Navigation = styled.nav`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 `;
 
 export const StyledLink = styled(Link)`
