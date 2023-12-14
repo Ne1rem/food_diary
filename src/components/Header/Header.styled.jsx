@@ -28,6 +28,13 @@ export const StyledLink = styled(Link)`
   letter-spacing: 0em;
   text-align: right;
   color: var(--color-primary-white);
+
+  &:hover {
+    color: var(--color-primary-green-lite);
+  }
+  &:active {
+    color: var(--color-primary-green-lite);
+  }
 `;
 
 export const SlashBetween = styled.p`
@@ -48,6 +55,16 @@ export const NameOfSite = styled(Link)`
   line-height: 32px;
   letter-spacing: 0em;
   text-align: left;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: var(--color-primary-green-lite);
+  }
+  &:active {
+    color: var(--color-primary-green-lite);
+  }
+
 `;
 
 export const HeaderAvatarSvg = styled.svg`
