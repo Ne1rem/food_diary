@@ -8,9 +8,10 @@ import {
   HeaderAvatarSvg,
 } from './Header.styled';
 import avatar from '../../assets/header/avatar-sign-in.svg'
+import UserMenu from './userMenu';
 
 export const Header = () => {
- const isLoggedIn = false
+ const isLoggedIn = true
   return (
     <Headerdiv>
     <HeaderContainer>
