@@ -1,9 +1,7 @@
-import AuthLayout from "../../../components/Auth/AuthLayout/AuthLayout";
+import SignUpForm from 'components/Auth/SignUpForm/SignUpForm';
 
 const SignUp = () => {
-    return ( <>
-      <AuthLayout>fffffffff</AuthLayout>
-    </> );
-}
- 
+  return <SignUpForm />;
+};
+
 export default SignUp;
