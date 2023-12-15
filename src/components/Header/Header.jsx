@@ -7,11 +7,11 @@ import {
   Headerdiv,
   HeaderAvatarSvg,
 } from './Header.styled';
-import avatar from '../../assets/header/avatar-sign-in.svg'
+import HeaderSvg from '/src/assets/header/headerSvg.svg'
 import UserMenu from './userMenu';
 
 export const Header = () => {
- const isLoggedIn = false
+ const isLoggedIn = true
   return (
     <Headerdiv>
     <HeaderContainer>
@@ -20,7 +20,7 @@ export const Header = () => {
         <StyledLink to="/signin">Sign in</StyledLink>
         <SlashBetween> / </SlashBetween>
         <StyledLink to="/signup">Sign up</StyledLink>
-        <HeaderAvatarSvg><use href={`${avatar}#avatar-sign-in`} /></HeaderAvatarSvg>
+        <HeaderAvatarSvg><use href={`${HeaderSvg}#avatar-sign-in`} /></HeaderAvatarSvg>
       </Navigation>)}
     </HeaderContainer>
     </Headerdiv>
