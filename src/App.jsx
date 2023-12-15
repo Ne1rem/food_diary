@@ -42,7 +42,7 @@ const App = () => {
           </Route>
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
             <Route path="main" element={<Main />} />
-            <Route path="dashboard/:selectedMonth?" element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="diary" element={<Diary />} />
             <Route path="recommended-food" element={<RecommendedFood />} />
             <Route path="settings" element={<Settings />} />
