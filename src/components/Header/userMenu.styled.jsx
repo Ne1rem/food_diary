@@ -2,24 +2,22 @@ import styled from 'styled-components';
 
 export const UserMenuContainer = styled.div`
   display: flex;
+  gap: 80px;
 `;
 
 //Modal Goal
-export const GoalModal = styled.button`
+export const GoalHeader = styled.div`
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const GoalButton = styled.button`
   display: flex;
   padding: 0;
   border-style: none;
   background: transparent;
-  padding-right: 80px;
-`;
-
-export const GoalButton = styled.div`
-  padding: 0;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const ImageGoal = styled.img`
@@ -71,21 +69,20 @@ export const DivGoalPart = styled.div`
 
 //Modal weight
 
-export const WeightModal = styled.button`
-  display: flex;
+export const WeightHeader = styled.div`
   padding: 0;
-  border-style: none;
-  background: transparent;
-  padding-right: 80px;
-`;
-
-export const WeightButton = styled.div`
-  padding: 0;
-  width: 48px;
+  width: 128px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const WeightButton = styled.button`
+  display: flex;
+  padding: 0;
+  border-style: none;
+  background: transparent;
 `;
 
 export const ImageWeight = styled.img`
