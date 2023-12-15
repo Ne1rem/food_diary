@@ -29,6 +29,8 @@ export const Section = styled.section`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.44;
+  width: 100%;
+  height: 100%;
   
     background-color: var(--color-primary-black);
     color: var(--color-primary-white);

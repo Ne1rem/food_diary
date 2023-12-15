@@ -1,6 +1,4 @@
-// temporarily written on state, need to change to redux
-
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -23,50 +21,32 @@ ChartJS.register(
   Filler
 );
 
-function getDaysInMonth(month, year) {
-  return new Date(year, month + 1, 0).getDate();
-}
+const CaloriesChart = () => {
+  const [selectedMonth, setSelectedMonth] = useState('current');
 
-function CaloriesChart({ selectedMonth }) {
-  const [labels, setLabels] = useState([]);
-
-  useEffect(() => {
-    let selectedDate;
-
-    if (selectedMonth) {
-      selectedDate = new Date(selectedMonth);
-    } else {
-      selectedDate = new Date();
-    }
-
-    const daysInMonth = getDaysInMonth(selectedDate.getMonth(), selectedDate.getFullYear());
-
-    const days = Array.from({ length: daysInMonth }, (_, index) => index + 1);
-    // console.log('Days:', days);
-    setLabels(days);
-  }, [selectedMonth]);
-
-// console.log('Labels:', labels);
+  const randomData = () => {
+    return Array.from({ length: 30 }, () => Math.floor(Math.random() * 1000));
+  };
 
   const data = {
-    labels: labels,
+    labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
     datasets: [
       {
         label: 'Calories',
-        data: [1, 1.2, 1, 1.2, 1, 1, 1.5, 1.4, 1, 1, 1.2, 1.2, 1.6, 1.4, 1.5, 1.6, 1.8, 3, 2.5], // temporarily
+        data: randomData(),
         backgroundColor: 'transparent',
-        borderColor: 'red',
+        borderColor: '#E3FFA8',
         pointBorderColor: 'transparent',
         pointBorderWidth: 5,
-        fill: true,
-        tension: 0.5,
+        fill: false,
+        tension: 0.1,
       },
     ],
   };
 
   const options = {
     plugins: {
-      legend: true,
+      legend: false,
     },
     scales: {
       x: {
@@ -79,19 +59,37 @@ function CaloriesChart({ selectedMonth }) {
         max: 3,
         ticks: {
           stepSize: 1,
-          callback: (value) => value + 'k',
+          callback: (value) => (value !== 0 ? value + 'k' : value),
         },
       },
     },
   };
 
   return (
-    <div style={{ width: '676px', height: '382px', padding: '6px' }}>
-      <h1>Calories</h1>
-      {selectedMonth && <p>{selectedMonth}</p>}
-      <Line data={data} options={options}></Line>
-    </div>
+    <>
+      <select
+        value={selectedMonth}
+        onChange={(e) => setSelectedMonth(e.target.value)}
+      >
+        <option value="current">Month</option>
+        <option value="previous">prev 6month...</option>
+      </select>
+
+      <div style={{ width: '676px', height: '382px', padding: '6px' }}>
+        <h1>Calories</h1>
+        {selectedMonth && <p>{selectedMonth}</p>}
+        <Line data={data} options={options}></Line>
+        <p>
+          Average value:{' '}
+          {Math.round(
+            data.datasets[0].data.reduce((acc, val) => acc + val, 0) / 30
+          )}{' '}
+          calories
+        </p>
+      </div>
+    </>
   );
 }
 
 export default CaloriesChart;
+
