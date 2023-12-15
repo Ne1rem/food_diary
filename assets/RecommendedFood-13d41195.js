@@ -1,0 +1,1 @@
+import{j as e}from"./index-b7fadf01.js";const d=()=>e.jsx(e.Fragment,{children:"RecommendedFood"});export{d as default};
