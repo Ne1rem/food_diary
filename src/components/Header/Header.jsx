@@ -10,8 +10,10 @@ import {
 import HeaderSvg from '/src/assets/header/headerSvg.svg'
 import UserMenu from './userMenu';
 
+export const isLoggedIn = false
+
 export const Header = () => {
- const isLoggedIn = true
+
   return (
     <Headerdiv>
     <HeaderContainer>

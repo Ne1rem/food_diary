@@ -76,7 +76,7 @@ const UserMenu = () => {
                 <UserAvatar  src={selectedImage}/>
                 <AvatarSvg><use href={`${HeaderSvg}#change-your-goal`} /></AvatarSvg>
                 </UserHeaderButton>
-                {isUserModalOpen && <ModalUserHeader setIsUserModalOpen={setIsUserModalOpen} />}
+                {isUserModalOpen && <ModalUserHeader/>}
             </UserHeader>
         </UserMenuContainer>
     )

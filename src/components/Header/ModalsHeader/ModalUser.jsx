@@ -1,13 +1,17 @@
+import { ModalButtonSettigns, ModalPartButtonSettigns, ModalSettigns, ModalSvgSettigns, ModalTextSettigns } from './Modals-styles/ModalUsers.styles'
 import HeaderSvg from '/src/assets/header/headerSvg.svg'
 
-function ModalUserHeader ({setIsUserModalOpen})  {
+function ModalUserHeader ()  {
+
     return(
-        <div>
-            <button onClick={() => setIsUserModalOpen(false)}><svg><use href={`${HeaderSvg}#settings`}/></svg>
-            <p>Settings</p></button>
-            <button onClick={() => setIsUserModalOpen(false)}><svg><use href={`${HeaderSvg}#logout`}/></svg>
-            <p>Logout</p></button>
-        </div>
+        <ModalSettigns>
+            <ModalPartButtonSettigns>
+            <ModalButtonSettigns to="/settings"><ModalSvgSettigns><use href={`${HeaderSvg}#settings`}/></ModalSvgSettigns>
+            <ModalTextSettigns>Settings</ModalTextSettigns></ModalButtonSettigns>
+            <ModalButtonSettigns to="/"><ModalSvgSettigns><use href={`${HeaderSvg}#logout`}/></ModalSvgSettigns>
+            <ModalTextSettigns>Logout</ModalTextSettigns></ModalButtonSettigns>
+            </ModalPartButtonSettigns>
+        </ModalSettigns>
     )
 }
 
