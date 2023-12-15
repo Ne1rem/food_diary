@@ -5,7 +5,7 @@ const WelcomeStyle = styled.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
-padding-top: 0;
+padding-top: 80px;
   }
 `;
 
