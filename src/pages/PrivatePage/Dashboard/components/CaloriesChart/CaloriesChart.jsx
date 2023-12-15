@@ -8,8 +8,10 @@ import {
   PointElement,
   Legend,
   Tooltip,
-  Filler
+  Filler,
+  Title,
 } from 'chart.js';
+import { ContainerChart, ContainerSelect, ContainerValue, Month, TitleCalories } from './CaloriesChart.styled';
 
 ChartJS.register(
   LineElement,
@@ -35,7 +37,7 @@ const CaloriesChart = () => {
         label: 'Calories',
         data: randomData(),
         backgroundColor: 'transparent',
-        borderColor: '#E3FFA8',
+        borderColor: 'var(--color-primary-green-lite)',
         pointBorderColor: 'transparent',
         pointBorderWidth: 5,
         fill: false,
@@ -67,18 +69,19 @@ const CaloriesChart = () => {
 
   return (
     <>
-      <select
-        value={selectedMonth}
-        onChange={(e) => setSelectedMonth(e.target.value)}
-      >
-        <option value="current">Month</option>
-        <option value="previous">prev 6month...</option>
-      </select>
+      <ContainerSelect>
+        <select
+          value={selectedMonth}
+          onChange={(e) => setSelectedMonth(e.target.value)}
+        >
+          <option value="current">Month</option>
+          <option value="previous">prev 6month...</option>
+        </select>
+        {selectedMonth && <Month>{selectedMonth}</Month>}
+      </ContainerSelect>
 
-      <div style={{ width: '676px', height: '382px', padding: '6px' }}>
-        <h1>Calories</h1>
-        {selectedMonth && <p>{selectedMonth}</p>}
-        <Line data={data} options={options}></Line>
+      <ContainerValue>
+        <TitleCalories>Calories</TitleCalories>
         <p>
           Average value:{' '}
           {Math.round(
@@ -86,10 +89,13 @@ const CaloriesChart = () => {
           )}{' '}
           calories
         </p>
-      </div>
+      </ContainerValue>
+
+      <ContainerChart>
+        <Line data={data} options={options}></Line>
+      </ContainerChart>
     </>
   );
-}
+};
 
 export default CaloriesChart;
-
