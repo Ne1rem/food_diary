@@ -5,39 +5,8 @@ const WelcomeStyle = styled.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
-padding-top: 80px;
+    padding-top: 80px;
   }
-`;
-
-const WelcomeTitle = styled.h2`
-  margin-bottom: 16px;
-
-  color: var(--color-primary-white);
-  font-size: 24px;
-  line-height: 1.25;
-
-  @media screen and (min-width: 834px) {
-    text-align: center;
-    font-size: 30px;
-    line-height: 1.2;
-  }
-`;
-
-const AboutText = styled.p`
-  margin-bottom: 24px;
-
-  color: var(--color-primary-grey, #b6b6b6);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.3;
-
-  @media screen and (min-width: 834px) {
-    max-width: 418px;
-    text-align: center;
-    font-size: 22px;
-    line-height: 1.4;
-  }
-
 `;
 
 const NavBlock = styled.div`
@@ -63,7 +32,6 @@ const AuthLink = styled(NavLink)`
   border-radius: 12px;
   line-height: 1.4;
   color: var(--color-primary-white);
-
 
   @media screen and (min-width: 834px) {
     width: 192px;
@@ -110,12 +78,4 @@ const BenefitsText = styled.p`
   line-height: 1.4;
 `;
 
-export {
-  WelcomeStyle,
-  WelcomeTitle,
-  AboutText,
-  NavBlock,
-  AuthLink,
-  Benefits,
-  BenefitsText,
-};
+export { WelcomeStyle, NavBlock, AuthLink, Benefits, BenefitsText };
