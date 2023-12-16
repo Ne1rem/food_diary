@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 import { Line } from 'react-chartjs-2';
 import Select from 'react-select';
+import MediaQuery from 'react-responsive';
 import {
   Chart as ChartJS,
   LineElement,
@@ -17,6 +19,9 @@ import {
   ContainerValue,
   Month,
   TitleCalories,
+  BackIconContainer,
+  BackIconLink,
+  ChartContainer,
 } from './CaloriesChart.styled';
 import { customSelectStyles } from './CaloriesChart.styled';
 
@@ -29,6 +34,8 @@ ChartJS.register(
   Tooltip,
   Filler
 );
+
+
 
 const CaloriesChart = () => {
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -115,8 +122,13 @@ const CaloriesChart = () => {
     scales: {
       x: {
         grid: {
-          display: false,
+          display: true,
+          color: 'rgba(41, 41, 40, 1)',
         },
+        // axis: {
+        //   display: true,
+        //   color: 'rgba(41, 41, 40, 1)',
+        // },
       },
       y: {
         min: 0,
@@ -125,6 +137,14 @@ const CaloriesChart = () => {
           stepSize: 1000,
           callback: (value) => (value === 0 ? value : value / 1000 + 'k'),
         },
+        grid: {
+          display: true,
+          color: 'rgba(41, 41, 40, 1)',
+        },
+        // axis: {
+        //   display: true,
+        //   color: 'rgba(41, 41, 40, 1)',
+        // },
       },
     },
   };
@@ -134,17 +154,22 @@ const CaloriesChart = () => {
   return (
     <>
       <ContainerSelect>
-        <label>
-          <Select
-            value={selectedMonth}
-            onChange={handleSelectChange}
-            options={selectOptions}
-            placeholder="Month"
-            styles={customSelectStyles}
-            isSearchable={false}
-            readOnly
-          />
-        </label>
+        <BackIconContainer>
+          <BackIconLink to="/main">
+            <FaArrowLeftLong />
+          </BackIconLink>
+          <label>
+            <Select
+              value={selectedMonth}
+              onChange={handleSelectChange}
+              options={selectOptions}
+              placeholder="Month"
+              styles={customSelectStyles}
+              isSearchable={false}
+              readOnly
+            />
+          </label>
+        </BackIconContainer>
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
@@ -161,9 +186,17 @@ const CaloriesChart = () => {
         )}
       </ContainerValue>
 
-      <ContainerChart>
-        {chartData && <Line data={chartData} options={options}></Line>}
-      </ContainerChart>
+      {/* пофіксити прокрутку на мобілку */}
+      <MediaQuery maxWidth={720}>
+        <ChartContainer>
+          {chartData && <Line data={chartData} options={options}></Line>}
+        </ChartContainer>
+      </MediaQuery>
+      <MediaQuery minWidth={677}>
+        <ContainerChart>
+          {chartData && <Line data={chartData} options={options}></Line>}
+        </ContainerChart>
+      </MediaQuery>
     </>
   );
 };
