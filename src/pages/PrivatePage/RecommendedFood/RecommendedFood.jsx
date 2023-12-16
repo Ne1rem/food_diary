@@ -62,7 +62,7 @@ const RecommendedFood = () => {
           </FoodCard>
         ))}
       </FoodCardsWrapper>
-      <SeeMoreButton href="/recommended-food">See more →</SeeMoreButton>
+      <SeeMoreButton href="">See more →</SeeMoreButton>
     </RecommendedFoodWrapper>
   );
 };
