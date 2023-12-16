@@ -170,10 +170,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                   </MobileGoalSvg>
                 </MobileDivGoalPart>
               </MobileGoalButton>
-              {isGoalModalOpen && (
+            </MobileGoalHeader>
+            {isGoalModalOpen && (
                 <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} />
               )}
-            </MobileGoalHeader>
             <MobileWeightHeader>
               <MobileWeightButton
                 onClick={() => {
@@ -196,10 +196,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                   </MobileDivWeight>
                 </MobileDivWeightPart>
               </MobileWeightButton>
-              {isWeightModalOpen && (
+            </MobileWeightHeader>
+            {isWeightModalOpen && (
                 <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
               )}
-            </MobileWeightHeader>
           </ButtonsMobileModals>
         </MobileOpenModal>
       )}

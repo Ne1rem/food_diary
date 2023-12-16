@@ -1,6 +1,7 @@
 import {
   ButtonCloseModalGoal,
   ConfirmModalGoal,
+  DivButtonCancellGoal,
   DivChooseModalGoal,
   DivModalGoal,
   DivModalGoalTextPart,
@@ -79,6 +80,7 @@ function ModalGoal({ setIsGoalModalOpen }) {
           </UlModalGoal>
         </DivChooseModalGoal>
       </DivModalGoalTextPart>
+      <DivButtonCancellGoal onClick={() => setIsGoalModalOpen(false)}>Cancel</DivButtonCancellGoal>
     </DivModalGoal>
   );
 }

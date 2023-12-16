@@ -12,7 +12,7 @@ import UserMenu from './userMenu';
 import { ButtonOpenMobileModals, SvgOpenMobileModals } from './userMenu.styled';
 import { useState } from 'react';
 
-export const isLoggedIn = false;
+export const isLoggedIn = true;
 
 
 export const Header = () => {
