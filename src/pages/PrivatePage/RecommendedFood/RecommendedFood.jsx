@@ -1,29 +1,44 @@
+import {
+  RecommendedFoodWrapper,
+  FoodCardsWrapper,
+  FoodCard,
+  SeeMoreButton,
+  Title,
+  CharacteristicsContainer,
+  WeightOfCalorieContainer,
+  Calories,
+} from './Styled';
+import Avocado from '../../../assets/recommendedfood/Avocado.png';
+import Beans from '../../../assets/recommendedfood/Beans.png';
+import Nuts from '../../../assets/recommendedfood/Nuts.png';
+import Broccoli from '../../../assets/recommendedfood/Broccoli.png';
+
 const RecommendedFood = () => {
   const foodItems = [
     {
       id: 1,
-      icon: 'icon-url-1',
+      icon: Avocado,
       name: 'Avocado',
       measure: '100 g',
       calories: '200 calories',
     },
     {
       id: 2,
-      icon: 'icon-url-2',
+      icon: Beans,
       name: 'Beans',
       measure: '100 g',
       calories: '123 calories',
     },
     {
       id: 3,
-      icon: 'icon-url-3',
+      icon: Nuts,
       name: 'Nuts',
       measure: '100 g',
       calories: '500 calories',
     },
     {
       id: 4,
-      icon: 'icon-url-3',
+      icon: Broccoli,
       name: 'Broccoli',
       measure: '100 g',
       calories: '28 calories',
@@ -31,22 +46,24 @@ const RecommendedFood = () => {
   ];
 
   return (
-    <div className="recommended-food">
-      <h2>Recommended Food</h2>
-      <div className="food-cards">
+    <RecommendedFoodWrapper>
+      <Title>Recommended Food</Title>
+      <FoodCardsWrapper>
         {foodItems.map((item) => (
-          <div key={item.id} className="food-card">
+          <FoodCard key={item.id}>
             <img src={item.icon} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p>{item.measure}</p>
-            <p>{item.calories}</p>
-          </div>
+            <CharacteristicsContainer>
+              <h3>{item.name}</h3>
+              <WeightOfCalorieContainer>
+                <p>{item.measure}</p>
+                <Calories>{item.calories}</Calories>
+              </WeightOfCalorieContainer>
+            </CharacteristicsContainer>
+          </FoodCard>
         ))}
-      </div>
-      <a href="/recommended-food" className="see-more-button">
-        See more
-      </a>
-    </div>
+      </FoodCardsWrapper>
+      <SeeMoreButton href="/recommended-food">See more →</SeeMoreButton>
+    </RecommendedFoodWrapper>
   );
 };
 
