@@ -1,10 +1,8 @@
 import { useFormik } from 'formik';
 import { InputStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { Button } from '../AuthStyled/ButtonStyle/ButtonStyle.styled';
+import { Button, Title, Text } from "../AuthStyled/GeneralStyles/GeneralStyles";
 import {
   SignIn,
-  SignInTitle,
-  SignInText,
   InputList,
   NavToSignUpBlock,
   NavToSignUpText,
@@ -25,8 +23,8 @@ const SignInForm = () => {
 
   return (
     <SignIn onSubmit={formik.handleSubmit}>
-      <SignInTitle>Sign in</SignInTitle>
-      <SignInText>You need to login to use the service</SignInText>
+      <Title>Sign in</Title>
+      <Text>You need to login to use the service</Text>
       <InputList>
         <li>
           <InputStyle

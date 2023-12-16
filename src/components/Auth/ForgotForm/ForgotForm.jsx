@@ -1,10 +1,8 @@
 import { useFormik } from 'formik';
 import { InputStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { Button } from '../AuthStyled/ButtonStyle/ButtonStyle.styled';
+import { Button, Title, Text } from "../AuthStyled/GeneralStyles/GeneralStyles";
 import {
   Forgot,
-  ForgotTitle,
-  ForgotText,
   NavToSignInBlock,
   NavToSignInText,
   NavToSignIn,
@@ -24,10 +22,10 @@ const ForgotForm = () => {
 
   return (
     <Forgot onSubmit={formik.handleSubmit}>
-      <ForgotTitle>Forgot your password</ForgotTitle>
-      <ForgotText>
+      <Title>Forgot your password</Title>
+      <Text>
         We will send you an email with recovery instructions
-      </ForgotText>
+      </Text>
       <InputWrapper>
         <InputStyle
           id="email"

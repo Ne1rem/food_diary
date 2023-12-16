@@ -1,9 +1,11 @@
 import { InputStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
-import { Button } from '../../../AuthStyled/ButtonStyle/ButtonStyle.styled';
+import {
+  Button,
+  Title,
+  Text,
+} from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   SignUp,
-  SignUpTitle,
-  SignUpText,
   InputList,
   NavToSignInBlock,
   NavToSignInText,
@@ -13,8 +15,8 @@ import {
 const Step1 = ({ formik }) => {
   return (
     <SignUp>
-      <SignUpTitle>Sign up</SignUpTitle>
-      <SignUpText>You need to register to use the service</SignUpText>
+      <Title>Sign up</Title>
+      <Text>You need to register to use the service</Text>
       <InputList>
         <li>
           <InputStyle
