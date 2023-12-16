@@ -20,7 +20,7 @@ const RecommendedFood = lazy(() =>
 const Settings = lazy(() => import('./pages/PrivatePage/Settings/Settings'));
 
 const App = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <div
