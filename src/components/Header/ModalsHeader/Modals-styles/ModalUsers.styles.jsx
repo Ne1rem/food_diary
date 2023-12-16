@@ -11,7 +11,12 @@ export const ModalSettigns = styled.div`
   border-radius: 12px;
   box-shadow: 0px 4px 14px 0px #e3ffa833;
   background-color: var(--color-primary-black-2);
-  z-index: 3;
+  z-index: 5;
+  @media only screen and (max-width: 650px) {
+    top: 54px;
+  right: 10px;
+  }
+
 `;
 
 export const ModalPartButtonSettigns = styled.div`
