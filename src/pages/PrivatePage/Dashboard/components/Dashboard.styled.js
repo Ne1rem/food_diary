@@ -17,11 +17,6 @@ export const Container = styled.div`
     max-width: 1474px;
     padding: 0 34px;
   }
-
-  /* Для мобільних екранів (менше 600px]) */
-  @media only screen and (max-width: 600px) {
-    padding: 5px;
-  }
 `;
 
 export const Section = styled.section`

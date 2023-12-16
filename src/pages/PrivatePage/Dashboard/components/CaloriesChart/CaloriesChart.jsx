@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import Select from 'react-select';
 import {
   Chart as ChartJS,
   LineElement,
@@ -9,9 +10,15 @@ import {
   Legend,
   Tooltip,
   Filler,
-  Title,
 } from 'chart.js';
-import { ContainerChart, ContainerSelect, ContainerValue, Month, TitleCalories } from './CaloriesChart.styled';
+import {
+  ContainerChart,
+  ContainerSelect,
+  ContainerValue,
+  Month,
+  TitleCalories,
+} from './CaloriesChart.styled';
+import { customSelectStyles } from './CaloriesChart.styled';
 
 ChartJS.register(
   LineElement,
@@ -24,26 +31,81 @@ ChartJS.register(
 );
 
 const CaloriesChart = () => {
-  const [selectedMonth, setSelectedMonth] = useState('current');
+  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [months, setMonths] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState('');
+  const [chartData, setChartData] = useState(null);
 
-  const randomData = () => {
-    return Array.from({ length: 30 }, () => Math.floor(Math.random() * 1000));
+  useEffect(() => {
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const currentDate = new Date();
+    const currentMonthIndex = currentDate.getMonth();
+    const currentMonthName = monthNames[currentMonthIndex];
+
+    setCurrentMonth(currentMonthName);
+    setMonths(
+      Array.from(
+        { length: 5 },
+        (_, i) => monthNames[(currentMonthIndex - i + 12) % 12]
+      )
+    );
+
+    setSelectedMonth({ value: currentMonthName, label: currentMonthName });
+
+    updateChartData(currentMonthName);
+  }, []);
+
+  const handleSelectChange = (selectedOption) => {
+    setSelectedMonth(selectedOption);
+    updateChartData(selectedOption.value);
   };
 
-  const data = {
-    labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
-    datasets: [
-      {
-        label: 'Calories',
-        data: randomData(),
-        backgroundColor: 'transparent',
-        borderColor: 'var(--color-primary-green-lite)',
-        pointBorderColor: 'transparent',
-        pointBorderWidth: 5,
-        fill: false,
-        tension: 0.1,
-      },
-    ],
+  const updateChartData = (selected) => {
+    // Замість randomData() - API
+    // fetchDataForMonth(selected).then((data) => setChartData(data));
+
+    // randomData() для прикладу:
+    const randomData = () => {
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
+    };
+
+    setChartData({
+      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      datasets: [
+        {
+          label: 'Calories',
+          data: randomData(), // data from backend
+          backgroundColor: 'transparent',
+          borderColor: '#E3FFA8',
+          borderWidth: 1,
+          pointBorderColor: '#0F0F0F',
+          pointBackgroundColor: '#E3FFA8',
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: '#E3FFA8',
+          pointHoverBorderColor: '#0F0F0F',
+          pointHoverBorderWidth: 1,
+          pointRadius: 2,
+          pointHitRadius: 20,
+          fill: true,
+          tension: 0.5,
+        },
+      ],
+    });
   };
 
   const options = {
@@ -58,41 +120,49 @@ const CaloriesChart = () => {
       },
       y: {
         min: 0,
-        max: 3,
+        max: 3000,
         ticks: {
-          stepSize: 1,
-          callback: (value) => (value !== 0 ? value + 'k' : value),
+          stepSize: 1000,
+          callback: (value) => (value === 0 ? value : value / 1000 + 'k'),
         },
       },
     },
   };
 
+  const selectOptions = months.map((month) => ({ value: month, label: month }));
+
   return (
     <>
       <ContainerSelect>
-        <select
-          value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
-        >
-          <option value="current">Month</option>
-          <option value="previous">prev 6month...</option>
-        </select>
-        {selectedMonth && <Month>{selectedMonth}</Month>}
+        <label>
+          <Select
+            value={selectedMonth}
+            onChange={handleSelectChange}
+            options={selectOptions}
+            placeholder="Month"
+            styles={customSelectStyles}
+            isSearchable={false}
+            readOnly
+          />
+        </label>
+        {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
       <ContainerValue>
         <TitleCalories>Calories</TitleCalories>
-        <p>
-          Average value:{' '}
-          {Math.round(
-            data.datasets[0].data.reduce((acc, val) => acc + val, 0) / 30
-          )}{' '}
-          calories
-        </p>
+        {chartData && (
+          <p>
+            Average value:{' '}
+            {Math.round(
+              chartData.datasets[0].data.reduce((acc, val) => acc + val, 0) / 30
+            )}{' '}
+            calories
+          </p>
+        )}
       </ContainerValue>
 
       <ContainerChart>
-        <Line data={data} options={options}></Line>
+        {chartData && <Line data={chartData} options={options}></Line>}
       </ContainerChart>
     </>
   );
