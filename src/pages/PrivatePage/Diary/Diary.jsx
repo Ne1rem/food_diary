@@ -1,4 +1,4 @@
-import DiaryItem from "../../../components/DiaryItem/DiaryItem"; 
+import DiaryItem from "../../../components/Diary/DiaryItem";
 import { Conteiner, Wrapper, ImgArrow, Header, ListDiary } from "./Diary.styled";
 import arrow from '../../../assets/diary/arrow-right.svg';
 import breakfastImg from '../../../assets/diary/breakfast.svg'
@@ -7,6 +7,7 @@ import dinnerImg from '../../../assets/diary/dinner.svg'
 import snackImg from '../../../assets/diary/snack.svg'
 
 const Diary = () => {
+
     const FoodArray = [
         { name: 'breakfast', img: breakfastImg },
         { name: 'lunch', img: lunchImg },
@@ -23,8 +24,7 @@ const Diary = () => {
         key={item.name}
         name={item.name}
         img={item.img} />))}
-    </ListDiary>
-    
+    </ListDiary> 
     </Conteiner> );
 }
  

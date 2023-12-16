@@ -5,11 +5,15 @@ export const WrapperItemDiary = styled.div`
     flex-basis: calc((100% - 40px) / 2);
   }`
 
-export const WrapperListHeader = styled.div`
+export const WrapperItemHeader = styled.div`
+@media screen and (max-width: 834px) {
+width: 180px;
+  }
 @media screen and (min-width: 834px) {
    display: flex;
    justify-content: space-between;
    margin-bottom:6px;
+   margin-right: 54px;
    align-items: center;
   }`
 
@@ -19,10 +23,12 @@ align-items: center;
 text-align: left;
 @media screen and (max-width: 834px) {
     margin-bottom: 12px;
+    margin-right: 20px;
   }`
 
 export const Title = styled.h3`
 margin-left: 12px;
+text-transform: capitalize;
 color: var(--color-primary-white);
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
 font-size: 18px;
@@ -31,26 +37,7 @@ line-height: 1.44;
 @media screen and (min-width: 834px) {
     font-size: 22px;
   }`
-
-export const ListNutrients = styled.ul`
-display: flex;
-color: var(--color-primary-white);
-font-size: 14px;
-font-weight: 400;
-line-height: 1.42;
-@media screen and (max-width: 834px) {
-    flex-wrap: wrap;
-    gap: 12px;
-    width: 180px;
-    margin-bottom: 12px;
-  }
-  @media screen and (min-width: 834px) {
-padding-right: 74px;
-  }
-  @media screen and (min-width: 1440px) {
-padding-right: 40px;
-  }`
-  
+ 
 export const ItemNutrients = styled.li`
 padding-left: 20px;`
 
@@ -82,7 +69,9 @@ font-weight: 600;
 line-height: 1.42;
 width: 100%;`
 
-export const ModalLink = styled.a`
+export const ModalLink = styled.button`
+background: none;
+border: none;
 margin-left: 16px;
 color: var(--color-primary-green-lite);
 font-size: 14px;

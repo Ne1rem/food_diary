@@ -1,6 +1,7 @@
+import PartMainDiary from "../../../components/Diary/PartMainDiary";
 const Main = () => {
     return ( <>
-    Main
+    <PartMainDiary />
     </> );
 }
  

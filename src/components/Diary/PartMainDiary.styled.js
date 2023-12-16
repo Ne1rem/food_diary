@@ -1,0 +1,31 @@
+import { Link } from 'react-router-dom';
+import styled from "@emotion/styled";
+
+export const ConteinerDiary = styled.div`
+text-align: left;
+width: 558px;`
+
+export const Header = styled.h2`
+margin-bottom: 16px;
+color: var(--color-primary-white);
+font-size: 18px;
+font-weight: 400;
+line-height: 1.33;
+@media screen and (min-width: 834px) {
+    font-size: 22px;
+    line-height: 1.45;
+  }`
+
+export const LinkStyled = styled(Link)`
+margin-left: 16px;
+color: var(--color-primary-grey);
+font-size: 14px;
+font-weight: 500;
+line-height: 1.42;
+`
+
+export const ListDiary = styled.ul`
+   display:flex;
+   flex-direction: column;
+   gap: 28px;
+  `
