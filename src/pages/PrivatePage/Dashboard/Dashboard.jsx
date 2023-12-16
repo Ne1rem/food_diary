@@ -1,21 +1,20 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
-import MonthSelector from './MonthSelector';
-import CaloriesChart from './CaloriesChart';
-import WaterChart from './WaterChart';
-import WeightChart from './WeightChart';
+import CaloriesChart from './components/CaloriesChart/CaloriesChart';
+import WaterChart from './components/WaterChart/WaterChart';
+import WeightChart from './components/WeightChart/WeightChart';
+
+import { Container, Section } from './components/Dashboard.styled';
 
 const Dashboard = () => {
-  const { selectedMonth } = useParams();
-
   return (
-    <>
-      <MonthSelector selectedMonthFromPath={selectedMonth} />
-      <CaloriesChart />
-      <WaterChart />
-      <WeightChart />
-    </>
+    <Section>
+      <Container>
+        <CaloriesChart />
+        <WaterChart />
+        <WeightChart />
+      </Container>
+    </Section>
   );
 };
 

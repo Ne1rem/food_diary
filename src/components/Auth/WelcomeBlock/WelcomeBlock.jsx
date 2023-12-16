@@ -1,9 +1,9 @@
-import { WelcomeStyle, WelcomeTitle, AboutText, NavBlock, AuthLink, Benefits, BenefitsText } from "./WelcomeBlock.styled"
-
+import { WelcomeStyle, NavBlock, AuthLink, Benefits, BenefitsText } from "./WelcomeBlock.styled"
+import {  Title, Text } from "../AuthStyled/GeneralStyles/GeneralStyles"
 const WelcomeBlock = () => {
     return ( <WelcomeStyle>
-<WelcomeTitle>Set goals and achieve them</WelcomeTitle>
-<AboutText>The service will help you set goals and follow them.</AboutText>
+<Title>Set goals and achieve them</Title>
+<Text>The service will help you set goals and follow them.</Text>
 <NavBlock>
     <AuthLink  to="/signin">Sign in</AuthLink>
     <AuthLink  to="/signup">Sign up</AuthLink>
