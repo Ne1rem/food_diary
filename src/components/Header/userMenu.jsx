@@ -57,7 +57,7 @@ import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 
-export const gender = 'female';
+export const gender = 'male';
 export const goal = 'Lose Fat';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
