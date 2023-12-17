@@ -9,6 +9,7 @@ import {
   NavToSignUp,
   NavToForgotPass,
 } from './SignInForm.styled';
+import { signInSchema } from '../validationSchemas/validationSchema';
 
 const SignInForm = () => {
   const formik = useFormik({
@@ -16,9 +17,11 @@ const SignInForm = () => {
       email: '',
       password: '',
     },
+    validationSchema: signInSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
+    
   });
 
   return (
@@ -35,6 +38,7 @@ const SignInForm = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
+            {formik.errors.email && formik.touched.email  ? (<div>{formik.errors.email}</div>) : null}
         </li>
         <li>
           <InputStyle
@@ -45,14 +49,15 @@ const SignInForm = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
+            {formik.errors.password && formik.touched.password ? (<div>{formik.errors.password}</div>) : null}
         </li>
       </InputList>
-      <Button>Sign in</Button>
+      <Button type='submit'>Sign in</Button>
       <NavToForgotPass to="/forgot-password">
         Forgot your password?
       </NavToForgotPass>
       <NavToSignUpBlock>
-        <NavToSignUpText>Do you already have an account?</NavToSignUpText>
+        <NavToSignUpText>If you don't have an account yet</NavToSignUpText>
         <NavToSignUp to="/signup">Sign up</NavToSignUp>
       </NavToSignUpBlock>
     </SignIn>

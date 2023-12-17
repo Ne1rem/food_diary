@@ -12,7 +12,13 @@ import {
   NavToSignIn,
 } from './Step1.styled';
 
-const Step1 = ({ formik }) => {
+const Step1 = ({ formik, increment }) => {
+
+
+const onClickBtnNext = () => {
+increment()
+} 
+
   return (
     <SignUp>
       <Title>Sign up</Title>
@@ -27,6 +33,7 @@ const Step1 = ({ formik }) => {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
+             {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
         </li>
         <li>
           <InputStyle
@@ -34,9 +41,11 @@ const Step1 = ({ formik }) => {
             name="email"
             type="email"
             placeholder="E-mail"
+
             onChange={formik.handleChange}
             value={formik.values.email}
           />
+            {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
         </li>
         <li>
           <InputStyle
@@ -44,12 +53,14 @@ const Step1 = ({ formik }) => {
             name="password"
             type="password"
             placeholder="Password"
+
             onChange={formik.handleChange}
             value={formik.values.password}
           />
+             {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
         </li>
       </InputList>
-      <Button type="button">Next</Button>
+      <Button onClick={() => {onClickBtnNext()}} type="button">Next</Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>

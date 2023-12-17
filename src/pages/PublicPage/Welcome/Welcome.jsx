@@ -1,10 +1,10 @@
 import AuthLayout from 'components/Auth/AuthLayout/AuthLayout';
 import WelcomeBlock from 'components/Auth/WelcomeBlock/WelcomeBlock';
-import { Illustration } from 'assets/authImages/index';
+import { illustration } from 'assets/authImages/index';
 
 const Welcome = () => {
   return (
-    <AuthLayout image={Illustration}>
+    <AuthLayout image={illustration}>
       <WelcomeBlock />
     </AuthLayout>
   );
