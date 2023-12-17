@@ -1,4 +1,4 @@
-import { CloseModalChangeWeight, DivPartModalChangeWeight, InputPartButtonModalChangeWeight, InputPartInputModalChangeWeight, InputPartModalChangeWeight, ModalChangeWeight, SvgCloseModalChangeWeight, TextPartModalChangeWeight, TextPartP1ModalChangeWeight, TextPartP2ModalChangeWeight, TodayModalChangeWeight } from './Modals-styles/ModalWeight.styles';
+import { CloseModalChangeWeight, DivButtonCancellWeight, DivPartModalChangeWeight, InputPartButtonModalChangeWeight, InputPartInputModalChangeWeight, InputPartModalChangeWeight, ModalChangeWeight, SvgCloseModalChangeWeight, TextPartModalChangeWeight, TextPartP1ModalChangeWeight, TextPartP2ModalChangeWeight, TodayModalChangeWeight } from './Modals-styles/ModalWeight.styles';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 
 function ModalWeight({ setIsWeightModalOpen }) {
@@ -19,12 +19,13 @@ function ModalWeight({ setIsWeightModalOpen }) {
           <TextPartP1ModalChangeWeight>Enter your current weight</TextPartP1ModalChangeWeight>
           <TextPartP2ModalChangeWeight>You can record your weight once a day</TextPartP2ModalChangeWeight>
         </TextPartModalChangeWeight>
-        <TodayModalChangeWeight>Today {formattedDate}</TodayModalChangeWeight>
+        <TodayModalChangeWeight><span style={{fontWeight:`400`,color:`white`}}>Today</span> {formattedDate}</TodayModalChangeWeight>
         <InputPartModalChangeWeight>
           <InputPartInputModalChangeWeight placeholder="Enter your weight"></InputPartInputModalChangeWeight>
           <InputPartButtonModalChangeWeight onClick={() => setIsWeightModalOpen(false)}>Confirm</InputPartButtonModalChangeWeight>
         </InputPartModalChangeWeight>
       </DivPartModalChangeWeight>
+      <DivButtonCancellWeight onClick={() => setIsWeightModalOpen(false)}>Cancel</DivButtonCancellWeight>
     </ModalChangeWeight>
   );
 }
