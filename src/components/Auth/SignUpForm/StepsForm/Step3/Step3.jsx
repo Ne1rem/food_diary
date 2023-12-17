@@ -18,7 +18,7 @@ import {
   AgeLabel,
 } from './Step3.styled';
 
-const Step3 = ({ formik }) => {
+const Step3 = ({ formik, increment, decrement }) => {
   return (
     <AgeGender>
       <Title>Select gender, Age</Title>
@@ -65,10 +65,10 @@ const Step3 = ({ formik }) => {
       </FormBlock>
       <ButtonList>
         <li>
-          <Button type="button">Next</Button>
+          <Button onClick={() => {increment()}} type="button">Next</Button>
         </li>
         <li>
-          <Button type="button">Back</Button>
+          <Button onClick={() => {decrement()}} type="button">Back</Button>
         </li>
       </ButtonList>
     </AgeGender>
