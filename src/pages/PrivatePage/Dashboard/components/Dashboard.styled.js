@@ -8,13 +8,15 @@ export const Container = styled.div`
 
   /* з [835px */
   @media only screen and (min-width: 835px) {
-    max-width: 781px;
+    width: 100%;
+    min-width: 735px;
     padding: 0 27px;
   }
 
   /* з [1441px */
   @media only screen and (min-width: 1441px) {
-    max-width: 1373px;
+    width: 100%;
+    min-width: 1373px;
     padding: 0 34px;
   }
 `;

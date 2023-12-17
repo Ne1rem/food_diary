@@ -22,8 +22,14 @@ import {
   BackIconContainer,
   BackIconLink,
   ChartContainer,
-} from './CaloriesChart.styled';
-import { customSelectStyles } from './CaloriesChart.styled';
+  ChartsWrapper,
+  TitleWater,
+  Wrapper,
+  Value,
+  Span,
+  ContainerWaterValue,
+} from './Charts.styled';
+import { customSelectStyles } from './Charts.styled';
 
 ChartJS.register(
   LineElement,
@@ -35,13 +41,12 @@ ChartJS.register(
   Filler
 );
 
-
-
-const CaloriesChart = () => {
+const Charts = () => {
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [months, setMonths] = useState([]);
   const [currentMonth, setCurrentMonth] = useState('');
   const [chartData, setChartData] = useState(null);
+  const [waterChartData, setWaterChartData] = useState(null);
 
   useEffect(() => {
     const monthNames = [
@@ -74,11 +79,13 @@ const CaloriesChart = () => {
     setSelectedMonth({ value: currentMonthName, label: currentMonthName });
 
     updateChartData(currentMonthName);
+    updateWaterChartData(currentMonthName);
   }, []);
 
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
     updateChartData(selectedOption.value);
+    updateWaterChartData(selectedOption.value);
   };
 
   const updateChartData = (selected) => {
@@ -115,6 +122,40 @@ const CaloriesChart = () => {
     });
   };
 
+  const updateWaterChartData = (selected) => {
+    // Замість randomWaterData() - API
+    // fetchDataForMonth(selected).then((data) => setWaterChartData(data));
+
+    // randomWaterData() для прикладу:
+    const randomWaterData = () => {
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+    };
+
+    setWaterChartData({
+      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      datasets: [
+        {
+          label: 'Water',
+          data: randomWaterData(), // data from backend
+          backgroundColor: 'transparent',
+          borderColor: 'var(--color-primary-grey)',
+          borderWidth: 1,
+          pointBorderColor: 'var(--color-primary-black-2)',
+          pointBackgroundColor: '#A8E3FF',
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: '#A8E3FF',
+          pointHoverBorderColor: 'var(--color-primary-black-2)',
+          pointHoverBorderWidth: 1,
+          pointRadius: 2,
+          pointHitRadius: 20,
+          fill: true,
+          tension: 0.5,
+        },
+      ],
+    });
+  };
+
   const options = {
     plugins: {
       legend: false,
@@ -125,10 +166,6 @@ const CaloriesChart = () => {
           display: true,
           color: 'rgba(41, 41, 40, 1)',
         },
-        // axis: {
-        //   display: true,
-        //   color: 'rgba(41, 41, 40, 1)',
-        // },
       },
       y: {
         min: 0,
@@ -141,10 +178,6 @@ const CaloriesChart = () => {
           display: true,
           color: 'rgba(41, 41, 40, 1)',
         },
-        // axis: {
-        //   display: true,
-        //   color: 'rgba(41, 41, 40, 1)',
-        // },
       },
     },
   };
@@ -173,32 +206,53 @@ const CaloriesChart = () => {
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
-      <ContainerValue>
-        <TitleCalories>Calories</TitleCalories>
-        {chartData && (
-          <p>
-            Average value:{' '}
-            {Math.round(
-              chartData.datasets[0].data.reduce((acc, val) => acc + val, 0) / 30
-            )}{' '}
-            calories
-          </p>
-        )}
-      </ContainerValue>
+      <Wrapper>
+        <ChartsWrapper>
+          <ContainerValue>
+            <TitleCalories>Calories</TitleCalories>
+            {chartData && (
+              <Value>
+                <Span>Average value: </Span>{' '}
+                {Math.round(
+                  chartData.datasets[0].data.reduce(
+                    (acc, val) => acc + val,
+                    0
+                  ) / 30
+                )}{' '}
+                <>calories</>
+              </Value>
+            )}
+          </ContainerValue>
 
-      {/* пофіксити прокрутку на мобілку */}
-      <MediaQuery maxWidth={720}>
-        <ChartContainer>
-          {chartData && <Line data={chartData} options={options}></Line>}
-        </ChartContainer>
-      </MediaQuery>
-      <MediaQuery minWidth={677}>
-        <ContainerChart>
-          {chartData && <Line data={chartData} options={options}></Line>}
-        </ContainerChart>
-      </MediaQuery>
+          <ContainerChart>
+            {chartData && <Line data={chartData} options={options}></Line>}
+          </ContainerChart>
+        </ChartsWrapper>
+
+        <ChartsWrapper>
+          <ContainerWaterValue>
+            <TitleWater>Water</TitleWater>
+            {waterChartData && (
+              <Value>
+                <Span>Average value: </Span>{' '}
+                {Math.round(
+                  waterChartData.datasets[0].data.reduce(
+                    (acc, val) => acc + val,
+                    0
+                  ) / 30
+                )}{' '}
+                <>ml</>
+              </Value>
+            )}
+          </ContainerWaterValue>
+
+          <ContainerChart>
+            {waterChartData && <Line data={waterChartData} options={options} />}
+          </ContainerChart>
+        </ChartsWrapper>
+      </Wrapper>
     </>
   );
 };
 
-export default CaloriesChart;
+export default Charts;
