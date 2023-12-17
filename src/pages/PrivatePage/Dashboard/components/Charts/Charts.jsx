@@ -128,7 +128,7 @@ const Charts = () => {
 
     // randomWaterData() для прикладу:
     const randomWaterData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
     };
 
     setWaterChartData({
@@ -138,14 +138,14 @@ const Charts = () => {
           label: 'Water',
           data: randomWaterData(), // data from backend
           backgroundColor: 'transparent',
-          borderColor: 'var(--color-primary-grey)',
+          borderColor: '#E3FFA8',
           borderWidth: 1,
-          pointBorderColor: 'var(--color-primary-black-2)',
-          pointBackgroundColor: '#A8E3FF',
+          pointBorderColor: '#0F0F0F',
+          pointBackgroundColor: '#E3FFA8',
           pointBorderWidth: 1,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: '#A8E3FF',
-          pointHoverBorderColor: 'var(--color-primary-black-2)',
+          pointHoverBackgroundColor: '#E3FFA8',
+          pointHoverBorderColor: '#0F0F0F',
           pointHoverBorderWidth: 1,
           pointRadius: 2,
           pointHitRadius: 20,
@@ -156,7 +156,7 @@ const Charts = () => {
     });
   };
 
-  const options = {
+  const caloriesOptions = {
     plugins: {
       legend: false,
     },
@@ -173,6 +173,32 @@ const Charts = () => {
         ticks: {
           stepSize: 1000,
           callback: (value) => (value === 0 ? value : value / 1000 + 'k'),
+        },
+        grid: {
+          display: true,
+          color: 'rgba(41, 41, 40, 1)',
+        },
+      },
+    },
+  };
+
+   const waterOptions = {
+    plugins: {
+      legend: false,
+    },
+    scales: {
+      x: {
+        grid: {
+          display: true,
+          color: 'rgba(41, 41, 40, 1)',
+        },
+      },
+      y: {
+        min: 0,
+        max: 3000,
+        ticks: {
+          stepSize: 1000,
+          callback: (value) => (value === 0 ? value : value / 1000 + 'L'),
         },
         grid: {
           display: true,
@@ -212,7 +238,7 @@ const Charts = () => {
             <TitleCalories>Calories</TitleCalories>
             {chartData && (
               <Value>
-                <Span>Average value: </Span>{' '}
+                <Span>Average value:</Span>{' '}
                 {Math.round(
                   chartData.datasets[0].data.reduce(
                     (acc, val) => acc + val,
@@ -225,7 +251,7 @@ const Charts = () => {
           </ContainerValue>
 
           <ContainerChart>
-            {chartData && <Line data={chartData} options={options}></Line>}
+            {chartData && <Line data={chartData} options={caloriesOptions}></Line>}
           </ContainerChart>
         </ChartsWrapper>
 
@@ -234,7 +260,7 @@ const Charts = () => {
             <TitleWater>Water</TitleWater>
             {waterChartData && (
               <Value>
-                <Span>Average value: </Span>{' '}
+                <Span>Average value:</Span>{' '}
                 {Math.round(
                   waterChartData.datasets[0].data.reduce(
                     (acc, val) => acc + val,
@@ -247,7 +273,7 @@ const Charts = () => {
           </ContainerWaterValue>
 
           <ContainerChart>
-            {waterChartData && <Line data={waterChartData} options={options} />}
+            {waterChartData && <Line data={waterChartData} options={waterOptions} />}
           </ContainerChart>
         </ChartsWrapper>
       </Wrapper>

@@ -141,6 +141,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ChartsWrapper = styled.div`
+align-items: center;
 `;
 
 export const ContainerValue = styled.div`
@@ -151,6 +152,7 @@ export const ContainerValue = styled.div`
 
   @media only screen and (min-width: 835px) {
     justify-content: start;
+    align-items: center;
     gap: 40px;
   }
 `;
@@ -178,9 +180,9 @@ export const ContainerWaterValue = styled.div`
     gap: 40px;
   }
 
-  @media only screen and (min-width: 1441px) {
-    margin: 12px 0 6px 0; // 12px ??? ---------------------------
-  }
+  /* @media only screen and (min-width: 1441px) {
+    margin: 16px 0 0 0; // ??? ----------------------------------------------
+  } */
 `;
 
 export const TitleWater = styled.h2`
@@ -199,6 +201,8 @@ export const Value = styled.p`
   color: var(--color-primary-grey);
   font-size: 14px;
   font-weight: 500;
+  display: flex;
+  gap: 8px;
 `;
 
 export const Span = styled.span`
