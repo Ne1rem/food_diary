@@ -7,24 +7,44 @@ import {
   Headerdiv,
   HeaderAvatarSvg,
 } from './Header.styled';
-import HeaderSvg from '/src/assets/header/headerSvg.svg'
+import HeaderSvg from '/src/assets/header/headerSvg.svg';
 import UserMenu from './userMenu';
+import { ButtonOpenMobileModals, SvgOpenMobileModals } from './userMenu.styled';
+import { useState } from 'react';
 
-export const isLoggedIn = false
+export const isLoggedIn = false;
+
 
 export const Header = () => {
 
+  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
+
   return (
     <Headerdiv>
-    <HeaderContainer>
-      <NameOfSite to="/">HealthyHub</NameOfSite>
-      {isLoggedIn ? (<UserMenu/>) :(<Navigation>
-        <StyledLink to="/signin">Sign in</StyledLink>
-        <SlashBetween> / </SlashBetween>
-        <StyledLink to="/signup">Sign up</StyledLink>
-        <HeaderAvatarSvg><use href={`${HeaderSvg}#avatar-sign-in`} /></HeaderAvatarSvg>
-      </Navigation>)}
-    </HeaderContainer>
+      <HeaderContainer>
+        <NameOfSite to="/">HealthyHub</NameOfSite>
+        <ButtonOpenMobileModals
+          onClick={() => {
+            setIsMobileModalOpen(true);
+          }}
+        >
+          <SvgOpenMobileModals>
+            <use href={`${HeaderSvg}#open-menu`} />
+          </SvgOpenMobileModals>
+        </ButtonOpenMobileModals>
+        {isLoggedIn ? (
+          <UserMenu isMobileModalOpen={isMobileModalOpen} setIsMobileModalOpen={setIsMobileModalOpen}/>
+        ) : (
+          <Navigation>
+            <StyledLink to="/signin">Sign in</StyledLink>
+            <SlashBetween> / </SlashBetween>
+            <StyledLink to="/signup">Sign up</StyledLink>
+            <HeaderAvatarSvg>
+              <use href={`${HeaderSvg}#avatar-sign-in`} />
+            </HeaderAvatarSvg>
+          </Navigation>
+        )}
+      </HeaderContainer>
     </Headerdiv>
   );
 };
