@@ -1,5 +1,7 @@
+import RecommendedFood from '../RecommendedFood/RecommendedFood';
+
 const Main = () => {
-  return <>Main</>;
+  return <RecommendedFood />;
 };
 
 export default Main;
