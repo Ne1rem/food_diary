@@ -1,4 +1,4 @@
-import { WrapperComponent, Title, WrapperTitle, TrashSvg } from "./DiaryItemMain.styled";
+import { WrapperComponent, Title, WrapperTitle, TrashSvg, ButtonSvg } from "./DiaryItemMain.styled";
 import ListNutritients from "./ListNutritients";
 import trashImg from "../../assets/diary/trash.svg"
 
@@ -10,7 +10,9 @@ const DiaryItemMain = ({name, img}) => {
         <Title>{name}</Title>
     </WrapperTitle>
     <ListNutritients />
+    <ButtonSvg>
     <TrashSvg><use href={`${trashImg}#icon-trash`} /></TrashSvg>
+    </ButtonSvg>
     </WrapperComponent> );
 }
  

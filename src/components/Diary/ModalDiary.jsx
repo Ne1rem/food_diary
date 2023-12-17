@@ -1,16 +1,59 @@
 import { useEffect } from "react";
+import FormDiary from "./FormDiary";
 import { useFormik } from "formik";
-import { Overlay, ModalWindow, Header, Wrapper, Title, InputStyle, Button } from "./ModalDiary.styled";
+import * as Yup from 'yup';
+
+import { Overlay,
+    ModalWindow,
+    Header,
+    Wrapper,
+    Title,
+    Button,
+    ButtonActive,
+    ButtonAddMore,
+    WrapperButton } from "./ModalDiary.styled"; 
+
+    const foodSchema = Yup.object().shape({
+        food: Yup.string().required('is required').min(2, 'Too Short!'),
+        carbonohidrates: Yup.number().required('is required').max(999.99, 'Maximum value is 999.99'),
+        protein: Yup.number().required('is required').max(999.99, 'Maximum value is 999.99'),
+        fat: Yup.number().required('is required').max(999.99, 'Maximum value is 999.99'),
+        calories: Yup.number().required('is required').max(999.99, 'Maximum value is 999.99'),
+      });
 
 const ModalDiary = ({name, img, onClose}) => {
+    const formik = useFormik({
+        initialValues: {
+            food: '',
+            carbonohidrates: '',
+            protein: '',
+            fat: '',
+            calories: ''
+        },
+        validationSchema: foodSchema,
+        onSubmit: values => {
+            console.log(values);
+        },
+    })
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        formik.handleSubmit(e);
+    };
+
     useEffect(()=>{
+        const originalOverflow = document.body.style.overflow;
         const handleKeyDown = e => {
             if(e.code === 'Escape'){
                 onClose();
             }
         }
     window.addEventListener('keydown', handleKeyDown);
-    return() => {window.removeEventListener('keydown', handleKeyDown)}
+    document.body.style.overflow = 'hidden';
+    return() => {
+        window.removeEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = originalOverflow;
+    }
     },[onClose])
 
     const handleOverlayClick = e => {
@@ -18,16 +61,6 @@ const ModalDiary = ({name, img, onClose}) => {
             onClose()
         }
     }
-    const formik = useFormik({
-        initialValues: {
-            name: '',
-            carbonohidrates: '',
-            protein: '',
-            fat: '',
-            calories: ''
-        }
-    })
-
     return(
         <Overlay onClick={handleOverlayClick}>
             <ModalWindow>
@@ -36,42 +69,15 @@ const ModalDiary = ({name, img, onClose}) => {
                   <img src={img}/>
                   <Title>{name}</Title>
                 </Wrapper>
-            <form>
-                   <InputStyle
-                     id="name"
-                     name="name"
-                     placeholder="The name of the product or dish"
-                     onChange={formik.handleChange}
-                     value={formik.values.name}/>
-                   <InputStyle
-                     id="carbonohidrates"
-                     name="carbonohidrates"
-                     placeholder="Carbonoh."
-                     onChange={formik.handleChange}
-                     value={formik.values.carbonohidrates}/>
-                   <InputStyle
-                     id="protein"
-                     name="protein"
-                     placeholder="Protein"
-                     onChange={formik.handleChange}
-                     value={formik.values.protein}/>
-                  <div>
-                   <InputStyle
-                     id="fat"
-                     name="fat"
-                     placeholder="Fat"
-                     onChange={formik.handleChange}
-                     value={formik.values.fat}/>
-                   <InputStyle
-                     id="calories"
-                     name="calories"
-                     placeholder="Calories"
-                     onChange={formik.handleChange}
-                     value={formik.values.calories}/>                     
-                  </div>
+            <form onSubmit={handleFormSubmit}>
+                <FormDiary formik={formik}/>
+                  <ButtonAddMore>+ Add more</ButtonAddMore>
+                  <WrapperButton>
+                  <ButtonActive type="submit">Confirm</ButtonActive>
+                  <Button type="button" onClick={onClose}>Cancel</Button>
+                  </WrapperButton>
             </form>
-                <Button>Confirm</Button>
-                <Button>Cancel</Button>
+
             </ModalWindow>
         </Overlay>
     )

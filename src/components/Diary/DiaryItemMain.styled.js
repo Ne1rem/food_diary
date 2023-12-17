@@ -34,3 +34,8 @@ stroke: var(--color-primary-green-lite);
 &:hover{
   stroke: var(--secondary-color-pink)
 }`
+
+export const ButtonSvg = styled.button`
+background-color: transparent;
+border: none;
+`
