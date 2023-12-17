@@ -57,19 +57,20 @@ import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 
+export const gender = 'female';
+export const goal = 'Lose Fat';
+
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   // const dispatch = useDispatch()
   // const user = useSelector(selectUser)
-  const gender = 'girl';
-  const goal = 'LoseFat';
   const weight = 130;
-  const userName = 'Dima';
+  const name = 'Dima';
 
   const imagesPath = {
-    'LoseFat girl': LoseFatGirl,
-    'Maintain girl': MaintainGirl,
-    'LoseFat man': LoseFatMan,
-    'Maintain man': MaintainMan,
+    'Lose Fat female': LoseFatGirl,
+    'Maintain female': MaintainGirl,
+    'Lose Fat male': LoseFatMan,
+    'Maintain male': MaintainMan,
     'Gain muscle': GainMuscle,
   };
 
@@ -134,12 +135,16 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
       <UserHeader>
         <UserHeaderButton
           onClick={() => {
-            setIsUserModalOpen(true);
+            setIsUserModalOpen((prevState) => !prevState);
           }}
         >
-          <UserNameHeader>{userName}</UserNameHeader>
+          <UserNameHeader>{name}</UserNameHeader>
           <UserAvatar src={selectedImage} />
-          <AvatarSvg>
+          <AvatarSvg
+            style={{
+              transform: isUserModalOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}
+          >
             <use href={`${HeaderSvg}#change-your-goal`} />
           </AvatarSvg>
         </UserHeaderButton>
@@ -170,10 +175,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                   </MobileGoalSvg>
                 </MobileDivGoalPart>
               </MobileGoalButton>
-              {isGoalModalOpen && (
-                <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} />
-              )}
             </MobileGoalHeader>
+            {isGoalModalOpen && (
+              <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} />
+            )}
             <MobileWeightHeader>
               <MobileWeightButton
                 onClick={() => {
@@ -196,10 +201,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                   </MobileDivWeight>
                 </MobileDivWeightPart>
               </MobileWeightButton>
-              {isWeightModalOpen && (
-                <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
-              )}
             </MobileWeightHeader>
+            {isWeightModalOpen && (
+              <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
+            )}
           </ButtonsMobileModals>
         </MobileOpenModal>
       )}
