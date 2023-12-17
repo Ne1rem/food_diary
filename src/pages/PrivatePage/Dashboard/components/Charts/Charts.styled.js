@@ -242,3 +242,24 @@ export const ChartContainer = styled(ContainerChart)`
   overflow-x: auto;
 `;
 
+export const ContainerWeightValue = styled.div`
+  
+`;
+
+export const TitleWeight = styled.h3`
+
+`;
+
+export const ContainerWeightChart = styled.h3`
+  width: 1372px;
+  height: 110px;
+
+  /* з [835px */
+  @media only screen and (min-width: 835px) {
+  }
+
+  /* з [1441px */
+  @media only screen and (min-width: 1441px) {
+  }
+`;
+
