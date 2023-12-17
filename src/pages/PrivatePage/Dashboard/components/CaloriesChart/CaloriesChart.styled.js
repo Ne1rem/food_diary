@@ -5,7 +5,7 @@ export const ContainerSelect = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin: 16px 0 0;
 
   /* з [835px */
   @media only screen and (min-width: 835px) {
@@ -24,7 +24,7 @@ export const ContainerValue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin: 16px 0 6px;
 
   /* з [835px */
   @media only screen and (min-width: 835px) {
@@ -120,7 +120,6 @@ export const customSelectStyles = {
     border: 'none',
     backgroundColor: 'transparent',
     color: 'var(--color-primary-white)',
-    marginTop: '16px',
     fontFamily: 'Poppins',
     fontSize: '24px',
     fontWeight: '500',
@@ -166,10 +165,10 @@ export const customSelectStyles = {
     ...provided,
     color: 'var(--color-primary-white)',
   }),
-  indicatorsContainer: (provided, state) => ({
-    ...provided,
-    display: 'none',
-  }),
+  // indicatorsContainer: (provided, state) => ({
+  //   ...provided,
+  //   display: 'none',
+  // }),
 };
 
 
