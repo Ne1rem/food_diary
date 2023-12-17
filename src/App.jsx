@@ -24,13 +24,13 @@ const App = () => {
 
   return (
     <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
+      // style={{
+      //   height: '100vh',
+      //   display: 'flex',
+      //   justifyContent: 'flex-start',
+      //   alignItems: 'center',
+      //   flexDirection: 'column',
+      // }}
     >
       <Routes>
         <Route path="/" element={<SharedLayout />}>

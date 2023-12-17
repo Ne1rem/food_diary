@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useRef } from 'react';
 import * as Yup from 'yup';
+import { Button, GenderDiv, InputStyle } from './Form.styled';
 
 export const ProfileSettings = () => {
   const fileInputRef = useRef(null);
@@ -50,7 +51,7 @@ export const ProfileSettings = () => {
       <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="name">Your name</label>
-          <input
+          <InputStyle
             type="text"
             id="name"
             name="name"
@@ -75,7 +76,7 @@ export const ProfileSettings = () => {
           <button type="button" onClick={handleDownloadNewPhoto}>
             Download new photo
           </button>
-          <input
+          <InputStyle
             type="file"
             ref={fileInputRef}
             style={{ display: 'none' }}
@@ -85,7 +86,7 @@ export const ProfileSettings = () => {
 
         <div>
           <label htmlFor="age">Your age</label>
-          <input
+          <InputStyle
             type="number"
             id="age"
             name="age"
@@ -99,22 +100,37 @@ export const ProfileSettings = () => {
         </div>
 
         <div>
-          <label htmlFor="gender">Gender</label>
-          <select
-            id="gender"
-            name="gender"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.gender}
-          >
-            <option value="male">Чоловіча</option>
-            <option value="female">Жіноча</option>
-          </select>
+          <label>Gender</label>
+          <GenderDiv>
+            <label>
+              <InputStyle
+                type="radio"
+                name="gender"
+                value="male"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                checked={formik.values.gender === 'male'}
+              />
+              Male
+            </label>
+            <label>
+              <InputStyle
+                type="radio"
+                name="gender"
+                value="female"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                checked={formik.values.gender === 'female'}
+              />
+              Female
+            </label>
+          </GenderDiv>
+          {formik.touched.gender && formik.errors.gender ? <div>{formik.errors.gender}</div> : null}
         </div>
 
         <div>
           <label htmlFor="weight">Weight</label>
-          <input
+          <InputStyle
             type="number"
             id="weight"
             name="weight"
@@ -129,7 +145,7 @@ export const ProfileSettings = () => {
 
         <div>
           <label htmlFor="height">Height</label>
-          <input
+          <InputStyle
             type="number"
             id="height"
             name="height"
@@ -146,7 +162,7 @@ export const ProfileSettings = () => {
           <label>Your activity</label>
           <div>
             <label>
-              <input
+              <InputStyle
                 type="radio"
                 name="activityLevel"
                 value="sedentary"
@@ -159,7 +175,7 @@ export const ProfileSettings = () => {
           </div>
           <div>
             <label>
-              <input
+              <InputStyle
                 type="radio"
                 name="activityLevel"
                 value="light"
@@ -172,7 +188,7 @@ export const ProfileSettings = () => {
           </div>
           <div>
             <label>
-              <input
+              <InputStyle
                 type="radio"
                 name="activityLevel"
                 value="moderate"
@@ -185,7 +201,7 @@ export const ProfileSettings = () => {
           </div>
           <div>
             <label>
-              <input
+              <InputStyle
                 type="radio"
                 name="activityLevel"
                 value="active"
@@ -198,7 +214,7 @@ export const ProfileSettings = () => {
           </div>
           <div>
             <label>
-              <input
+              <InputStyle
                 type="radio"
                 name="activityLevel"
                 value="veryActive"
@@ -216,10 +232,10 @@ export const ProfileSettings = () => {
         </div>
 
         <div>
-          <button type="button" onClick={formik.handleReset}>
+          <Button type="button" onClick={formik.handleReset}>
             Cancel
-          </button>
-          <button type="submit">Save</button>
+          </Button>
+          <Button type="submit">Save</Button>
         </div>
       </form>
     </div>

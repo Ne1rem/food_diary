@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-background-color: #050505;
-`
+export const ImageStyled = styled.img`
+  width: 300px;
+  height: 296px;
+  margin-bottom: 24px;
 
+  @media screen and (min-width: 834px) {
+    width: 380px;
+    height: 374px;
+   
+  }
 
-export const IconWrapper = styled.svg`
-  width: ${(props) => props.size || '536px'};
-  height: ${(props) => props.size || '528px'};
-  fill: ${(props) => props.color || '#ffffff'};
-  display: inline-block;
-  margin-right: 5px;
-  top: 180px;
-  left: 150px;
+  @media screen and (min-width: 1440px) {
+    width: 536px;
+    height: 528px;
+    margin-bottom: 0;
+  }
 `;
+

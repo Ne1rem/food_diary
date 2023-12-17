@@ -1,13 +1,17 @@
 import ProfileSettings from '../../../components/Settings/Form';
 import { Hero } from '../../../components/Settings/Hero';
-import { Title } from '../../../components/Settings/Title';
+// import { Title } from '../../../components/Settings/Title';
+import { Container, Section } from './Settings.styled';
 
 const Settings = () => {
   return (
     <>
-    <Title></Title>
-      <Hero></Hero>
-      <ProfileSettings></ProfileSettings>
+      <Section>
+        <Container>
+          <Hero></Hero>
+          <ProfileSettings></ProfileSettings>
+        </Container>
+      </Section>
     </>
   );
 };

@@ -1,12 +1,15 @@
 import illustration from 'assets/illustration.svg';
-import { IconWrapper, Wrapper } from './Hero.styled';
+import { ImageStyled } from './Hero.styled';
+import { Title } from './Title';
 
 export const Hero = () => {
   return (
-    <Wrapper>
-      <IconWrapper>
-        <use href={`${illustration}#Illustration`} />
-      </IconWrapper>
-    </Wrapper>
+    <>
+      <Title></Title>
+      <ImageStyled
+        src={`${illustration}#Illustration`}
+        alt={'logo settings page'}
+      />
+    </>
   );
 };

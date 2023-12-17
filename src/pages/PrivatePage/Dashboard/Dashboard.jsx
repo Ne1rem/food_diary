@@ -9,11 +9,11 @@ import { Container, Section } from './components/Dashboard.styled';
 const Dashboard = () => {
   return (
     <Section>
-      <Container>
+      <Contaiiner>
         <CaloriesChart />
         <WaterChart />
         <WeightChart />
-      </Container>
+      </Contaiiner>
     </Section>
   );
 };
