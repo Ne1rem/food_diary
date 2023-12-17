@@ -1,3 +1,4 @@
+import { gender, goal } from '../userMenu';
 import {
   ButtonCloseModalGoal,
   ConfirmModalGoal,
@@ -22,23 +23,21 @@ import MaintainMan from '/src/assets/header/Maintain-man.png';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 
 function ModalGoal({ setIsGoalModalOpen }) {
-  const gender = 'girl';
-//   const goal = 'Maintain';
-
+  
   const imagesPath = {
-    'LoseFat girl': LoseFatGirl,
-    'LoseFat man': LoseFatMan,
-    'Maintain girl': MaintainGirl,
-    'Maintain man': MaintainMan,
+    'Lose Fat female': LoseFatGirl,
+    'Lose Fat male': LoseFatMan,
+    'Maintain female': MaintainGirl,
+    'Maintain male': MaintainMan,
   };
 
   const selectedImageLoseFat =
-    gender === 'girl' ? imagesPath['LoseFat girl'] : imagesPath['LoseFat man'];
+    gender === 'female' ? imagesPath['Lose Fat female'] : imagesPath['Lose Fat male'];
 
   const selectedImageMaintain =
-    gender === 'girl'
-      ? imagesPath['Maintain girl']
-      : imagesPath['Maintain man'];
+    gender === 'female'
+      ? imagesPath['Maintain female']
+      : imagesPath['Maintain male'];
 
   return (
     <DivModalGoal>
@@ -58,20 +57,20 @@ function ModalGoal({ setIsGoalModalOpen }) {
           <UlModalGoal>
             <li>
               <UlButtonModalGoal>
-                <UlImgButtonModalGoal src={selectedImageLoseFat} alt="LoseFat" />
-                <UlPButtonModalGoal>Lose fat</UlPButtonModalGoal>
+                <UlImgButtonModalGoal className={goal == 'Lose Fat' ? 'active' : ''} src={selectedImageLoseFat} alt="LoseFat" />
+                <UlPButtonModalGoal className={goal == 'Lose Fat' ? 'active' : ''}>Lose fat</UlPButtonModalGoal>
               </UlButtonModalGoal>
             </li>
             <li>
               <UlButtonModalGoal>
-                <UlImgButtonModalGoal src={selectedImageMaintain} alt="Maintain" />
-                <UlPButtonModalGoal>Maintain</UlPButtonModalGoal>
+                <UlImgButtonModalGoal className={goal == 'Maintain' ? 'active' : ''} src={selectedImageMaintain} alt="Maintain" />
+                <UlPButtonModalGoal className={goal == 'Maintain' ? 'active' : ''} >Maintain</UlPButtonModalGoal>
               </UlButtonModalGoal>
             </li>
             <li>
               <UlButtonModalGoal>
-                <UlImgButtonModalGoal src={GainMuscle} alt="Gain muscle" />
-                <UlPButtonModalGoal>Gain Muscle</UlPButtonModalGoal>
+                <UlImgButtonModalGoal className={goal == 'GainMuscle' ? 'active' : ''} src={GainMuscle} alt="Gain muscle" />
+                <UlPButtonModalGoal className={goal == 'GainMuscle' ? 'active' : ''} >Gain Muscle</UlPButtonModalGoal>
               </UlButtonModalGoal>
             </li>
             <li>
