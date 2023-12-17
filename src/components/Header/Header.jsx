@@ -13,7 +13,7 @@ import { ButtonOpenMobileModals, SvgOpenMobileModals } from './userMenu.styled';
 import { useState } from 'react';
 import { useLocation } from 'react-router';
 
-export const isLoggedIn = true;
+export const isLoggedIn = false;
 
 export const Header = () => {
   const currentPath = useLocation().pathname;
