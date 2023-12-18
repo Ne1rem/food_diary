@@ -6,9 +6,11 @@ export const ImageStyled = styled.img`
   margin-bottom: 24px;
 
   @media screen and (min-width: 834px) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 380px;
     height: 374px;
-   
   }
 
   @media screen and (min-width: 1440px) {
@@ -17,4 +19,3 @@ export const ImageStyled = styled.img`
     margin-bottom: 0;
   }
 `;
-
