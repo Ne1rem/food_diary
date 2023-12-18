@@ -32,7 +32,7 @@ const signUpSchema = Yup.object().shape({
     weight: Yup.number()
     .required("Weight required")
     .min(50)
-    .max(230),
+    .max(200),
     activity: Yup.number()
     .min(1.2)
     .max(1.9),
