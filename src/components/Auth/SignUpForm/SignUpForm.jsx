@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../../Redux/Auth/authThunks';
+import { signUpSchema } from "../validationSchemas/validationSchema"
 
 
 import { Step1, Step2, Step3, Step4, Step5 } from './StepsForm/index';
@@ -28,12 +29,12 @@ const SignUpForm = () => {
       name: '',
       email: '',
       password: '',
-      goal: '',
-      gender: '',
+      goal: 'Lose Fat',
+      gender: 'male',
       age: '',
       height: '',
       weight: '',
-      activity: '',
+      activity: '1.2',
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -42,9 +43,8 @@ const SignUpForm = () => {
       // { resetForm }
       setCurrentStep(1)
     },
-    // validationSchema: signUpSchema
+    validationSchema: signUpSchema,
   });
-
 
   const handleincrement = () => {
     setCurrentStep(currentStep + 1);

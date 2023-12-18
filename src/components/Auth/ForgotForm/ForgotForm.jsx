@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { InputStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { Button, Title, Text } from "../AuthStyled/GeneralStyles/GeneralStyles";
+import { Button, Title, Text, InputError } from '../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   Forgot,
   NavToSignInBlock,
@@ -8,35 +8,40 @@ import {
   NavToSignIn,
   InputWrapper,
 } from './ForgotForm.styled';
+import { forgotPassword } from '../../../Redux/Auth/authThunks';
+import { useDispatch } from 'react-redux';
+import { forgotShema  } from "../validationSchemas/validationSchema"
+
+
 
 const ForgotForm = () => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(forgotPassword(values));
     },
+    validationSchema: forgotShema,
   });
 
   return (
     <Forgot onSubmit={formik.handleSubmit}>
       <Title>Forgot your password</Title>
-      <Text>
-        We will send you an email with recovery instructions
-      </Text>
+      <Text>We will send you an email with recovery instructions</Text>
       <InputWrapper>
         <InputStyle
           id="email"
           name="email"
-          type="email"
           placeholder="E-mail"
           onChange={formik.handleChange}
           value={formik.values.email}
         />
+            {formik.errors.email && formik.touched.email && formik.handleSubmit  ? (<InputError>{formik.errors.email}</InputError>) : null}
       </InputWrapper>
-      <Button>Send</Button>
+      <Button type='submit'>Send</Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>
