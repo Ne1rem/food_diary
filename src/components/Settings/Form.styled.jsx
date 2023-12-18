@@ -31,10 +31,16 @@ export const Span = styled.span`
 
 export const ButtonDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
   gap: 10px;
+
+  @media screen and (min-width: 834px) {
+    flex-direction: row-reverse;
+    gap: 12px;
+  
+  }
 `;
 
 export const Button = styled.button`
@@ -162,6 +168,7 @@ export const InputStyle = styled.input`
 
   @media screen and (min-width: 834px) {
     width: 212px;
+    margin-bottom: 0;
   }
 
   @media screen and (min-width: 1440px) {

@@ -10,7 +10,6 @@ export const Container = styled.div`
   @media only screen and (min-width: 835px) {
     max-width: 858px;
     padding: 0 27px;
-   
   }
 
   /* з [1441px */
@@ -22,12 +21,14 @@ export const Container = styled.div`
 
 export const Section = styled.section`
   font-family: Poppins;
-  /* font-size: 18px; */
-  /* font-weight: 400;
-  line-height: 1.44; */
   width: 100%;
   height: 100%;
-  
-    background-color: var(--color-primary-black);
-    color: var(--color-primary-white);
+  padding-Bottom: 40px;
+
+  background-color: var(--color-primary-black);
+  color: var(--color-primary-white);
+
+  @media only screen and (min-width: 835px) {
+    padding-Bottom: 174px;
+  }
 `;
