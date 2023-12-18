@@ -22,17 +22,14 @@ import {
   TitleWeight,
   BackIconContainer,
   BackIconLink,
-  ChartContainer,
   ChartsWrapper,
   Wrapper,
   Value,
   Span,
-  ContainerWaterValue,
-  ContainerWeightValue,
   ContainerWeightChart,
+  WeightWrapper,
 } from './Charts.styled';
 import { customSelectStyles } from './Charts.styled';
-
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -51,6 +48,7 @@ const Charts = () => {
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
 
+  // --- Month selet setings ---
   useEffect(() => {
     const monthNames = [
       'January',
@@ -81,19 +79,21 @@ const Charts = () => {
 
     setSelectedMonth({ value: currentMonthName, label: currentMonthName });
 
-    updateChartData(currentMonthName);
+    updateCaloriesChartData(currentMonthName);
     updateWaterChartData(currentMonthName);
     updateWeightChartData(currentMonthName);
   }, []);
 
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
-    updateChartData(selectedOption.value);
+    updateCaloriesChartData(selectedOption.value);
     updateWaterChartData(selectedOption.value);
     updateWeightChartData(selectedOption.value);
   };
+  // --- /Month selet setings ---
 
-  const updateChartData = (selected) => {
+  // --- Calories setings ---
+  const updateCaloriesChartData = (selected) => {
     const randomData = () => {
       return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
     };
@@ -118,71 +118,6 @@ const Charts = () => {
           pointHitRadius: 20,
           fill: true,
           tension: 0.5,
-        },
-      ],
-    });
-  };
-
-  const updateWaterChartData = (selected) => {
-    const randomWaterData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
-    };
-
-    setWaterChartData({
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
-      datasets: [
-        {
-          label: 'Water',
-          data: randomWaterData(),
-          backgroundColor: 'transparent',
-          borderColor: '#E3FFA8',
-          borderWidth: 1,
-          pointBorderColor: '#0F0F0F',
-          pointBackgroundColor: '#E3FFA8',
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: '#E3FFA8',
-          pointHoverBorderColor: '#0F0F0F',
-          pointHoverBorderWidth: 1,
-          pointRadius: 2,
-          pointHitRadius: 20,
-          fill: true,
-          tension: 0.5,
-        },
-      ],
-    });
-  };
-
-  const updateWeightChartData = (selected) => {
-    // BackEnnd API:
-    //   const weights = [];
-
-    // const dataWithLabels = weights.map((weight, index) => ({
-    //   x: index + 1,
-    //   y: 0,
-    //   weight: weight,
-    // }));
-
-    const randomWeightData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
-    };
-
-    setWeightChartData({
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
-      datasets: [
-        {
-          label: 'Weight',
-          data: randomWeightData(), // з backend
-          backgroundColor: 'transparent',
-          borderColor: 'transparent',
-          borderWidth: 1,
-          pointRadius: 10,
-          pointHoverRadius: 10,
-          pointBackgroundColor: '#E3FFA8',
-          pointBorderColor: '#0F0F0F',
-          pointBorderWidth: 1,
-          fill: false,
-          tension: 0,
         },
       ],
     });
@@ -217,6 +152,38 @@ const Charts = () => {
     },
     maintainAspectRatio: false,
   };
+  // --- /Calories setings ---
+
+  // --- Water setings ---
+  const updateWaterChartData = (selected) => {
+    const randomWaterData = () => {
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
+    };
+
+    setWaterChartData({
+      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      datasets: [
+        {
+          label: 'Water',
+          data: randomWaterData(),
+          backgroundColor: 'transparent',
+          borderColor: '#E3FFA8',
+          borderWidth: 1,
+          pointBorderColor: '#0F0F0F',
+          pointBackgroundColor: '#E3FFA8',
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: '#E3FFA8',
+          pointHoverBorderColor: '#0F0F0F',
+          pointHoverBorderWidth: 1,
+          pointRadius: 2,
+          pointHitRadius: 20,
+          fill: true,
+          tension: 0.5,
+        },
+      ],
+    });
+  };
 
   const waterOptions = {
     plugins: {
@@ -247,53 +214,83 @@ const Charts = () => {
     },
     maintainAspectRatio: false,
   };
+  // --- /Water setings ---
+
+  // --- Weight setings ---
+  const updateWeightChartData = (selected) => {
+    const randomWeightData = () => {
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+    };
+
+    setWeightChartData({
+      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      datasets: [
+        {
+          label: 'Weight',
+          data: randomWeightData(),
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          borderWidth: 1,
+          pointRadius: 10,
+          pointHoverRadius: 10,
+          pointBackgroundColor: '#E3FFA8',
+          pointBorderColor: '#0F0F0F',
+          pointBorderWidth: 1,
+          fill: false,
+          tension: 0,
+        },
+      ],
+    });
+  };
 
   const weightOptions = {
-  plugins: {
-    legend: false,
-    annotation: {
-      annotations: Array.from({ length: 30 }, (_, i) => ({
-        type: 'text',
-        position: 'top',
-        content: 'Weight', // backend
-        x: i + 1,
-        y: 0,
-        font: {
-          size: 12,
-        },
-        onClick: function (e) {
-          // Дії при кліці на анотацію
-        },
-      })),
-    },
-  },
-  scales: {
-    x: {
-      grid: {
-        display: true,
-        color: 'rgba(41, 41, 40, 1)',
+    plugins: {
+      legend: false,
+      annotation: {
+        annotations: Array.from({ length: 30 }, (_, i) => ({
+          type: 'text',
+          position: 'top',
+          content: 'Weight', // backend
+          x: i + 1,
+          y: 0,
+          font: {
+            size: 12,
+          },
+          onClick: function (e) {
+            // Дії при кліці на анотацію
+          },
+        })),
       },
     },
-    y: {
-      display: false,
-      grid: {
+    scales: {
+      x: {
+        grid: {
+          display: true,
           color: 'rgba(41, 41, 40, 1)',
         },
+      },
+      y: {
+        display: false,
+        grid: {
+          color: 'rgba(41, 41, 40, 1)',
+        },
+      },
     },
-    
-  },
-  maintainAspectRatio: false,
-};
+    maintainAspectRatio: false,
+  };
+  // --- /Weight setings ---
 
   const selectOptions = months.map((month) => ({ value: month, label: month }));
 
   return (
-  <>
+    <>
       <ContainerSelect>
         <BackIconContainer>
+          {/* Icon back to main */}
           <BackIconLink to="/main">
             <FaArrowLeftLong />
           </BackIconLink>
+          {/* ---Select--- */}
           <label>
             <Select
               value={selectedMonth}
@@ -306,13 +303,16 @@ const Charts = () => {
             />
           </label>
         </BackIconContainer>
+        {/* ---Сurrent month--- */}
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
       <Wrapper>
+        {/* ---Calories Chart Container--- */}
         <ChartsWrapper>
           <ContainerValue>
             <TitleCalories>Calories</TitleCalories>
+            {/* ---Average value--- */}
             {chartData && (
               <Value>
                 <Span>Average value:</Span>{' '}
@@ -326,17 +326,19 @@ const Charts = () => {
               </Value>
             )}
           </ContainerValue>
-
+          {/* ---Calories Chart--- */}
           <ContainerChart>
             {chartData && (
               <Line data={chartData} options={caloriesOptions}></Line>
             )}
           </ContainerChart>
-          </ChartsWrapper>
+        </ChartsWrapper>
 
+        {/* ---Water Chart Container--- */}
         <ChartsWrapper>
-          <ContainerWaterValue>
+          <ContainerValue>
             <TitleWater>Water</TitleWater>
+            {/* ---Average value--- */}
             {waterChartData && (
               <Value>
                 <Span>Average value:</Span>{' '}
@@ -349,8 +351,8 @@ const Charts = () => {
                 <>ml</>
               </Value>
             )}
-          </ContainerWaterValue>
-
+          </ContainerValue>
+          {/* ---Water Chart--- */}
           <ContainerChart>
             {waterChartData && (
               <Line data={waterChartData} options={waterOptions} />
@@ -359,9 +361,11 @@ const Charts = () => {
         </ChartsWrapper>
       </Wrapper>
 
-      <ChartsWrapper>
-        <ContainerWeightValue>
+      {/* ---Weight Chart Container--- */}
+      <WeightWrapper>
+        <ContainerValue>
           <TitleWeight>Weight</TitleWeight>
+          {/* ---Average value--- */}
           {weightChartData && (
             <Value>
               <Span>Average value:</Span>{' '}
@@ -374,14 +378,15 @@ const Charts = () => {
               kg
             </Value>
           )}
-        </ContainerWeightValue>
+        </ContainerValue>
 
+        {/* ---Weight Chart--- */}
         <ContainerWeightChart>
           {weightChartData && (
             <Line data={weightChartData} options={weightOptions} />
           )}
         </ContainerWeightChart>
-      </ChartsWrapper>
+      </WeightWrapper>
     </>
   );
 };

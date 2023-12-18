@@ -5,13 +5,13 @@ export const ContainerSelect = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0 0;
+  margin: 16px 0 16px;
 
   @media only screen and (min-width: 835px) {
-    margin: 30px 0 0;
+    margin: 24px 0 0;
   }
   @media only screen and (min-width: 1441px) {
-    margin: 26px 0 0;
+    margin: 20px 0 0;
   }
 `;
 
@@ -69,14 +69,14 @@ export const customSelectStyles = {
       : 'var(--color-primary-white)',
     transition: 'all 0.3s ease',
     transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+    padding: '0',
   }),
   menu: (provided, state) => ({
     ...provided,
     boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
     backgroundColor: 'var(--color-primary-grey)',
-    // width: '212px',
-    // height: '144px',
-    flexShrink: '0',
+    width: '212px',
+    height: '162px', // important
     outline: 'none',
     borderRadius: '12px',
     overflow: 'hidden',
@@ -85,19 +85,19 @@ export const customSelectStyles = {
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isFocused
-      ? 'rgba(41, 41, 40, 1)'
-      : 'rgba(15, 15, 15, 1)',
+      ? 'var(--secondary-color-grey-1)'
+      : 'var(--color-primary-black-2)',
     color: state.isFocused
-      ? 'rgba(227, 255, 168, 1)'
+      ? 'var(--color-primary-green-lite)'
       : 'var(--color-primary-grey)',
     fontFamily: 'Poppins',
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '1.42',
+    marginTop: '-4px', // important
     border: 'none',
     outline: 'none',
     cursor: 'pointer',
-    overflow: 'hidden',
     transition: 'all 0.3s ease',
   }),
   singleValue: (provided, state) => ({
@@ -126,7 +126,7 @@ export const Month = styled.p`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 27px;
 
   @media only screen and (min-width: 835px) {
     gap: 40px;
@@ -150,6 +150,7 @@ export const ContainerValue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 0 6px;
 
   @media only screen and (min-width: 835px) {
     justify-content: start;
@@ -249,10 +250,20 @@ export const ContainerWeightValue = styled.div`
     justify-content: start;
     gap: 40px;
   }
+`;
 
-  /* @media only screen and (min-width: 1441px) {
-    margin: 16px 0 0 0; // ??? ----------------------------------------------
-  } */
+export const WeightWrapper = styled.div`
+  align-items: center;
+  padding: 0 0 60px;
+  margin-top: 27px;
+
+  @media only screen and (min-width: 835px) {
+    margin-top: 40px;
+  }
+
+  @media only screen and (min-width: 1441px) {
+    margin-top: 20px;
+  }
 `;
 
 export const TitleWeight = styled.h3`
