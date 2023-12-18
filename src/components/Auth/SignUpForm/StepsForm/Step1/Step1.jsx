@@ -3,6 +3,7 @@ import {
   Button,
   Title,
   Text,
+  InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   SignUp,
@@ -30,10 +31,11 @@ increment()
             name="name"
             type="name"
             placeholder="Name"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-             {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
+             {formik.errors.name && formik.touched.name ? (<InputError>{formik.errors.name}</InputError>) : null}
         </li>
         <li>
           <InputStyle
@@ -41,11 +43,11 @@ increment()
             name="email"
             type="email"
             placeholder="E-mail"
-
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-            {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
+            {formik.errors.email && formik.touched.email ? (<InputError>{formik.errors.email}</InputError>) : null}
         </li>
         <li>
           <InputStyle
@@ -53,11 +55,11 @@ increment()
             name="password"
             type="password"
             placeholder="Password"
-
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-             {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
+             {formik.errors.password && formik.touched.password ? (<InputError>{formik.errors.password}</InputError>) : null}
         </li>
       </InputList>
       <Button onClick={() => {onClickBtnNext()}} type="button">Next</Button>

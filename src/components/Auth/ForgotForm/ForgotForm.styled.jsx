@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Forgot = styled.div`
+const Forgot = styled.form`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
