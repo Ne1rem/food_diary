@@ -41,7 +41,7 @@ const ForgotForm = () => {
         />
             {formik.errors.email && formik.touched.email && formik.handleSubmit  ? (<InputError>{formik.errors.email}</InputError>) : null}
       </InputWrapper>
-      <Button type='submit'>Send</Button>
+      <Button  className='btn-active' type='submit'>Send</Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>

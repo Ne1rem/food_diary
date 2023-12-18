@@ -5,7 +5,7 @@ const WelcomeBlock = () => {
 <Title>Set goals and achieve them</Title>
 <Text>The service will help you set goals and follow them.</Text>
 <NavBlock>
-    <AuthLink  to="/signin">Sign in</AuthLink>
+    <AuthLink  className={'active'} to="/signin">Sign in</AuthLink>
     <AuthLink  to="/signup">Sign up</AuthLink>
 </NavBlock>
 <Benefits>
