@@ -1,4 +1,4 @@
-import{s as i,j as e}from"./index-7bf0c55a.js";const a=i.div`
+import{s as t,j as e}from"./index-e5221506.js";const r=t.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@ import{s as i,j as e}from"./index-7bf0c55a.js";const a=i.div`
     flex-direction: row;
     justify-content: space-between;
   }
-`,r=i.img`
+`,a=t.img`
   width: 300px;
   height: 296px;
   margin-bottom: 24px;
@@ -35,7 +35,7 @@ import{s as i,j as e}from"./index-7bf0c55a.js";const a=i.div`
     height: 588px;
     margin-bottom: 0;
   }
-`,p=({children:n,image:t})=>e.jsxs(a,{children:[e.jsx(r,{src:t,alt:t}),n]}),x=i.h2`
+`,p=({children:n,image:i})=>e.jsxs(r,{children:[e.jsx(a,{src:i,alt:i}),n]}),x=t.h2`
   margin-bottom: 16px;
 
   color: var(--color-primary-white);
@@ -51,7 +51,7 @@ import{s as i,j as e}from"./index-7bf0c55a.js";const a=i.div`
   @media screen and (min-width: 1440px) {
     text-align: start;
   }
-`,d=i.p`
+`,d=t.p`
   margin-bottom: 24px;
 
   color: var(--color-primary-grey, #b6b6b6);
@@ -70,7 +70,7 @@ import{s as i,j as e}from"./index-7bf0c55a.js";const a=i.div`
       text-align: left;
     }
   }
-`,s=i.button`
+`,s=t.button`
   width: 300px;
 
   display: flex;
@@ -100,4 +100,11 @@ import{s as i,j as e}from"./index-7bf0c55a.js";const a=i.div`
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
 } */
-`,m="/food_diary/assets/Illustration-9c0f4b06.png";export{p as A,s as B,x as T,d as a,m as i};
+`,c=t.div`
+  color: #E74A3B;
+
+text-align: center;
+font-size: 12px;
+font-weight: 400;
+line-height: 1.1
+`,m="/food_diary/assets/Illustration-9c0f4b06.png";export{p as A,s as B,c as I,x as T,d as a,m as i};
