@@ -16,6 +16,7 @@ export const Container = styled.div`
   @media only screen and (min-width: 1441px) {
     max-width: 1474px;
     padding: 0 34px;
+    /* display: flex; */
   }
 `;
 
@@ -29,6 +30,18 @@ export const Section = styled.section`
   color: var(--color-primary-white);
 
   @media only screen and (min-width: 835px) {
-    padding-Bottom: 174px;
+    padding-bottom: 174px;
+  }
+`;
+
+
+export const Wrapper = styled.div`
+ 
+
+  /* з [1441px */
+  @media only screen and (min-width: 1441px) {
+    max-width: 1474px;
+    padding: 0 34px;
+    display: flex;
   }
 `;

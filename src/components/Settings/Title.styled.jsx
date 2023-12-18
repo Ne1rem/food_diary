@@ -24,7 +24,7 @@ export const TitleStyled = styled.h1`
   /* з [1441px */
   @media only screen and (min-width: 1441px) {
     margin-top: 20px;
-    margin-left: 34px;
+    margin-left: 0;
     margin-bottom: 24px;
   }
 `;

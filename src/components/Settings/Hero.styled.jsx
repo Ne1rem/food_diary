@@ -17,5 +17,14 @@ export const ImageStyled = styled.img`
     width: 536px;
     height: 528px;
     margin-bottom: 0;
+    margin-left: 86px;
+  }
+`;
+
+export const Wrapper = styled.div`
+  
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    flex-direction: column;
   }
 `;

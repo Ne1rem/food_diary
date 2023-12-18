@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useRef } from 'react';
 import * as Yup from 'yup';
-import inbox from 'assets/settings/inbox.svg';
+import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
   AvatarDiv,
   Button,
@@ -20,6 +20,7 @@ import {
   ElFormDiv,
   ElFormDivHor,
   LabelStyledGender,
+  SvgStyled
 } from './Form.styled';
 
 export const ProfileSettings = () => {
@@ -68,7 +69,7 @@ export const ProfileSettings = () => {
   return (
     <div>
       <Form onSubmit={formik.handleSubmit}>
-        {/* div for tablet for flex */}
+        
         <TabletDiv>
           <ElFormDiv>
             <LabelStyled htmlFor="name">Your name</LabelStyled>
@@ -87,34 +88,31 @@ export const ProfileSettings = () => {
 
           <AvatarDiv>
             <ActivityTextStyled>Your photo</ActivityTextStyled>
+            <ElFormDivHor>
             {formik.values.photo ? (
               <img
                 src={formik.values.photo}
                 alt="User Avatar"
-                style={{ width: '50px', height: '50px' }}
+                style={{ width: '36px', height: '36px', borderRadius: '40%'}}
               />
             ) : null}
-            {/* <IconDiv>
-            <svg width="16" height="16">
-              <use xlinkHref={`${inbox}#direct-inbox`} />
-            </svg>
-          </IconDiv> */}
-          <ElFormDivHor>
-            <DownloadButton type="button" onClick={handleDownloadNewPhoto}>
-              <IconDiv>
-                <svg width="16" height="16">
-                  <use href={`${inbox}#inbox`} />
-                </svg>
+            <IconDiv>
+              <DownloadButton type="button" onClick={handleDownloadNewPhoto}>
+              <InputStyle
+                type="file"
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                onChange={handleFileInputChange}
+              />
+                
+                  <SvgStyled width="16" height="16">
+                    <use href={`${inboxSvg}#icon-inbox`} />
+                  </SvgStyled>
 
-                <Span>Download new photo</Span>
+                  <Span>Download new photo</Span>
+                
+              </DownloadButton>
               </IconDiv>
-            </DownloadButton>
-            <InputStyle
-              type="file"
-              ref={fileInputRef}
-              style={{ display: 'none', radius: '15px' }}
-              onChange={handleFileInputChange}
-            />
             </ElFormDivHor>
           </AvatarDiv>
         </TabletDiv>

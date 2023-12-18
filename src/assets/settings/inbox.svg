@@ -1,12 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
-  <g id="vuesax/linear/direct-inbox">
-    <g id="vuesax/linear/direct-inbox_2">
-      <g id="direct-inbox" stroke="#050505" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-        <path id="Vector" d="M12 2v7l2-2"/>
-        <path id="Vector_2" d="m12 9-2-2"/>
-        <path id="Vector_3" d="M1.98 13h4.41c.38 0 .72.21.89.55l1.17 2.34A2 2 0 0 0 10.24 17h3.53a2 2 0 0 0 1.79-1.11l1.17-2.34a1 1 0 0 1 .89-.55h4.36"/>
-        <path id="Vector_4" d="M7 4.13c-3.54.52-5 2.6-5 6.87v4c0 5 2 7 7 7h6c5 0 7-2 7-7v-4c0-4.27-1.46-6.35-5-6.87"/>
-      </g>
-    </g>
-  </g>
+  <symbol id="inbox" viewBox="0 0 32 32">
+<path stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M16 2.667v9.333l2.667-2.667"></path>
+<path stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M16 12l-2.667-2.667"></path>
+<path stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M2.64 17.333h5.88c0.507 0 0.96 0.28 1.187 0.733l1.56 3.12c0.446 0.884 1.347 1.479 2.387 1.48h4.707c1.040-0.001 1.94-0.596 2.38-1.465l0.007-0.015 1.56-3.12c0.224-0.437 0.671-0.732 1.186-0.733h5.814"></path>
+<path stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" d="M9.333 5.507c-4.72 0.693-6.667 3.467-6.667 9.16v5.333c0 6.667 2.667 9.333 9.333 9.333h8c6.667 0 9.333-2.667 9.333-9.333v-5.333c0-5.693-1.947-8.467-6.667-9.16"></path>
+</symbol>
 </svg>
