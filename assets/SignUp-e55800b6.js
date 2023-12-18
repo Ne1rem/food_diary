@@ -1,4 +1,4 @@
-import{s as i,N as C,j as e,u as f,r as j,a as S}from"./index-faeedd0f.js";import{I as c,u as B,s as L}from"./InputStyle.styled-0cf45a2c.js";import{T as x,a as g,I as h,B as d,i as v,A}from"./Illustration-c94bcd9f.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";const N="/food_diary/assets/goals-12d0ed7f.png",F="/food_diary/assets/genderAndAge-42209e67.png",I="/food_diary/assets/bodyParameters-bce33dad.png",E="/food_diary/assets/illustrationActivity-1f59fd5a.png",T=i.div`
+import{s as i,N as C,j as e,u as f,r as j,a as S}from"./index-f0e6f8ae.js";import{I as c,u as B,s as L}from"./InputStyle.styled-3a12f539.js";import{T as x,a as g,I as h,B as d,i as v,A}from"./Illustration-58a5b3ee.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";const N="/food_diary/assets/goals-12d0ed7f.png",F="/food_diary/assets/genderAndAge-42209e67.png",I="/food_diary/assets/bodyParameters-bce33dad.png",E="/food_diary/assets/illustrationActivity-1f59fd5a.png",T=i.div`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
