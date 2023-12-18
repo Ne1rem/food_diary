@@ -4,9 +4,10 @@ import PublicRoute from './route/PublicRoute/PublicRoute';
 import PrivateRoute from './route/PrivateRoutes/PrivateRoutes';
 import './main.css';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import { selectIsLoggedIn } from "./Redux/Auth/selectors";
-import { useSelector,  useDispatch } from 'react-redux';
+import { selectIsLoggedIn } from './Redux/Auth/selectors';
+import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from './Redux/Auth/authThunks';
+import SeeMorePage from './pages/PrivatePage/RecommendedFood/SeeMorePage';
 
 const Welcome = lazy(() => import('./pages/PublicPage/Welcome/Welcome'));
 const SignUp = lazy(() => import('./pages/PublicPage/SignUp/SignUp'));
@@ -54,6 +55,7 @@ const App = () => {
             <Route path="diary" element={<Diary />} />
             <Route path="recommended-food" element={<RecommendedFood />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="/recommended_food" element={<SeeMorePage />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

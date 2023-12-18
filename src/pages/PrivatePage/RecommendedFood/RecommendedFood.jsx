@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   RecommendedFoodWrapper,
   FoodCardsWrapper,
@@ -62,7 +63,9 @@ const RecommendedFood = () => {
           </FoodCard>
         ))}
       </FoodCardsWrapper>
-      <SeeMoreButton href="">See more →</SeeMoreButton>
+      <Link to="/recommended_food">
+        <SeeMoreButton>See more →</SeeMoreButton>
+      </Link>
     </RecommendedFoodWrapper>
   );
 };
