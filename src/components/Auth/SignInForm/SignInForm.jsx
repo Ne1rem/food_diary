@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { InputStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { Button, Title, Text } from "../AuthStyled/GeneralStyles/GeneralStyles";
+import { Button, Title, Text, InputError } from "../AuthStyled/GeneralStyles/GeneralStyles";
 import {
   SignIn,
   InputList,
@@ -9,15 +9,22 @@ import {
   NavToSignUp,
   NavToForgotPass,
 } from './SignInForm.styled';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../../Redux/Auth/authThunks';
+import { signInSchema } from '../validationSchemas/validationSchema';
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
+    validationSchema: signInSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      dispatch(signIn(values));
     },
   });
 
@@ -30,11 +37,11 @@ const SignInForm = () => {
           <InputStyle
             id="email"
             name="email"
-            type="email"
             placeholder="E-mail"
             onChange={formik.handleChange}
             value={formik.values.email}
           />
+            {formik.errors.email && formik.touched.email && formik.handleSubmit  ? (<InputError>{formik.errors.email}</InputError>) : null}
         </li>
         <li>
           <InputStyle
@@ -45,14 +52,16 @@ const SignInForm = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
+            {formik.errors.password  && formik.touched.password && formik.handleSubmit ? (<InputError>{formik.errors.password}</InputError>) : null}
+            {/* {!formik.errors.password  && formik.touched.email && formik.handleSubmit ? (<InputError>охуенно сделал</InputError>) : null} */}
         </li>
       </InputList>
-      <Button>Sign in</Button>
+      <Button  className='btn-active' type='submit'>Sign in</Button>
       <NavToForgotPass to="/forgot-password">
         Forgot your password?
       </NavToForgotPass>
       <NavToSignUpBlock>
-        <NavToSignUpText>Do you already have an account?</NavToSignUpText>
+        <NavToSignUpText>If you don't have an account yet</NavToSignUpText>
         <NavToSignUp to="/signup">Sign up</NavToSignUp>
       </NavToSignUpBlock>
     </SignIn>

@@ -3,6 +3,7 @@ import {
   Button,
   Title,
   Text,
+  InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   SignUp,
@@ -12,7 +13,13 @@ import {
   NavToSignIn,
 } from './Step1.styled';
 
-const Step1 = ({ formik }) => {
+const Step1 = ({ formik, increment }) => {
+
+
+const onClickBtnNext = () => {
+increment()
+} 
+
   return (
     <SignUp>
       <Title>Sign up</Title>
@@ -24,9 +31,11 @@ const Step1 = ({ formik }) => {
             name="name"
             type="name"
             placeholder="Name"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.name}
           />
+             {formik.errors.name && formik.touched.name ? (<InputError>{formik.errors.name}</InputError>) : null}
         </li>
         <li>
           <InputStyle
@@ -34,9 +43,11 @@ const Step1 = ({ formik }) => {
             name="email"
             type="email"
             placeholder="E-mail"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.email}
           />
+            {formik.errors.email && formik.touched.email ? (<InputError>{formik.errors.email}</InputError>) : null}
         </li>
         <li>
           <InputStyle
@@ -44,12 +55,14 @@ const Step1 = ({ formik }) => {
             name="password"
             type="password"
             placeholder="Password"
+            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.password}
           />
+             {formik.errors.password && formik.touched.password ? (<InputError>{formik.errors.password}</InputError>) : null}
         </li>
       </InputList>
-      <Button type="button">Next</Button>
+      <Button onClick={() => {onClickBtnNext()}} className='btn-active' type="button">Next</Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>

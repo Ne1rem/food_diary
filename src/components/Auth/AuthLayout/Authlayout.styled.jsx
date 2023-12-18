@@ -14,8 +14,8 @@ const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: 1140px;
-    width: 1140px;
+    max-width: 1440px;
+    width: 1440px;
     padding: 40px 150px 0px 150px;
     align-items: unset;
     flex-direction: row;

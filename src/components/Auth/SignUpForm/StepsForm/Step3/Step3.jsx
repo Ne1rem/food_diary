@@ -3,6 +3,7 @@ import {
   Button,
   Title,
   Text,
+  InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   RadioButton,
@@ -18,7 +19,7 @@ import {
   AgeLabel,
 } from './Step3.styled';
 
-const Step3 = ({ formik }) => {
+const Step3 = ({ formik, increment, decrement }) => {
   return (
     <AgeGender>
       <Title>Select gender, Age</Title>
@@ -32,8 +33,8 @@ const Step3 = ({ formik }) => {
                 onChange={formik.handleChange}
                 type="radio"
                 name="gender"
+                value="male"
                 defaultChecked
-                value="Male"
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Male</RadioLabel>
@@ -45,7 +46,7 @@ const Step3 = ({ formik }) => {
                 onChange={formik.handleChange}
                 type="radio"
                 name="gender"
-                value="Female"
+                value="female"
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Female</RadioLabel>
@@ -61,14 +62,16 @@ const Step3 = ({ formik }) => {
           placeholder="Enter your age"
           onChange={formik.handleChange}
           value={formik.values.age}
+          onBlur={formik.handleBlur}
         />
+             {formik.errors.age && formik.touched.age ? (<InputError>{formik.errors.age}</InputError>) : null}
       </FormBlock>
       <ButtonList>
         <li>
-          <Button type="button">Next</Button>
+          <Button onClick={() => {increment()}}  className='btn-active' type="button">Next</Button>
         </li>
         <li>
-          <Button type="button">Back</Button>
+          <Button onClick={() => {decrement()}} type="button">Back</Button>
         </li>
       </ButtonList>
     </AgeGender>
