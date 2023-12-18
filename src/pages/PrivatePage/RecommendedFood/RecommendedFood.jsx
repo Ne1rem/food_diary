@@ -8,7 +8,7 @@ import {
   CharacteristicsContainer,
   WeightOfCalorieContainer,
   Calories,
-} from './Styled';
+} from './RecommendedFoodStyled';
 import Avocado from '../../../assets/recommendedfood/Avocado.png';
 import Beans from '../../../assets/recommendedfood/Beans.png';
 import Nuts from '../../../assets/recommendedfood/Nuts.png';

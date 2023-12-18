@@ -55,7 +55,7 @@ const App = () => {
             <Route path="diary" element={<Diary />} />
             <Route path="recommended-food" element={<RecommendedFood />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="/recommended_food" element={<SeeMorePage />} />
+            <Route path="recommended_food" element={<SeeMorePage />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

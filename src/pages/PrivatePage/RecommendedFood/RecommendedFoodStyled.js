@@ -62,16 +62,6 @@ export const FoodCard = styled.div`
   p {
     margin: 2px 0;
   }
-
-  @media (min-width: 835px) and (max-width: 1440px) {
-    /* Стилі для планшетів */
-    width: 380px;
-  }
-
-  @media (max-width: 480px) {
-    /* Стилі для телефонів */
-    width: 300px;
-  }
 `;
 
 export const SeeMoreButton = styled.a`
