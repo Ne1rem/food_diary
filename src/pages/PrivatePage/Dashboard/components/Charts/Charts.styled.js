@@ -136,19 +136,20 @@ export const Wrapper = styled.div`
 
   @media only screen and (min-width: 1441px) {
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
   }
 `;
 
 export const ChartsWrapper = styled.div`
-align-items: center;
+  align-items: center;
 `;
 
 export const ContainerValue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px 0 6px 0;
 
   @media only screen and (min-width: 835px) {
     justify-content: start;
@@ -173,16 +174,11 @@ export const ContainerWaterValue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 6px 0;
 
   @media only screen and (min-width: 835px) {
     justify-content: start;
     gap: 40px;
   }
-
-  /* @media only screen and (min-width: 1441px) {
-    margin: 16px 0 0 0; // ??? ----------------------------------------------
-  } */
 `;
 
 export const TitleWater = styled.h2`
@@ -213,20 +209,21 @@ export const Span = styled.span`
 
 export const ContainerChart = styled.div`
   width: 642px;
-  max-width: 642px;
   height: 333px;
   padding: 25px 20px 24px 14px;
   border-radius: 12px;
   background: var(--color-primary-black-2);
+  display: flex;
+  justify-content: start;
 
   @media only screen and (min-width: 835px) {
-    max-width: 735px;
+    width: 735px;
     height: 333px;
     padding: 25px 31px 24px 14px;
   }
 
   @media only screen and (min-width: 1441px) {
-    max-width: 642px;
+    width: 642px;
     height: 333px;
     padding: 25px 20px 24px 14px;
   }
@@ -234,32 +231,65 @@ export const ContainerChart = styled.div`
 
 // ---------------------------------------Layout------------------!!!
 export const ChartContainer = styled(ContainerChart)`
-  width: 100%;
+  /* width: 100%;
   max-width: 382px;
   padding: 24px 14px;
   border-radius: 12px;
   background-color: var(--color-primary-black-2);
-  overflow-x: auto;
+  overflow-x: auto; */
 `;
 
 export const ContainerWeightValue = styled.div`
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0 6px 0;
+
+  @media only screen and (min-width: 835px) {
+    justify-content: start;
+    gap: 40px;
+  }
+
+  /* @media only screen and (min-width: 1441px) {
+    margin: 16px 0 0 0; // ??? ----------------------------------------------
+  } */
 `;
 
 export const TitleWeight = styled.h3`
+  color: var(--color-primary-whit);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.44;
+  margin: 0;
+  align-items: center;
 
+  @media only screen and (min-width: 835px) {
+    font-size: 22px;
+    line-height: 1.45;
+  }
 `;
 
 export const ContainerWeightChart = styled.h3`
   width: 1372px;
   height: 110px;
+  padding: 24px 41px 36px 21px;
+  margin: 0;
+  border-radius: 12px;
+  background: var(--color-primary-black-2);
+  display: flex;
+  justify-content: start;
 
   /* з [835px */
   @media only screen and (min-width: 835px) {
+    width: 780px;
+    height: 110px;
+    padding: 24px 20px 44px 22px;
   }
 
   /* з [1441px */
   @media only screen and (min-width: 1441px) {
+    width: 1372px;
+    height: 110px;
+    padding: 24px 41px 36px 21px;
   }
 `;
-

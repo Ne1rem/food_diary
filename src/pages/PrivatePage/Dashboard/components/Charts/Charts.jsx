@@ -176,7 +176,7 @@ const Charts = () => {
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           borderWidth: 1,
-          pointRadius: 10, // Розмір "кружечків"
+          pointRadius: 10,
           pointHoverRadius: 10,
           pointBackgroundColor: '#E3FFA8',
           pointBorderColor: '#0F0F0F',
@@ -210,8 +210,12 @@ const Charts = () => {
           display: true,
           color: 'rgba(41, 41, 40, 1)',
         },
+        onClick: function (e) {
+          // Дії при кліці на анотацію
+        },
       },
     },
+    maintainAspectRatio: false,
   };
 
   const waterOptions = {
@@ -236,47 +240,55 @@ const Charts = () => {
           display: true,
           color: 'rgba(41, 41, 40, 1)',
         },
-      },
-    },
-  };
-
-  const weightOptions = {
-    plugins: {
-      legend: false,
-      annotation: {
-        annotations: Array.from({ length: 30 }, (_, i) => ({
-          type: 'text',
-          position: 'top',
-          content: 'Число', // Замініть це на ваше значення ваги
-          x: i + 1,
-          y: 0, // Змініть це значення відповідно до ваших потреб
-          font: {
-            size: 12,
-          },
-          onClick: function (e) {
-            // Дії при кліці на анотацію (опціонально)
-          },
-        })),
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
+        onClick: function (e) {
+          // Дії при кліці на анотацію
         },
-      },
-      y: {
-        display: false,
       },
     },
     maintainAspectRatio: false,
   };
 
+  const weightOptions = {
+  plugins: {
+    legend: false,
+    annotation: {
+      annotations: Array.from({ length: 30 }, (_, i) => ({
+        type: 'text',
+        position: 'top',
+        content: 'Weight', // backend
+        x: i + 1,
+        y: 0,
+        font: {
+          size: 12,
+        },
+        onClick: function (e) {
+          // Дії при кліці на анотацію
+        },
+      })),
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: true,
+        color: 'rgba(41, 41, 40, 1)',
+      },
+    },
+    y: {
+      display: false,
+      grid: {
+          color: 'rgba(41, 41, 40, 1)',
+        },
+    },
+    
+  },
+  maintainAspectRatio: false,
+};
+
   const selectOptions = months.map((month) => ({ value: month, label: month }));
 
   return (
-    <>
+  <>
       <ContainerSelect>
         <BackIconContainer>
           <BackIconLink to="/main">
@@ -320,7 +332,7 @@ const Charts = () => {
               <Line data={chartData} options={caloriesOptions}></Line>
             )}
           </ContainerChart>
-        </ChartsWrapper>
+          </ChartsWrapper>
 
         <ChartsWrapper>
           <ContainerWaterValue>
