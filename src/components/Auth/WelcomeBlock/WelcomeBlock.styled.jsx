@@ -41,6 +41,11 @@ const AuthLink = styled(NavLink)`
     color: var(--color-primary-black-2);
     background: var(--color-primary-green-lite);
   }
+
+  &.active {
+    background-color: var(--color-primary-green-lite);
+    color: var(--color-primary-black-2);
+  }
 `;
 
 const Benefits = styled.ul`

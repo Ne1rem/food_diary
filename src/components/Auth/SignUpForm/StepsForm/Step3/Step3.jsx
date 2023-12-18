@@ -68,7 +68,7 @@ const Step3 = ({ formik, increment, decrement }) => {
       </FormBlock>
       <ButtonList>
         <li>
-          <Button onClick={() => {increment()}} type="button">Next</Button>
+          <Button onClick={() => {increment()}}  className='btn-active' type="button">Next</Button>
         </li>
         <li>
           <Button onClick={() => {decrement()}} type="button">Back</Button>

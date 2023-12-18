@@ -62,7 +62,7 @@ increment()
              {formik.errors.password && formik.touched.password ? (<InputError>{formik.errors.password}</InputError>) : null}
         </li>
       </InputList>
-      <Button onClick={() => {onClickBtnNext()}} type="button">Next</Button>
+      <Button onClick={() => {onClickBtnNext()}} className='btn-active' type="button">Next</Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>
