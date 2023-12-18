@@ -3,6 +3,7 @@ import {
   Button,
   Title,
   Text,
+  InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   RadioButton,
@@ -32,8 +33,8 @@ const Step3 = ({ formik, increment, decrement }) => {
                 onChange={formik.handleChange}
                 type="radio"
                 name="gender"
+                value="male"
                 defaultChecked
-                value="Male"
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Male</RadioLabel>
@@ -45,7 +46,7 @@ const Step3 = ({ formik, increment, decrement }) => {
                 onChange={formik.handleChange}
                 type="radio"
                 name="gender"
-                value="Female"
+                value="female"
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Female</RadioLabel>
@@ -61,7 +62,9 @@ const Step3 = ({ formik, increment, decrement }) => {
           placeholder="Enter your age"
           onChange={formik.handleChange}
           value={formik.values.age}
+          onBlur={formik.handleBlur}
         />
+             {formik.errors.age && formik.touched.age ? (<InputError>{formik.errors.age}</InputError>) : null}
       </FormBlock>
       <ButtonList>
         <li>
