@@ -14,9 +14,8 @@ export const ModalSettigns = styled.div`
   z-index: 5;
   @media only screen and (max-width: 650px) {
     top: 54px;
-  right: 10px;
+    right: 10px;
   }
-
 `;
 
 export const ModalPartButtonSettigns = styled.div`

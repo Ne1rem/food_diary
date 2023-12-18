@@ -37,11 +37,11 @@ export const StyledLink = styled(Link)`
   &:hover {
     color: var(--color-primary-green-lite);
   }
-  &:active {
+
+  &.active {
     color: var(--color-primary-green-lite);
   }
 `;
-
 export const SlashBetween = styled.p`
   font-family: Poppins;
   font-size: 14px;
@@ -66,7 +66,8 @@ export const NameOfSite = styled(Link)`
   &:hover {
     color: var(--color-primary-green-lite);
   }
-  &:active {
+
+  &.active {
     color: var(--color-primary-green-lite);
   }
 `;

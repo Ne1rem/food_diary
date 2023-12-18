@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { Line } from 'react-chartjs-2';
 import Select from 'react-select';
-import MediaQuery from 'react-responsive';
 import {
   Chart as ChartJS,
   LineElement,
@@ -19,15 +18,18 @@ import {
   ContainerValue,
   Month,
   TitleCalories,
+  TitleWater,
+  TitleWeight,
   BackIconContainer,
   BackIconLink,
   ChartContainer,
   ChartsWrapper,
-  TitleWater,
   Wrapper,
   Value,
   Span,
   ContainerWaterValue,
+  ContainerWeightValue,
+  ContainerWeightChart,
 } from './Charts.styled';
 import { customSelectStyles } from './Charts.styled';
 
@@ -47,6 +49,7 @@ const Charts = () => {
   const [currentMonth, setCurrentMonth] = useState('');
   const [chartData, setChartData] = useState(null);
   const [waterChartData, setWaterChartData] = useState(null);
+  const [weightChartData, setWeightChartData] = useState(null);
 
   useEffect(() => {
     const monthNames = [
@@ -80,19 +83,17 @@ const Charts = () => {
 
     updateChartData(currentMonthName);
     updateWaterChartData(currentMonthName);
+    updateWeightChartData(currentMonthName);
   }, []);
 
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
     updateChartData(selectedOption.value);
     updateWaterChartData(selectedOption.value);
+    updateWeightChartData(selectedOption.value);
   };
 
   const updateChartData = (selected) => {
-    // Замість randomData() - API
-    // fetchDataForMonth(selected).then((data) => setChartData(data));
-
-    // randomData() для прикладу:
     const randomData = () => {
       return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
     };
@@ -102,7 +103,7 @@ const Charts = () => {
       datasets: [
         {
           label: 'Calories',
-          data: randomData(), // data from backend
+          data: randomData(),
           backgroundColor: 'transparent',
           borderColor: '#E3FFA8',
           borderWidth: 1,
@@ -123,12 +124,8 @@ const Charts = () => {
   };
 
   const updateWaterChartData = (selected) => {
-    // Замість randomWaterData() - API
-    // fetchDataForMonth(selected).then((data) => setWaterChartData(data));
-
-    // randomWaterData() для прикладу:
     const randomWaterData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
     };
 
     setWaterChartData({
@@ -136,16 +133,16 @@ const Charts = () => {
       datasets: [
         {
           label: 'Water',
-          data: randomWaterData(), // data from backend
+          data: randomWaterData(),
           backgroundColor: 'transparent',
-          borderColor: 'var(--color-primary-grey)',
+          borderColor: '#E3FFA8',
           borderWidth: 1,
-          pointBorderColor: 'var(--color-primary-black-2)',
-          pointBackgroundColor: '#A8E3FF',
+          pointBorderColor: '#0F0F0F',
+          pointBackgroundColor: '#E3FFA8',
           pointBorderWidth: 1,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: '#A8E3FF',
-          pointHoverBorderColor: 'var(--color-primary-black-2)',
+          pointHoverBackgroundColor: '#E3FFA8',
+          pointHoverBorderColor: '#0F0F0F',
           pointHoverBorderWidth: 1,
           pointRadius: 2,
           pointHitRadius: 20,
@@ -156,7 +153,42 @@ const Charts = () => {
     });
   };
 
-  const options = {
+  const updateWeightChartData = (selected) => {
+    // BackEnnd API:
+    //   const weights = [];
+
+    // const dataWithLabels = weights.map((weight, index) => ({
+    //   x: index + 1,
+    //   y: 0,
+    //   weight: weight,
+    // }));
+
+    const randomWeightData = () => {
+      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+    };
+
+    setWeightChartData({
+      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      datasets: [
+        {
+          label: 'Weight',
+          data: randomWeightData(), // з backend
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          borderWidth: 1,
+          pointRadius: 10,
+          pointHoverRadius: 10,
+          pointBackgroundColor: '#E3FFA8',
+          pointBorderColor: '#0F0F0F',
+          pointBorderWidth: 1,
+          fill: false,
+          tension: 0,
+        },
+      ],
+    });
+  };
+
+  const caloriesOptions = {
     plugins: {
       legend: false,
     },
@@ -178,14 +210,85 @@ const Charts = () => {
           display: true,
           color: 'rgba(41, 41, 40, 1)',
         },
+        onClick: function (e) {
+          // Дії при кліці на анотацію
+        },
       },
     },
+    maintainAspectRatio: false,
   };
+
+  const waterOptions = {
+    plugins: {
+      legend: false,
+    },
+    scales: {
+      x: {
+        grid: {
+          display: true,
+          color: 'rgba(41, 41, 40, 1)',
+        },
+      },
+      y: {
+        min: 0,
+        max: 3000,
+        ticks: {
+          stepSize: 1000,
+          callback: (value) => (value === 0 ? value : value / 1000 + 'L'),
+        },
+        grid: {
+          display: true,
+          color: 'rgba(41, 41, 40, 1)',
+        },
+        onClick: function (e) {
+          // Дії при кліці на анотацію
+        },
+      },
+    },
+    maintainAspectRatio: false,
+  };
+
+  const weightOptions = {
+  plugins: {
+    legend: false,
+    annotation: {
+      annotations: Array.from({ length: 30 }, (_, i) => ({
+        type: 'text',
+        position: 'top',
+        content: 'Weight', // backend
+        x: i + 1,
+        y: 0,
+        font: {
+          size: 12,
+        },
+        onClick: function (e) {
+          // Дії при кліці на анотацію
+        },
+      })),
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: true,
+        color: 'rgba(41, 41, 40, 1)',
+      },
+    },
+    y: {
+      display: false,
+      grid: {
+          color: 'rgba(41, 41, 40, 1)',
+        },
+    },
+    
+  },
+  maintainAspectRatio: false,
+};
 
   const selectOptions = months.map((month) => ({ value: month, label: month }));
 
   return (
-    <>
+  <>
       <ContainerSelect>
         <BackIconContainer>
           <BackIconLink to="/main">
@@ -212,7 +315,7 @@ const Charts = () => {
             <TitleCalories>Calories</TitleCalories>
             {chartData && (
               <Value>
-                <Span>Average value: </Span>{' '}
+                <Span>Average value:</Span>{' '}
                 {Math.round(
                   chartData.datasets[0].data.reduce(
                     (acc, val) => acc + val,
@@ -225,16 +328,18 @@ const Charts = () => {
           </ContainerValue>
 
           <ContainerChart>
-            {chartData && <Line data={chartData} options={options}></Line>}
+            {chartData && (
+              <Line data={chartData} options={caloriesOptions}></Line>
+            )}
           </ContainerChart>
-        </ChartsWrapper>
+          </ChartsWrapper>
 
         <ChartsWrapper>
           <ContainerWaterValue>
             <TitleWater>Water</TitleWater>
             {waterChartData && (
               <Value>
-                <Span>Average value: </Span>{' '}
+                <Span>Average value:</Span>{' '}
                 {Math.round(
                   waterChartData.datasets[0].data.reduce(
                     (acc, val) => acc + val,
@@ -247,10 +352,36 @@ const Charts = () => {
           </ContainerWaterValue>
 
           <ContainerChart>
-            {waterChartData && <Line data={waterChartData} options={options} />}
+            {waterChartData && (
+              <Line data={waterChartData} options={waterOptions} />
+            )}
           </ContainerChart>
         </ChartsWrapper>
       </Wrapper>
+
+      <ChartsWrapper>
+        <ContainerWeightValue>
+          <TitleWeight>Weight</TitleWeight>
+          {weightChartData && (
+            <Value>
+              <Span>Average value:</Span>{' '}
+              {Math.round(
+                weightChartData.datasets[0].data.reduce(
+                  (acc, val) => acc + val,
+                  0
+                ) / 30
+              )}{' '}
+              kg
+            </Value>
+          )}
+        </ContainerWeightValue>
+
+        <ContainerWeightChart>
+          {weightChartData && (
+            <Line data={weightChartData} options={weightOptions} />
+          )}
+        </ContainerWeightChart>
+      </ChartsWrapper>
     </>
   );
 };

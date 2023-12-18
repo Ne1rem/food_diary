@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const InputStyle = styled.input`
-  width: 280px;
+  width: 300px;
   display: inline-flex;
   padding: 8px 10px;
   flex-direction: column;
@@ -18,11 +18,11 @@ const InputStyle = styled.input`
   background: var(--color-primary-black-2);
 
   @media screen and (min-width: 834px) {
-    width: 360px;
+    width: 380px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 192px;
+    width: 212px;
   }
 `;
 

@@ -4,9 +4,10 @@ import {
   Button,
   Title,
   Text,
+  InputError
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 
-const Step4 = ({ formik }) => {
+const Step4 = ({ formik, increment, decrement }) => {
   return (
     <BodyForm>
       <Title>Body parameters</Title>
@@ -21,7 +22,9 @@ const Step4 = ({ formik }) => {
             placeholder="Enter your height"
             onChange={formik.handleChange}
             value={formik.values.height}
+            onBlur={formik.handleBlur}
           />
+             {formik.errors.height && formik.touched.height ? (<InputError>{formik.errors.height}</InputError>) : null}
         </li>
         <li>
           <Label htmlFor="weight">Weight</Label>
@@ -32,15 +35,17 @@ const Step4 = ({ formik }) => {
             placeholder="Enter your weight"
             onChange={formik.handleChange}
             value={formik.values.weight}
+            onBlur={formik.handleBlur}
           />
+             {formik.errors.weight && formik.touched.weight ? (<InputError>{formik.errors.weight}</InputError>) : null}
         </li>
         </InputList>
         <ButtonList>
         <li>
-          <Button type="button">Next</Button>
+          <Button onClick={() => {increment()}} type="button">Next</Button>
         </li>
         <li>
-          <Button type="button">Back</Button>
+          <Button onClick={() => {decrement()}} type="button">Back</Button>
         </li>
       </ButtonList>
     </BodyForm>

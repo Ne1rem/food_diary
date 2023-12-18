@@ -13,19 +13,6 @@ export const UserMenuContainer = styled.div`
   }
 `;
 
-// @media only screen and (min-width: 835px) {
-
-// }
-
-// /* з [1441px */
-// @media only screen and (min-width: 1441px) {
-
-// }
-
-// /* Для мобільних екранів (менше 600px]) */
-// @media only screen and (max-width: 600px) {
-
-// }
 
 //Modal Goal
 export const GoalHeader = styled.div`
@@ -206,6 +193,7 @@ export const AvatarSvg = styled.svg`
   padding-bottom: 2px;
   display: flex;
   fill: var(--color-primary-green-lite);
+  
 `;
 
 //ModalMobile
