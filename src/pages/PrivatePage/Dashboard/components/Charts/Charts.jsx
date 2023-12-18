@@ -229,13 +229,13 @@ const Charts = () => {
           label: 'Weight',
           data: randomWeightData(),
           backgroundColor: 'transparent',
-          borderColor: 'transparent',
-          borderWidth: 1,
-          pointRadius: 10,
-          pointHoverRadius: 10,
-          pointBackgroundColor: '#E3FFA8',
-          pointBorderColor: '#0F0F0F',
-          pointBorderWidth: 1,
+          borderColor: '#E3FFA8',
+          borderWidth: 0,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          pointHoverBackgroundColor: '#E3FFA8',
+          pointBorderColor: '#transparent',
+          pointBorderWidth: 30,
           fill: false,
           tension: 0,
         },
@@ -250,11 +250,11 @@ const Charts = () => {
         annotations: Array.from({ length: 30 }, (_, i) => ({
           type: 'text',
           position: 'top',
-          content: 'Weight', // backend
+          content: 'randomWeightData()', // backend
           x: i + 1,
           y: 0,
           font: {
-            size: 12,
+            size: 10,
           },
           onClick: function (e) {
             // Дії при кліці на анотацію
@@ -265,15 +265,11 @@ const Charts = () => {
     scales: {
       x: {
         grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
+          display: false,
         },
       },
       y: {
         display: false,
-        grid: {
-          color: 'rgba(41, 41, 40, 1)',
-        },
       },
     },
     maintainAspectRatio: false,

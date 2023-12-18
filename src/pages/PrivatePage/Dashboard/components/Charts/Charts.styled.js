@@ -304,3 +304,23 @@ export const ContainerWeightChart = styled.h3`
     padding: 24px 41px 36px 21px;
   }
 `;
+
+const WeightLabel = styled.div`
+  color: var(color-primary-white);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+`;
+
+const DateLabel = styled.div`
+  color: var(--color-primary-grey);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+`;
