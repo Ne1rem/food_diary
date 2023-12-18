@@ -1,10 +1,10 @@
-import{s as i,N as t,j as e}from"./index-f0e6f8ae.js";import{T as s,a as l,A as o,i as a}from"./Illustration-58a5b3ee.js";const d=i.div`
+import{s as i,N as t,j as e}from"./index-53b3451a.js";import{T as o,a,A as l,i as s}from"./Illustration-8b514c8a.js";const c=i.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
-`,c=i.div`
+`,d=i.div`
   display: flex;
   justify-content: center;
   gap: 16px;
@@ -13,7 +13,7 @@ import{s as i,N as t,j as e}from"./index-f0e6f8ae.js";import{T as s,a as l,A as 
   @media screen and (min-width: 834px) {
     margin-bottom: 80px;
   }
-`,r=i(t)`
+`,n=i(t)`
   width: 122px;
 
   display: flex;
@@ -33,6 +33,11 @@ import{s as i,N as t,j as e}from"./index-f0e6f8ae.js";import{T as s,a as l,A as 
   &:hover {
     color: var(--color-primary-black-2);
     background: var(--color-primary-green-lite);
+  }
+
+  &.active {
+    background-color: var(--color-primary-green-lite);
+    color: var(--color-primary-black-2);
   }
 `,x=i.ul`
   display: flex;
@@ -62,7 +67,7 @@ import{s as i,N as t,j as e}from"./index-f0e6f8ae.js";import{T as s,a as l,A as 
     background-color: var(--color-primary-green-lite);
     border-radius: 50%;
   }
-`,n=i.p`
+`,r=i.p`
   font-weight: 400;
   line-height: 1.4;
-`,p=()=>e.jsxs(d,{children:[e.jsx(s,{children:"Set goals and achieve them"}),e.jsx(l,{children:"The service will help you set goals and follow them."}),e.jsxs(c,{children:[e.jsx(r,{to:"/signin",children:"Sign in"}),e.jsx(r,{to:"/signup",children:"Sign up"})]}),e.jsxs(x,{children:[e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(n,{children:"Set goals"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(n,{children:"Watch your calories"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(n,{children:"Keep track of your water intake"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(n,{children:"Control your weight"})]})]})]}),g=()=>e.jsx(o,{image:a,children:e.jsx(p,{})});export{g as default};
+`,p=()=>e.jsxs(c,{children:[e.jsx(o,{children:"Set goals and achieve them"}),e.jsx(a,{children:"The service will help you set goals and follow them."}),e.jsxs(d,{children:[e.jsx(n,{className:"active",to:"/signin",children:"Sign in"}),e.jsx(n,{to:"/signup",children:"Sign up"})]}),e.jsxs(x,{children:[e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Set goals"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Watch your calories"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Keep track of your water intake"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Control your weight"})]})]})]}),g=()=>e.jsx(l,{image:s,children:e.jsx(p,{})});export{g as default};

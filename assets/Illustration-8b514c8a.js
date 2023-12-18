@@ -1,4 +1,4 @@
-import{s as t,j as e}from"./index-f0e6f8ae.js";const r=t.div`
+import{s as t,j as e}from"./index-53b3451a.js";const r=t.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,8 +82,8 @@ import{s as t,j as e}from"./index-f0e6f8ae.js";const r=t.div`
   border: none;
   border-radius: 12px;
   line-height: 1.4;
-  background: var(--color-primary-green-lite);
-  color: var(--color-primary-black-2);
+  background-color: transparent;
+  color: var(--color-crimary-grey);
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -96,10 +96,15 @@ import{s as t,j as e}from"./index-f0e6f8ae.js";const r=t.div`
     margin: 0;
   }
 
-  /* &:hover {
+  &:hover {
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
-} */
+}
+
+&.btn-active {
+  color: var(--color-primary-black-2);
+  background: var(--color-primary-green-lite);
+}
 `,c=t.div`
   color: #E74A3B;
 
