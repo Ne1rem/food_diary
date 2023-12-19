@@ -57,44 +57,44 @@ export const ProfileSettings = () => {
     },
   });
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const token =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODBlYWI4NDc4ZDg5YzY3MDA1YTU4ZCIsImlhdCI6MTcwMjk5MTU0NCwiZXhwIjoxNzAzMDc3OTQ0fQ.lY4l4qNqE5ieJTdsBmIIQsKSSpIqqx4IWQM0LAJL4Ro';
-        const response = await fetch(
-          'http://food-diary-backend-kr1b.onrender.com/api/user/current',
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json',
-              // Other headers if needed
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-          const userData = await response.json();
-          console.log(userData);
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const token =
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODBlYWI4NDc4ZDg5YzY3MDA1YTU4ZCIsImlhdCI6MTcwMjk5MTU0NCwiZXhwIjoxNzAzMDc3OTQ0fQ.lY4l4qNqE5ieJTdsBmIIQsKSSpIqqx4IWQM0LAJL4Ro';
+  //       const response = await fetch(
+  //         'http://food-diary-backend-kr1b.onrender.com/api/user/current',
+  //         {
+  //           headers: {
+  //             'Authorization': `Bearer ${token}`,
+  //             'Content-Type': 'application/json',
+  //             // Other headers if needed
+  //           },
+  //         }
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+  //         const userData = await response.json();
+  //         console.log(userData);
 
-          // Set form values based on fetched data
-          formik.setValues({
-            name: userData.user.name || '',
-            photo: userData.user.photo || '',
-            age: userData.user.age || 0,
-            gender: userData.user.gender || '',
-            weight: userData.user.weight || '',
-            height: userData.user.height || '',
-            activityLevel: userData.user.activityLevel || '',
-          });
-        } catch (error) {
-          console.error('Error fetching user data:', error.message);
-        }
-      };
+  //         // Set form values based on fetched data
+  //         formik.setValues({
+  //           name: userData.user.name || '',
+  //           photo: userData.user.photo || '',
+  //           age: userData.user.age || 0,
+  //           gender: userData.user.gender || '',
+  //           weight: userData.user.weight || '',
+  //           height: userData.user.height || '',
+  //           activityLevel: userData.user.activityLevel || '',
+  //         });
+  //       } catch (error) {
+  //         console.error('Error fetching user data:', error.message);
+  //       }
+  //     };
 
-    fetchUserData();
-  }, [formik]); // Include formik as a dependency to avoid the eslint warning
+  //   fetchUserData();
+  // }, [formik]); // Include formik as a dependency to avoid the eslint warning
 
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
