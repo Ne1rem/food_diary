@@ -33,7 +33,7 @@ export const ProfileSettings = () => {
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      avatarURL: userInfo.avatarURL || '',//'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      avatarURL: userInfo.avatarURL || '',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',

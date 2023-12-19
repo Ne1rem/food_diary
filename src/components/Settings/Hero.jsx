@@ -1,4 +1,4 @@
-import illustration from 'assets/settings/illustration.png';
+import illustration from '../../assets/settings/Illustration.png';
 import { ImageStyled, Wrapper } from './Hero.styled';
 import { Title } from './Title';
 
