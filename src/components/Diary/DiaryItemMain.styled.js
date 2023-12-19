@@ -32,7 +32,7 @@ width: 20px;
 height: 20px;
 stroke: var(--color-primary-green-lite);
 &:hover{
-  stroke: var(--secondary-color-pink)
+  stroke: var(--secondary-color-yellow)
 }`
 
 export const ButtonSvg = styled.button`

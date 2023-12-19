@@ -2,7 +2,6 @@ import { ContainerInputs, InputStyle, InputProductStyle, DivWrapper, ButtonSvg, 
 import trashImg from "../../assets/diary/trash.svg";
 
 const FormDiary = ({ index, formik, onDelete }) => {
-
   const food = formik.values.foods && formik.values.foods[index];
 
   const handleClear = (e) => {

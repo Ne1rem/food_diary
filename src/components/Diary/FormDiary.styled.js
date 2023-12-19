@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const ContainerInputs = styled.div`
 display: flex;
 flex-direction: column;
-gap: 16px;
+gap: 16px;margin-bottom: 20px;
 @media only screen and (min-width: 834px){
   flex-direction: row; 
   gap: 12px;
@@ -47,7 +47,7 @@ width: 20px;
 height: 20px;
 stroke: var(--color-primary-green-lite);
 &:hover{
-  stroke: var(--secondary-color-pink)
+  stroke: var(--secondary-color-yellow)
 }`
 
 export const ButtonSvg = styled.button`

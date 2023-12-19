@@ -22,6 +22,7 @@ color: var(--color-primary-grey);
 font-size: 14px;
 font-weight: 500;
 line-height: 1.42;
+&:hover{color: var(--color-primary-green-lite);}
 `
 
 export const ListDiary = styled.ul`

@@ -102,7 +102,7 @@ export const ButtonAddMore = styled.button`
 background: none;
 border: none;
 text-align: left;
-margin-top: 40px;
+margin-top: 20px;
 margin-bottom: 64px;
 color: var(--color-primary-green-lite);
 font-size: 14px;
