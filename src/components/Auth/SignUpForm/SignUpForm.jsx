@@ -78,7 +78,7 @@ const SignUpForm = () => {
   return (
     <AuthLayout image={imagesStep}>
     
-        
+    
         <form onSubmit={formik.handleSubmit}>
           {currentStep === 1 && (
             <Step1
