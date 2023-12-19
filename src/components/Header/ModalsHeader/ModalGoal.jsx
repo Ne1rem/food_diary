@@ -1,4 +1,3 @@
-import { gender, goal } from '../userMenu';
 import {
   ButtonCloseModalGoal,
   ConfirmModalGoal,
@@ -22,8 +21,8 @@ import MaintainGirl from '/src/assets/header/Maintain-girl.png';
 import MaintainMan from '/src/assets/header/Maintain-man.png';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 
-function ModalGoal({ setIsGoalModalOpen }) {
-  
+function ModalGoal({ setIsGoalModalOpen, goal, gender }) {
+
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Lose Fat male': LoseFatMan,

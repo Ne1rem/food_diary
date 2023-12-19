@@ -56,15 +56,32 @@ import ModalWeight from './ModalsHeader/ModalWeight';
 import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
+import { useDispatch } from 'react-redux';
+import { refresh } from '../../Redux/Auth/authThunks';
 
-export const gender = 'female';
-export const goal = 'Lose Fat';
+
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
-  // const dispatch = useDispatch()
-  // const user = useSelector(selectUser)
-  const weight = 130;
-  const name = 'Dima';
+    const dispatch = useDispatch()
+
+    const [name, setName] = useState('');
+    const [gender, setGender] = useState('');
+    const [goal, setGoal] = useState('');
+    const [weight, setWeight] = useState('');
+
+  useEffect(() => {
+    dispatch(refresh())
+      .then((response) => {
+        const { name, gender, goal, weight } = response.payload;
+        setName(name);
+        setGender(gender);
+        setGoal(goal);
+        setWeight(weight);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, [dispatch]);
 
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
@@ -100,7 +117,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     setIsWeightModalOpen(false);
     setIsUserModalOpen((prevState) => !prevState);
   }
-
+  
   return (
     <UserMenuContainer>
       <GoalHeader>
@@ -121,13 +138,13 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivGoalPart>
         </GoalButton>
         {isGoalModalOpen && (
-          <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} />
+          <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} goal={goal} gender={gender}/>
         )}
       </GoalHeader>
       <WeightHeader>
         <WeightButton
           onClick={() => {
-            openWeightModal();
+            openWeightModal()
           }}
         >
           <ImageWeight src={changeWeight} alt="Change weight" />
