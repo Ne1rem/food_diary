@@ -20,37 +20,37 @@ const RecommendedFood = lazy(() =>
 const Settings = lazy(() => import('./pages/PrivatePage/Settings/Settings'));
 
 const App = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
-            <Route index element={<Welcome />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="signin" element={<SignIn />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-          </Route>
-          <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
-            <Route path="main" element={<Main />} />
-            <Route path="dashboard/:selectedMonth?" element={<Dashboard />} />
-            <Route path="diary" element={<Diary />} />
-            <Route path="recommended-food" element={<RecommendedFood />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
+    // <div
+    //   style={{
+    //     height: '100vh',
+    //     display: 'flex',
+    //     justifyContent: 'flex-start',
+    //     alignItems: 'center',
+    //     flexDirection: 'column',
+    //   }}
+    // >
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
+          <Route index element={<Welcome />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+        <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+          <Route path="main" element={<Main />} />
+          <Route path="dashboard/:selectedMonth?" element={<Dashboard />} />
+          <Route path="diary" element={<Diary />} />
+          <Route path="recommended-food" element={<RecommendedFood />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Route>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+    // </div>
   );
 };
 
