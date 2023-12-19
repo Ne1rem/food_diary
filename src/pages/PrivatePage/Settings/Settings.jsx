@@ -5,8 +5,8 @@ import { Hero } from '../../../components/Settings/Hero';
 import { Container, Section, Wrapper } from './Settings.styled';
 
 const Settings = () => {
-  const UserInfo = useSelector(selectUserInfo);
-console.log(UserInfo);
+  const userInfo = useSelector(selectUserInfo);
+console.log(userInfo);
 
   return (
     <>
