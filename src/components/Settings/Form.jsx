@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserInfo } from 'src/Redux/Auth/selectors.js';
+import { selectUser } from '../../Redux/User/selectors';
 import * as Yup from 'yup';
 import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
@@ -26,7 +26,7 @@ import {
 } from './Form.styled';
 
 export const ProfileSettings = () => {
-  const userInfo = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUser);
 
   const fileInputRef = useRef(null);
 
@@ -53,8 +53,37 @@ export const ProfileSettings = () => {
         .required("Поле зріст є обов'язковим"),
       activity: Yup.string().required('Оберіть рівень фізичної активності'),
     }),
-    onSubmit: (values) => {
-      console.log('Збережено:', values);
+    // onSubmit: (values) => {
+    //   console.log('Збережено:', values);
+    // },
+    onSubmit: async (values) => {
+      const formData = new FormData();
+
+      Object.entries(values).forEach(([key, value]) => {
+        if (key === 'avatar' && value instanceof File) {
+          formData.append(key, value);
+        } else {
+          formData.append(key, JSON.stringify(value));
+        }
+      });
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
+
+      try {
+        const response = await fetch(
+          'http://food-diary-backend-kr1b.onrender.com/api/user/update',
+          {
+            method: 'PUT',
+            body: formData,
+          }
+        );
+
+        console.log('Server response:', response);
+      } catch (error) {
+        console.error('Error sending data:', error);
+      }
     },
   });
 
@@ -66,6 +95,36 @@ export const ProfileSettings = () => {
   const handleDownloadNewPhoto = () => {
     fileInputRef.current.click();
   };
+
+  // const onSubmit = async (values) => {
+  //   const formData = new FormData();
+
+  //   Object.entries(values).forEach(([key, value]) => {
+  //     if (key === 'avatar' && value instanceof File) {
+  //       formData.append(key, value);
+  //     } else {
+  //       formData.append(key, JSON.stringify(value));
+  //     }
+  //   });
+
+  //   for (var pair of formData.entries()) {
+  //     console.log(pair[0] + ', ' + pair[1]);
+  //   }
+
+  //   try {
+  //     const response = await fetch(
+  //       'http://food-diary-backend-kr1b.onrender.com/api/user/update',
+  //       {
+  //         method: 'PUT',
+  //         body: formData,
+  //       }
+  //     );
+
+  //     console.log('Server response:', response);
+  //   } catch (error) {
+  //     console.error('Error sending data:', error);
+  //   }
+  // };
 
   return (
     <div>
@@ -93,7 +152,7 @@ export const ProfileSettings = () => {
                 <img
                   src={formik.values.avatarURL}
                   alt="User Avatar"
-                  style={{ width: '36px', height: '36px', borderRadius: '40%' }}
+                  style={{ width: '36px', height: '36px', borderRadius: '50%' }}
                 />
               ) : null}
               <IconDiv>
