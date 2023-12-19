@@ -61,7 +61,7 @@ export const ProfileSettings = () => {
     const fetchUserData = async () => {
       try {
         const token =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODBlYWI4NDc4ZDg5YzY3MDA1YTU4ZCIsImlhdCI6MTcwMjk4OTkzOCwiZXhwIjoxNzAzMDc2MzM4fQ.a08gYSrTLH4jaGQFEaIyl9xK1HAE89bFSCFAr9wFbWs';
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODBlYWI4NDc4ZDg5YzY3MDA1YTU4ZCIsImlhdCI6MTcwMjk5MTU0NCwiZXhwIjoxNzAzMDc3OTQ0fQ.lY4l4qNqE5ieJTdsBmIIQsKSSpIqqx4IWQM0LAJL4Ro';
         const response = await fetch(
           'http://food-diary-backend-kr1b.onrender.com/api/user/current',
           {
@@ -80,13 +80,13 @@ export const ProfileSettings = () => {
 
           // Set form values based on fetched data
           formik.setValues({
-            name: userData.name || '',
-            photo: userData.photo || '',
-            age: userData.age || 0,
-            gender: userData.gender || '',
-            weight: userData.weight || '',
-            height: userData.height || '',
-            activityLevel: userData.activityLevel || '',
+            name: userData.user.name || '',
+            photo: userData.user.photo || '',
+            age: userData.user.age || 0,
+            gender: userData.user.gender || '',
+            weight: userData.user.weight || '',
+            height: userData.user.height || '',
+            activityLevel: userData.user.activityLevel || '',
           });
         } catch (error) {
           console.error('Error fetching user data:', error.message);
