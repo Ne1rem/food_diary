@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signUp, refresh, forgotPassword } from './authThunks';
+import { signIn, signUp, refresh, forgotPassword, logOut } from './authThunks';
 
 const initialState = {
   user: {
@@ -31,7 +31,7 @@ const handleRejected = (state, payload) => {
   state.token = null;
   state.error = payload;
 };
-  
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -84,15 +84,21 @@ const authSlice = createSlice({
       .addCase(forgotPassword.fulfilled, (state) => {
         state.isLoading = false;
         toast.success('Request successful');
-      });
+      })
 
     // .addCase(checkEmail.fulfilled, (state, { payload }) => {})
     // .addCase(checkEmail.rejected, (state, { payload }) => {})
 
-    //LogOut
-    // .addCase(logOut.pending, (state, { payload }) => {})
-    // .addCase(logOut.fulfilled, (state, { payload }) => {})
-    // .addCase(logOut.rejected, (state, { payload }) => {})
+    .addCase(logOut.pending, (state) => {
+      handlePending(state);
+    })
+    .addCase(logOut.fulfilled, (state) => {
+      state.token = null;
+      state.isLoggedIn = false;
+    })
+    .addCase(logOut.rejected, (state, { payload }) => {
+      handleRejected(state, payload);
+    });
 
     //CheckEmail
     // .addCase(forgotPassword.pending, () => {

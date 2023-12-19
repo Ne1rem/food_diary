@@ -54,15 +54,15 @@ const forgotPassword = createAsyncThunk(
   }
 );
 
-// const logOut = createAsyncThunk("auth/signout", async () => {
-//   try {
-//     const { data } = await axios.post("auth/signout");
-//     token.unset();
-//     return data;
-//   } catch (e) {
-//     throw e;
-//   }
-// });
+const logOut = createAsyncThunk("auth/signout", async () => {
+  try {
+    const { data } = await axios.post("auth/signout");
+    token.unset();
+    return data;
+  } catch (e) {
+    toast.error(e)
+  }
+});
 
 const refresh = createAsyncThunk('auth/current', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
@@ -81,4 +81,4 @@ const refresh = createAsyncThunk('auth/current', async (_, thunkAPI) => {
   }
 });
 
-export { signUp, signIn, refresh, forgotPassword };
+export { signUp, signIn, refresh, forgotPassword, logOut };
