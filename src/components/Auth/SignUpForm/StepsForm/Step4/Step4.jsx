@@ -4,10 +4,26 @@ import {
   Button,
   Title,
   Text,
-  InputError
+  InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
+import { useState } from 'react';
 
 const Step4 = ({ formik, increment, decrement }) => {
+  const [error, setError] = useState(false);
+
+  const onClickBtnNext = () => {
+    if (
+      formik.values.height !== '' &&
+      !formik.errors.height &&
+      formik.values.weight !== '' &&
+      !formik.errors.weight
+    ) {
+      increment();
+    } else {
+      setError(true);
+    }
+  };
+
   return (
     <BodyForm>
       <Title>Body parameters</Title>
@@ -22,9 +38,11 @@ const Step4 = ({ formik, increment, decrement }) => {
             placeholder="Enter your height"
             onChange={formik.handleChange}
             value={formik.values.height}
-            onBlur={formik.handleBlur}
           />
-             {formik.errors.height && formik.touched.height ? (<InputError>{formik.errors.height}</InputError>) : null}
+          {error ? <InputError>{formik.errors.height}</InputError> : null}
+          {!formik.errors.height && formik.touched.height ? (
+            <InputError style={{ color: 'green' }}>Height is valid</InputError>
+          ) : null}
         </li>
         <li>
           <Label htmlFor="weight">Weight</Label>
@@ -35,17 +53,34 @@ const Step4 = ({ formik, increment, decrement }) => {
             placeholder="Enter your weight"
             onChange={formik.handleChange}
             value={formik.values.weight}
-            onBlur={formik.handleBlur}
           />
-             {formik.errors.weight && formik.touched.weight ? (<InputError>{formik.errors.weight}</InputError>) : null}
+          {error ? <InputError>{formik.errors.weight}</InputError> : null}
+          {!formik.errors.weight && formik.touched.weight ? (
+            <InputError style={{ color: 'green' }}>Weight is valid</InputError>
+          ) : null}
         </li>
-        </InputList>
-        <ButtonList>
+      </InputList>
+      <ButtonList>
         <li>
-          <Button onClick={() => {increment()}} type="button">Next</Button>
+          <Button
+            onClick={() => {
+              onClickBtnNext();
+            }}
+            className="btn-active"
+            type="submit"
+          >
+            Next
+          </Button>
         </li>
         <li>
-          <Button onClick={() => {decrement()}} type="button">Back</Button>
+          <Button
+            onClick={() => {
+              decrement();
+            }}
+            type="button"
+          >
+            Back
+          </Button>
         </li>
       </ButtonList>
     </BodyForm>

@@ -9,14 +9,14 @@ export const Container = styled.div`
   /* з [835px */
   @media only screen and (min-width: 835px) {
     width: 100%;
-    min-width: 735px;
+    min-width: 780px;
     padding: 0 27px;
   }
 
   /* з [1441px */
   @media only screen and (min-width: 1441px) {
     width: 100%;
-    min-width: 1373px;
+    min-width: 1372px;
     padding: 0 34px;
   }
 `;

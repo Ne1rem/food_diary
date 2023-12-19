@@ -1,7 +1,13 @@
-import RecommendedFood from '../RecommendedFood/RecommendedFood';
+import FoodCharts from '../../../components/FoodCharts/FoodCharts';
 
 const Main = () => {
-  return <RecommendedFood />;
+  return (
+    <>
+      <div>
+        <FoodCharts />
+      </div>
+    </>
+  );
 };
 
 export default Main;

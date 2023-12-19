@@ -11,19 +11,33 @@ import {
   RadioLabel,
 } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
 import {
-    AgeGender,
+  AgeGender,
   RadioList,
   GenderSpan,
   FormBlock,
   ButtonList,
   AgeLabel,
 } from './Step3.styled';
+import { useState } from 'react';
 
 const Step3 = ({ formik, increment, decrement }) => {
+  const [error, setError] = useState(false);
+
+  const onClickBtnNext = () => {
+    if (formik.values.age !== '' && !formik.errors.age) {
+      increment();
+    } else {
+      setError(true);
+    }
+  };
+
   return (
     <AgeGender>
       <Title>Select gender, Age</Title>
-      <Text>Choose a goal so that we can <br/>help you effectively</Text>
+      <Text>
+        Choose a goal so that we can <br />
+        help you effectively
+      </Text>
       <FormBlock>
         <GenderSpan>Gender</GenderSpan>
         <RadioList>
@@ -58,20 +72,37 @@ const Step3 = ({ formik, increment, decrement }) => {
         <InputStyle
           id="age"
           name="age"
-          type="age"
+          // type="age"
           placeholder="Enter your age"
           onChange={formik.handleChange}
           value={formik.values.age}
-          onBlur={formik.handleBlur}
         />
-             {formik.errors.age && formik.touched.age ? (<InputError>{formik.errors.age}</InputError>) : null}
+        {error ? <InputError>{formik.errors.age}</InputError> : null}
+        { !formik.errors.age && formik.touched.age ? (
+          <InputError style={{ color: 'green' }}>Age is valid</InputError>
+        ) : null}
       </FormBlock>
-      <ButtonList>
+      <ButtonList>  
         <li>
-          <Button onClick={() => {increment()}} type="button">Next</Button>
+          <Button
+            onClick={() => {
+              onClickBtnNext();
+            }}
+            className="btn-active"
+            type="submit"
+          >
+            Next
+          </Button>
         </li>
         <li>
-          <Button onClick={() => {decrement()}} type="button">Back</Button>
+          <Button
+            onClick={() => {
+              decrement();
+            }}
+            type="button"
+          >
+            Back
+          </Button>
         </li>
       </ButtonList>
     </AgeGender>

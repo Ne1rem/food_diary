@@ -91,7 +91,7 @@ const Step5 = ({ formik, decrement }) => {
         </li>
       </RadioList>
       <ButtonList>
-        <Button type="submit">Sign Up</Button>
+        <Button className='btn-active' type="submit">Sign Up</Button>
         <Button onClick={() => {decrement()}} type="button">Back</Button>
       </ButtonList>
     </Activity>

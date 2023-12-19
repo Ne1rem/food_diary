@@ -1,6 +1,11 @@
 import { useFormik } from 'formik';
 import { InputStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { Button, Title, Text, InputError } from "../AuthStyled/GeneralStyles/GeneralStyles";
+import {
+  Button,
+  Title,
+  Text,
+  InputError,
+} from '../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   SignIn,
   InputList,
@@ -16,13 +21,13 @@ import { signInSchema } from '../validationSchemas/validationSchema';
 const SignInForm = () => {
   const dispatch = useDispatch();
 
-
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema: signInSchema,
+    isValidating: false,
     onSubmit: (values) => {
       dispatch(signIn(values));
     },
@@ -41,7 +46,14 @@ const SignInForm = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-            {formik.errors.email && formik.touched.email && formik.handleSubmit  ? (<InputError>{formik.errors.email}</InputError>) : null}
+          {formik.errors.email &&
+          formik.touched.email &&
+          formik.handleSubmit ? (
+            <InputError>{formik.errors.email}</InputError>
+          ) : null}
+          {!formik.errors.email && formik.touched.email ? (
+            <InputError style={{ color: 'green' }}>E-mail is valid</InputError>
+          ) : null}
         </li>
         <li>
           <InputStyle
@@ -52,11 +64,19 @@ const SignInForm = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-            {formik.errors.password  && formik.touched.password && formik.handleSubmit ? (<InputError>{formik.errors.password}</InputError>) : null}
-            {/* {!formik.errors.password  && formik.touched.email && formik.handleSubmit ? (<InputError>охуенно сделал</InputError>) : null} */}
+          {formik.errors.password &&
+          formik.touched.password &&
+          formik.handleSubmit ? (
+            <InputError>{formik.errors.password}</InputError>
+          ) : null}
+          {!formik.errors.password && formik.touched.password ? (
+            <InputError style={{ color: 'green' }}>Password is valid</InputError>
+          ) : null}
         </li>
       </InputList>
-      <Button type='submit'>Sign in</Button>
+      <Button className="btn-active" type="submit">
+        Sign in
+      </Button>
       <NavToForgotPass to="/forgot-password">
         Forgot your password?
       </NavToForgotPass>
