@@ -17,7 +17,12 @@ const Step1 = ({ formik, increment }) => {
 
 
 const onClickBtnNext = () => {
-increment()
+
+  // if (formik.touched.name && !formik.errors.name  && formik.touched.email && formik.touched.password) {
+    increment()
+  // }
+
+// console.log(formik.touched.name);
 } 
 
   return (
@@ -31,7 +36,6 @@ increment()
             name="name"
             type="name"
             placeholder="Name"
-            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.name}
           />
@@ -43,7 +47,6 @@ increment()
             name="email"
             type="email"
             placeholder="E-mail"
-            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.email}
           />
@@ -55,7 +58,6 @@ increment()
             name="password"
             type="password"
             placeholder="Password"
-            onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.password}
           />
