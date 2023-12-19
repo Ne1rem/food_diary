@@ -1,4 +1,4 @@
-import{s as i,N as C,r as p,j as e,u as f,a as S}from"./index-5b108583.js";import{u as N}from"./index.esm-21040026.js";import{I as g,s as B}from"./InputStyle.styled-a5787fdc.js";import{T as u,a as m,I as s,B as h,i as w,A as L}from"./Illustration-4fc60054.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";const A="/food_diary/assets/goals-12d0ed7f.png",E="/food_diary/assets/genderAndAge-42209e67.png",F="/food_diary/assets/bodyParameters-bce33dad.png",I="/food_diary/assets/illustrationActivity-1f59fd5a.png",T=i.div`
+import{s as i,N as C,r as p,j as e,u as f,a as S}from"./index-b5bc085c.js";import{u as N}from"./index.esm-e36d19e2.js";import{I as g,s as B}from"./InputStyle.styled-0d3e2af2.js";import{T as u,a as m,I as s,B as h,i as v,A as L}from"./Illustration-cfdaba95.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";const A="/food_diary/assets/goals-12d0ed7f.png",E="/food_diary/assets/genderAndAge-42209e67.png",F="/food_diary/assets/bodyParameters-bce33dad.png",I="/food_diary/assets/illustrationActivity-1f59fd5a.png",T=i.div`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
@@ -134,14 +134,14 @@ gap: 12px;
     justify-content: center;
     gap: 16px;
   }
-`,J=i.span`
+`,V=i.span`
   display: block;
   margin-bottom: 12px;
 
   color: var(--color-primary-white);
 
   line-height: 1.4;
-`,O=i.div`
+`,q=i.div`
   @media screen and (min-width: 834px) {
     padding-left: 32px;
   }
@@ -149,19 +149,19 @@ gap: 12px;
   @media screen and (min-width: 1440px) {
     padding-left: 0;
   }
-`,V=i.label`
+`,z=i.label`
   display: block;
   margin-bottom: 12px;
 
   color: var(--color-primary-white);
 
   line-height: 1.4;
-`,q=i.ul`
+`,J=i.ul`
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: 40px;
-`,z=({formik:n,increment:a,decrement:t})=>{const[x,r]=p.useState(!1),l=()=>{n.values.age!==""&&!n.errors.age?a():r(!0)};return e.jsxs(H,{children:[e.jsx(u,{children:"Select gender, Age"}),e.jsxs(m,{children:["Choose a goal so that we can ",e.jsx("br",{}),"help you effectively"]}),e.jsxs(O,{children:[e.jsx(J,{children:"Gender"}),e.jsxs(W,{children:[e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"gender",value:"male",defaultChecked:!0}),e.jsx(o,{}),e.jsx(c,{children:"Male"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"gender",value:"female"}),e.jsx(o,{}),e.jsx(c,{children:"Female"})]})})]}),e.jsx(V,{htmlFor:"age",children:"Your age"}),e.jsx(g,{id:"age",name:"age",placeholder:"Enter your age",onChange:n.handleChange,value:n.values.age}),x?e.jsx(s,{children:n.errors.age}):null,!n.errors.age&&n.touched.age?e.jsx(s,{style:{color:"green"},children:"Age is valid"}):null]}),e.jsxs(q,{children:[e.jsx("li",{children:e.jsx(h,{onClick:()=>{l()},className:"btn-active",type:"submit",children:"Next"})}),e.jsx("li",{children:e.jsx(h,{onClick:()=>{t()},type:"button",children:"Back"})})]})]})},K=i.div`
+`,K=({formik:n,increment:a,decrement:t})=>{const[x,r]=p.useState(!1),l=()=>{n.values.age!==""&&!n.errors.age?a():r(!0)};return e.jsxs(H,{children:[e.jsx(u,{children:"Select gender, Age"}),e.jsxs(m,{children:["Choose a goal so that we can ",e.jsx("br",{}),"help you effectively"]}),e.jsxs(q,{children:[e.jsx(V,{children:"Gender"}),e.jsxs(W,{children:[e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"gender",value:"male",defaultChecked:!0}),e.jsx(o,{}),e.jsx(c,{children:"Male"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"gender",value:"female"}),e.jsx(o,{}),e.jsx(c,{children:"Female"})]})})]}),e.jsx(z,{htmlFor:"age",children:"Your age"}),e.jsx(g,{id:"age",name:"age",placeholder:"Enter your age",onChange:n.handleChange,value:n.values.age}),x?e.jsx(s,{children:n.errors.age}):null,!n.errors.age&&n.touched.age?e.jsx(s,{style:{color:"green"},children:"Age is valid"}):null]}),e.jsxs(J,{children:[e.jsx("li",{children:e.jsx(h,{onClick:()=>{l()},className:"btn-active",type:"submit",children:"Next"})}),e.jsx("li",{children:e.jsx(h,{onClick:()=>{t()},type:"button",children:"Back"})})]})]})},O=i.div`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
@@ -177,7 +177,7 @@ gap: 24px;
   @media screen and (min-width: 1440px) {
     padding-left: 0;
   }
-`,b=i.label`
+`,w=i.label`
   display: block;
   margin-bottom: 12px;
 
@@ -189,7 +189,7 @@ gap: 24px;
   flex-direction: column;
   gap: 12px;
   margin-top: 40px;
-`,Z=({formik:n,increment:a,decrement:t})=>{const[x,r]=p.useState(!1),l=()=>{n.values.height!==""&&!n.errors.height&&n.values.weight!==""&&!n.errors.weight?a():r(!0)};return e.jsxs(K,{children:[e.jsx(u,{children:"Body parameters"}),e.jsx(m,{children:"Enter your parameters for correct performance tracking"}),e.jsxs(Q,{children:[e.jsxs("li",{children:[e.jsx(b,{htmlFor:"height",children:"Height"}),e.jsx(g,{id:"height",name:"height",type:"height",placeholder:"Enter your height",onChange:n.handleChange,value:n.values.height}),x?e.jsx(s,{children:n.errors.height}):null,!n.errors.height&&n.touched.height?e.jsx(s,{style:{color:"green"},children:"Height is valid"}):null]}),e.jsxs("li",{children:[e.jsx(b,{htmlFor:"weight",children:"Weight"}),e.jsx(g,{id:"weight",name:"weight",type:"weight",placeholder:"Enter your weight",onChange:n.handleChange,value:n.values.weight}),x?e.jsx(s,{children:n.errors.weight}):null,!n.errors.weight&&n.touched.weight?e.jsx(s,{style:{color:"green"},children:"Weight is valid"}):null]})]}),e.jsxs(X,{children:[e.jsx("li",{children:e.jsx(h,{onClick:()=>{l()},className:"btn-active",type:"submit",children:"Next"})}),e.jsx("li",{children:e.jsx(h,{onClick:()=>{t()},type:"button",children:"Back"})})]})]})},k=i.div`
+`,Z=({formik:n,increment:a,decrement:t})=>{const[x,r]=p.useState(!1),l=()=>{n.values.height!==""&&!n.errors.height&&n.values.weight!==""&&!n.errors.weight?a():r(!0)};return e.jsxs(O,{children:[e.jsx(u,{children:"Body parameters"}),e.jsx(m,{children:"Enter your parameters for correct performance tracking"}),e.jsxs(Q,{children:[e.jsxs("li",{children:[e.jsx(w,{htmlFor:"height",children:"Height"}),e.jsx(g,{id:"height",name:"height",type:"height",placeholder:"Enter your height",onChange:n.handleChange,value:n.values.height}),x?e.jsx(s,{children:n.errors.height}):null,!n.errors.height&&n.touched.height?e.jsx(s,{style:{color:"green"},children:"Height is valid"}):null]}),e.jsxs("li",{children:[e.jsx(w,{htmlFor:"weight",children:"Weight"}),e.jsx(g,{id:"weight",name:"weight",type:"weight",placeholder:"Enter your weight",onChange:n.handleChange,value:n.values.weight}),x?e.jsx(s,{children:n.errors.weight}):null,!n.errors.weight&&n.touched.weight?e.jsx(s,{style:{color:"green"},children:"Weight is valid"}):null]})]}),e.jsxs(X,{children:[e.jsx("li",{children:e.jsx(h,{onClick:()=>{l()},className:"btn-active",type:"submit",children:"Next"})}),e.jsx("li",{children:e.jsx(h,{onClick:()=>{t()},type:"button",children:"Back"})})]})]})},k=i.div`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
@@ -209,4 +209,4 @@ gap: 24px;
   flex-direction: column;
   gap: 12px;
   margin-top: 24px;
-`,ie=({formik:n,decrement:a})=>e.jsxs(k,{children:[e.jsx(u,{children:"Your Activity"}),e.jsxs(m,{children:["To correctly calculate calorie ",e.jsx("br",{}),"and water intake"]}),e.jsxs(ee,{children:[e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",defaultChecked:!0,value:"1.2"}),e.jsx(o,{}),e.jsx(c,{children:"1.2 - if you do not have physical activity and sedentary work"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.375"}),e.jsx(o,{}),e.jsx(c,{children:"1.375 - if you do short runs or light gymnastics 1-3 times a week"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.55"}),e.jsx(o,{}),e.jsx(c,{children:"1.55 - if you play sports with average loads 3-5 times a week"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.725"}),e.jsx(o,{}),e.jsx(c,{children:"1.725 - if you train fully 6-7 times a week"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.9"}),e.jsx(o,{}),e.jsx(c,{children:"1.9 - if your work is related to physical labor, you train 2 times a day and include strength exercises in your training program"})]})})]}),e.jsxs(ne,{children:[e.jsx(h,{className:"btn-active",type:"submit",children:"Sign Up"}),e.jsx(h,{onClick:()=>{a()},type:"button",children:"Back"})]})]}),ae=()=>{const n=f(),[a,t]=p.useState(1),[x,r]=p.useState(w),l=N({initialValues:{name:"",email:"",password:"",goal:"Lose Fat",gender:"male",age:"",height:"",weight:"",activity:"1.2"},onSubmit:v=>{alert(JSON.stringify(v,null,2)),n(S(v)),t(1)},validationSchema:B}),j=()=>{t(a+1)},y=()=>{t(a-1)};return p.useEffect(()=>{switch(a){case 1:r(w);break;case 2:r(A);break;case 3:r(E);break;case 4:r(F);break;case 5:r(I);break}},[a]),e.jsx(L,{image:x,children:e.jsxs("form",{onSubmit:l.handleSubmit,children:[a===1&&e.jsx(M,{increment:j,validationSchema:l.validationSchema,formik:l}),a===2&&e.jsx(D,{increment:j,decrement:y,formik:l}),a===3&&e.jsx(z,{increment:j,decrement:y,formik:l}),a===4&&e.jsx(Z,{increment:j,decrement:y,formik:l}),a===5&&e.jsx(ie,{decrement:y,formik:l})]})})},oe=()=>e.jsx(ae,{});export{oe as default};
+`,ie=({formik:n,decrement:a})=>e.jsxs(k,{children:[e.jsx(u,{children:"Your Activity"}),e.jsxs(m,{children:["To correctly calculate calorie ",e.jsx("br",{}),"and water intake"]}),e.jsxs(ee,{children:[e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",defaultChecked:!0,value:"1.2"}),e.jsx(o,{}),e.jsx(c,{children:"1.2 - if you do not have physical activity and sedentary work"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.375"}),e.jsx(o,{}),e.jsx(c,{children:"1.375 - if you do short runs or light gymnastics 1-3 times a week"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.55"}),e.jsx(o,{}),e.jsx(c,{children:"1.55 - if you play sports with average loads 3-5 times a week"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.725"}),e.jsx(o,{}),e.jsx(c,{children:"1.725 - if you train fully 6-7 times a week"})]})}),e.jsx("li",{children:e.jsxs(d,{children:[e.jsx("input",{onChange:n.handleChange,type:"radio",name:"activity",value:"1.9"}),e.jsx(o,{}),e.jsx(c,{children:"1.9 - if your work is related to physical labor, you train 2 times a day and include strength exercises in your training program"})]})})]}),e.jsxs(ne,{children:[e.jsx(h,{className:"btn-active",type:"submit",children:"Sign Up"}),e.jsx(h,{onClick:()=>{a()},type:"button",children:"Back"})]})]}),ae=()=>{const n=f(),[a,t]=p.useState(1),[x,r]=p.useState(v),l=N({initialValues:{name:"",email:"",password:"",goal:"Lose Fat",gender:"male",age:"",height:"",weight:"",activity:"1.2"},onSubmit:b=>{n(S(b)),t(1)},validationSchema:B}),j=()=>{t(a+1)},y=()=>{t(a-1)};return p.useEffect(()=>{switch(a){case 1:r(v);break;case 2:r(A);break;case 3:r(E);break;case 4:r(F);break;case 5:r(I);break}},[a]),e.jsx(L,{image:x,children:e.jsxs("form",{onSubmit:l.handleSubmit,children:[a===1&&e.jsx(M,{increment:j,validationSchema:l.validationSchema,formik:l}),a===2&&e.jsx(D,{increment:j,decrement:y,formik:l}),a===3&&e.jsx(K,{increment:j,decrement:y,formik:l}),a===4&&e.jsx(Z,{increment:j,decrement:y,formik:l}),a===5&&e.jsx(ie,{decrement:y,formik:l})]})})},oe=()=>e.jsx(ae,{});export{oe as default};
