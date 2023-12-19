@@ -27,7 +27,7 @@ import {
 
 export const ProfileSettings = () => {
   const userInfo = useSelector(selectUserInfo);
-  console.log(userInfo);
+
   const fileInputRef = useRef(null);
 
   const formik = useFormik({

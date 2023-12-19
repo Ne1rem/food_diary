@@ -37,7 +37,6 @@ const SignUpForm = () => {
       activity: '1.2',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       dispatch(signUp(values));
       // resetForm();
       // { resetForm }
