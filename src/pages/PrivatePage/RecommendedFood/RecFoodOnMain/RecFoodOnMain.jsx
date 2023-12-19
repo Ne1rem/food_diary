@@ -8,13 +8,13 @@ import {
   CharacteristicsContainer,
   WeightOfCalorieContainer,
   Calories,
-} from './RecommendedFoodStyled';
-import Avocado from '../../../assets/recommendedfood/Avocado.png';
-import Beans from '../../../assets/recommendedfood/Beans.png';
-import Nuts from '../../../assets/recommendedfood/Nuts.png';
-import Broccoli from '../../../assets/recommendedfood/Broccoli.png';
+} from './RecFoodOnMainStyled';
+import Avocado from '../../../../assets/recommendedfood/Avocado.png';
+import Beans from '../../../../assets/recommendedfood/Beans.png';
+import Nuts from '../../../../assets/recommendedfood/Nuts.png';
+import Broccoli from '../../../../assets/recommendedfood/Broccoli.png';
 
-const RecommendedFood = () => {
+const RecommendedFoodOnMain = () => {
   const foodItems = [
     {
       id: 1,
@@ -63,14 +63,14 @@ const RecommendedFood = () => {
           </FoodCard>
         ))}
       </FoodCardsWrapper>
-      <Link to="/recommended_food">
+      <Link to="/recommended-food">
         <SeeMoreButton>See more →</SeeMoreButton>
       </Link>
     </RecommendedFoodWrapper>
   );
 };
 
-export default RecommendedFood;
+export default RecommendedFoodOnMain;
 
 // import React, { useState, useEffect } from 'react';
 // import {

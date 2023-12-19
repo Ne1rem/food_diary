@@ -64,7 +64,7 @@ export const FoodCard = styled.div`
   }
 `;
 
-export const SeeMoreButton = styled.a`
+export const SeeMoreButton = styled.p`
   display: block;
   margin-top: 16px;
   color: #b6b6b6;
