@@ -1,6 +1,6 @@
 // import { useDispatch, useSelector } from "react-redux"
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   AvatarSvg,
@@ -82,13 +82,31 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
   const [isWeightModalOpen, setIsWeightModalOpen] = useState(false);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  
+  function openGoalModal () {
+    setIsGoalModalOpen(true);
+    setIsWeightModalOpen(false);
+    setIsUserModalOpen(false);
+  }
+
+  function openWeightModal () {
+    setIsGoalModalOpen(false);
+    setIsWeightModalOpen(true);
+    setIsUserModalOpen(false);
+  }
+
+  function openUserModal () {
+    setIsGoalModalOpen(false);
+    setIsWeightModalOpen(false);
+    setIsUserModalOpen((prevState) => !prevState);
+  }
 
   return (
     <UserMenuContainer>
       <GoalHeader>
         <GoalButton
           onClick={() => {
-            setIsGoalModalOpen(true);
+            openGoalModal();
           }}
         >
           <ImageGoal src={selectedImage} alt="Goal image" />
@@ -109,7 +127,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
       <WeightHeader>
         <WeightButton
           onClick={() => {
-            setIsWeightModalOpen(true);
+            openWeightModal();
           }}
         >
           <ImageWeight src={changeWeight} alt="Change weight" />
@@ -135,7 +153,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
       <UserHeader>
         <UserHeaderButton
           onClick={() => {
-            setIsUserModalOpen((prevState) => !prevState);
+            openUserModal();
           }}
         >
           <UserNameHeader>{name}</UserNameHeader>

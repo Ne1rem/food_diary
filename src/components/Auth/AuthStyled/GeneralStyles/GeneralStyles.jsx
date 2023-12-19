@@ -73,4 +73,15 @@ const Button = styled.button`
 } */
 `;
 
-export { Button, Title, Text };
+const InputError = styled.div`
+  color: #E74A3B;
+
+text-align: center;
+font-size: 12px;
+font-weight: 400;
+line-height: 1.1
+`
+
+
+
+export { Button, Title, Text, InputError };

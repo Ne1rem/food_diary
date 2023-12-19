@@ -10,7 +10,7 @@ import {
 } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
 import { Goals, ButtonList, RadioList } from './Step2.styled';
 
-const Step2 = ({ formik }) => {
+const Step2 = ({ formik, increment, decrement }) => {
   return (
     <Goals>
       <Title>Your goal</Title>
@@ -57,10 +57,10 @@ const Step2 = ({ formik }) => {
 
       <ButtonList>
         <li>
-          <Button type="button">Next</Button>
+          <Button onClick={() => {increment()}} type="button">Next</Button>
         </li>
         <li>
-          <Button type="button">Back</Button>
+          <Button onClick={() => {decrement()}} type="button">Back</Button>
         </li>
       </ButtonList>
     </Goals>
