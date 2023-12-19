@@ -18,11 +18,11 @@ const Step1 = ({ formik, increment }) => {
 
 const onClickBtnNext = () => {
 
-  if (formik.touched.name && !formik.errors.name  && formik.touched.email && formik.touched.password) {
+  // if (formik.touched.name && !formik.errors.name  && formik.touched.email && formik.touched.password) {
     increment()
-  }
+  // }
 
-console.log(formik.touched.name);
+// console.log(formik.touched.name);
 } 
 
   return (
