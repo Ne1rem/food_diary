@@ -48,6 +48,12 @@ const Charts = () => {
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
 
+    const initializeChartData = (selected) => {
+    updateCaloriesChartData(selected);
+    updateWaterChartData(selected);
+    updateWeightChartData(selected);
+  };
+
   // --- Month selet setings ---
   useEffect(() => {
     const monthNames = [
@@ -82,6 +88,7 @@ const Charts = () => {
     updateCaloriesChartData(currentMonthName);
     updateWaterChartData(currentMonthName);
     updateWeightChartData(currentMonthName);
+    initializeChartData(currentMonthName);
   }, []);
 
   const handleSelectChange = (selectedOption) => {
@@ -89,6 +96,7 @@ const Charts = () => {
     updateCaloriesChartData(selectedOption.value);
     updateWaterChartData(selectedOption.value);
     updateWeightChartData(selectedOption.value);
+    initializeChartData(selectedOption.value);
   };
   // --- /Month selet setings ---
 
@@ -282,24 +290,24 @@ const Charts = () => {
     <>
       <ContainerSelect>
         <BackIconContainer>
-          {/* Icon back to main */}
+          {/* --Icon back to main-- */}
           <BackIconLink to="/main">
             <FaArrowLeftLong />
           </BackIconLink>
           {/* ---Select--- */}
           <label>
             <Select
-              value={selectedMonth}
-              onChange={handleSelectChange}
-              options={selectOptions}
-              placeholder="Month"
-              styles={customSelectStyles}
-              isSearchable={false}
-              readOnly
+            value={{ value: selectedMonth?.value, label: 'Month' }}
+            onChange={handleSelectChange}
+            options={selectOptions}
+            placeholder="Month"
+            styles={customSelectStyles}
+            isSearchable={false}
+            readOnly
             />
           </label>
         </BackIconContainer>
-        {/* ---Сurrent month--- */}
+        {/* --Сurrent month-- */}
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
@@ -308,7 +316,7 @@ const Charts = () => {
         <ChartsWrapper>
           <ContainerValue>
             <TitleCalories>Calories</TitleCalories>
-            {/* ---Average value--- */}
+            {/* --Average value-- */}
             {chartData && (
               <Value>
                 <Span>Average value:</Span>{' '}
@@ -322,7 +330,7 @@ const Charts = () => {
               </Value>
             )}
           </ContainerValue>
-          {/* ---Calories Chart--- */}
+          {/* --Calories Chart-- */}
           <ContainerChart>
             {chartData && (
               <Line data={chartData} options={caloriesOptions}></Line>
@@ -334,7 +342,7 @@ const Charts = () => {
         <ChartsWrapper>
           <ContainerValue>
             <TitleWater>Water</TitleWater>
-            {/* ---Average value--- */}
+            {/* --Average value-- */}
             {waterChartData && (
               <Value>
                 <Span>Average value:</Span>{' '}
@@ -348,7 +356,7 @@ const Charts = () => {
               </Value>
             )}
           </ContainerValue>
-          {/* ---Water Chart--- */}
+          {/* --Water Chart-- */}
           <ContainerChart>
             {waterChartData && (
               <Line data={waterChartData} options={waterOptions} />
@@ -361,7 +369,7 @@ const Charts = () => {
       <WeightWrapper>
         <ContainerValue>
           <TitleWeight>Weight</TitleWeight>
-          {/* ---Average value--- */}
+          {/* --Average value-- */}
           {weightChartData && (
             <Value>
               <Span>Average value:</Span>{' '}
@@ -376,7 +384,7 @@ const Charts = () => {
           )}
         </ContainerValue>
 
-        {/* ---Weight Chart--- */}
+        {/* --Weight Chart-- */}
         <ContainerWeightChart>
           {weightChartData && (
             <Line data={weightChartData} options={weightOptions} />
