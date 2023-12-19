@@ -71,12 +71,12 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     'Maintain female': MaintainGirl,
     'Lose Fat male': LoseFatMan,
     'Maintain male': MaintainMan,
-    'Gain muscle': GainMuscle,
+    'Gain Muscle': GainMuscle,
   };
 
   const selectedImage =
-    goal === 'Gain muscle'
-      ? imagesPath[`Gain muscle`]
+    goal === 'Gain Muscle'
+      ? imagesPath[`Gain Muscle`]
       : imagesPath[`${goal} ${gender}`];
 
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);

@@ -69,8 +69,8 @@ function ModalGoal({ setIsGoalModalOpen }) {
             </li>
             <li>
               <UlButtonModalGoal>
-                <UlImgButtonModalGoal className={goal == 'GainMuscle' ? 'active' : ''} src={GainMuscle} alt="Gain muscle" />
-                <UlPButtonModalGoal className={goal == 'GainMuscle' ? 'active' : ''} >Gain Muscle</UlPButtonModalGoal>
+                <UlImgButtonModalGoal className={goal == 'Gain Muscle' ? 'active' : ''} src={GainMuscle} alt="Gain muscle" />
+                <UlPButtonModalGoal className={goal == 'Gain Muscle' ? 'active' : ''} >Gain Muscle</UlPButtonModalGoal>
               </UlButtonModalGoal>
             </li>
             <li>
