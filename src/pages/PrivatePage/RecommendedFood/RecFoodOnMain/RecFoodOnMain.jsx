@@ -8,6 +8,7 @@ import {
   CharacteristicsContainer,
   WeightOfCalorieContainer,
   Calories,
+  Container,
 } from './RecFoodOnMainStyled';
 import Avocado from '../../../../assets/recommendedfood/Avocado.png';
 import Beans from '../../../../assets/recommendedfood/Beans.png';
@@ -47,26 +48,28 @@ const RecommendedFoodOnMain = () => {
   ];
 
   return (
-    <RecommendedFoodWrapper>
-      <Title>Recommended Food</Title>
-      <FoodCardsWrapper>
-        {foodItems.map((item) => (
-          <FoodCard key={item.id}>
-            <img src={item.icon} alt={item.name} />
-            <CharacteristicsContainer>
-              <h3>{item.name}</h3>
-              <WeightOfCalorieContainer>
-                <p>{item.measure}</p>
-                <Calories>{item.calories}</Calories>
-              </WeightOfCalorieContainer>
-            </CharacteristicsContainer>
-          </FoodCard>
-        ))}
-      </FoodCardsWrapper>
-      <Link to="/recommended-food">
-        <SeeMoreButton>See more →</SeeMoreButton>
-      </Link>
-    </RecommendedFoodWrapper>
+    <Container>
+      <RecommendedFoodWrapper>
+        <Title>Recommended Food</Title>
+        <FoodCardsWrapper>
+          {foodItems.map((item) => (
+            <FoodCard key={item.id}>
+              <img src={item.icon} alt={item.name} />
+              <CharacteristicsContainer>
+                <h3>{item.name}</h3>
+                <WeightOfCalorieContainer>
+                  <p>{item.measure}</p>
+                  <Calories>{item.calories}</Calories>
+                </WeightOfCalorieContainer>
+              </CharacteristicsContainer>
+            </FoodCard>
+          ))}
+        </FoodCardsWrapper>
+        <Link to="/recommended-food">
+          <SeeMoreButton>See more →</SeeMoreButton>
+        </Link>
+      </RecommendedFoodWrapper>
+    </Container>
   );
 };
 
