@@ -1,20 +1,21 @@
-import Avocado from '../../../assets/recommendedfood/Avocado.png';
-import Beans from '../../../assets/recommendedfood/Beans.png';
-import Nuts from '../../../assets/recommendedfood/Nuts.png';
-import Broccoli from '../../../assets/recommendedfood/Broccoli.png';
-import PhotoRecFood from '../../../assets/recommendedfood/PhotoRecFood.png';
+import Avocado from '../../../../assets/recommendedfood/Avocado.png';
+import Beans from '../../../../assets/recommendedfood/Beans.png';
+import Nuts from '../../../../assets/recommendedfood/Nuts.png';
+import Broccoli from '../../../../assets/recommendedfood/Broccoli.png';
+import PhotoRecFood from '../../../../assets/recommendedfood/PhotoRecFood.png';
 import {
   Calories,
   CharacteristicsContainer,
   Container,
   FoodCard,
   FoodCardsWrapper,
+  Photo,
   RecommendedFoodWrapper,
   Title,
   WeightOfCalorieContainer,
-} from './SeeMoreStyled';
+} from './RecommendedFoodStyled';
 
-const SeeMorePage = () => {
+const RecommendedFood = () => {
   const foodItems = [
     {
       id: 1,
@@ -92,7 +93,7 @@ const SeeMorePage = () => {
     <Container>
       <Title>Recommended Food</Title>
       <RecommendedFoodWrapper>
-        <img src={PhotoRecFood} alt="Фото" />
+        <Photo src={PhotoRecFood} alt="Фото" />
         <FoodCardsWrapper>
           {foodItems.map((item) => (
             <FoodCard key={item.id}>
@@ -112,4 +113,4 @@ const SeeMorePage = () => {
   );
 };
 
-export default SeeMorePage;
+export default RecommendedFood;

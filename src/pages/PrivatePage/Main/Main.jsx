@@ -1,12 +1,12 @@
-import { FoodInfo } from '../../../components/FoodCharts/FoodInfo/FoodInfo';
-import RecommendedFood from '../RecommendedFood/RecommendedFood';
+import FoodCharts from '../../../components/FoodCharts/FoodCharts';
+import RecommendedFoodOnMain from '../RecommendedFood/RecFoodOnMain/RecFoodOnMain';
 
 const Main = () => {
   return (
     <>
       <div>
-        <FoodInfo />
-        <RecommendedFood />
+        <FoodCharts />
+        <RecommendedFoodOnMain />
       </div>
     </>
   );
