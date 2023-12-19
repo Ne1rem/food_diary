@@ -1,8 +1,6 @@
 import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signUp,  refresh, forgotPassword } from './authThunks';
-
-
+import { signIn, signUp, refresh, forgotPassword, logOut } from './authThunks';
 
 const initialState = {
   user: {
@@ -19,7 +17,19 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isLoading: false,
+};
+
+const handlePending = (state) => {
+  state.error = null;
+  state.isLoading = true;
+};
+
+const handleRejected = (state, payload) => {
+  state.isLoggedIn = false;
+  state.isLoading = false;
+  state.token = null;
+  state.error = payload;
 };
 
 const authSlice = createSlice({
@@ -27,56 +37,72 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      //signUP
-      // .addCase(signUp.pending, (state, { payload }) => {})
+      .addCase(signUp.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(signIn.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(forgotPassword.pending, (state) => {
+        handlePending(state);
+      })
+
+      .addCase(signUp.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
+      .addCase(signIn.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
+      .addCase(forgotPassword.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
+      .addCase(refresh.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
+
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
+        state.isLoading = false;
         // state.isLoggedIn = true;
         toast.success(`Successful Registration.`);
       })
-      // .addCase(signUp.rejected, (state, { payload }) => {})
 
-      //signIn
-      // .addCase(signIn.pending, (state, { payload }) => {})
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
+        state.isLoading = false;
         state.isLoggedIn = true;
         toast.success(`Successful Loginned.`);
       })
 
-          // .addCase(signIn.rejected, (state, { payload }) => {})
-
-      //Refresh
       .addCase(refresh.fulfilled, (state, { payload }) => {
         state.user = payload;
+        state.isLoading = false;
         state.isLoggedIn = true;
       })
-    // .addCase(refresh.rejected, (state, { payload }) => {})
+      .addCase(forgotPassword.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.success('Request successful');
+      })
 
-    // .addCase(forgotPassword.pending, (state, { payload }) => {
-    //   // state.isLoggedIn = true;
-    // })
     // .addCase(checkEmail.fulfilled, (state, { payload }) => {})
     // .addCase(checkEmail.rejected, (state, { payload }) => {})
-    
 
-    //LogOut
-    // .addCase(logOut.pending, (state, { payload }) => {})
-    // .addCase(logOut.fulfilled, (state, { payload }) => {})
-    // .addCase(logOut.rejected, (state, { payload }) => {})
-
-
+    .addCase(logOut.pending, (state) => {
+      handlePending(state);
+    })
+    .addCase(logOut.fulfilled, (state) => {
+      state.token = null;
+      state.isLoggedIn = false;
+    })
+    .addCase(logOut.rejected, (state, { payload }) => {
+      handleRejected(state, payload);
+    });
 
     //CheckEmail
-    .addCase(forgotPassword.pending, () => {
-      toast.success("Request successful")
-    })
-    // .addCase(checkEmail.fulfilled, (state, { payload }) => {})
-    // .addCase(checkEmail.rejected, (state, { payload }) => {})
-
-
+    // .addCase(forgotPassword.pending, () => {
+    // })
 
     //UpdateUser
     // .addCase(updateUser.pending, (state, { payload }) => {})

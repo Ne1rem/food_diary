@@ -12,10 +12,12 @@ import UserMenu from './userMenu';
 import { ButtonOpenMobileModals, SvgOpenMobileModals } from './userMenu.styled';
 import { useState } from 'react';
 import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../Redux/Auth/selectors';
 
-export const isLoggedIn = true;
 
 export const Header = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const currentPath = useLocation().pathname;
   const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
 

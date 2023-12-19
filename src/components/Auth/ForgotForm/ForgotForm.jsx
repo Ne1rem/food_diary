@@ -1,6 +1,11 @@
 import { useFormik } from 'formik';
 import { InputStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { Button, Title, Text, InputError } from '../AuthStyled/GeneralStyles/GeneralStyles';
+import {
+  Button,
+  Title,
+  Text,
+  InputError,
+} from '../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   Forgot,
   NavToSignInBlock,
@@ -8,13 +13,13 @@ import {
   NavToSignIn,
   InputWrapper,
 } from './ForgotForm.styled';
+import { useNavigate } from 'react-router-dom';
 import { forgotPassword } from '../../../Redux/Auth/authThunks';
 import { useDispatch } from 'react-redux';
-import { forgotShema  } from "../validationSchemas/validationSchema"
-
-
+import { forgotShema } from '../validationSchemas/validationSchema';
 
 const ForgotForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -23,6 +28,7 @@ const ForgotForm = () => {
     },
     onSubmit: (values) => {
       dispatch(forgotPassword(values));
+      navigate('/signin');
     },
     validationSchema: forgotShema,
   });
@@ -39,9 +45,13 @@ const ForgotForm = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-            {formik.errors.email && formik.touched.email && formik.handleSubmit  ? (<InputError>{formik.errors.email}</InputError>) : null}
+        {formik.errors.email && formik.touched.email && formik.handleSubmit ? (
+          <InputError>{formik.errors.email}</InputError>
+        ) : null}
       </InputWrapper>
-      <Button type='submit'>Send</Button>
+      <Button className="btn-active" type="submit">
+        Send
+      </Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>

@@ -56,7 +56,7 @@ const SignInForm = () => {
             {/* {!formik.errors.password  && formik.touched.email && formik.handleSubmit ? (<InputError>охуенно сделал</InputError>) : null} */}
         </li>
       </InputList>
-      <Button type='submit'>Sign in</Button>
+      <Button  className='btn-active' type='submit'>Sign in</Button>
       <NavToForgotPass to="/forgot-password">
         Forgot your password?
       </NavToForgotPass>
