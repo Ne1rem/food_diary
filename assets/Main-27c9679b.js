@@ -1,0 +1,1 @@
+import{j as r}from"./index-cd046948.js";import s from"./RecommendedFood-7de52fd2.js";const e=()=>r.jsx(r.Fragment,{children:r.jsx("div",{})}),n=()=>r.jsx(r.Fragment,{children:r.jsxs("div",{children:[r.jsx(e,{}),r.jsx(s,{})]})});export{n as default};
