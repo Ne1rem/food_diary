@@ -1,7 +1,7 @@
 import { CloseModalChangeWeight, DivButtonCancellWeight, DivPartModalChangeWeight, InputPartButtonModalChangeWeight, InputPartInputModalChangeWeight, InputPartModalChangeWeight, ModalChangeWeight, SvgCloseModalChangeWeight, TextPartModalChangeWeight, TextPartP1ModalChangeWeight, TextPartP2ModalChangeWeight, TodayModalChangeWeight } from './Modals-styles/ModalWeight.styles';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 
-function ModalWeight({ setIsWeightModalOpen }) {
+function ModalWeight({ setIsWeightModalOpen}) {
   const today = new Date();
   const formattedDate = `${String(today.getDate()).padStart(2, '0')}.${String(
     today.getMonth() + 1
