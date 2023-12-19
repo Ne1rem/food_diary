@@ -8,10 +8,10 @@ export const ContainerSelect = styled.div`
   margin: 16px 0 16px;
 
   @media only screen and (min-width: 835px) {
-    margin: 24px 0 0;
+    margin: 24px 0 16px;
   }
   @media only screen and (min-width: 1441px) {
-    margin: 20px 0 0;
+    margin: 20px 0 16px;
   }
 `;
 
@@ -45,7 +45,6 @@ export const BackIconLink = styled(Link)`
   }
 `;
 
-// ---------------------fix menu BGC----------------------- !!!
 export const customSelectStyles = {
   control: (provided, state) => ({
     ...provided,
@@ -76,7 +75,7 @@ export const customSelectStyles = {
     boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
     backgroundColor: 'var(--color-primary-grey)',
     width: '212px',
-    height: '162px', // important
+    height: '162px', // important!
     outline: 'none',
     borderRadius: '12px',
     overflow: 'hidden',
@@ -94,7 +93,7 @@ export const customSelectStyles = {
     fontSize: '14px',
     fontWeight: '400',
     lineHeight: '1.42',
-    marginTop: '-4px', // important
+    marginTop: '-4px', // important!
     border: 'none',
     outline: 'none',
     cursor: 'pointer',

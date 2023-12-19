@@ -48,7 +48,8 @@ const Charts = () => {
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
 
-    const initializeChartData = (selected) => {
+  const initializeChartData = (selected) => {
+    // Викликати функції для ініціалізації даних графіка на підставі обраного місяця
     updateCaloriesChartData(selected);
     updateWaterChartData(selected);
     updateWeightChartData(selected);
@@ -132,6 +133,7 @@ const Charts = () => {
   };
 
   const caloriesOptions = {
+    responsive: true,
     plugins: {
       legend: false,
     },
@@ -194,6 +196,7 @@ const Charts = () => {
   };
 
   const waterOptions = {
+    responsive: true,
     plugins: {
       legend: false,
     },
@@ -297,13 +300,13 @@ const Charts = () => {
           {/* ---Select--- */}
           <label>
             <Select
-            value={{ value: selectedMonth?.value, label: 'Month' }}
-            onChange={handleSelectChange}
-            options={selectOptions}
-            placeholder="Month"
-            styles={customSelectStyles}
-            isSearchable={false}
-            readOnly
+              value={{ value: selectedMonth?.value, label: 'Month' }}
+              onChange={handleSelectChange}
+              options={selectOptions}
+              placeholder="Month"
+              styles={customSelectStyles}
+              isSearchable={false}
+              readOnly
             />
           </label>
         </BackIconContainer>
