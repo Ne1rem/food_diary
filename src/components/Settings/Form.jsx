@@ -27,13 +27,13 @@ import {
 
 export const ProfileSettings = () => {
   const userInfo = useSelector(selectUserInfo);
-  // console.log(userInfo);
+  console.log(userInfo);
   const fileInputRef = useRef(null);
 
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      photo: userInfo.photo || '',
+      avatarURL: userInfo.avatarURL || '',//'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -60,7 +60,7 @@ export const ProfileSettings = () => {
 
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
-    formik.setFieldValue('photo', URL.createObjectURL(file));
+    formik.setFieldValue('avatarURL', URL.createObjectURL(file));
   };
 
   const handleDownloadNewPhoto = () => {
@@ -89,9 +89,9 @@ export const ProfileSettings = () => {
           <AvatarDiv>
             <ActivityTextStyled>Your photo</ActivityTextStyled>
             <ElFormDivHor>
-              {formik.values.photo ? (
+              {formik.values.avatarURL ? (
                 <img
-                  src={formik.values.photo}
+                  src={formik.values.avatarURL}
                   alt="User Avatar"
                   style={{ width: '36px', height: '36px', borderRadius: '40%' }}
                 />
