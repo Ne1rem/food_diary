@@ -28,7 +28,7 @@ export const GenderDiv = styled.div`
 `;
 
 export const Span = styled.span`
-  margin-left: 8px;
+  margin-left: 6px;
   font-weight: 400;
 `;
 
@@ -88,7 +88,7 @@ export const DownloadButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  padding: 0;
   border: none;
   line-height: 1.4;
   font-weight: 400;
@@ -108,16 +108,19 @@ export const DownloadButton = styled.button`
 `;
 
 export const IconDiv = styled.div`
-display: flex;
-flex-direction: row;
-`
+  display: flex;
+  flex-direction: row;
+`;
 
 export const SvgStyled = styled.svg`
-width: 16px;
-    height: 16px;
-    display: flex;
-    fill: #E3FFA8;
-`
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  fill: #e3ffa8;
+`;
 
 export const LabelStyled = styled.label`
   font-size: 14px;
@@ -238,8 +241,8 @@ export const ElFormDiv = styled.div`
 
 export const ElFormDivHor = styled.div`
   /* @media screen and (min-width: 834px) { */
-    display: flex;
-    align-items: center;
-    justify-content: start;
+  display: flex;
+  align-items: center;
+  justify-content: start;
   /* } */
 `;
