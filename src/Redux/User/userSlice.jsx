@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { currentUser } from './userThunks';
+import { currentUser } from './userThunks';
 
 
 const initialState = {
@@ -9,14 +9,15 @@ const initialState = {
   isError: null
 };
 
-// const handlePending = (state) => {
-//   state.error = null;
-//   state.isLoading = true;
-// };
+const handlePending = (state) => {
+  state.error = null;
+  state.isLoading = true;
+};
 
-// const handleRejected = (state, payload) => {
-
-// };
+const handleRejected = (state, payload) => {
+  state.error = payload;
+  state.isLoading = false;
+};
 
 const userSlice = createSlice({
   name: 'user',
@@ -24,9 +25,17 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-    // .addCase(yourThunk.pending, (state, { payload }) => {})
-    // .addCase(yourThunk.fulfilled, (state, { payload }) => {})
-    // .addCase(yourThunk.rejected, (state, { payload }) => {})
+    .addCase(currentUser.pending, (state) => {
+handlePending(state);
+    })
+    .addCase(currentUser.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.error = null;
+      state.user = payload;
+    })
+    .addCase(currentUser.rejected, (state, { payload }) => {
+      handleRejected(state, payload);
+    })
   },
 });
 

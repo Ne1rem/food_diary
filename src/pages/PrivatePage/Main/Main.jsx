@@ -5,8 +5,8 @@ const Main = () => {
   return (
     <>
       <div>
-        <FoodCharts />
-        <RecommendedFoodOnMain />
+        <FoodInfo />
+        <RecommendedFood />
       </div>
     </>
   );
