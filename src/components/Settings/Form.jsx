@@ -27,6 +27,7 @@ import {
 
 export const ProfileSettings = () => {
   const userInfo = useSelector(selectUserInfo);
+  // console.log(userInfo);
   const fileInputRef = useRef(null);
 
   const formik = useFormik({
@@ -202,7 +203,7 @@ export const ProfileSettings = () => {
                 value="sedentary"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 'sedentary'}
+                checked={formik.values.activity === 1.2}
               />
               <Span>
                 1.2 - if you do not have physical activity and sedentary work
@@ -217,7 +218,7 @@ export const ProfileSettings = () => {
                 value="light"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 'light'}
+                checked={formik.values.activity === 1.375}
               />
               <Span>
                 1.375 - if you do short runs or light gymnastics 1-3 times a
@@ -248,7 +249,7 @@ export const ProfileSettings = () => {
                 value="active"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 'active'}
+                checked={formik.values.activity === 1.725}
               />
               <Span>1.725 - if you train fully 6-7 times a week</Span>
             </LabelRadioStyled>
@@ -261,7 +262,7 @@ export const ProfileSettings = () => {
                 value="veryActive"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 'veryActive'}
+                checked={formik.values.activity === 1.9}
               />
               <Span>
                 1.9 - if your work is related to physical labor, you train 2
