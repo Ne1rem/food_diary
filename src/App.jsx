@@ -32,15 +32,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div
-      // style={{
-      //   height: '100vh',
-      //   display: 'flex',
-      //   justifyContent: 'flex-start',
-      //   alignItems: 'center',
-      //   flexDirection: 'column',
-      // }}
-    >
+    <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route element={<PublicRoute isLoggedIn={isLoggedIn} />}>
