@@ -59,23 +59,24 @@ import HeaderSvg from '/src/assets/header/headerSvg.svg';
 import { useDispatch } from 'react-redux';
 import { refresh } from '../../Redux/Auth/authThunks';
 
-
-
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  const [goal] = useState('');
+  const [weight, setWeight] = useState('');
 
-    const [name, setName] = useState('');
-    const [gender, setGender] = useState('');
-    const [goal, setGoal] = useState('');
-    const [weight, setWeight] = useState('');
-
+  const [currentGoal, setCurrentGoal] = useState(goal);
+  const [newGoal, setNewGoal] = useState(currentGoal);
+  
   useEffect(() => {
     dispatch(refresh())
       .then((response) => {
         const { name, gender, goal, weight } = response.payload;
         setName(name);
         setGender(gender);
-        setGoal(goal);
+        setCurrentGoal(goal);
+        setNewGoal(goal)
         setWeight(weight);
       })
       .catch((error) => {
@@ -92,32 +93,32 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   };
 
   const selectedImage =
-    goal === 'Gain Muscle'
+    currentGoal === 'Gain Muscle'
       ? imagesPath[`Gain Muscle`]
-      : imagesPath[`${goal} ${gender}`];
+      : imagesPath[`${currentGoal} ${gender}`];
 
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
   const [isWeightModalOpen, setIsWeightModalOpen] = useState(false);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-  
-  function openGoalModal () {
+
+  function openGoalModal() {
     setIsGoalModalOpen(true);
     setIsWeightModalOpen(false);
     setIsUserModalOpen(false);
   }
 
-  function openWeightModal () {
+  function openWeightModal() {
     setIsGoalModalOpen(false);
     setIsWeightModalOpen(true);
     setIsUserModalOpen(false);
   }
 
-  function openUserModal () {
+  function openUserModal() {
     setIsGoalModalOpen(false);
     setIsWeightModalOpen(false);
     setIsUserModalOpen((prevState) => !prevState);
   }
-  
+
   return (
     <UserMenuContainer>
       <GoalHeader>
@@ -130,7 +131,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           <DivGoalPart>
             <DivGoal>
               <GoalPName>Goal</GoalPName>
-              <GoalP>{goal}</GoalP>
+              <GoalP>{currentGoal}</GoalP>
             </DivGoal>
             <GoalSvg>
               <use href={`${HeaderSvg}#change-your-goal`} />
@@ -138,13 +139,20 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivGoalPart>
         </GoalButton>
         {isGoalModalOpen && (
-          <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} goal={goal} gender={gender}/>
+          <ModalGoal
+            setIsGoalModalOpen={setIsGoalModalOpen}
+            setCurrentGoal={setCurrentGoal}
+            currentGoal={currentGoal}
+            gender={gender}
+            newGoal={newGoal}
+            setNewGoal={setNewGoal}
+          />
         )}
       </GoalHeader>
       <WeightHeader>
         <WeightButton
           onClick={() => {
-            openWeightModal()
+            openWeightModal();
           }}
         >
           <ImageWeight src={changeWeight} alt="Change weight" />
