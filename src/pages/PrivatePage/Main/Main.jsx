@@ -1,3 +1,4 @@
+
 import PartMainDiary from "../../../components/Diary/PartMainDiary";
 const Main = () => {
     return ( <>
@@ -6,3 +7,4 @@ const Main = () => {
 }
  
 export default Main;
+

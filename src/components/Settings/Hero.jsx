@@ -1,4 +1,4 @@
-import illustration from 'assets/settings/illustration.svg';
+// import illustration from '../../assets/settings/Illustration.png';
 import { ImageStyled, Wrapper } from './Hero.styled';
 import { Title } from './Title';
 
@@ -8,8 +8,9 @@ export const Hero = () => {
     <Wrapper>
       <Title></Title>
       <ImageStyled
-        src={`${illustration}#Illustration`}
-        alt={'logo settings page'}
+        // src={`${illustration}`}
+        src="../../assets/settings/Illustration.png"
+        alt='hero settings page'
       />
       </Wrapper>
     </>

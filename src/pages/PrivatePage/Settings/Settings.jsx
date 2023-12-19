@@ -3,6 +3,7 @@ import { Hero } from '../../../components/Settings/Hero';
 import { Container, Section, Wrapper } from './Settings.styled';
 
 const Settings = () => {
+
   return (
     <>
       <Section>

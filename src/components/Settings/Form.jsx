@@ -1,5 +1,7 @@
 import { useFormik } from 'formik';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserInfo } from 'src/Redux/Auth/selectors.js';
 import * as Yup from 'yup';
 import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
@@ -20,21 +22,23 @@ import {
   ElFormDiv,
   ElFormDivHor,
   LabelStyledGender,
-  SvgStyled
+  SvgStyled,
 } from './Form.styled';
 
 export const ProfileSettings = () => {
+  const userInfo = useSelector(selectUserInfo);
+
   const fileInputRef = useRef(null);
 
   const formik = useFormik({
     initialValues: {
-      name: 'Alfi',
-      photo: '', // URL or path to the photo
-      age: 34,
-      gender: 'male',
-      weight: '',
-      height: '',
-      activityLevel: '',
+      name: userInfo.name || '',
+      avatarURL: userInfo.avatarURL || '',
+      age: userInfo.age || 0,
+      gender: userInfo.gender || '',
+      weight: userInfo.weight || '',
+      height: userInfo.height || '',
+      activity: userInfo.activity || '',
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Поле ім'я є обов'язковим"),
@@ -47,19 +51,16 @@ export const ProfileSettings = () => {
       height: Yup.number()
         .positive('Зріст повинен бути додатнім числом')
         .required("Поле зріст є обов'язковим"),
-      activityLevel: Yup.string().required(
-        'Оберіть рівень фізичної активності'
-      ),
+      activity: Yup.string().required('Оберіть рівень фізичної активності'),
     }),
     onSubmit: (values) => {
-      // Your code to save data to the backend here
       console.log('Збережено:', values);
     },
   });
 
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
-    formik.setFieldValue('photo', URL.createObjectURL(file));
+    formik.setFieldValue('avatarURL', URL.createObjectURL(file));
   };
 
   const handleDownloadNewPhoto = () => {
@@ -69,7 +70,6 @@ export const ProfileSettings = () => {
   return (
     <div>
       <Form onSubmit={formik.handleSubmit}>
-        
         <TabletDiv>
           <ElFormDiv>
             <LabelStyled htmlFor="name">Your name</LabelStyled>
@@ -89,29 +89,28 @@ export const ProfileSettings = () => {
           <AvatarDiv>
             <ActivityTextStyled>Your photo</ActivityTextStyled>
             <ElFormDivHor>
-            {formik.values.photo ? (
-              <img
-                src={formik.values.photo}
-                alt="User Avatar"
-                style={{ width: '36px', height: '36px', borderRadius: '40%'}}
-              />
-            ) : null}
-            <IconDiv>
-              <DownloadButton type="button" onClick={handleDownloadNewPhoto}>
-              <InputStyle
-                type="file"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                onChange={handleFileInputChange}
-              />
-                
+              {formik.values.avatarURL ? (
+                <img
+                  src={formik.values.avatarURL}
+                  alt="User Avatar"
+                  style={{ width: '36px', height: '36px', borderRadius: '40%' }}
+                />
+              ) : null}
+              <IconDiv>
+                <DownloadButton type="button" onClick={handleDownloadNewPhoto}>
+                  <InputStyle
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileInputChange}
+                  />
+
                   <SvgStyled width="16" height="16">
                     <use href={`${inboxSvg}#icon-inbox`} />
                   </SvgStyled>
 
                   <Span>Download new photo</Span>
-                
-              </DownloadButton>
+                </DownloadButton>
               </IconDiv>
             </ElFormDivHor>
           </AvatarDiv>
@@ -200,11 +199,11 @@ export const ProfileSettings = () => {
             <LabelRadioStyled>
               <input
                 type="radio"
-                name="activityLevel"
+                name="activity"
                 value="sedentary"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activityLevel === 'sedentary'}
+                checked={formik.values.activity === 1.2}
               />
               <Span>
                 1.2 - if you do not have physical activity and sedentary work
@@ -215,11 +214,11 @@ export const ProfileSettings = () => {
             <LabelRadioStyled>
               <input
                 type="radio"
-                name="activityLevel"
+                name="activity"
                 value="light"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activityLevel === 'light'}
+                checked={formik.values.activity === 1.375}
               />
               <Span>
                 1.375 - if you do short runs or light gymnastics 1-3 times a
@@ -231,11 +230,11 @@ export const ProfileSettings = () => {
             <LabelRadioStyled>
               <input
                 type="radio"
-                name="activityLevel"
+                name="activity"
                 value="moderate"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activityLevel === 'moderate'}
+                checked={formik.values.activity === 'moderate'}
               />
               <Span>
                 1.55 - if you play sports with average loads 3-5 times a week
@@ -246,11 +245,11 @@ export const ProfileSettings = () => {
             <LabelRadioStyled>
               <input
                 type="radio"
-                name="activityLevel"
+                name="activity"
                 value="active"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activityLevel === 'active'}
+                checked={formik.values.activity === 1.725}
               />
               <Span>1.725 - if you train fully 6-7 times a week</Span>
             </LabelRadioStyled>
@@ -259,11 +258,11 @@ export const ProfileSettings = () => {
             <LabelRadioStyled>
               <input
                 type="radio"
-                name="activityLevel"
+                name="activity"
                 value="veryActive"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activityLevel === 'veryActive'}
+                checked={formik.values.activity === 1.9}
               />
               <Span>
                 1.9 - if your work is related to physical labor, you train 2
@@ -272,8 +271,8 @@ export const ProfileSettings = () => {
               </Span>
             </LabelRadioStyled>
           </div>
-          {formik.touched.activityLevel && formik.errors.activityLevel ? (
-            <div>{formik.errors.activityLevel}</div>
+          {formik.touched.activityLevel && formik.errors.activity ? (
+            <div>{formik.errors.activity}</div>
           ) : null}
         </ActivityDiv>
 
