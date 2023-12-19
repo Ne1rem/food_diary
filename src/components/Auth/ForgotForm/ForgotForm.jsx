@@ -48,6 +48,9 @@ const ForgotForm = () => {
         {formik.errors.email && formik.touched.email && formik.handleSubmit ? (
           <InputError>{formik.errors.email}</InputError>
         ) : null}
+          {!formik.errors.email && formik.touched.email ? (
+            <InputError style={{ color: 'green' }}>E-mail is valid</InputError>
+          ) : null}
       </InputWrapper>
       <Button className="btn-active" type="submit">
         Send
