@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import * as Yup from 'yup';
 import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
@@ -20,7 +20,7 @@ import {
   ElFormDiv,
   ElFormDivHor,
   LabelStyledGender,
-  SvgStyled
+  SvgStyled,
 } from './Form.styled';
 
 export const ProfileSettings = () => {
@@ -28,10 +28,10 @@ export const ProfileSettings = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: 'Alfi',
-      photo: '', // URL or path to the photo
-      age: 34,
-      gender: 'male',
+      name: '',
+      photo: '',
+      age: 0,
+      gender: '',
       weight: '',
       height: '',
       activityLevel: '',
@@ -57,6 +57,45 @@ export const ProfileSettings = () => {
     },
   });
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token =
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODBlYWI4NDc4ZDg5YzY3MDA1YTU4ZCIsImlhdCI6MTcwMjk4OTkzOCwiZXhwIjoxNzAzMDc2MzM4fQ.a08gYSrTLH4jaGQFEaIyl9xK1HAE89bFSCFAr9wFbWs';
+        const response = await fetch(
+          'http://food-diary-backend-kr1b.onrender.com/api/user/current',
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              // Other headers if needed
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+          const userData = await response.json();
+          console.log(userData);
+
+          // Set form values based on fetched data
+          formik.setValues({
+            name: userData.name || '',
+            photo: userData.photo || '',
+            age: userData.age || 0,
+            gender: userData.gender || '',
+            weight: userData.weight || '',
+            height: userData.height || '',
+            activityLevel: userData.activityLevel || '',
+          });
+        } catch (error) {
+          console.error('Error fetching user data:', error.message);
+        }
+      };
+
+    fetchUserData();
+  }, [formik]); // Include formik as a dependency to avoid the eslint warning
+
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
     formik.setFieldValue('photo', URL.createObjectURL(file));
@@ -69,7 +108,6 @@ export const ProfileSettings = () => {
   return (
     <div>
       <Form onSubmit={formik.handleSubmit}>
-        
         <TabletDiv>
           <ElFormDiv>
             <LabelStyled htmlFor="name">Your name</LabelStyled>
@@ -89,29 +127,28 @@ export const ProfileSettings = () => {
           <AvatarDiv>
             <ActivityTextStyled>Your photo</ActivityTextStyled>
             <ElFormDivHor>
-            {formik.values.photo ? (
-              <img
-                src={formik.values.photo}
-                alt="User Avatar"
-                style={{ width: '36px', height: '36px', borderRadius: '40%'}}
-              />
-            ) : null}
-            <IconDiv>
-              <DownloadButton type="button" onClick={handleDownloadNewPhoto}>
-              <InputStyle
-                type="file"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                onChange={handleFileInputChange}
-              />
-                
+              {formik.values.photo ? (
+                <img
+                  src={formik.values.photo}
+                  alt="User Avatar"
+                  style={{ width: '36px', height: '36px', borderRadius: '40%' }}
+                />
+              ) : null}
+              <IconDiv>
+                <DownloadButton type="button" onClick={handleDownloadNewPhoto}>
+                  <InputStyle
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileInputChange}
+                  />
+
                   <SvgStyled width="16" height="16">
                     <use href={`${inboxSvg}#icon-inbox`} />
                   </SvgStyled>
 
                   <Span>Download new photo</Span>
-                
-              </DownloadButton>
+                </DownloadButton>
               </IconDiv>
             </ElFormDivHor>
           </AvatarDiv>
