@@ -65,19 +65,21 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const [gender, setGender] = useState('');
   const [goal] = useState('');
   const [weight, setWeight] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
 
   const [currentGoal, setCurrentGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(currentGoal);
-  
+
   useEffect(() => {
     dispatch(refresh())
       .then((response) => {
-        const { name, gender, goal, weight } = response.payload;
+        const { name, gender, goal, weight, avatarURL } = response.payload;
         setName(name);
         setGender(gender);
         setCurrentGoal(goal);
         setNewGoal(goal)
         setWeight(weight);
+        setUserAvatar(avatarURL)
       })
       .catch((error) => {
         console.error('Error fetching user data:', error);
@@ -182,7 +184,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           }}
         >
           <UserNameHeader>{name}</UserNameHeader>
-          <UserAvatar src={selectedImage} />
+          <UserAvatar src={userAvatar} />
           <AvatarSvg
             style={{
               transform: isUserModalOpen ? 'rotate(180deg)' : 'rotate(0deg)',
