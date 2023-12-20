@@ -71,8 +71,7 @@ export const ProfileSettings = () => {
       dispatch(updateUser(values));
     },
   });
-
-  // fot base64 coding
+  // for base64 coding
 
   // const [Image, setImage] = useState();
   
@@ -238,7 +237,7 @@ export const ProfileSettings = () => {
                 value="1.2"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // defaultChecked={formik.values.activity === 1.2} 
+                defaultChecked={formik.values.activity === 1.2} 
                 />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -254,7 +253,7 @@ export const ProfileSettings = () => {
                 value="1.375"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // defaultChecked={formik.values.activity === 1.375}
+                defaultChecked={formik.values.activity === 1.375}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -271,7 +270,7 @@ export const ProfileSettings = () => {
                 value="1.55"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // defaultChecked={formik.values.activity === '1.55'}
+                defaultChecked={formik.values.activity === '1.55'}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -287,7 +286,7 @@ export const ProfileSettings = () => {
                 value="1.725"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // defaultChecked={formik.values.activity === 1.725}
+                defaultChecked={formik.values.activity === 1.725}
               />
               <RadioCircle></RadioCircle>
               <Span>1.725 - if you train fully 6-7 times a week</Span>
@@ -301,7 +300,7 @@ export const ProfileSettings = () => {
                 value="1.9"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // defaultChecked={formik.values.activity === 1.9}
+                defaultChecked={formik.values.activity === 1.9}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
