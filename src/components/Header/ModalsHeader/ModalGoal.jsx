@@ -65,14 +65,8 @@ function ModalGoal({
     dispatch(updateGoalAsync(newGoal, persistedToken));
     setCurrentGoal(newGoal);
     setIsGoalModalOpen(false);
-    
   };
-  const handleKeyDown = (event) => {
-    if (event.keyCode === 27) {
-      setIsGoalModalOpen(false);
-    }
-  };
-  
+
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Lose Fat male': LoseFatMan,
@@ -92,7 +86,7 @@ function ModalGoal({
 
   return (
     <DivModalGoal>
-      <ButtonCloseModalGoal onClick={(event) => { setIsGoalModalOpen(false); handleKeyDown(event); }}>
+      <ButtonCloseModalGoal onClick={() => setIsGoalModalOpen(false)}>
         <SvgCloseModalGoal>
           <use href={`${HeaderSvg}#close-modal`} />
         </SvgCloseModalGoal>
@@ -107,12 +101,17 @@ function ModalGoal({
         <DivChooseModalGoal>
           <UlModalGoal>
             <li>
-              <UlButtonModalGoal>
+              <UlButtonModalGoal onClick={setGoalLosefat}>
                 <UlImgButtonModalGoal
+                  className={newGoal == 'Lose Fat' ? 'active' : ''}
                   src={selectedImageLoseFat}
                   alt="LoseFat"
                 />
-                <UlPButtonModalGoal>Lose fat</UlPButtonModalGoal>
+                <UlPButtonModalGoal 
+                  className={newGoal == 'Lose Fat' ? 'active' : ''}
+                >
+                  Lose fat
+                </UlPButtonModalGoal>
               </UlButtonModalGoal>
             </li>
             <li>
