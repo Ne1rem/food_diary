@@ -3,6 +3,7 @@ import {
   Button,
   Title,
   Text,
+  InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import {
   RadioButton,
@@ -10,19 +11,33 @@ import {
   RadioLabel,
 } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
 import {
-    AgeGender,
+  AgeGender,
   RadioList,
   GenderSpan,
   FormBlock,
   ButtonList,
   AgeLabel,
 } from './Step3.styled';
+import { useState } from 'react';
 
-const Step3 = ({ formik }) => {
+const Step3 = ({ formik, increment, decrement }) => {
+  const [error, setError] = useState(false);
+
+  const onClickBtnNext = () => {
+    if (formik.values.age !== '' && !formik.errors.age) {
+      increment();
+    } else {
+      setError(true);
+    }
+  };
+
   return (
     <AgeGender>
       <Title>Select gender, Age</Title>
-      <Text>Choose a goal so that we can <br/>help you effectively</Text>
+      <Text>
+        Choose a goal so that we can <br />
+        help you effectively
+      </Text>
       <FormBlock>
         <GenderSpan>Gender</GenderSpan>
         <RadioList>
@@ -32,8 +47,8 @@ const Step3 = ({ formik }) => {
                 onChange={formik.handleChange}
                 type="radio"
                 name="gender"
+                value="male"
                 defaultChecked
-                value="Male"
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Male</RadioLabel>
@@ -45,7 +60,7 @@ const Step3 = ({ formik }) => {
                 onChange={formik.handleChange}
                 type="radio"
                 name="gender"
-                value="Female"
+                value="female"
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Female</RadioLabel>
@@ -57,18 +72,37 @@ const Step3 = ({ formik }) => {
         <InputStyle
           id="age"
           name="age"
-          type="age"
+          // type="age"
           placeholder="Enter your age"
           onChange={formik.handleChange}
           value={formik.values.age}
         />
+        {error ? <InputError>{formik.errors.age}</InputError> : null}
+        { !formik.errors.age && formik.touched.age ? (
+          <InputError style={{ color: 'green' }}>Age is valid</InputError>
+        ) : null}
       </FormBlock>
-      <ButtonList>
+      <ButtonList>  
         <li>
-          <Button type="button">Next</Button>
+          <Button
+            onClick={() => {
+              onClickBtnNext();
+            }}
+            className="btn-active"
+            type="submit"
+          >
+            Next
+          </Button>
         </li>
         <li>
-          <Button type="button">Back</Button>
+          <Button
+            onClick={() => {
+              decrement();
+            }}
+            type="button"
+          >
+            Back
+          </Button>
         </li>
       </ButtonList>
     </AgeGender>

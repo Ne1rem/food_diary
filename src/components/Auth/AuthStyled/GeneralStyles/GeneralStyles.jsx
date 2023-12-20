@@ -53,8 +53,8 @@ const Button = styled.button`
   border: none;
   border-radius: 12px;
   line-height: 1.4;
-  background: var(--color-primary-green-lite);
-  color: var(--color-primary-black-2);
+  background-color: transparent;
+  color: var(--color-crimary-grey);
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -67,10 +67,26 @@ const Button = styled.button`
     margin: 0;
   }
 
-  /* &:hover {
+  &:hover {
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
-} */
+}
+
+&.btn-active {
+  color: var(--color-primary-black-2);
+  background: var(--color-primary-green-lite);
+}
 `;
 
-export { Button, Title, Text };
+const InputError = styled.div`
+  color: #E74A3B;
+
+text-align: center;
+font-size: 12px;
+font-weight: 400;
+line-height: 1.1
+`
+
+
+
+export { Button, Title, Text, InputError };

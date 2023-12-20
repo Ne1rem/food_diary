@@ -11,8 +11,13 @@ export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 38px;
+  align-items: center;
+
+  @media only screen and (max-width: 650px) {
+    padding: 16px 10px;
+  }
 `;
+
 
 export const Navigation = styled.nav`
   display: flex;
@@ -32,11 +37,11 @@ export const StyledLink = styled(Link)`
   &:hover {
     color: var(--color-primary-green-lite);
   }
-  &:active {
+
+  &.active {
     color: var(--color-primary-green-lite);
   }
 `;
-
 export const SlashBetween = styled.p`
   font-family: Poppins;
   font-size: 14px;
@@ -61,10 +66,10 @@ export const NameOfSite = styled(Link)`
   &:hover {
     color: var(--color-primary-green-lite);
   }
-  &:active {
+
+  &.active {
     color: var(--color-primary-green-lite);
   }
-
 `;
 
 export const HeaderAvatarSvg = styled.svg`

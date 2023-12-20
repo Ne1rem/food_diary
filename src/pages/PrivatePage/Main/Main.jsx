@@ -4,6 +4,9 @@ import { MainHeader, StyledLink, Title } from './Main.styled';
 
 import iconsSprite from '../../../assets/sprite.svg';
 
+import FoodCharts from '../../../components/FoodCharts/FoodCharts';
+import RecommendedFood from '../RecommendedFood/RecommendedFood';
+
 const Main = () => {
   return (
     <section>
@@ -18,6 +21,8 @@ const Main = () => {
           </StyledLink>
         </MainHeader>
         <DailyStatistics />
+        <FoodCharts />
+        <RecommendedFood />
       </Container>
     </section>
   );

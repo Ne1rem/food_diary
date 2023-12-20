@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+margin-left: auto;
+margin-right: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,8 +16,8 @@ const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: 1140px;
-    width: 1140px;
+    max-width: 1440px;
+    width: 1440px;
     padding: 40px 150px 0px 150px;
     align-items: unset;
     flex-direction: row;

@@ -1,7 +1,9 @@
-// export const selectToken = (state) => state.auth.token;
+export const selectToken = (state) => state.auth.token;
 
-// export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
+export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 
-// export const selectAppStatus = (state) => state.auth.appStatus;
+export const selectIsLoading = (state) => state.auth.isLoading;
 
-// export const selectUserInfo = (state) => state.auth.user;
+export const selectAppStatus = (state) => state.auth.appStatus;
+
+export const selectUserInfo = (state) => state.auth.user;

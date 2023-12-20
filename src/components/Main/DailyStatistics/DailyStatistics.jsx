@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { DailyGoal } from '../DailyGoal';
 import { WaterStatistic } from '../WaterStatistic';
 import { FoodStatistic } from '../FoodStatistic';
-
 import {
   StatisticBlock,
   StatisticSection,
@@ -11,50 +10,28 @@ import {
   Wrapper,
 } from './DailyStatistics.styled';
 
+import { selectUserInfo } from '../../../Redux/Auth/selectors';
+
 export const DailyStatistics = () => {
-  const [dailyWater, setDailyWater] = useState(null);
-  const [dailyCalories, setDailyCalories] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        //fetch
-        setDailyWater(1500);
-        setDailyCalories(1700);
-      } catch (e) {
-        setError(e);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error!</div>;
-  }
+  const user = useSelector(selectUserInfo);
+  const { recommendedCalories, recommendedWater } = user;
 
   return (
     <Wrapper>
       <StatisticSection>
         <StatisticTitle>Daily goal</StatisticTitle>
         <StatisticBlock>
-          <DailyGoal calories={dailyCalories} water={dailyWater} />
+          <DailyGoal
+            calories={recommendedCalories}
+            water={recommendedWater * 1000}
+          />
         </StatisticBlock>
       </StatisticSection>
 
       <StatisticSection>
         <StatisticTitle>Water</StatisticTitle>
         <StatisticBlock>
-          <WaterStatistic dailyWater={dailyWater} />
+          <WaterStatistic dailyWater={recommendedWater * 1000} />
         </StatisticBlock>
       </StatisticSection>
 
