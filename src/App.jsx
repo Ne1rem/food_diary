@@ -39,10 +39,9 @@ const App = () => {
             <Route path="signup" element={<SignUp />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="main" element={<Main />} />
           </Route>
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
-            
+            <Route path="main" element={<Main />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="diary" element={<Diary />} />
             <Route path="recommended-food" element={<RecommendedFood />} />
