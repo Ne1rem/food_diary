@@ -1,7 +1,9 @@
 import { useFormik } from 'formik';
-import { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Redux/User/selectors';
+
+import { currentUser, updateUser } from '../../Redux/User/userThunks';
 import * as Yup from 'yup';
 import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
@@ -26,6 +28,12 @@ import {
 } from './Form.styled';
 
 export const ProfileSettings = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
+
   const userInfo = useSelector(selectUser);
 
   const fileInputRef = useRef(null);
@@ -53,37 +61,9 @@ export const ProfileSettings = () => {
         .required("Поле зріст є обов'язковим"),
       activity: Yup.string().required('Оберіть рівень фізичної активності'),
     }),
-    // onSubmit: (values) => {
-    //   console.log('Збережено:', values);
-    // },
-    onSubmit: async (values) => {
-      const formData = new FormData();
-
-      Object.entries(values).forEach(([key, value]) => {
-        if (key === 'avatar' && value instanceof File) {
-          formData.append(key, value);
-        } else {
-          formData.append(key, JSON.stringify(value));
-        }
-      });
-
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-      }
-
-      try {
-        const response = await fetch(
-          'http://food-diary-backend-kr1b.onrender.com/api/user/update',
-          {
-            method: 'PUT',
-            body: formData,
-          }
-        );
-
-        console.log('Server response:', response);
-      } catch (error) {
-        console.error('Error sending data:', error);
-      }
+    onSubmit: (values) => {
+      dispatch(updateUser(values));
+      console.log('Збережено:', values);
     },
   });
 
@@ -95,37 +75,6 @@ export const ProfileSettings = () => {
   const handleDownloadNewPhoto = () => {
     fileInputRef.current.click();
   };
-
-  // const onSubmit = async (values) => {
-  //   const formData = new FormData();
-
-  //   Object.entries(values).forEach(([key, value]) => {
-  //     if (key === 'avatar' && value instanceof File) {
-  //       formData.append(key, value);
-  //     } else {
-  //       formData.append(key, JSON.stringify(value));
-  //     }
-  //   });
-
-  //   for (var pair of formData.entries()) {
-  //     console.log(pair[0] + ', ' + pair[1]);
-  //   }
-
-  //   try {
-  //     const response = await fetch(
-  //       'http://food-diary-backend-kr1b.onrender.com/api/user/update',
-  //       {
-  //         method: 'PUT',
-  //         body: formData,
-  //       }
-  //     );
-
-  //     console.log('Server response:', response);
-  //   } catch (error) {
-  //     console.error('Error sending data:', error);
-  //   }
-  // };
-
   return (
     <div>
       <Form onSubmit={formik.handleSubmit}>
@@ -259,7 +208,7 @@ export const ProfileSettings = () => {
               <input
                 type="radio"
                 name="activity"
-                value="sedentary"
+                value="1.2"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 checked={formik.values.activity === 1.2}
@@ -274,7 +223,7 @@ export const ProfileSettings = () => {
               <input
                 type="radio"
                 name="activity"
-                value="light"
+                value="1.375"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 checked={formik.values.activity === 1.375}
@@ -290,10 +239,10 @@ export const ProfileSettings = () => {
               <input
                 type="radio"
                 name="activity"
-                value="moderate"
+                value="1.55"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 'moderate'}
+                checked={formik.values.activity === '1.55'}
               />
               <Span>
                 1.55 - if you play sports with average loads 3-5 times a week
@@ -305,7 +254,7 @@ export const ProfileSettings = () => {
               <input
                 type="radio"
                 name="activity"
-                value="active"
+                value="1.725"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 checked={formik.values.activity === 1.725}
@@ -318,7 +267,7 @@ export const ProfileSettings = () => {
               <input
                 type="radio"
                 name="activity"
-                value="veryActive"
+                value="1.9"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 checked={formik.values.activity === 1.9}

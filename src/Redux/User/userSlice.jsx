@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { currentUser } from './userThunks';
+import { currentUser, updateUser } from './userThunks';
 
 
 const initialState = {
   user: [],
-  token: null,
   isLoading: false,
-  isError: null
+  isError: null,
 };
 
 const handlePending = (state) => {
@@ -25,17 +24,30 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-    .addCase(currentUser.pending, (state) => {
-handlePending(state);
-    })
-    .addCase(currentUser.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      state.error = null;
-      state.user = payload;
-    })
-    .addCase(currentUser.rejected, (state, { payload }) => {
-      handleRejected(state, payload);
-    })
+      .addCase(currentUser.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(currentUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = payload;
+      })
+      .addCase(currentUser.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
+
+
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = payload;
+      })
+      .addCase(updateUser.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
   },
 });
 
