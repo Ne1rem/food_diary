@@ -20,12 +20,18 @@ const tokenPersistConfig = {
   whitelist: ['token', 'isLoggedIn'],
 };
 
+const userPersistorConfig = {
+  key: 'user',
+  storage,
+  whitelist: ['user'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(tokenPersistConfig, authReducer),
-    user: userReducer,
+    user: persistReducer(userPersistorConfig, userReducer),
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

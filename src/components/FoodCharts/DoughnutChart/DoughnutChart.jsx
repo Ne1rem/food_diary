@@ -27,13 +27,16 @@ const bcgCircle = {
   id: 'bcgCircle',
   beforeDatasetsDraw(chart) {
     const { ctx } = chart;
+
     ctx.save();
+
     const xCoor = chart.getDatasetMeta(0).data[0].x;
     const yCoor = chart.getDatasetMeta(0).data[0].y;
     const innerRad = chart.getDatasetMeta(0).data[0].innerRadius;
     const outerRad = chart.getDatasetMeta(0).data[0].outerRadius;
     const width = outerRad - innerRad;
     const angle = Math.PI / 180;
+
     ctx.beginPath();
     ctx.lineWidth = width;
     ctx.strokeStyle = 'rgba(41, 41, 40, 1)';
@@ -48,6 +51,7 @@ export const DoughnutChart = ({ dailyCalories, inputValue, chartBcg }) => {
     chartBcg = 'red';
   }
   const emptyValue = dailyCalories - inputValue;
+
   const data = {
     datasets: [
       {
