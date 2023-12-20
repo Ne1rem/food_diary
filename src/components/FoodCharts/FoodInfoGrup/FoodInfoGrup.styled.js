@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Title = styled.h2`
   color: var(--color-primary-white);
   font-size: 18px;
+  // font-weight: 400;
   line-height: 1.33;
   margin-bottom: 6px;
 
@@ -12,7 +13,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const Container = styled.div`
+export const FoodInfoCard = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -37,7 +38,7 @@ export const Container = styled.div`
   }
 `;
 
-export const CaloriesChartContainer = styled.div`
+export const CaloriesChart = styled.div`
   position: relative;
 
   width: 168px;
@@ -56,7 +57,7 @@ export const CaloriesChartContainer = styled.div`
   }
 `;
 
-export const InfContainer = styled.div`
+export const ChartInfoWrap = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -69,7 +70,7 @@ export const InfContainer = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const ChartsContainer = styled.div`
+export const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
