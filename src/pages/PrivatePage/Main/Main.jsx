@@ -1,11 +1,11 @@
-import { ChartCard } from '../../../components/FoodCharts/ChartCard/ChartCard';
+import { FoodInfoGrup } from '../../../components/FoodCharts/FoodInfoGrup/FoodInfoGrup';
 import RecommendedFoodOnMain from '../RecommendedFood/RecFoodOnMain/RecFoodOnMain';
 
 const Main = () => {
   return (
     <>
       <div>
-        <ChartCard />
+        <FoodInfoGrup/>
         <RecommendedFoodOnMain />
       </div>
     </>
