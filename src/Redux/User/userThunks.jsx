@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { SuccessToast } from './toast';
 
 axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
@@ -30,6 +31,7 @@ export const currentUser = createAsyncThunk(
 //   }
 // );
 
+
 export const updateUser = createAsyncThunk(
   'user/update',
   async (values, thunkAPI) => {
@@ -46,15 +48,16 @@ export const updateUser = createAsyncThunk(
         formData.append('height', values.height);
         formData.append('activity', values.activity);
 
-for (var pair of formData.entries()) {
-    console.log(pair[0] + ', ' + pair[1]);
-  }
+        for (var pair of formData.entries()) {
+          console.log(pair[0] + ', ' + pair[1]);
+        }
 
         const { data } = await axios.put('/user/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
+        toast.success('Data was updated!', SuccessToast);
         console.log(formData);
         return data;
       } else {
