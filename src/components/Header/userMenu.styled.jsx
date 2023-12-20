@@ -304,10 +304,10 @@ export const ButtonsMobileModals = styled.div`
   `;
 
   export const MobileGoalSvg = styled.svg`
-    width: 14px;
-    height: 14px;
-    padding-left: 12px;
-    padding-bottom: 2px;
+    width: 16px;
+    height: 16px;
+    margin-left: 12px;
+    margin-bottom: 2px;
     display: flex;
     fill: var(--color-primary-green-lite);
     align-self: flex-end;
@@ -369,8 +369,8 @@ export const ButtonsMobileModals = styled.div`
   export const MobileWeightSvg = styled.svg`
     width: 16px;
     height: 16px;
-    padding-left: 6px;
-    padding-bottom: 2px;
+    margin-left: 6px;
+    margin-bottom: 2px;
     display: flex;
     fill: var(--color-primary-green-lite);
     align-self: flex-end;
