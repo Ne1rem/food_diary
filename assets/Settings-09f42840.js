@@ -1,4 +1,4 @@
-import{s as n,u as k,r as u,l as B,e as S,n as R,j as e}from"./index-b56849d6.js";import{u as F,c as D,a as f,b as x}from"./index.esm-4a6cfddb.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";const U=r=>r.user.user,L="/food_diary/assets/symbol-defs-a36e553a.svg",z=n.form`
+import{s as n,u as k,r as u,l as B,e as S,n as R,j as e}from"./index-365d819c.js";import{u as F,c as D,a as f,b as x}from"./index.esm-364ce969.js";import"./hoist-non-react-statics.cjs-3f8ebaa8.js";const U=r=>r.user.user,L="/food_diary/assets/symbol-defs-a36e553a.svg",z=n.form`
   display: flex;
   flex-direction: column;
   gap: 40px;
