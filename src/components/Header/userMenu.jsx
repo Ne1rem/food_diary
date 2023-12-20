@@ -56,46 +56,66 @@ import ModalWeight from './ModalsHeader/ModalWeight';
 import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-
-export const gender = 'female';
-export const goal = 'Lose Fat';
+import { useDispatch } from 'react-redux';
+import { refresh } from '../../Redux/Auth/authThunks';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
-  // const dispatch = useDispatch()
-  // const user = useSelector(selectUser)
-  const weight = 130;
-  const name = 'Dima';
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  const [goal] = useState('');
+  const [weight, setWeight] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+
+  const [currentGoal, setCurrentGoal] = useState(goal);
+  const [newGoal, setNewGoal] = useState(currentGoal);
+
+  useEffect(() => {
+    dispatch(refresh())
+      .then((response) => {
+        const { name, gender, goal, weight, avatarURL } = response.payload;
+        setName(name);
+        setGender(gender);
+        setCurrentGoal(goal);
+        setNewGoal(goal)
+        setWeight(weight);
+        setUserAvatar(avatarURL)
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, [dispatch]);
 
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Maintain female': MaintainGirl,
     'Lose Fat male': LoseFatMan,
     'Maintain male': MaintainMan,
-    'Gain muscle': GainMuscle,
+    'Gain Muscle': GainMuscle,
   };
 
   const selectedImage =
-    goal === 'Gain muscle'
-      ? imagesPath[`Gain muscle`]
-      : imagesPath[`${goal} ${gender}`];
+    currentGoal === 'Gain Muscle'
+      ? imagesPath[`Gain Muscle`]
+      : imagesPath[`${currentGoal} ${gender}`];
 
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
   const [isWeightModalOpen, setIsWeightModalOpen] = useState(false);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-  
-  function openGoalModal () {
+
+  function openGoalModal() {
     setIsGoalModalOpen(true);
     setIsWeightModalOpen(false);
     setIsUserModalOpen(false);
   }
 
-  function openWeightModal () {
+  function openWeightModal() {
     setIsGoalModalOpen(false);
     setIsWeightModalOpen(true);
     setIsUserModalOpen(false);
   }
 
-  function openUserModal () {
+  function openUserModal() {
     setIsGoalModalOpen(false);
     setIsWeightModalOpen(false);
     setIsUserModalOpen((prevState) => !prevState);
@@ -113,7 +133,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           <DivGoalPart>
             <DivGoal>
               <GoalPName>Goal</GoalPName>
-              <GoalP>{goal}</GoalP>
+              <GoalP>{currentGoal}</GoalP>
             </DivGoal>
             <GoalSvg>
               <use href={`${HeaderSvg}#change-your-goal`} />
@@ -121,7 +141,14 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivGoalPart>
         </GoalButton>
         {isGoalModalOpen && (
-          <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} />
+          <ModalGoal
+            setIsGoalModalOpen={setIsGoalModalOpen}
+            setCurrentGoal={setCurrentGoal}
+            currentGoal={currentGoal}
+            gender={gender}
+            newGoal={newGoal}
+            setNewGoal={setNewGoal}
+          />
         )}
       </GoalHeader>
       <WeightHeader>
@@ -147,7 +174,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivWeightPart>
         </WeightButton>
         {isWeightModalOpen && (
-          <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
+          <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} setWeight={setWeight} />
         )}
       </WeightHeader>
       <UserHeader>
@@ -157,7 +184,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           }}
         >
           <UserNameHeader>{name}</UserNameHeader>
-          <UserAvatar src={selectedImage} />
+          <UserAvatar src={userAvatar} />
           <AvatarSvg
             style={{
               transform: isUserModalOpen ? 'rotate(180deg)' : 'rotate(0deg)',

@@ -12,18 +12,25 @@ import {
   NavToSignInText,
   NavToSignIn,
 } from './Step1.styled';
+import { useState } from 'react';
 
 const Step1 = ({ formik, increment }) => {
+  const [error, setError] = useState(false);
 
-
-const onClickBtnNext = () => {
-
-  // if (formik.touched.name && !formik.errors.name  && formik.touched.email && formik.touched.password) {
-    increment()
-  // }
-
-// console.log(formik.touched.name);
-} 
+  const onClickBtnNext = () => {
+    if (
+      formik.values.name !== '' &&
+      formik.values.email !== '' &&
+      formik.values.password !== '' &&
+      !formik.errors.name &&
+      !formik.errors.email &&
+      !formik.errors.password
+    ) {
+      increment();
+    } else {
+      setError(true);
+    }
+  };
 
   return (
     <SignUp>
@@ -39,18 +46,24 @@ const onClickBtnNext = () => {
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-             {formik.errors.name && formik.touched.name ? (<InputError>{formik.errors.name}</InputError>) : null}
+          {error ? <InputError>{formik.errors.name}</InputError> : null}
+          {!formik.errors.name && formik.touched.name ? (
+            <InputError style={{ color: 'green' }}>Name is valid</InputError>
+          ) : null}
         </li>
         <li>
           <InputStyle
             id="email"
             name="email"
-            type="email"
             placeholder="E-mail"
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-            {formik.errors.email && formik.touched.email ? (<InputError>{formik.errors.email}</InputError>) : null}
+
+          {error ? <InputError>{formik.errors.email}</InputError> : null}
+          {!formik.errors.email && formik.touched.email ? (
+            <InputError style={{ color: 'green' }}>Email is valid</InputError>
+          ) : null}
         </li>
         <li>
           <InputStyle
@@ -61,10 +74,23 @@ const onClickBtnNext = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-             {formik.errors.password && formik.touched.password ? (<InputError>{formik.errors.password}</InputError>) : null}
+          {error ? <InputError>{formik.errors.password}</InputError> : null}
+          {!formik.errors.password && formik.touched.password ? (
+            <InputError style={{ color: 'green' }}>
+              Password is secure
+            </InputError>
+          ) : null}
         </li>
       </InputList>
-      <Button onClick={() => {onClickBtnNext()}} className='btn-active' type="button">Next</Button>
+      <Button
+        onClick={() => {
+          onClickBtnNext();
+        }}
+        className="btn-active"
+        type="submit"
+      >
+        Next
+      </Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>
         <NavToSignIn to="/signin">Sign in</NavToSignIn>
