@@ -7,7 +7,6 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 import { selectIsLoggedIn } from './Redux/Auth/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from './Redux/Auth/authThunks';
-import SeeMorePage from './pages/PrivatePage/RecommendedFood/SeeMorePage';
 
 const Welcome = lazy(() => import('./pages/PublicPage/Welcome/Welcome'));
 const SignUp = lazy(() => import('./pages/PublicPage/SignUp/SignUp'));
@@ -18,10 +17,10 @@ const ForgotPassword = lazy(() =>
 const Main = lazy(() => import('./pages/PrivatePage/Main/Main'));
 const Dashboard = lazy(() => import('./pages/PrivatePage/Dashboard/Dashboard'));
 const Diary = lazy(() => import('./pages/PrivatePage/Diary/Diary'));
-const RecommendedFood = lazy(() =>
-  import('./pages/PrivatePage/RecommendedFood/RecommendedFood')
-);
 const Settings = lazy(() => import('./pages/PrivatePage/Settings/Settings'));
+const RecommendedFood = lazy(() =>
+  import('./pages/PrivatePage/RecommendedFood/RecommendedFood/RecommendedFood')
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -47,7 +46,6 @@ const App = () => {
             <Route path="diary" element={<Diary />} />
             <Route path="recommended-food" element={<RecommendedFood />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="recommended_food" element={<SeeMorePage />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />

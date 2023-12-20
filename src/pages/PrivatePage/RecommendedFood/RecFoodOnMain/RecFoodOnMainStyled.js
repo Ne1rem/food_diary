@@ -1,23 +1,42 @@
 import styled from 'styled-components';
 
-export const RecommendedFoodWrapper = styled.div`
-  margin: 20px 34px 52px 138px;
+export const Container = styled.div`
+  padding: 20px 34px 52px 138px;
 
   @media (min-width: 835px) and (max-width: 1440px) {
     /* Стилі для планшетів */
+
+    padding: 20px 27px 40px 27px;
+  }
+
+  @media (max-width: 480px) {
+    /* Стилі для телефонів */
+
+    padding: 20px 10px 80px 10px;
+  }
+`;
+
+export const RecommendedFoodWrapper = styled.div`
+  @media (min-width: 835px) and (max-width: 1440px) {
+    /* Стилі для планшетів */
     width: 780px;
-    margin: 20px 27px 40px 27px;
   }
 
   @media (max-width: 480px) {
     /* Стилі для телефонів */
     width: 300px;
-    margin: 20px 10px 80px 10px;
   }
 `;
 
 export const Title = styled.h2`
   margin-bottom: 16px;
+  color: #ffffff;
+  font-size: 22px;
+
+  @media (max-width: 480px) {
+    /* Стилі для телефонів */
+    font-size: 18px;
+  }
 `;
 
 export const FoodCardsWrapper = styled.div`
@@ -62,9 +81,14 @@ export const FoodCard = styled.div`
   p {
     margin: 2px 0;
   }
+
+  @media (min-width: 835px) and (max-width: 1440px) {
+    /* Стилі для планшетів */
+    width: 380px;
+  }
 `;
 
-export const SeeMoreButton = styled.a`
+export const SeeMoreButton = styled.p`
   display: block;
   margin-top: 16px;
   color: #b6b6b6;

@@ -8,13 +8,14 @@ import {
   CharacteristicsContainer,
   WeightOfCalorieContainer,
   Calories,
-} from './RecommendedFoodStyled';
-import Avocado from '../../../assets/recommendedfood/Avocado.png';
-import Beans from '../../../assets/recommendedfood/Beans.png';
-import Nuts from '../../../assets/recommendedfood/Nuts.png';
-import Broccoli from '../../../assets/recommendedfood/Broccoli.png';
+  Container,
+} from './RecFoodOnMainStyled';
+import Avocado from '../../../../assets/recommendedfood/Avocado.png';
+import Beans from '../../../../assets/recommendedfood/Beans.png';
+import Nuts from '../../../../assets/recommendedfood/Nuts.png';
+import Broccoli from '../../../../assets/recommendedfood/Broccoli.png';
 
-const RecommendedFood = () => {
+const RecommendedFoodOnMain = () => {
   const foodItems = [
     {
       id: 1,
@@ -47,30 +48,32 @@ const RecommendedFood = () => {
   ];
 
   return (
-    <RecommendedFoodWrapper>
-      <Title>Recommended Food</Title>
-      <FoodCardsWrapper>
-        {foodItems.map((item) => (
-          <FoodCard key={item.id}>
-            <img src={item.icon} alt={item.name} />
-            <CharacteristicsContainer>
-              <h3>{item.name}</h3>
-              <WeightOfCalorieContainer>
-                <p>{item.measure}</p>
-                <Calories>{item.calories}</Calories>
-              </WeightOfCalorieContainer>
-            </CharacteristicsContainer>
-          </FoodCard>
-        ))}
-      </FoodCardsWrapper>
-      <Link to="/recommended_food">
-        <SeeMoreButton>See more →</SeeMoreButton>
-      </Link>
-    </RecommendedFoodWrapper>
+    <Container>
+      <RecommendedFoodWrapper>
+        <Title>Recommended Food</Title>
+        <FoodCardsWrapper>
+          {foodItems.map((item) => (
+            <FoodCard key={item.id}>
+              <img src={item.icon} alt={item.name} />
+              <CharacteristicsContainer>
+                <h3>{item.name}</h3>
+                <WeightOfCalorieContainer>
+                  <p>{item.measure}</p>
+                  <Calories>{item.calories}</Calories>
+                </WeightOfCalorieContainer>
+              </CharacteristicsContainer>
+            </FoodCard>
+          ))}
+        </FoodCardsWrapper>
+        <Link to="/recommended-food">
+          <SeeMoreButton>See more →</SeeMoreButton>
+        </Link>
+      </RecommendedFoodWrapper>
+    </Container>
   );
 };
 
-export default RecommendedFood;
+export default RecommendedFoodOnMain;
 
 // import React, { useState, useEffect } from 'react';
 // import {
