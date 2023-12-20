@@ -7,7 +7,7 @@ export const UserMenuContainer = styled.div`
     padding-left: 20px;
     gap: 40px;
   }
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     justify-content: space-between;
     margin-left: auto;
   }
@@ -20,7 +20,7 @@ export const GoalHeader = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -88,7 +88,7 @@ export const WeightHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -201,7 +201,7 @@ export const ButtonOpenMobileModals = styled.button`
   display: flex;
   align-items: center;
   margin-left: 12px;
-  @media only screen and (min-width: 650px) {
+  @media only screen and (min-width: 700px) {
     display: none;
   }
 `;

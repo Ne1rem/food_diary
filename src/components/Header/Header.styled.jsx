@@ -13,7 +13,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     padding: 16px 10px;
   }
 `;
