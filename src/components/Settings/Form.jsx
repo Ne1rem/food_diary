@@ -63,18 +63,36 @@ export const ProfileSettings = () => {
     }),
     onSubmit: (values) => {
       dispatch(updateUser(values));
-      console.log('Збережено:', values);
+      // console.log('Збережено:', values);
     },
   });
 
+  // fot base64 coding
+
+  // const [Image, setImage] = useState();
+  
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
+    // const reader = new FileReader();
+   
+    // reader.onload = (e) => {
+    //   const base64Image = e.target.result;
+    //   setImage(base64Image);
+    //   formik.setFieldValue('avatarURL', base64Image);
+    // };
+  
+    // reader.readAsDataURL(file);
+
     formik.setFieldValue('avatarURL', URL.createObjectURL(file));
   };
 
+  
   const handleDownloadNewPhoto = () => {
     fileInputRef.current.click();
   };
+
+  // console.log(Image);
+
   return (
     <div>
       <Form onSubmit={formik.handleSubmit}>
@@ -211,7 +229,7 @@ export const ProfileSettings = () => {
                 value="1.2"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.2}
+                // checked={formik.values.activity === 1.2}
               />
               <Span>
                 1.2 - if you do not have physical activity and sedentary work
@@ -226,7 +244,7 @@ export const ProfileSettings = () => {
                 value="1.375"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.375}
+                // checked={formik.values.activity === 1.375}
               />
               <Span>
                 1.375 - if you do short runs or light gymnastics 1-3 times a
@@ -242,7 +260,7 @@ export const ProfileSettings = () => {
                 value="1.55"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === '1.55'}
+                // checked={formik.values.activity === '1.55'}
               />
               <Span>
                 1.55 - if you play sports with average loads 3-5 times a week
@@ -257,7 +275,7 @@ export const ProfileSettings = () => {
                 value="1.725"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.725}
+                // checked={formik.values.activity === 1.725}
               />
               <Span>1.725 - if you train fully 6-7 times a week</Span>
             </LabelRadioStyled>
@@ -270,7 +288,7 @@ export const ProfileSettings = () => {
                 value="1.9"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.9}
+                // checked={formik.values.activity === 1.9}
               />
               <Span>
                 1.9 - if your work is related to physical labor, you train 2
