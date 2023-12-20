@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Redux/User/selectors';
 
 import { currentUser, updateUser } from '../../Redux/User/userThunks';
+
 import * as Yup from 'yup';
 import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
@@ -15,7 +16,6 @@ import {
   IconDiv,
   InputStyle,
   LabelStyled,
-  // LabelRadioStyled,
   ActivityTextStyled,
   ActivityDiv,
   DownloadButton,
@@ -23,7 +23,6 @@ import {
   TabletDiv,
   ElFormDiv,
   ElFormDivHor,
-  // LabelStyledGender,
   SvgStyled,
   RadioCircle,
   RadioButtonGender
@@ -33,6 +32,8 @@ import { RadioLabel } from './Form.styled';
 
 
 export const ProfileSettings = () => {
+
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export const ProfileSettings = () => {
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      avatarURL: userInfo.avatarURL || '',
+      avatarURL: userInfo.avatarURL || 'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -68,11 +69,9 @@ export const ProfileSettings = () => {
     }),
     onSubmit: (values) => {
       dispatch(updateUser(values));
-      // console.log('Збережено:', values);
     },
   });
-
-  // fot base64 coding
+  // for base64 coding
 
   // const [Image, setImage] = useState();
   
@@ -100,6 +99,7 @@ export const ProfileSettings = () => {
 
   return (
     <div>
+   
       <Form onSubmit={formik.handleSubmit}>
         <TabletDiv>
           <ElFormDiv>
@@ -121,6 +121,7 @@ export const ProfileSettings = () => {
             <ActivityTextStyled>Your photo</ActivityTextStyled>
             <ElFormDivHor>
               {formik.values.avatarURL ? (
+                
                 <img
                   src={formik.values.avatarURL}
                   alt="User Avatar"
@@ -236,8 +237,8 @@ export const ProfileSettings = () => {
                 value="1.2"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.2}
-              />
+                defaultChecked={formik.values.activity === 1.2} 
+                />
               <RadioCircle></RadioCircle>
               <RadioLabel>
                 1.2 - if you do not have physical activity and sedentary work
@@ -252,7 +253,7 @@ export const ProfileSettings = () => {
                 value="1.375"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.375}
+                defaultChecked={formik.values.activity === 1.375}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -269,7 +270,7 @@ export const ProfileSettings = () => {
                 value="1.55"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // checked={formik.values.activity === '1.55'}
+                defaultChecked={formik.values.activity === 1.55}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -285,7 +286,7 @@ export const ProfileSettings = () => {
                 value="1.725"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.725}
+                defaultChecked={formik.values.activity === 1.725}
               />
               <RadioCircle></RadioCircle>
               <Span>1.725 - if you train fully 6-7 times a week</Span>
@@ -299,7 +300,7 @@ export const ProfileSettings = () => {
                 value="1.9"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.9}
+                defaultChecked={formik.values.activity === 1.9}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>

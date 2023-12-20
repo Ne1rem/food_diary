@@ -35,7 +35,6 @@ export const updateUser = createAsyncThunk(
   async (values, thunkAPI) => {
     try {
       if (values.avatarURL.startsWith('blob:')) {
-       
         const file = await fetch(values.avatarURL).then((res) => res.blob());
 
         const formData = new FormData();
@@ -47,6 +46,10 @@ export const updateUser = createAsyncThunk(
         formData.append('height', values.height);
         formData.append('activity', values.activity);
 
+for (var pair of formData.entries()) {
+    console.log(pair[0] + ', ' + pair[1]);
+  }
+
         const { data } = await axios.put('/user/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -54,7 +57,6 @@ export const updateUser = createAsyncThunk(
         });
         console.log(formData);
         return data;
-        
       } else {
         const { data } = await axios.put('/user/update', values);
         return data;
