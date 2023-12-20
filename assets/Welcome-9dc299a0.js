@@ -1,4 +1,4 @@
-import{s as i,N as t,j as e}from"./index-70e516ec.js";import{T as o,a,A as l,i as s}from"./Illustration-9509c93b.js";const c=i.div`
+import{s as i,N as t,j as e}from"./index-667942ab.js";import{T as o,a,A as l,i as s}from"./Illustration-32ce673b.js";const c=i.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
