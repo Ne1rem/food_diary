@@ -279,7 +279,7 @@ export const TitleWeight = styled.h3`
   }
 `;
 
-export const ContainerWeightChart = styled.h3`
+export const ContainerWeightChart = styled.div`
   width: 1372px;
   height: 110px;
   padding: 24px 41px 36px 21px;
