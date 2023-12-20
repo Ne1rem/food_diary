@@ -13,8 +13,9 @@ import ModalDiary from './ModalDiary';
     
 const DiaryItem = ({name, img}) => {
     const[showModal, setShowModal] = useState(false);
+
     const toggleModal = () => {
-        setShowModal(!showModal)
+        setShowModal(!showModal);
     };
 
     return ( 
@@ -24,7 +25,7 @@ const DiaryItem = ({name, img}) => {
         <img src={img}/>
         <Title>{name}</Title>
     </Wrapper>
-    <ListNutritients />
+    <ListNutritients/>
     </WrapperItemHeader>
     <ListToComplete>
         <ItemToComplete>1<ModalLink onClick={toggleModal}>+ Record your meal</ModalLink></ItemToComplete>

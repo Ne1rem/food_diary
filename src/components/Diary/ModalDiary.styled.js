@@ -90,8 +90,7 @@ line-height: 1.42;
 color: var(--color-primary-grey);
 margin-bottom: 8px;
 &:hover
-{ background-color: var(--secondary-color-yellow);
-  color: var(--color-primary-black-2);
+{ border: 1px solid var(--color-primary-green-lite);
   font-weight: 500;
 }
 @media only screen and (min-width: 834px){

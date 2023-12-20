@@ -2,7 +2,9 @@ import { ContainerInputs, InputStyle, InputProductStyle, DivWrapper, ButtonSvg, 
 import trashImg from "../../assets/diary/trash.svg";
 
 const FormDiary = ({ index, formik, onDelete }) => {
-  const food = formik.values.foods && formik.values.foods[index];
+
+
+  const dish = formik.values.dish && formik.values.dish[index];
 
   const handleClear = (e) => {
     e.preventDefault();
@@ -13,43 +15,43 @@ const FormDiary = ({ index, formik, onDelete }) => {
     <ContainerInputs>
       <InputProductStyle
         id={`name${index}`}
-        name={`foods[${index}].name`}
+        name={`dish[${index}].name`}
         placeholder="The name of the product or dish"
         onChange={formik.handleChange}
-        value={food ? food.name : ''}
+        value={dish ? dish.name : ''}
         autoComplete="off"
       />
       <InputStyle
         id={`carbonohidrates${index}`}
-        name={`foods[${index}].carbonohidrates`}
+        name={`dish[${index}].carbonohidrates`}
         placeholder="Carbonoh."
         onChange={formik.handleChange}
-        value={food ? food.carbonohidrates : ''}
+        value={dish ? dish.carbonohidrates : ''}
         autoComplete="off"
       />
       <InputStyle
         id={`protein-${index}`}
-        name={`foods[${index}].protein`}
+        name={`dish[${index}].protein`}
         placeholder="Protein"
         onChange={formik.handleChange}
-        value={food ? food.protein : ''}
+        value={dish ? dish.protein : ''}
         autoComplete="off"
       />
       <DivWrapper>
         <InputStyle
           id={`fat${index}`}
-          name={`foods[${index}].fat`}
+          name={`dish[${index}].fat`}
           placeholder="Fat"
           onChange={formik.handleChange}
-          value={food ? food.fat : ''}
+          value={dish ? dish.fat : ''}
           autoComplete="off"
         />
         <InputStyle
           id={`calories${index}`}
-          name={`foods[${index}].calories`}
+          name={`dish[${index}].calories`}
           placeholder="Calories"
           onChange={formik.handleChange}
-          value={food ? food.calories : ''}
+          value={dish ? dish.calories : ''}
           autoComplete="off"
         />
         <ButtonSvg onClick={handleClear}>
