@@ -29,7 +29,9 @@ import {
   ContainerWeightChart,
   WeightWrapper,
 } from './Charts.styled';
+import { caloriesOptions, waterOptions } from './chartOptions';
 import { customSelectStyles } from './Charts.styled';
+import WeightCharts from './WeightCharts';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -48,8 +50,14 @@ const Charts = () => {
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
 
+  const caloriesChartOptions = {
+    ...caloriesOptions,
+  };
+  const waterChartOptions = {
+    ...waterOptions,
+  };
+  
   const initializeChartData = (selected) => {
-    // Викликати функції для ініціалізації даних графіка на підставі обраного місяця
     updateCaloriesChartData(selected);
     updateWaterChartData(selected);
     updateWeightChartData(selected);
@@ -101,18 +109,18 @@ const Charts = () => {
   };
   // --- /Month selet setings ---
 
+  const generateRandomData = () => {
+  return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
+  };
+  
   // --- Calories setings ---
   const updateCaloriesChartData = (selected) => {
-    const randomData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
-    };
-
     setChartData({
       labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: 'Calories',
-          data: randomData(),
+          data: generateRandomData(),
           backgroundColor: 'transparent',
           borderColor: '#E3FFA8',
           borderWidth: 1,
@@ -125,57 +133,21 @@ const Charts = () => {
           pointHoverBorderWidth: 1,
           pointRadius: 2,
           pointHitRadius: 20,
-          fill: true,
+          fill: false,
           tension: 0.5,
         },
       ],
     });
   };
 
-  const caloriesOptions = {
-    responsive: true,
-    plugins: {
-      legend: false,
-    },
-    scales: {
-      x: {
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-      },
-      y: {
-        min: 0,
-        max: 3000,
-        ticks: {
-          stepSize: 1000,
-          callback: (value) => (value === 0 ? value : value / 1000 + 'k'),
-        },
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-        onClick: function (e) {
-          // Дії при кліці на анотацію
-        },
-      },
-    },
-    maintainAspectRatio: false,
-  };
-  // --- /Calories setings ---
-
   // --- Water setings ---
   const updateWaterChartData = (selected) => {
-    const randomWaterData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
-    };
-
     setWaterChartData({
       labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: 'Water',
-          data: randomWaterData(),
+          data: generateRandomData(),
           backgroundColor: 'transparent',
           borderColor: '#E3FFA8',
           borderWidth: 1,
@@ -194,38 +166,6 @@ const Charts = () => {
       ],
     });
   };
-
-  const waterOptions = {
-    responsive: true,
-    plugins: {
-      legend: false,
-    },
-    scales: {
-      x: {
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-      },
-      y: {
-        min: 0,
-        max: 3000,
-        ticks: {
-          stepSize: 1000,
-          callback: (value) => (value === 0 ? value : value / 1000 + 'L'),
-        },
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-        onClick: function (e) {
-          // Дії при кліці на анотацію
-        },
-      },
-    },
-    maintainAspectRatio: false,
-  };
-  // --- /Water setings ---
 
   // --- Weight setings ---
   const updateWeightChartData = (selected) => {
@@ -253,39 +193,6 @@ const Charts = () => {
       ],
     });
   };
-
-  const weightOptions = {
-    plugins: {
-      legend: false,
-      annotation: {
-        annotations: Array.from({ length: 30 }, (_, i) => ({
-          type: 'text',
-          position: 'top',
-          content: 'randomWeightData()', // backend
-          x: i + 1,
-          y: 0,
-          font: {
-            size: 10,
-          },
-          onClick: function (e) {
-            // Дії при кліці на анотацію
-          },
-        })),
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        display: false,
-      },
-    },
-    maintainAspectRatio: false,
-  };
-  // --- /Weight setings ---
 
   const selectOptions = months.map((month) => ({ value: month, label: month }));
 
@@ -390,7 +297,7 @@ const Charts = () => {
         {/* --Weight Chart-- */}
         <ContainerWeightChart>
           {weightChartData && (
-            <Line data={weightChartData} options={weightOptions} />
+            <WeightCharts data={weightChartData} />
           )}
         </ContainerWeightChart>
       </WeightWrapper>
