@@ -107,7 +107,7 @@ function ModalGoal({
                   src={selectedImageLoseFat}
                   alt="LoseFat"
                 />
-                <UlPButtonModalGoal
+                <UlPButtonModalGoal 
                   className={newGoal == 'Lose Fat' ? 'active' : ''}
                 >
                   Lose fat
