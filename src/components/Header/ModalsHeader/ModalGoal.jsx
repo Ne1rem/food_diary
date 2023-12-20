@@ -65,8 +65,14 @@ function ModalGoal({
     dispatch(updateGoalAsync(newGoal, persistedToken));
     setCurrentGoal(newGoal);
     setIsGoalModalOpen(false);
+    
   };
-
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 27) {
+      setIsGoalModalOpen(false);
+    }
+  };
+  
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Lose Fat male': LoseFatMan,
@@ -86,7 +92,7 @@ function ModalGoal({
 
   return (
     <DivModalGoal>
-      <ButtonCloseModalGoal onClick={() => setIsGoalModalOpen(false)}>
+      <ButtonCloseModalGoal onClick={(event) => { setIsGoalModalOpen(false); handleKeyDown(event); }}>
         <SvgCloseModalGoal>
           <use href={`${HeaderSvg}#close-modal`} />
         </SvgCloseModalGoal>
