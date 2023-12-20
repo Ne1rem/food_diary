@@ -15,7 +15,7 @@ import {
   IconDiv,
   InputStyle,
   LabelStyled,
-  LabelRadioStyled,
+  // LabelRadioStyled,
   ActivityTextStyled,
   ActivityDiv,
   DownloadButton,
@@ -23,9 +23,14 @@ import {
   TabletDiv,
   ElFormDiv,
   ElFormDivHor,
-  LabelStyledGender,
+  // LabelStyledGender,
   SvgStyled,
+  RadioCircle,
+  RadioButtonGender
 } from './Form.styled';
+import { RadioButton } from './Form.styled';
+import { RadioLabel } from './Form.styled';
+
 
 export const ProfileSettings = () => {
   const dispatch = useDispatch();
@@ -160,7 +165,7 @@ export const ProfileSettings = () => {
           <div>
             <LabelStyled>Gender</LabelStyled>
             <GenderDiv>
-              <LabelStyledGender>
+              <RadioButtonGender>
                 <input
                   type="radio"
                   name="gender"
@@ -169,9 +174,10 @@ export const ProfileSettings = () => {
                   onBlur={formik.handleBlur}
                   checked={formik.values.gender === 'male'}
                 />
+                <RadioCircle></RadioCircle>
                 <Span>Male</Span>
-              </LabelStyledGender>
-              <LabelStyledGender>
+              </RadioButtonGender>
+              <RadioButtonGender>
                 <input
                   type="radio"
                   name="gender"
@@ -180,8 +186,9 @@ export const ProfileSettings = () => {
                   onBlur={formik.handleBlur}
                   checked={formik.values.gender === 'female'}
                 />
+                <RadioCircle></RadioCircle>
                 <Span>Female</Span>
-              </LabelStyledGender>
+              </RadioButtonGender>
             </GenderDiv>
             {formik.touched.gender && formik.errors.gender ? (
               <div>{formik.errors.gender}</div>
@@ -222,7 +229,7 @@ export const ProfileSettings = () => {
         <ActivityDiv>
           <ActivityTextStyled>Your activity</ActivityTextStyled>
           <div>
-            <LabelRadioStyled>
+            <RadioButton>
               <input
                 type="radio"
                 name="activity"
@@ -231,13 +238,14 @@ export const ProfileSettings = () => {
                 onBlur={formik.handleBlur}
                 // checked={formik.values.activity === 1.2}
               />
-              <Span>
+              <RadioCircle></RadioCircle>
+              <RadioLabel>
                 1.2 - if you do not have physical activity and sedentary work
-              </Span>
-            </LabelRadioStyled>
+              </RadioLabel>
+            </RadioButton>
           </div>
           <div>
-            <LabelRadioStyled>
+            <RadioButton>
               <input
                 type="radio"
                 name="activity"
@@ -246,14 +254,15 @@ export const ProfileSettings = () => {
                 onBlur={formik.handleBlur}
                 // checked={formik.values.activity === 1.375}
               />
-              <Span>
+              <RadioCircle></RadioCircle>
+              <RadioLabel>
                 1.375 - if you do short runs or light gymnastics 1-3 times a
                 week
-              </Span>
-            </LabelRadioStyled>
+              </RadioLabel>
+            </RadioButton>
           </div>
           <div>
-            <LabelRadioStyled>
+            <RadioButton>
               <input
                 type="radio"
                 name="activity"
@@ -262,13 +271,14 @@ export const ProfileSettings = () => {
                 onBlur={formik.handleBlur}
                 // checked={formik.values.activity === '1.55'}
               />
-              <Span>
+              <RadioCircle></RadioCircle>
+              <RadioLabel>
                 1.55 - if you play sports with average loads 3-5 times a week
-              </Span>
-            </LabelRadioStyled>
+              </RadioLabel>
+            </RadioButton>
           </div>
           <div>
-            <LabelRadioStyled>
+            <RadioButton>
               <input
                 type="radio"
                 name="activity"
@@ -277,11 +287,12 @@ export const ProfileSettings = () => {
                 onBlur={formik.handleBlur}
                 // checked={formik.values.activity === 1.725}
               />
+              <RadioCircle></RadioCircle>
               <Span>1.725 - if you train fully 6-7 times a week</Span>
-            </LabelRadioStyled>
+            </RadioButton>
           </div>
           <div>
-            <LabelRadioStyled>
+            <RadioButton>
               <input
                 type="radio"
                 name="activity"
@@ -290,12 +301,13 @@ export const ProfileSettings = () => {
                 onBlur={formik.handleBlur}
                 // checked={formik.values.activity === 1.9}
               />
-              <Span>
+              <RadioCircle></RadioCircle>
+              <RadioLabel>
                 1.9 - if your work is related to physical labor, you train 2
                 times a day and include strength exercises in your training
                 program
-              </Span>
-            </LabelRadioStyled>
+              </RadioLabel>
+            </RadioButton>
           </div>
           {formik.touched.activityLevel && formik.errors.activity ? (
             <div>{formik.errors.activity}</div>
