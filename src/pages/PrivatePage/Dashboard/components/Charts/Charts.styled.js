@@ -304,22 +304,69 @@ export const ContainerWeightChart = styled.div`
   }
 `;
 
-const WeightLabel = styled.div`
-  color: var(color-primary-white);
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
+// const WeightLabel = styled.div`
+//   color: var(color-primary-white);
+//   text-align: center;
+//   font-family: 'Poppins', sans-serif;
+//   font-size: 14px;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 20px;
+// `;
+
+// const DateLabel = styled.div`
+//   color: var(--color-primary-grey);
+//   text-align: center;
+//   font-family: 'Poppins', sans-serif;
+//   font-size: 10px;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 14px;
+// `;
+
+export const WeightWrap = styled.div`
 `;
 
-const DateLabel = styled.div`
-  color: var(--color-primary-grey);
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  font-style: normal;
+export const Upper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  font-size: 14px;
+  line-height: 1.42;
   font-weight: 400;
-  line-height: 14px;
+  color: var(--color-primary-whit);
+
+  @media only screen and (min-width: 834px) {
+    gap: 6px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    gap: 23px;
+    font-size: 14px;
+    line-height: 1.42;
+    font-weight: 400;
+  }
+`;
+
+export const LowerWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--color-primary-grey);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.42;
+  gap: 29px;
+
+  /* з [834px */
+  @media only screen and (min-width: 834px) {
+    gap: 10px;
+  }
+
+  /* з [1440px */
+  @media only screen and (min-width: 1440px) {
+    gap: 29px;
+  }
 `;

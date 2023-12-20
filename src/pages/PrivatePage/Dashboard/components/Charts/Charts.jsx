@@ -29,8 +29,9 @@ import {
   ContainerWeightChart,
   WeightWrapper,
 } from './Charts.styled';
-import { caloriesOptions, waterOptions, weightOptions } from './chartOptions';
+import { caloriesOptions, waterOptions } from './chartOptions';
 import { customSelectStyles } from './Charts.styled';
+import WeightCharts from './WeightCharts';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -54,9 +55,6 @@ const Charts = () => {
   };
   const waterChartOptions = {
     ...waterOptions,
-  };
-  const weightChartOptions = {
-    ...weightOptions,
   };
   
   const initializeChartData = (selected) => {
@@ -135,7 +133,7 @@ const Charts = () => {
           pointHoverBorderWidth: 1,
           pointRadius: 2,
           pointHitRadius: 20,
-          fill: true,
+          fill: false,
           tension: 0.5,
         },
       ],
@@ -299,7 +297,7 @@ const Charts = () => {
         {/* --Weight Chart-- */}
         <ContainerWeightChart>
           {weightChartData && (
-            <Line data={weightChartData} options={weightOptions} />
+            <WeightCharts data={weightChartData} />
           )}
         </ContainerWeightChart>
       </WeightWrapper>
