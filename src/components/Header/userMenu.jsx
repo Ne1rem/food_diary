@@ -77,9 +77,9 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
         setName(name);
         setGender(gender);
         setCurrentGoal(goal);
-        setNewGoal(goal)
+        setNewGoal(goal);
         setWeight(weight);
-        setUserAvatar(avatarURL)
+        setUserAvatar(avatarURL);
       })
       .catch((error) => {
         console.error('Error fetching user data:', error);
@@ -121,8 +121,6 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     setIsUserModalOpen((prevState) => !prevState);
   }
 
-
-  
   return (
     <UserMenuContainer>
       <GoalHeader>
@@ -136,7 +134,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             <DivGoal>
               <GoalPName>Goal</GoalPName>
               <GoalP>{currentGoal}</GoalP>
-            </DivGoal>  
+            </DivGoal>
             <GoalSvg>
               <use href={`${HeaderSvg}#change-your-goal`} />
             </GoalSvg>
@@ -176,7 +174,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivWeightPart>
         </WeightButton>
         {isWeightModalOpen && (
-          <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} setWeight={setWeight} />
+          <ModalWeight
+            setIsWeightModalOpen={setIsWeightModalOpen}
+            setWeight={setWeight}
+          />
         )}
       </WeightHeader>
       <UserHeader>

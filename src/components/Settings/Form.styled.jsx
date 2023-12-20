@@ -227,7 +227,6 @@ export const ElFormDiv = styled.div`
 `;
 
 export const ElFormDivHor = styled.div`
- 
   display: flex;
   align-items: center;
   justify-content: start;
@@ -268,7 +267,7 @@ export const RadioButton = styled.label`
 export const RadioButtonGender = styled.label`
   display: flex;
   align-items: center;
-   cursor: pointer;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
@@ -312,14 +311,14 @@ export const RadioCircle = styled.div`
 `;
 
 export const RadioLabel = styled.span`
-color: var(--color-primary-white);
-margin-left: 6px;
-max-width: 260px;
-font-weight: 400;
-line-height: 1.2;
-font-size: 14px;
+  color: var(--color-primary-white);
+  margin-left: 6px;
+  max-width: 260px;
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 14px;
 
-@media screen and (min-width: 834px) {
-  max-width: 420px;
+  @media screen and (min-width: 834px) {
+    max-width: 420px;
   }
 `;
