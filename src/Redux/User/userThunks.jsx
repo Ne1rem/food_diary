@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { SuccessToast } from './toast';
+import { ErrorToast, SuccessToast } from './toast';
 
 axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
@@ -65,7 +65,7 @@ export const updateUser = createAsyncThunk(
         return data;
       }
     } catch (e) {
-      toast.error(e.response.statusText);
+      toast.error('Update failed', ErrorToast);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
