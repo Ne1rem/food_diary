@@ -101,17 +101,12 @@ function ModalGoal({
         <DivChooseModalGoal>
           <UlModalGoal>
             <li>
-              <UlButtonModalGoal onClick={setGoalLosefat}>
+              <UlButtonModalGoal>
                 <UlImgButtonModalGoal
-                  className={newGoal == 'Lose Fat' ? 'active' : ''}
                   src={selectedImageLoseFat}
                   alt="LoseFat"
                 />
-                <UlPButtonModalGoal
-                  className={newGoal == 'Lose Fat' ? 'active' : ''}
-                >
-                  Lose fat
-                </UlPButtonModalGoal>
+                <UlPButtonModalGoal>Lose fat</UlPButtonModalGoal>
               </UlButtonModalGoal>
             </li>
             <li>

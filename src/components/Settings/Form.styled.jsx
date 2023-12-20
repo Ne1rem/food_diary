@@ -137,19 +137,6 @@ export const LabelStyled = styled.label`
   }
 `;
 
-export const LabelStyledGender = styled.label`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.2;
-  color: #ffffff;
-
-  @media screen and (min-width: 834px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
-`;
-
 export const InputStyle = styled.input`
   width: 300px;
   height: 36px;
@@ -240,9 +227,98 @@ export const ElFormDiv = styled.div`
 `;
 
 export const ElFormDivHor = styled.div`
-  /* @media screen and (min-width: 834px) { */
   display: flex;
   align-items: center;
   justify-content: start;
-  /* } */
+`;
+
+export const LabelStyledGender = styled.label`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+
+  @media screen and (min-width: 834px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const RadioButton = styled.label`
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  input[type='radio']:checked + :before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+
+export const RadioButtonGender = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #ffffff;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  input[type='radio']:checked + :before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+
+export const RadioCircle = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-primary-grey);
+  background: var(--color-primary-black-2);
+  position: relative;
+  margin-right: 8px;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary-green-lite);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.2s ease-in-out;
+  }
+
+  input[type='radio']:checked + :before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+
+export const RadioLabel = styled.span`
+  color: var(--color-primary-white);
+  margin-left: 6px;
+  max-width: 260px;
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 14px;
+
+  @media screen and (min-width: 834px) {
+    max-width: 420px;
+  }
 `;
