@@ -1,4 +1,4 @@
-import{s as e,j as i}from"./index-bdf99d94.js";import{A as o,B as d,N as n,a as x}from"./Broccoli-a6a70450.js";const s="/food_diary/assets/PhotoRecFood-be261e60.png",r=e.div`
+import{s as e,j as i}from"./index-70e516ec.js";import{A as o,B as d,N as n,a as x}from"./Broccoli-a6a70450.js";const s="/food_diary/assets/PhotoRecFood-be261e60.png",r=e.div`
   padding: 20px 34px 60px 34px;
 
   @media (min-width: 835px) and (max-width: 1440px) {
