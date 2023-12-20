@@ -26,9 +26,9 @@ const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    dispatch(refresh());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refresh());
+  // }, [dispatch]);
 
   return (
     <div>

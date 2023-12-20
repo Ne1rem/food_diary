@@ -14,7 +14,7 @@ const handlePending = (state) => {
 };
 
 const handleRejected = (state, payload) => {
-  state.error = payload;
+  state.isError = payload;
   state.isLoading = false;
 };
 
@@ -29,7 +29,7 @@ const userSlice = createSlice({
       })
       .addCase(currentUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = null;
+        state.isError = null;
         state.user = payload;
       })
       .addCase(currentUser.rejected, (state, { payload }) => {
@@ -39,7 +39,7 @@ const userSlice = createSlice({
 
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = null;
+        state.isError = null;
         state.user = payload;
       })
       .addCase(updateUser.pending, (state) => {
