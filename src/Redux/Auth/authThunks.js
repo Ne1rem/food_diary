@@ -45,7 +45,7 @@ const signUp = createAsyncThunk(
     }
   }
 );
- 
+
 const signIn = createAsyncThunk(
   'auth/signin',
   async (credentials, { rejectWithValue }) => {
