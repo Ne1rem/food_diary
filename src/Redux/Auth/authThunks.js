@@ -83,23 +83,23 @@ const logOut = createAsyncThunk('auth/signout', async () => {
   }
 });
 
-const refresh = createAsyncThunk('user/current', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+// const refresh = createAsyncThunk('user/current', async (_, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const persistedToken = state.auth.token;
 
-  if (persistedToken === null) {
-    return thunkAPI.rejectWithValue();
-  }
+//   if (persistedToken === null) {
+//     return thunkAPI.rejectWithValue();
+//   }
 
-  setToken(persistedToken);
-  try {
-    const response = await instance.get('user/current');
+//   setToken(persistedToken);
+//   try {
+//     const response = await instance.get('user/current');
 
-    return response.data;
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
-  }
-});
+//     return response.data;
+//   } catch (e) {
+//     return thunkAPI.rejectWithValue(e.message);
+//   }
+// });
 
-export { signUp, signIn, refresh, forgotPassword, logOut };
+export { signUp, signIn,  forgotPassword, logOut };
 export default instance;
