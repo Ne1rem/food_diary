@@ -6,15 +6,15 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 10px;
 
-  /* з [835px */
-  @media only screen and (min-width: 835px) {
+  /* з [834px */
+  @media only screen and (min-width: 834px) {
     width: 100%;
     min-width: 780px;
     padding: 0 27px;
   }
 
-  /* з [1441px */
-  @media only screen and (min-width: 1441px) {
+  /* з [1440px */
+  @media only screen and (min-width: 1440px) {
     width: 100%;
     min-width: 1372px;
     padding: 0 34px;
