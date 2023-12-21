@@ -22,7 +22,7 @@ const Step2 = ({ formik, increment, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="goal"
-              defaultChecked
+              defaultChecked={formik.values.goal=== "Lose Fat"}
               value="Lose Fat"
             />
             <RadioCircle></RadioCircle>
@@ -35,6 +35,7 @@ const Step2 = ({ formik, increment, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="goal"
+              defaultChecked={formik.values.goal === "Maintain"}
               value="Maintain"
             />
             <RadioCircle></RadioCircle>
@@ -47,6 +48,7 @@ const Step2 = ({ formik, increment, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="goal"
+              defaultChecked={formik.values.goal === "Gain Muscle"}
               value="Gain Muscle"
             />
             <RadioCircle></RadioCircle>

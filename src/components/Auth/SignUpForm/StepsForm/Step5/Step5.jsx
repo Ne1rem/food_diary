@@ -9,8 +9,15 @@ import {
   RadioLabel,
 } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
 import { Activity, RadioList, ButtonList } from './Step5.styled';
+import { selectIsError } from '../../../../../Redux/Auth/selectors';
+import { useSelector } from 'react-redux';
 
 const Step5 = ({ formik, decrement }) => {
+  const errorAuth = useSelector(selectIsError);
+const onClickBtnSignUp = ( ) => {
+console.log(errorAuth);
+}
+  
   return (
     <Activity>
       <Title>Your Activity</Title>
@@ -25,7 +32,7 @@ const Step5 = ({ formik, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="activity"
-              defaultChecked
+              defaultChecked={formik.values.activity === "1.2"}
               value="1.2"
             />
             <RadioCircle></RadioCircle>
@@ -40,6 +47,7 @@ const Step5 = ({ formik, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="activity"
+              defaultChecked={formik.values.activity === "1.375"}
               value="1.375"
             />
             <RadioCircle></RadioCircle>
@@ -54,6 +62,7 @@ const Step5 = ({ formik, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="activity"
+              defaultChecked={formik.values.activity === "1.55"}
               value="1.55"
             />
             <RadioCircle></RadioCircle>
@@ -68,6 +77,7 @@ const Step5 = ({ formik, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="activity"
+              defaultChecked={formik.values.activity === "1.725"}
               value="1.725"
             />
             <RadioCircle></RadioCircle>
@@ -80,6 +90,7 @@ const Step5 = ({ formik, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="activity"
+              defaultChecked={formik.values.activity === "1.9"}
               value="1.9"
             />
             <RadioCircle></RadioCircle>
@@ -91,7 +102,7 @@ const Step5 = ({ formik, decrement }) => {
         </li>
       </RadioList>
       <ButtonList>
-        <Button className='btn-active' type="submit">Sign Up</Button>
+        <Button className='btn-active'  onClick={() => { onClickBtnSignUp() }} type="submit">Sign Up</Button>
         <Button onClick={() => {decrement()}} type="button">Back</Button>
       </ButtonList>
     </Activity>

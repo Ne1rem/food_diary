@@ -18,10 +18,11 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
+  isError: null
 };
 
 const handlePending = (state) => {
-  state.error = null;
+  state.isError = null;
   state.isLoading = true;
 };
 
@@ -29,7 +30,7 @@ const handleRejected = (state, payload) => {
   state.isLoggedIn = false;
   state.isLoading = false;
   state.token = null;
-  state.error = payload;
+  state.isError = payload;
 };
 
 const authSlice = createSlice({

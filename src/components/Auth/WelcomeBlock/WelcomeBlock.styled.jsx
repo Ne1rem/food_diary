@@ -31,16 +31,22 @@ const AuthLink = styled(NavLink)`
 
   border-radius: 12px;
   line-height: 1.4;
+  
   color: var(--color-primary-white);
+  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
+   color 0.4s cubic-bezier(0, 0, 1, 1),
+   transform 0.4s cubic-bezier(0, 0, 1, 1);
+
 
   @media screen and (min-width: 834px) {
     width: 192px;
   }
 
   &:hover {
-    color: var(--color-primary-black-2);
-    background: var(--color-primary-green-lite);
-  }
+  color: var(--color-primary-black-2);
+  background: var(--color-primary-green-lite);
+  transform:  scale(1.03);
+}
 
   &.active {
     background-color: var(--color-primary-green-lite);

@@ -1,4 +1,4 @@
-import { InputStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
+import {InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
 import {
   Button,
   Title,
@@ -13,11 +13,14 @@ import {
   NavToSignIn,
 } from './Step1.styled';
 import { useState } from 'react';
+import  inputSvg  from 'assets/sprite.svg';
 
 const Step1 = ({ formik, increment }) => {
-  const [error, setError] = useState(false);
+  const [validation, setValidation] = useState('');
+
 
   const onClickBtnNext = () => {
+    setValidation('validation');
     if (
       formik.values.name !== '' &&
       formik.values.email !== '' &&
@@ -27,8 +30,6 @@ const Step1 = ({ formik, increment }) => {
       !formik.errors.password
     ) {
       increment();
-    } else {
-      setError(true);
     }
   };
 
@@ -38,48 +39,52 @@ const Step1 = ({ formik, increment }) => {
       <Text>You need to register to use the service</Text>
       <InputList>
         <li>
+        <InputBlock>
           <InputStyle
+          className={validation === 'validation' ? formik.errors.name ? "error" : "correct" : ''}
             id="name"
             name="name"
-            type="name"
             placeholder="Name"
             onChange={formik.handleChange}
             value={formik.values.name}
           />
-          {error ? <InputError>{formik.errors.name}</InputError> : null}
-          {!formik.errors.name && formik.touched.name ? (
-            <InputError style={{ color: 'green' }}>Name is valid</InputError>
-          ) : null}
+          {validation === 'validation' ? (formik.errors.name ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
+          {validation === 'validation' ? (formik.errors.name ? (<InputError>{formik.errors.name}</InputError>) :
+           (<InputError style={{ color: 'green' }}>Name is valid</InputError>)) : null}
+        </InputBlock>
         </li>
         <li>
+        <InputBlock>
           <InputStyle
+          className={validation === 'validation' ? formik.errors.email ? "error" : "correct" : ''}
             id="email"
             name="email"
             placeholder="E-mail"
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-
-          {error ? <InputError>{formik.errors.email}</InputError> : null}
-          {!formik.errors.email && formik.touched.email ? (
-            <InputError style={{ color: 'green' }}>Email is valid</InputError>
-          ) : null}
+          {validation === 'validation' ? (formik.errors.email ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
+          {validation === 'validation' ? (formik.errors.email ? (<InputError>{formik.errors.email}</InputError>) :
+           (<InputError style={{ color: 'green' }}>E-mail is valid</InputError>)) : null}
+        </InputBlock>
         </li>
         <li>
+        <InputBlock>
           <InputStyle
+          className={validation === 'validation' ? formik.errors.password ? "error" : "correct" : ''}
             id="password"
             name="password"
-            type="password"
             placeholder="Password"
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {error ? <InputError>{formik.errors.password}</InputError> : null}
-          {!formik.errors.password && formik.touched.password ? (
-            <InputError style={{ color: 'green' }}>
-              Password is secure
-            </InputError>
-          ) : null}
+          {validation === 'validation' ? (formik.errors.password ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
+          {validation === 'validation' ? (formik.errors.password ? (<InputError>{formik.errors.password}</InputError>) :
+           (<InputError style={{ color: 'green' }}>Password is valid</InputError>)) : null}
+        </InputBlock>
         </li>
       </InputList>
       <Button
