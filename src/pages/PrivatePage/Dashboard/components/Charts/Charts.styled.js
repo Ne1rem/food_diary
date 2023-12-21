@@ -229,21 +229,11 @@ export const ContainerChart = styled.div`
   }
 `;
 
-// ---------------------------------------Layout------------------!!!
-export const ChartContainer = styled(ContainerChart)`
-  /* width: 100%;
-  max-width: 382px;
-  padding: 24px 14px;
-  border-radius: 12px;
-  background-color: var(--color-primary-black-2);
-  overflow-x: auto; */
-`;
-
 export const ContainerWeightValue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0 6px 0;
+  margin: 0 0 6px 0;
 
   @media only screen and (min-width: 834px) {
     justify-content: start;
@@ -252,16 +242,16 @@ export const ContainerWeightValue = styled.div`
 `;
 
 export const WeightWrapper = styled.div`
-  align-items: center;
   padding: 0 0 60px;
-  margin-top: 27px;
+
+  margin: 27px 0 0;
 
   @media only screen and (min-width: 834px) {
-    margin-top: 40px;
+    margin: 40px 0 0;
   }
 
   @media only screen and (min-width: 1440px) {
-    margin-top: 20px;
+    margin: 20px 0 0;
   }
 `;
 
@@ -285,31 +275,31 @@ export const ContainerWeightChart = styled.div`
 export const WeightWrap = styled.div`
   width: 1310px;
   height: 110px;
-  padding: 24px 0 36px 0;
+  padding: 24px 41px 36px 21px;
   margin: 0;
   border-radius: 12px;
   background: var(--color-primary-black-2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
 
-  position: relative;
+  /* position: relative;
   overflow-x: auto;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; */
 
   @media only screen and (min-width: 834px) {
-    width: 780px;
+    width: 738px;
     height: 110px;
-    padding: 24px 0 44px 0;
+    padding: 24px 20px 44px 22px;
     gap: 12px;
   }
 
   @media only screen and (min-width: 1440px) {
     width: 1310px;
     height: 110px;
-    padding: 24px 0 44px 0;
+    padding: 24px 41px 36px 21px;
     gap: 16px;
   }
 `;
@@ -317,24 +307,27 @@ export const WeightWrap = styled.div`
 export const Upper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: inherit;
+  gap: 23px;
   font-size: 14px;
   line-height: 1.42;
   font-weight: 400;
   color: var(--color-primary-whit);
-  padding: 0 41px 0 21px;
+  /* padding: 0 41px 0 21px; */
 
   @media only screen and (min-width: 834px) {
+    gap: 6px;
     font-size: 10px;
     line-height: 1.6;
-    padding: 0 20px 0 22px;
+    /* padding: 0 20px 0 22px; */
   }
 
   @media only screen and (min-width: 1440px) {
+    gap: 23px;
     font-size: 14px;
     line-height: 1.42;
     font-weight: 400;
-    padding: 0 41px 0 21px;
+    /* padding: 0 41px 0 21px; */
   }
 `;
 
@@ -342,13 +335,11 @@ export const UpperValue = styled.div`
   font-size: 14px;
   line-height: 1.42;
 
-  /* з [834px */
   @media only screen and (min-width: 834px) {
     font-size: 10px;
     line-height: 1.6;
   }
 
-  /* з [1440px */
   @media only screen and (min-width: 1440px) {
     font-size: 14px;
     line-height: 1.42;
@@ -359,21 +350,22 @@ export const LowerWrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: inherit;
+  gap: 29px;
   color: var(--color-primary-grey);
   font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
-  padding: 0 44px 0 24px;
+  /* padding: 0 44px 0 24px; */
 
-  /* з [834px */
   @media only screen and (min-width: 834px) {
-    padding: 0 22px 0 24px;
+    gap: 10px;
+    /* padding: 0 22px 0 24px; */
   }
 
-  /* з [1440px */
   @media only screen and (min-width: 1440px) {
-    padding: 0 44px 0 24px;
+    gap: 29px;
+    /* padding: 0 44px 0 24px; */
   }
 `;
 
@@ -382,29 +374,29 @@ export const LowerValue = styled.div`
   line-height: 1.4;
 `;
 
-export const ScrollContainer = styled.div`
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
+// export const ScrollContainer = styled.div`
+//   overflow-x: auto;
+//   white-space: nowrap;
+//   -webkit-overflow-scrolling: touch;
+//   position: relative;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    right: 0;
-    width: 8px;
-    height: calc(100% - 8px);
-    transform: rotate(-90deg);
-    flex-shrink: 0;
-    border-radius: 12px;
-    background: #0f0f0f;
-  }
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: 8px;
+//     right: 0;
+//     width: 8px;
+//     height: calc(100% - 8px);
+//     transform: rotate(-90deg);
+//     flex-shrink: 0;
+//     border-radius: 12px;
+//     background: #0f0f0f;
+//   }
 
-  @media only screen and (min-width: 834px) {
-    overflow-x: hidden;
-    &::after {
-      display: none;
-    }
-  }
-`;
+//   @media only screen and (min-width: 834px) {
+//     overflow-x: hidden;
+//     &::after {
+//       display: none;
+//     }
+//   }
+// `;
