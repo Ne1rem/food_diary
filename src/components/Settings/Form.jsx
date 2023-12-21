@@ -270,7 +270,7 @@ export const ProfileSettings = () => {
                 value="1.55"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                defaultChecked={formik.values.activity === '1.55'}
+                defaultChecked={formik.values.activity === 1.55}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
