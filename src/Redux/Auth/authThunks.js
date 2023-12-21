@@ -24,6 +24,7 @@ try {
   localStorage.setItem('refreshToken', data.refreshToken);
   return instance(error.config);
 } catch (error) {
+  toast.error('User 401!');
   return Promise.reject(error);
 }
 }
@@ -36,7 +37,7 @@ const signUp = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('auth/signup', credentials);
-      setToken(data.token);
+      setToken(data.accessToken);
       return data;
     } catch (e) {
       toast.error('User creation error!');
@@ -50,7 +51,7 @@ const signIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('auth/signin', credentials);
-      setToken(data.token);
+      setToken(data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken)
       return data;
     } catch (e) {
