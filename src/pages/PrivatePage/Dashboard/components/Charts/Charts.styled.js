@@ -294,6 +294,11 @@ export const WeightWrap = styled.div`
   justify-content: center;
   gap: 16px;
 
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
   @media only screen and (min-width: 834px) {
     width: 780px;
     height: 110px;
@@ -375,4 +380,31 @@ export const LowerWrap = styled.div`
 export const LowerValue = styled.div`
   font-size: 10px;
   line-height: 1.4;
+`;
+
+export const ScrollContainer = styled.div`
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 0;
+    width: 8px;
+    height: calc(100% - 8px);
+    transform: rotate(-90deg);
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #0f0f0f;
+  }
+
+  @media only screen and (min-width: 834px) {
+    overflow-x: hidden;
+    &::after {
+      display: none;
+    }
+  }
 `;

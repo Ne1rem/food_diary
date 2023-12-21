@@ -1,4 +1,12 @@
-import { Upper, WeightWrap, LowerWrap, UpperValue, LowerValue } from "./Charts.styled";
+import React from "react";
+import {
+  Upper,
+  WeightWrap,
+  LowerWrap,
+  UpperValue,
+  LowerValue,
+  ScrollContainer,
+} from "./Charts.styled";
 
 const WeightCharts = () => {
   const upperRowValues = Array.from({ length: 31 }, () =>
@@ -9,24 +17,22 @@ const WeightCharts = () => {
   );
 
   return (
-      <>
+    <>
+      <ScrollContainer>
         <WeightWrap>
           <Upper>
             {upperRowValues.map((value, index) => (
-              <UpperValue key={index}>
-                {value}
-              </UpperValue>
+              <UpperValue key={index}>{value}</UpperValue>
             ))}
           </Upper>
           <LowerWrap>
             {lowerRowValues.map((value, index) => (
-              <LowerValue key={index}>
-                {value}
-              </LowerValue>
+              <LowerValue key={index}>{value}</LowerValue>
             ))}
           </LowerWrap>
         </WeightWrap>
-      </>
+      </ScrollContainer>
+    </>
   );
 };
 
