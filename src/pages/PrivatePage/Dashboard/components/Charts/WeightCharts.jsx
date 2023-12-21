@@ -1,4 +1,4 @@
-import { Upper, WeightWrap, LowerWrap } from "./Charts.styled";
+import { Upper, WeightWrap, LowerWrap, UpperValue, LowerValue } from "./Charts.styled";
 
 const WeightCharts = () => {
   const upperRowValues = Array.from({ length: 31 }, () =>
@@ -13,16 +13,16 @@ const WeightCharts = () => {
         <WeightWrap>
           <Upper>
             {upperRowValues.map((value, index) => (
-              <div key={index}>
+              <UpperValue key={index}>
                 {value}
-              </div>
+              </UpperValue>
             ))}
           </Upper>
           <LowerWrap>
             {lowerRowValues.map((value, index) => (
-              <div key={index}>
+              <LowerValue key={index}>
                 {value}
-              </div>
+              </LowerValue>
             ))}
           </LowerWrap>
         </WeightWrap>
