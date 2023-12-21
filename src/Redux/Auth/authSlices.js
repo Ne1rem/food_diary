@@ -29,7 +29,7 @@ const handlePending = (state) => {
 const handleRejected = (state, payload) => {
   state.isLoggedIn = false;
   state.isLoading = false;
-  state.token = null;
+  state.accessToken = null;
   state.isError = payload;
 };
 
@@ -63,7 +63,7 @@ const authSlice = createSlice({
 
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
         state.isLoading = false;
         // state.isLoggedIn = true;
         toast.success(`Successful Registration.`);
@@ -71,7 +71,7 @@ const authSlice = createSlice({
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
         state.isLoading = false;
         state.isLoggedIn = true;
         toast.success(`Successful Loginned.`);
@@ -94,7 +94,7 @@ const authSlice = createSlice({
       handlePending(state);
     })
     .addCase(logOut.fulfilled, (state) => {
-      state.token = null;
+      state.accessToken = null;
       state.isLoggedIn = false;
     })
     .addCase(logOut.rejected, (state, { payload }) => {
