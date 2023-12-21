@@ -196,7 +196,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             <use href={`${HeaderSvg}#change-your-goal`} />
           </AvatarSvg>
         </UserHeaderButton>
-        {isUserModalOpen && <ModalUserHeader />}
+        {isUserModalOpen && <ModalUserHeader setIsUserModalOpen={setIsUserModalOpen} />}
       </UserHeader>
       {isMobileModalOpen && (
         <MobileOpenModal>
