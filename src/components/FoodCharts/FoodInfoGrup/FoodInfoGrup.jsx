@@ -5,7 +5,6 @@ import {
   ChartInfoWrap,
   FoodInfoCard,
   InfoWrap,
-  Title,
 } from './FoodInfoGrup.styled.js';
 
 const carbBcg = '#FFC4F7';
@@ -25,7 +24,6 @@ export const FoodInfoGrup = () => {
 
   return (
     <div>
-      <Title>Food</Title>
       <FoodInfoCard>
         <CaloriesChart>
           <DoughnutChart
