@@ -1,3 +1,5 @@
+import { FoodInfoGrup } from "../../FoodCharts/FoodInfoGrup/FoodInfoGrup";
+
 export const FoodStatistic = () => {
-  return <div>FoodStatistic</div>;
+  return <div><FoodInfoGrup/></div>;
 };
