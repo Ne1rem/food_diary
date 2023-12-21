@@ -93,35 +93,6 @@ const randomWeightData = Array.from({ length: 31 }, () =>
   (Math.random() * (80 - 60) + 60).toFixed(0)
 );
 
-// export const weightOptions = {
-//   plugins: {
-//     legend: false,
-//     annotation: {
-//       annotations: Array.from({ length: 30 }, (_, i) => ({
-//         type: 'text',
-//         position: 'top',
-//         content: randomWeightData, // backend
-//         x: i + 1,
-//         y: 0,
-//         font: {
-//           size: 10,
-//         },
-//       })),
-//     },
-//   },
-//   scales: {
-//     x: {
-//       grid: {
-//         display: false,
-//       },
-//     },
-//     y: {
-//       display: false,
-//     },
-//   },
-//   maintainAspectRatio: false,
-// };
-
 function TooltipUnit(label) {
   if (label === 'Calories') {
     return 'calories';
