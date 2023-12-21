@@ -38,9 +38,7 @@ const SignUpForm = () => {
     },
     onSubmit: (values) => {
       dispatch(signUp(values));
-      // resetForm();
-      // { resetForm }
-      setCurrentStep(1)
+      // setCurrentStep(1)
     },
     validationSchema: signUpSchema,
   });
