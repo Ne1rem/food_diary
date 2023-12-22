@@ -34,8 +34,7 @@ const AuthLink = styled(NavLink)`
   
   color: var(--color-primary-white);
   transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1),
-   transform 0.4s cubic-bezier(0, 0, 1, 1);
+   color 0.4s cubic-bezier(0, 0, 1, 1);
 
 
   @media screen and (min-width: 834px) {
@@ -45,7 +44,6 @@ const AuthLink = styled(NavLink)`
   &:hover {
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
-  transform:  scale(1.03);
 }
 
   &.active {

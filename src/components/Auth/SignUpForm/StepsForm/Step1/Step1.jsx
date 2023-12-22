@@ -17,6 +17,7 @@ import  inputSvg  from 'assets/sprite.svg';
 
 const Step1 = ({ formik, increment }) => {
   const [validation, setValidation] = useState('');
+  const [passwordHidden, setPasswordHidden] = useState(false); 
 
 
   const onClickBtnNext = () => {
@@ -32,6 +33,10 @@ const Step1 = ({ formik, increment }) => {
       increment();
     }
   };
+
+  const onClickPasswordHidden = () => {
+    setPasswordHidden(prev => !prev);
+      };
 
   return (
     <SignUp>
@@ -51,7 +56,7 @@ const Step1 = ({ formik, increment }) => {
           {validation === 'validation' ? (formik.errors.name ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.name ? (<InputError>{formik.errors.name}</InputError>) :
-           (<InputError style={{ color: 'green' }}>Name is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>Name is valid</InputError>)) : null}
         </InputBlock>
         </li>
         <li>
@@ -67,7 +72,7 @@ const Step1 = ({ formik, increment }) => {
           {validation === 'validation' ? (formik.errors.email ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.email ? (<InputError>{formik.errors.email}</InputError>) :
-           (<InputError style={{ color: 'green' }}>E-mail is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>E-mail is valid</InputError>)) : null}
         </InputBlock>
         </li>
         <li>
@@ -77,13 +82,17 @@ const Step1 = ({ formik, increment }) => {
             id="password"
             name="password"
             placeholder="Password"
+            type={!passwordHidden ? 'password' : 'text'}
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {validation === 'validation' ? (formik.errors.password ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+          {!passwordHidden ? <InputSvgStyle onClick={() => {onClickPasswordHidden()}} ><use href={`${inputSvg}#eye-off`} /></InputSvgStyle> : validation !== 'validation' &&  <InputSvgStyle onClick={() => {onClickPasswordHidden()}} ><use href={`${inputSvg}#eye`} /></InputSvgStyle>}
+        
+          
+          {passwordHidden && validation === 'validation' ? (formik.errors.password ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
-          {validation === 'validation' ? (formik.errors.password ? (<InputError>{formik.errors.password}</InputError>) :
-           (<InputError style={{ color: 'green' }}>Password is valid</InputError>)) : null}
+          {passwordHidden && validation === 'validation' ? (formik.errors.password ? (<InputError>{formik.errors.password}</InputError>) :
+           (<InputError style={{ color: '#3CBC81' }}>Password is valid</InputError>)) : null}
         </InputBlock>
         </li>
       </InputList>
