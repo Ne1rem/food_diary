@@ -18,15 +18,20 @@ import {
   NavToSignUp,
   NavToForgotPass,
 } from './SignInForm.styled';
+// import  LoaderBtn  from '../Loader/LoaderBtn'; 
 import inputSvg from 'assets/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../../Redux/Auth/authThunks';
 import { signInSchema } from '../validationSchemas/validationSchema';
 import { useState } from 'react';
+// import { selectIsLoading } from '../../../Redux/Auth/selectors';
+// import { useSelector } from 'react-redux';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  // const loading = useSelector(selectIsLoading);
   const [validation, setValidation] = useState('');
+  const [passwordHidden, setPasswordHidden] = useState(false); 
 
 
   const formik = useFormik({
@@ -43,6 +48,10 @@ const SignInForm = () => {
 
   const onClickSubmit = () => {
     setValidation('validation');
+  };
+
+  const onClickPasswordHidden = () => {
+setPasswordHidden(prev => !prev);
   };
 
   return (
@@ -63,7 +72,7 @@ const SignInForm = () => {
           {validation === 'validation' ? (formik.errors.email ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.email ? (<InputError>{formik.errors.email}</InputError>) :
-           (<InputError style={{ color: 'green' }}>E-mail is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>E-mail is valid</InputError>)) : null}
         </InputBlock>
         </li>
         <li>
@@ -73,21 +82,23 @@ const SignInForm = () => {
             id="password"
             name="password"
             placeholder="Password"
+            type={!passwordHidden ? 'password' : 'text'}
             onChange={formik.handleChange}
             value={formik.values.password}
           />
-          {validation === 'validation' ? (formik.errors.password ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+          {!passwordHidden ? <InputSvgStyle onClick={() => {onClickPasswordHidden()}} ><use href={`${inputSvg}#eye-off`} /></InputSvgStyle> : validation !== 'validation' &&  <InputSvgStyle onClick={() => {onClickPasswordHidden()}} ><use href={`${inputSvg}#eye`} /></InputSvgStyle>}
+        
+          
+          {passwordHidden && validation === 'validation' ? (formik.errors.password ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
-          {validation === 'validation' ? (formik.errors.password ? (<InputError>{formik.errors.password}</InputError>) :
-           (<InputError style={{ color: 'green' }}>Password is valid</InputError>)) : null}
+          {passwordHidden && validation === 'validation' ? (formik.errors.password ? (<InputError>{formik.errors.password}</InputError>) :
+           (<InputError style={{ color: '#3CBC81' }}>Password is valid</InputError>)) : null}
         </InputBlock>
         </li>
       </InputList>
       <Button className="btn-active"  onClick={() => {
           onClickSubmit();
-        }} type="submit">
-        Sign in
-      </Button>
+        }} type="submit">Sign in</Button>
       <NavToForgotPass to="/forgot-password">
         Forgot your password?
       </NavToForgotPass>

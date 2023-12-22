@@ -16,7 +16,7 @@ width: 300px;
 const InputStyle = styled.input`
   width: 300px;
   display: inline-flex;
-  padding: 8px 10px;
+  padding: 8px 30px 8px 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;

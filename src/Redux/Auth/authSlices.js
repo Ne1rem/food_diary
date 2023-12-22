@@ -15,7 +15,7 @@ const initialState = {
     avatarUrl: null,
     BMR: null,
   },
-  token: null,
+  accessToken: null,
   isLoggedIn: false,
   isLoading: false,
   isError: null
