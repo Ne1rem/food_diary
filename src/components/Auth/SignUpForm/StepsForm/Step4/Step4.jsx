@@ -44,7 +44,7 @@ const Step4 = ({ formik, increment, decrement }) => {
           {validation === 'validation' ? (formik.errors.height ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.height ? (<InputError>{formik.errors.height}</InputError>) :
-           (<InputError style={{ color: 'green' }}>Height is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>Height is valid</InputError>)) : null}
         </InputBlock>
         </li>
         <li>
@@ -61,7 +61,7 @@ const Step4 = ({ formik, increment, decrement }) => {
           {validation === 'validation' ? (formik.errors.weight ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.weight ? (<InputError>{formik.errors.weight}</InputError>) :
-           (<InputError style={{ color: 'green' }}>Weight is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>Weight is valid</InputError>)) : null}
         </InputBlock>
         </li>
       </InputList>

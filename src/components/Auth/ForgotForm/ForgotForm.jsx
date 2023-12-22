@@ -18,6 +18,7 @@ import {
   InputWrapper,
 } from './ForgotForm.styled';
 import { useNavigate } from 'react-router-dom';
+
 import { forgotPassword } from '../../../Redux/Auth/authThunks';
 import { useDispatch } from 'react-redux';
 import { forgotShema } from '../validationSchemas/validationSchema';
@@ -25,8 +26,8 @@ import inputSvg from 'assets/sprite.svg';
 import { useState } from 'react';
 
 const ForgotForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [validation, setValidation] = useState('');
 
   const formik = useFormik({
@@ -34,7 +35,7 @@ const ForgotForm = () => {
       email: '',
     },
     onSubmit: (values) => {
-      dispatch(forgotPassword(values));
+      dispatch(forgotPassword(values))
       navigate('/signin');
     },
     validationSchema: forgotShema,
@@ -61,7 +62,7 @@ const ForgotForm = () => {
           {validation === 'validation' ? (formik.errors.email ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.email ? (<InputError>{formik.errors.email}</InputError>) :
-           (<InputError style={{ color: 'green' }}>E-mail is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>E-mail is valid</InputError>)) : null}
         </InputBlock>
       </InputWrapper>
       <Button

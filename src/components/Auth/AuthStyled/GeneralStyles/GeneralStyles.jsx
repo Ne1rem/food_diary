@@ -42,7 +42,9 @@ const Text = styled.p`
 
 
 const Button = styled.button`
+/* position: relative; */
   width: 300px;
+  height: 36px;
 
   display: flex;
   align-items: center;
@@ -57,8 +59,7 @@ const Button = styled.button`
   color: var(--color-crimary-grey);
   
   transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1),
-   transform 0.4s cubic-bezier(0, 0, 1, 1);
+   color 0.4s cubic-bezier(0, 0, 1, 1);
 
 
   @media screen and (min-width: 834px) {
@@ -75,7 +76,6 @@ const Button = styled.button`
   &:hover {
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
-  transform: scale(1.03);
 }
 
 &.btn-active {

@@ -37,7 +37,7 @@ const signUp = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('auth/signup', credentials);
-      setToken(data.accessToken);
+      // setToken(data.accessToken);
       return data;
     } catch (e) {
       toast.error('User creation error!');
