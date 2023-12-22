@@ -44,9 +44,7 @@ export const ProfileSettings = () => {
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      avatarURL:
-        userInfo.avatarURL ||
-        'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      avatarURL: userInfo.avatarURL || 'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -70,22 +68,21 @@ export const ProfileSettings = () => {
       dispatch(updateUser(values));
     },
   });
-  // for base64 coding
 
-  // const [Image, setImage] = useState();
+  useEffect(() => {
+    formik.setValues({
+      name: userInfo.name || '',
+      avatarURL: userInfo.avatarURL || 'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      age: userInfo.age || 0,
+      gender: userInfo.gender || '',
+      weight: userInfo.weight || '',
+      height: userInfo.height || '',
+      activity: userInfo.activity || '',
+    });
+  }, [userInfo]);
 
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
-    // const reader = new FileReader();
-
-    // reader.onload = (e) => {
-    //   const base64Image = e.target.result;
-    //   setImage(base64Image);
-    //   formik.setFieldValue('avatarURL', base64Image);
-    // };
-
-    // reader.readAsDataURL(file);
-
     formik.setFieldValue('avatarURL', URL.createObjectURL(file));
   };
 
@@ -93,7 +90,7 @@ export const ProfileSettings = () => {
     fileInputRef.current.click();
   };
 
-  // console.log(Image);
+  
 
   return (
     <div>
@@ -312,9 +309,9 @@ export const ProfileSettings = () => {
         </ActivityDiv>
 
         <ButtonDiv>
-          <Button type="button" onClick={formik.handleReset}>
-            Cancel
-          </Button>
+        <Button type="button" onClick={() => formik.resetForm({ values: userInfo })}>
+  Cancel
+</Button>
           <Button type="submit">Save</Button>
         </ButtonDiv>
       </Form>
