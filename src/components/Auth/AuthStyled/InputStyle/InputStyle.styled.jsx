@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+const InputBlock = styled.div`
+position: relative;
+width: 300px;
+
+@media screen and (min-width: 834px) {
+    width: 380px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 212px;
+  }
+`;
+
 const InputStyle = styled.input`
   width: 300px;
   display: inline-flex;
@@ -24,6 +37,24 @@ const InputStyle = styled.input`
   @media screen and (min-width: 1440px) {
     width: 212px;
   }
+
+
+  &.error{
+    border: 1px solid #E74A3B;
+  }
+
+  &.correct{
+    border: 1px solid #3CBC81;
+  }
 `;
 
-export { InputStyle };
+
+const InputSvgStyle = styled.svg`
+position: absolute;
+width: 16px;
+height: 16px;
+top: 10px;
+right: 10px;
+`;
+
+export { InputStyle, InputBlock, InputSvgStyle };

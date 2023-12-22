@@ -7,12 +7,11 @@ export const UserMenuContainer = styled.div`
     padding-left: 20px;
     gap: 40px;
   }
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     justify-content: space-between;
     margin-left: auto;
   }
 `;
-
 
 //Modal Goal
 export const GoalHeader = styled.div`
@@ -21,7 +20,7 @@ export const GoalHeader = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -89,7 +88,7 @@ export const WeightHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -193,7 +192,6 @@ export const AvatarSvg = styled.svg`
   padding-bottom: 2px;
   display: flex;
   fill: var(--color-primary-green-lite);
-  
 `;
 
 //ModalMobile
@@ -203,7 +201,7 @@ export const ButtonOpenMobileModals = styled.button`
   display: flex;
   align-items: center;
   margin-left: 12px;
-  @media only screen and (min-width: 650px) {
+  @media only screen and (min-width: 700px) {
     display: none;
   }
 `;
@@ -236,151 +234,147 @@ export const ButtonsMobileModals = styled.div`
   padding: 24px;
 `;
 
-  export const MobileOpenModal = styled.div`
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    /* width: 300px; */
-    height: 184px;
-    left: 10px;
-    right: 10px;
-    top: 60px;
-    justify-content: center;
-    border-radius: 12px;
-    border: 1px;
-    box-shadow: 0px 4px 14px 0px #e3ffa833;
-    background-color: var(--color-primary-black-2);
-    z-index: 4;
-  `;
+export const MobileOpenModal = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  /* width: 300px; */
+  height: 184px;
+  left: 10px;
+  right: 10px;
+  top: 60px;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px;
+  box-shadow: 0px 4px 14px 0px #e3ffa833;
+  background-color: var(--color-primary-black-2);
+  z-index: 4;
+`;
 
+export const MobileGoalHeader = styled.div`
+  padding: 0;
+  display: flex;
+  align-items: center;
+`;
 
-  export const MobileGoalHeader = styled.div`
-    padding: 0;
-    display: flex;
-    align-items: center;
+export const MobileGoalButton = styled.button`
+  display: flex;
+  padding: 0;
+  border-style: none;
+  background: transparent;
+`;
 
+export const MobileImageGoal = styled.img`
+  border-style: none;
+  border-radius: 30%;
+  border: 1.5px solid #5f5e5c;
+  padding: 10px;
+`;
 
+export const MobileDivGoal = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: var(--color-primary-white);
+  padding-left: 12px;
+  padding-top: 3px;
+  gap: 2px;
+  font-family: Poppins;
+`;
 
-  `;
+export const MobileGoalPName = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 
-  export const MobileGoalButton = styled.button`
-    display: flex;
-    padding: 0;
-    border-style: none;
-    background: transparent;
-  `;
+export const MobileGoalP = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 
-  export const MobileImageGoal = styled.img`
-    border-style: none;
-    border-radius: 30%;
-    border: 1.5px solid #5f5e5c;
-    padding: 10px;
-  `;
+export const MobileGoalSvg = styled.svg`
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
+  margin-bottom: 2px;
+  display: flex;
+  fill: var(--color-primary-green-lite);
+  align-self: flex-end;
+`;
 
-  export const MobileDivGoal = styled.div`
-    display: flex;
-    flex-direction: column;
-    color: var(--color-primary-white);
-    padding-left: 12px;
-    padding-top: 3px;
-    gap: 2px;
-    font-family: Poppins;
-  `;
+export const MobileDivGoalPart = styled.div`
+  display: flex;
+`;
 
-  export const MobileGoalPName = styled.p`
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-  `;
+export const MobileWeightHeader = styled.div`
+  padding: 0;
+  width: 128px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-  export const MobileGoalP = styled.p`
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-  `;
+export const MobileWeightButton = styled.button`
+  display: flex;
+  padding: 0;
+  border-style: none;
+  background: transparent;
+`;
 
-  export const MobileGoalSvg = styled.svg`
-    width: 16px;
-    height: 16px;
-    margin-left: 12px;
-    margin-bottom: 2px;
-    display: flex;
-    fill: var(--color-primary-green-lite);
-    align-self: flex-end;
-  `;
+export const MobileImageWeight = styled.img`
+  border-style: none;
+  border-radius: 30%;
+  border: 1.5px solid #5f5e5c;
+  padding: 10px;
+`;
 
-  export const MobileDivGoalPart = styled.div`
-    display: flex;
-  `;
+export const MobileDivWeight = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: var(--color-primary-white);
+  padding-left: 12px;
+  padding-top: 3px;
+  gap: 2px;
+  font-family: Poppins;
+`;
 
-  export const MobileWeightHeader = styled.div`
-    padding: 0;
-    width: 128px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
+export const MobileWeightPName = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 
-  export const MobileWeightButton = styled.button`
-    display: flex;
-    padding: 0;
-    border-style: none;
-    background: transparent;
-  `;
+export const MobileWeightP = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 
-  export const MobileImageWeight = styled.img`
-    border-style: none;
-    border-radius: 30%;
-    border: 1.5px solid #5f5e5c;
-    padding: 10px;
-  `;
+export const MobileWeightSvg = styled.svg`
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  margin-bottom: 2px;
+  display: flex;
+  fill: var(--color-primary-green-lite);
+  align-self: flex-end;
+`;
 
-  export const MobileDivWeight = styled.div`
-    display: flex;
-    flex-direction: column;
-    color: var(--color-primary-white);
-    padding-left: 12px;
-    padding-top: 3px;
-    gap: 2px;
-    font-family: Poppins;
-  `;
+export const MobileDivWeightPart = styled.div`
+  display: flex;
+`;
 
-  export const MobileWeightPName = styled.p`
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-  `;
-
-  export const MobileWeightP = styled.p`
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-  `;
-
-  export const MobileWeightSvg = styled.svg`
-    width: 16px;
-    height: 16px;
-    margin-left: 6px;
-    margin-bottom: 2px;
-    display: flex;
-    fill: var(--color-primary-green-lite);
-    align-self: flex-end;
-  `;
-
-  export const MobileDivWeightPart = styled.div`
-    display: flex;
-  `;
-
-  export const MobileWeightSpan = styled.span`
-    padding-left: 4px;
-    color: var(--color-primary-grey);
-  `;
+export const MobileWeightSpan = styled.span`
+  padding-left: 4px;
+  color: var(--color-primary-grey);
+`;

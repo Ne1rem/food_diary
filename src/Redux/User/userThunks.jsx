@@ -1,14 +1,15 @@
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ErrorToast, SuccessToast } from './toast';
+import instance from '../Auth/authThunks';
 
-axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
+// axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
 export const currentUser = createAsyncThunk(
   'user/current',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('user/current');
+      const response = await instance.get('user/current');
       return response.data;
     } catch (e) {
       toast.error(e.response.statusText);
@@ -21,7 +22,7 @@ export const currentUser = createAsyncThunk(
 //   "user/update",
 //   async (value, thunkAPI) => {
 //     try {
-//       const { data } = await axios.put(`user/update`, value);
+//       const { data } = await instance.put(`user/update`, value);
 //       return data;
 //     } catch (e) {
 //       toast.error(e.response.statusText);
@@ -29,6 +30,7 @@ export const currentUser = createAsyncThunk(
 //     }
 //   }
 // );
+
 
 export const updateUser = createAsyncThunk(
   'user/update',
@@ -46,23 +48,24 @@ export const updateUser = createAsyncThunk(
         formData.append('height', values.height);
         formData.append('activity', values.activity);
 
-for (var pair of formData.entries()) {
-    console.log(pair[0] + ', ' + pair[1]);
-  }
+        for (var pair of formData.entries()) {
+          console.log(pair[0] + ', ' + pair[1]);
+        }
 
-        const { data } = await axios.put('/user/update', formData, {
+        const { data } = await instance.put('/user/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
+        toast.success('Data was updated!', SuccessToast);
         console.log(formData);
         return data;
       } else {
-        const { data } = await axios.put('/user/update', values);
+        const { data } = await instance.put('/user/update', values);
         return data;
       }
     } catch (e) {
-      toast.error(e.response.statusText);
+      toast.error('Update failed', ErrorToast);
       return thunkAPI.rejectWithValue(e.message);
     }
   }

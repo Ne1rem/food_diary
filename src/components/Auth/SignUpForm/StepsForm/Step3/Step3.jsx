@@ -1,4 +1,4 @@
-import { InputStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
+import {InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
 import {
   Button,
   Title,
@@ -18,16 +18,16 @@ import {
   ButtonList,
   AgeLabel,
 } from './Step3.styled';
+import  inputSvg  from 'assets/sprite.svg';
 import { useState } from 'react';
 
 const Step3 = ({ formik, increment, decrement }) => {
-  const [error, setError] = useState(false);
+  const [validation, setValidation] = useState('');
 
   const onClickBtnNext = () => {
+    setValidation('validation');
     if (formik.values.age !== '' && !formik.errors.age) {
       increment();
-    } else {
-      setError(true);
     }
   };
 
@@ -48,7 +48,7 @@ const Step3 = ({ formik, increment, decrement }) => {
                 type="radio"
                 name="gender"
                 value="male"
-                defaultChecked
+                defaultChecked={formik.values.gender === "male"}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Male</RadioLabel>
@@ -61,6 +61,7 @@ const Step3 = ({ formik, increment, decrement }) => {
                 type="radio"
                 name="gender"
                 value="female"
+                defaultChecked={formik.values.gender === "female"}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Female</RadioLabel>
@@ -69,18 +70,20 @@ const Step3 = ({ formik, increment, decrement }) => {
         </RadioList>
 
         <AgeLabel htmlFor="age">Your age</AgeLabel>
-        <InputStyle
-          id="age"
-          name="age"
-          // type="age"
-          placeholder="Enter your age"
-          onChange={formik.handleChange}
-          value={formik.values.age}
-        />
-        {error ? <InputError>{formik.errors.age}</InputError> : null}
-        { !formik.errors.age && formik.touched.age ? (
-          <InputError style={{ color: 'green' }}>Age is valid</InputError>
-        ) : null}
+        <InputBlock>
+          <InputStyle
+          className={validation === 'validation' ? formik.errors.age ? "error" : "correct" : ''}
+            id="age"
+            name="age"
+            placeholder="Enter your age"
+            onChange={formik.handleChange}
+            value={formik.values.age}
+          />
+          {validation === 'validation' ? (formik.errors.age ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
+          {validation === 'validation' ? (formik.errors.age ? (<InputError>{formik.errors.age}</InputError>) :
+           (<InputError style={{ color: 'green' }}>Age is valid</InputError>)) : null}
+        </InputBlock>
       </FormBlock>
       <ButtonList>  
         <li>

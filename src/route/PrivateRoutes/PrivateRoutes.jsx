@@ -1,10 +1,10 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRoute = ({ isLoggedIn, children }) => {
   if (isLoggedIn) {
     return children || <Outlet />;
   } else {
-    return <Navigate to="/" replace={true}/>;
+    return <Navigate to="/" replace={true} />;
   }
 };
 

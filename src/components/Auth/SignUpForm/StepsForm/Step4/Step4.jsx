@@ -1,4 +1,4 @@
-import { InputStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
+import {InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
 import { BodyForm, InputList, Label, ButtonList } from './Step4.styled';
 import {
   Button,
@@ -7,20 +7,21 @@ import {
   InputError,
 } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import { useState } from 'react';
+import  inputSvg  from 'assets/sprite.svg';
+
 
 const Step4 = ({ formik, increment, decrement }) => {
-  const [error, setError] = useState(false);
+  const [validation, setValidation] = useState('');
+
 
   const onClickBtnNext = () => {
-    if (
-      formik.values.height !== '' &&
+    setValidation('validation');
+
+    if (formik.values.height !== '' &&
       !formik.errors.height &&
       formik.values.weight !== '' &&
-      !formik.errors.weight
-    ) {
+      !formik.errors.weight) {
       increment();
-    } else {
-      setError(true);
     }
   };
 
@@ -31,33 +32,37 @@ const Step4 = ({ formik, increment, decrement }) => {
       <InputList>
         <li>
           <Label htmlFor="height">Height</Label>
+          <InputBlock>
           <InputStyle
+          className={validation === 'validation' ? formik.errors.height ? "error" : "correct" : ''}
             id="height"
             name="height"
-            type="height"
             placeholder="Enter your height"
             onChange={formik.handleChange}
             value={formik.values.height}
           />
-          {error ? <InputError>{formik.errors.height}</InputError> : null}
-          {!formik.errors.height && formik.touched.height ? (
-            <InputError style={{ color: 'green' }}>Height is valid</InputError>
-          ) : null}
+          {validation === 'validation' ? (formik.errors.height ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
+          {validation === 'validation' ? (formik.errors.height ? (<InputError>{formik.errors.height}</InputError>) :
+           (<InputError style={{ color: 'green' }}>Height is valid</InputError>)) : null}
+        </InputBlock>
         </li>
         <li>
           <Label htmlFor="weight">Weight</Label>
+          <InputBlock>
           <InputStyle
+          className={validation === 'validation' ? formik.errors.weight ? "error" : "correct" : ''}
             id="weight"
             name="weight"
-            type="weight"
             placeholder="Enter your weight"
             onChange={formik.handleChange}
             value={formik.values.weight}
           />
-          {error ? <InputError>{formik.errors.weight}</InputError> : null}
-          {!formik.errors.weight && formik.touched.weight ? (
-            <InputError style={{ color: 'green' }}>Weight is valid</InputError>
-          ) : null}
+          {validation === 'validation' ? (formik.errors.weight ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
+          {validation === 'validation' ? (formik.errors.weight ? (<InputError>{formik.errors.weight}</InputError>) :
+           (<InputError style={{ color: 'green' }}>Weight is valid</InputError>)) : null}
+        </InputBlock>
         </li>
       </InputList>
       <ButtonList>

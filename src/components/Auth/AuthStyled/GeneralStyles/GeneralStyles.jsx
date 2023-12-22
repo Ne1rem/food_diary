@@ -55,6 +55,11 @@ const Button = styled.button`
   line-height: 1.4;
   background-color: transparent;
   color: var(--color-crimary-grey);
+  
+  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
+   color 0.4s cubic-bezier(0, 0, 1, 1),
+   transform 0.4s cubic-bezier(0, 0, 1, 1);
+
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -70,6 +75,7 @@ const Button = styled.button`
   &:hover {
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
+  transform: scale(1.03);
 }
 
 &.btn-active {
@@ -79,9 +85,11 @@ const Button = styled.button`
 `;
 
 const InputError = styled.div`
-  color: #E74A3B;
+position: absolute;
+top: 40px;
+left: 10px;
+color: #E74A3B;
 
-text-align: center;
 font-size: 12px;
 font-weight: 400;
 line-height: 1.1

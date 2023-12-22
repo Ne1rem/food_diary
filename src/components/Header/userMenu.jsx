@@ -57,7 +57,7 @@ import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 import { useDispatch } from 'react-redux';
-import { refresh } from '../../Redux/Auth/authThunks';
+// import { refresh } from '../../Redux/Auth/authThunks';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const dispatch = useDispatch();
@@ -70,21 +70,21 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const [currentGoal, setCurrentGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(currentGoal);
 
-  useEffect(() => {
-    dispatch(refresh())
-      .then((response) => {
-        const { name, gender, goal, weight, avatarURL } = response.payload;
-        setName(name);
-        setGender(gender);
-        setCurrentGoal(goal);
-        setNewGoal(goal)
-        setWeight(weight);
-        setUserAvatar(avatarURL)
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-      });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refresh())
+  //     .then((response) => {
+  //       const { name, gender, goal, weight, avatarURL } = response.payload;
+  //       setName(name);
+  //       setGender(gender);
+  //       setCurrentGoal(goal);
+  //       setNewGoal(goal);
+  //       setWeight(weight);
+  //       setUserAvatar(avatarURL);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching user data:', error);
+  //     });
+  // }, [dispatch]);
 
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
@@ -121,8 +121,6 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     setIsUserModalOpen((prevState) => !prevState);
   }
 
-
-  
   return (
     <UserMenuContainer>
       <GoalHeader>
@@ -136,7 +134,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             <DivGoal>
               <GoalPName>Goal</GoalPName>
               <GoalP>{currentGoal}</GoalP>
-            </DivGoal>  
+            </DivGoal>
             <GoalSvg>
               <use href={`${HeaderSvg}#change-your-goal`} />
             </GoalSvg>
@@ -176,7 +174,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivWeightPart>
         </WeightButton>
         {isWeightModalOpen && (
-          <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} setWeight={setWeight} />
+          <ModalWeight
+            setIsWeightModalOpen={setIsWeightModalOpen}
+            setWeight={setWeight}
+          />
         )}
       </WeightHeader>
       <UserHeader>
@@ -195,7 +196,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             <use href={`${HeaderSvg}#change-your-goal`} />
           </AvatarSvg>
         </UserHeaderButton>
-        {isUserModalOpen && <ModalUserHeader />}
+        {isUserModalOpen && <ModalUserHeader setIsUserModalOpen={setIsUserModalOpen} />}
       </UserHeader>
       {isMobileModalOpen && (
         <MobileOpenModal>

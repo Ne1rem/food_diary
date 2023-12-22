@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signUp, refresh, forgotPassword, logOut } from './authThunks';
+import { signIn, signUp, forgotPassword, logOut } from './authThunks';
 
 const initialState = {
   user: {
@@ -18,18 +18,19 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
+  isError: null
 };
 
 const handlePending = (state) => {
-  state.error = null;
+  state.isError = null;
   state.isLoading = true;
 };
 
 const handleRejected = (state, payload) => {
   state.isLoggedIn = false;
   state.isLoading = false;
-  state.token = null;
-  state.error = payload;
+  state.accessToken = null;
+  state.isError = payload;
 };
 
 const authSlice = createSlice({
@@ -56,13 +57,13 @@ const authSlice = createSlice({
       .addCase(forgotPassword.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
-      .addCase(refresh.rejected, (state, { payload }) => {
-        handleRejected(state, payload);
-      })
+      // .addCase(refresh.rejected, (state, { payload }) => {
+      //   handleRejected(state, payload);
+      // })
 
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
         state.isLoading = false;
         // state.isLoggedIn = true;
         toast.success(`Successful Registration.`);
@@ -70,17 +71,17 @@ const authSlice = createSlice({
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
         state.isLoading = false;
         state.isLoggedIn = true;
         toast.success(`Successful Loginned.`);
       })
 
-      .addCase(refresh.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.isLoading = false;
-        state.isLoggedIn = true;
-      })
+      // .addCase(refresh.fulfilled, (state, { payload }) => {
+      //   state.user = payload;
+      //   state.isLoading = false;
+      //   state.isLoggedIn = true;
+      // })
       .addCase(forgotPassword.fulfilled, (state) => {
         state.isLoading = false;
         toast.success('Request successful');
@@ -93,7 +94,7 @@ const authSlice = createSlice({
       handlePending(state);
     })
     .addCase(logOut.fulfilled, (state) => {
-      state.token = null;
+      state.accessToken = null;
       state.isLoggedIn = false;
     })
     .addCase(logOut.rejected, (state, { payload }) => {

@@ -25,15 +25,12 @@ import {
   ElFormDivHor,
   SvgStyled,
   RadioCircle,
-  RadioButtonGender
+  RadioButtonGender,
 } from './Form.styled';
 import { RadioButton } from './Form.styled';
 import { RadioLabel } from './Form.styled';
 
-
 export const ProfileSettings = () => {
-
- 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,7 +44,9 @@ export const ProfileSettings = () => {
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      avatarURL: userInfo.avatarURL || 'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      avatarURL:
+        userInfo.avatarURL ||
+        'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -74,23 +73,22 @@ export const ProfileSettings = () => {
   // for base64 coding
 
   // const [Image, setImage] = useState();
-  
+
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
     // const reader = new FileReader();
-   
+
     // reader.onload = (e) => {
     //   const base64Image = e.target.result;
     //   setImage(base64Image);
     //   formik.setFieldValue('avatarURL', base64Image);
     // };
-  
+
     // reader.readAsDataURL(file);
 
     formik.setFieldValue('avatarURL', URL.createObjectURL(file));
   };
 
-  
   const handleDownloadNewPhoto = () => {
     fileInputRef.current.click();
   };
@@ -99,7 +97,6 @@ export const ProfileSettings = () => {
 
   return (
     <div>
-   
       <Form onSubmit={formik.handleSubmit}>
         <TabletDiv>
           <ElFormDiv>
@@ -121,7 +118,6 @@ export const ProfileSettings = () => {
             <ActivityTextStyled>Your photo</ActivityTextStyled>
             <ElFormDivHor>
               {formik.values.avatarURL ? (
-                
                 <img
                   src={formik.values.avatarURL}
                   alt="User Avatar"
@@ -237,8 +233,8 @@ export const ProfileSettings = () => {
                 value="1.2"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                defaultChecked={formik.values.activity === 1.2} 
-                />
+                defaultChecked={formik.values.activity === 1.2}
+              />
               <RadioCircle></RadioCircle>
               <RadioLabel>
                 1.2 - if you do not have physical activity and sedentary work
