@@ -224,102 +224,96 @@ export const ProfileSettings = () => {
         </TabletDiv>
         <ActivityDiv>
           <ActivityTextStyled>Your activity</ActivityTextStyled>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.2"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={
-                  formik.values.activity === 1.2 ||
-                  formik.values.activity === '1.2'
-                }
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.2 - if you do not have physical activity and sedentary work
-              </RadioLabel>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.375"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={
-                  formik.values.activity === 1.375 ||
-                  formik.values.activity === '1.375'
-                }
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.375 - if you do short runs or light gymnastics 1-3 times a
-                week
-              </RadioLabel>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.55"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={
-                  formik.values.activity === 1.55 ||
-                  formik.values.activity === '1.55'
-                }
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.55 - if you play sports with average loads 3-5 times a week
-              </RadioLabel>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.725"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={
-                  formik.values.activity === 1.725 ||
-                  formik.values.activity === '1.725'
-                }
-              />
-              <RadioCircle></RadioCircle>
-              <Span>1.725 - if you train fully 6-7 times a week</Span>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.9"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                checked={
-                  formik.values.activity === 1.9 ||
-                  formik.values.activity === '1.9'
-                }
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.9 - if your work is related to physical labor, you train 2
-                times a day and include strength exercises in your training
-                program
-              </RadioLabel>
-            </RadioButton>
-          </div>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.2"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.2 ||
+                formik.values.activity === '1.2'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.2 - if you do not have physical activity and sedentary work
+            </RadioLabel>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.375"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.375 ||
+                formik.values.activity === '1.375'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.375 - if you do short runs or light gymnastics 1-3 times a week
+            </RadioLabel>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.55"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.55 ||
+                formik.values.activity === '1.55'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.55 - if you play sports with average loads 3-5 times a week
+            </RadioLabel>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.725"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.725 ||
+                formik.values.activity === '1.725'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <Span>1.725 - if you train fully 6-7 times a week</Span>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.9"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.9 ||
+                formik.values.activity === '1.9'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.9 - if your work is related to physical labor, you train 2 times
+              a day and include strength exercises in your training program
+            </RadioLabel>
+          </RadioButton>
+
           {formik.touched.activityLevel && formik.errors.activity ? (
             <div>{formik.errors.activity}</div>
           ) : null}
