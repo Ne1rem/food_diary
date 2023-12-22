@@ -44,7 +44,9 @@ export const ProfileSettings = () => {
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      avatarURL: userInfo.avatarURL || 'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      avatarURL:
+        userInfo.avatarURL ||
+        'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -72,7 +74,9 @@ export const ProfileSettings = () => {
   useEffect(() => {
     formik.setValues({
       name: userInfo.name || '',
-      avatarURL: userInfo.avatarURL || 'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      avatarURL:
+        userInfo.avatarURL ||
+        'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -228,7 +232,10 @@ export const ProfileSettings = () => {
                 value="1.2"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.2}
+                checked={
+                  formik.values.activity === 1.2 ||
+                  formik.values.activity === '1.2'
+                }
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -244,7 +251,10 @@ export const ProfileSettings = () => {
                 value="1.375"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.375}
+                checked={
+                  formik.values.activity === 1.375 ||
+                  formik.values.activity === '1.375'
+                }
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -261,7 +271,10 @@ export const ProfileSettings = () => {
                 value="1.55"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.55}
+                checked={
+                  formik.values.activity === 1.55 ||
+                  formik.values.activity === '1.55'
+                }
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -277,7 +290,10 @@ export const ProfileSettings = () => {
                 value="1.725"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.725}
+                checked={
+                  formik.values.activity === 1.725 ||
+                  formik.values.activity === '1.725'
+                }
               />
               <RadioCircle></RadioCircle>
               <Span>1.725 - if you train fully 6-7 times a week</Span>
@@ -291,7 +307,10 @@ export const ProfileSettings = () => {
                 value="1.9"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                checked={formik.values.activity === 1.9}
+                checked={
+                  formik.values.activity === 1.9 ||
+                  formik.values.activity === '1.9'
+                }
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>
@@ -307,9 +326,12 @@ export const ProfileSettings = () => {
         </ActivityDiv>
 
         <ButtonDiv>
-        <Button type="button" onClick={() => formik.resetForm({ values: userInfo })}>
-  Cancel
-</Button>
+          <Button
+            type="button"
+            onClick={() => formik.resetForm({ values: userInfo })}
+          >
+            Cancel
+          </Button>
           <Button type="submit">Save</Button>
         </ButtonDiv>
       </Form>
