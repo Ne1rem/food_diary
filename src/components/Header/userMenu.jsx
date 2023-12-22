@@ -56,7 +56,7 @@ import ModalWeight from './ModalsHeader/ModalWeight';
 import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { refresh } from '../../Redux/Auth/authThunks';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
@@ -85,7 +85,9 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   //       console.error('Error fetching user data:', error);
   //     });
   // }, [dispatch]);
-
+  
+  // const user = useSelector((state) => state.user.user);
+  // console.log(user);
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Maintain female': MaintainGirl,
