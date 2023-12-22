@@ -1,4 +1,4 @@
-import{s as i,N as t,j as e}from"./index-9214bbf5.js";import{T as o,a as s,A as a,i as c}from"./Illustration-afbbf790.js";const l=i.div`
+import{s as i,N as t,j as e}from"./index-5ef88a3c.js";import{T as o,a as s,A as a,i as l}from"./Illustration-1b20bad9.js";const c=i.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
@@ -27,8 +27,7 @@ import{s as i,N as t,j as e}from"./index-9214bbf5.js";import{T as o,a as s,A as 
   
   color: var(--color-primary-white);
   transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1),
-   transform 0.4s cubic-bezier(0, 0, 1, 1);
+   color 0.4s cubic-bezier(0, 0, 1, 1);
 
 
   @media screen and (min-width: 834px) {
@@ -38,7 +37,6 @@ import{s as i,N as t,j as e}from"./index-9214bbf5.js";import{T as o,a as s,A as 
   &:hover {
   color: var(--color-primary-black-2);
   background: var(--color-primary-green-lite);
-  transform:  scale(1.03);
 }
 
   &.active {
@@ -76,4 +74,4 @@ import{s as i,N as t,j as e}from"./index-9214bbf5.js";import{T as o,a as s,A as 
 `,r=i.p`
   font-weight: 400;
   line-height: 1.4;
-`,p=()=>e.jsxs(l,{children:[e.jsx(o,{children:"Set goals and achieve them"}),e.jsx(s,{children:"The service will help you set goals and follow them."}),e.jsxs(d,{children:[e.jsx(n,{className:"active",to:"/signin",children:"Sign in"}),e.jsx(n,{to:"/signup",children:"Sign up"})]}),e.jsxs(x,{children:[e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Set goals"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Watch your calories"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Keep track of your water intake"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Control your weight"})]})]})]}),g=()=>e.jsx(a,{image:c,children:e.jsx(p,{})});export{g as default};
+`,p=()=>e.jsxs(c,{children:[e.jsx(o,{children:"Set goals and achieve them"}),e.jsx(s,{children:"The service will help you set goals and follow them."}),e.jsxs(d,{children:[e.jsx(n,{className:"active",to:"/signin",children:"Sign in"}),e.jsx(n,{to:"/signup",children:"Sign up"})]}),e.jsxs(x,{children:[e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Set goals"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Watch your calories"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Keep track of your water intake"})]}),e.jsxs("li",{children:[e.jsx("div",{}),e.jsx(r,{children:"Control your weight"})]})]})]}),g=()=>e.jsx(a,{image:l,children:e.jsx(p,{})});export{g as default};
