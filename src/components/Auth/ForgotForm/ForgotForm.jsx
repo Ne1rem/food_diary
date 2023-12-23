@@ -17,6 +17,7 @@ import {
   NavToSignIn,
   InputWrapper,
 } from './ForgotForm.styled';
+import  LoaderBtn from '../Loader/LoaderBtn'
 import { useNavigate } from 'react-router-dom';
 
 import { forgotPassword } from '../../../Redux/Auth/authThunks';
@@ -25,24 +26,35 @@ import { forgotShema } from '../validationSchemas/validationSchema';
 import inputSvg from 'assets/sprite.svg';
 import { useState } from 'react';
 
+
+
 const ForgotForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [validation, setValidation] = useState('');
+const [pending, setPending] = useState('')
 
-  const formik = useFormik({
+  const formik =  useFormik({
     initialValues: {
       email: '',
-    },
-    onSubmit: (values) => {
-      dispatch(forgotPassword(values))
-      navigate('/signin');
     },
     validationSchema: forgotShema,
   });
 
-  const onClickSubmit = () => {
+  const onClickSubmit = async () => {
     setValidation('validation');
+
+if (formik.values.email !== '' && !formik.errors.email) {
+  try {
+    setPending('loading')
+    await dispatch(forgotPassword(formik.values)).unwrap()
+    navigate('/signin');
+  } catch (err) {
+    console.log(err);
+  } finally {
+setPending('')
+  }
+}
   };
 
   return (
@@ -52,16 +64,16 @@ const ForgotForm = () => {
       <InputWrapper>
         <InputBlock>
           <InputStyle
-          className={validation === 'validation' ? formik.errors.email ? "error" : "correct" : ''}
+          className={validation === 'validation' ? formik.errors.email || formik.values.email === '' ? "error" : "correct" : ''}
             id="email"
             name="email"
             placeholder="E-mail"
             onChange={formik.handleChange}
             value={formik.values.email}
           />
-          {validation === 'validation' ? (formik.errors.email ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
+          {validation === 'validation' ? (formik.errors.email || formik.values.email === ''  ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
-          {validation === 'validation' ? (formik.errors.email ? (<InputError>{formik.errors.email}</InputError>) :
+          {validation === 'validation' ? (formik.errors.email || formik.values.email === '' ? (<InputError>{formik.errors.email || 'Email required'}</InputError>) :
            (<InputError style={{ color: '#3CBC81' }}>E-mail is valid</InputError>)) : null}
         </InputBlock>
       </InputWrapper>
@@ -70,8 +82,8 @@ const ForgotForm = () => {
         onClick={() => {
           onClickSubmit();
         }}
-     type='submit' >
-        Send
+     type='button' >
+      {pending === 'loading' ? <LoaderBtn/> : 'Send'}
       </Button>
       <NavToSignInBlock>
         <NavToSignInText>Do you already have an account?</NavToSignInText>

@@ -16,12 +16,13 @@ import {
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { selectToken } from '../../../Redux/Auth/selectors';
 
 function ModalWeight({ setIsWeightModalOpen, setWeight }) {
   const dispatch = useDispatch();
-  const persistedToken = useSelector((state) => state.auth.token);
   const [enteredWeight, setEnteredWeight] = useState('');
-
+  const persistedToken = useSelector(selectToken)
+  
   const handleSubmit = async () => {
     try {
       if (!persistedToken) {
