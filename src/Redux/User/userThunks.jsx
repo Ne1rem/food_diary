@@ -5,7 +5,7 @@ import instance from '../Auth/authThunks';
 
 // axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
-export const currentUser = createAsyncThunk(
+const currentUser = createAsyncThunk(
   'user/current',
   async (_, thunkAPI) => {
     try {
@@ -18,21 +18,8 @@ export const currentUser = createAsyncThunk(
   }
 );
 
-// export const updateUser = createAsyncThunk(
-//   "user/update",
-//   async (value, thunkAPI) => {
-//     try {
-//       const { data } = await instance.put(`user/update`, value);
-//       return data;
-//     } catch (e) {
-//       toast.error(e.response.statusText);
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
 
-
-export const updateUser = createAsyncThunk(
+const updateUser = createAsyncThunk(
   'user/update',
   async (values, thunkAPI) => {
     try {
@@ -70,3 +57,48 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+
+const updateUserGoal = createAsyncThunk(
+  "user/goal",
+  async (value, thunkAPI) => {
+    try {
+      const { data } = await instance.put(`user/goal`, value);
+      return data;
+    } catch (e) {
+      toast.error(e.response.statusText);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+
+const addUserWeight = createAsyncThunk(
+  'user/weight',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post('user/weight', credentials);
+      return data;
+    } catch (e) {
+      toast.error('Invalid email!');
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+
+const userStatistics = createAsyncThunk(
+  'user/statistics',
+  async (_, thunkAPI) => {
+    try {
+      const response = await instance.get('user/statistics');
+      return response.data;
+    } catch (e) {
+      toast.error(e.response.statusText);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+
+export { currentUser, updateUser, updateUserGoal, addUserWeight, userStatistics }
