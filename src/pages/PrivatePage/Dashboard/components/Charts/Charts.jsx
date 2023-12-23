@@ -28,10 +28,14 @@ import {
   Span,
   ContainerWeightChart,
   WeightWrapper,
+  Upper,
+  WeightWrap,
+  LowerWrap,
+  UpperValue,
+  LowerValue,
 } from './Charts.styled';
 import { caloriesOptions, waterOptions } from './chartOptions';
 import { customSelectStyles } from './Charts.styled';
-import WeightCharts from './WeightCharts';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -56,7 +60,7 @@ const Charts = () => {
   const waterChartOptions = {
     ...waterOptions,
   };
-  
+
   const initializeChartData = (selected) => {
     updateCaloriesChartData(selected);
     updateWaterChartData(selected);
@@ -110,9 +114,9 @@ const Charts = () => {
   // --- /Month selet setings ---
 
   const generateRandomData = () => {
-  return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
+    return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
   };
-  
+
   // --- Calories setings ---
   const updateCaloriesChartData = (selected) => {
     setChartData({
@@ -194,6 +198,13 @@ const Charts = () => {
     });
   };
 
+  const upperRowValues = Array.from({ length: 30 }, () =>
+    (Math.random() * (80 - 60) + 60).toFixed(0)
+  );
+  const lowerRowValues = Array.from({ length: 30 }, (_, i) =>
+    (i + 1).toString()
+  );
+
   const selectOptions = months.map((month) => ({ value: month, label: month }));
 
   return (
@@ -221,6 +232,7 @@ const Charts = () => {
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
+      <>
       <Wrapper>
         {/* ---Calories Chart Container--- */}
         <ChartsWrapper>
@@ -249,6 +261,7 @@ const Charts = () => {
         </ChartsWrapper>
 
         {/* ---Water Chart Container--- */}
+
         <ChartsWrapper>
           <ContainerValue>
             <TitleWater>Water</TitleWater>
@@ -297,10 +310,24 @@ const Charts = () => {
         {/* --Weight Chart-- */}
         <ContainerWeightChart>
           {weightChartData && (
-            <WeightCharts data={weightChartData} />
+            <>
+              <WeightWrap data={weightChartData}>
+                <Upper>
+                  {upperRowValues.map((value, index) => (
+                    <UpperValue key={index}>{value}</UpperValue>
+                  ))}
+                </Upper>
+                <LowerWrap>
+                  {lowerRowValues.map((value, index) => (
+                    <LowerValue key={index}>{value}</LowerValue>
+                  ))}
+                </LowerWrap>
+              </WeightWrap>
+            </>
           )}
         </ContainerWeightChart>
-      </WeightWrapper>
+        </WeightWrapper>
+        </>
     </>
   );
 };

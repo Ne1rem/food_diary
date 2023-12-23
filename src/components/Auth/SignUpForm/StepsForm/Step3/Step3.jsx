@@ -82,7 +82,7 @@ const Step3 = ({ formik, increment, decrement }) => {
           {validation === 'validation' ? (formik.errors.age ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
            <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
           {validation === 'validation' ? (formik.errors.age ? (<InputError>{formik.errors.age}</InputError>) :
-           (<InputError style={{ color: 'green' }}>Age is valid</InputError>)) : null}
+           (<InputError style={{ color: '#3CBC81' }}>Age is valid</InputError>)) : null}
         </InputBlock>
       </FormBlock>
       <ButtonList>  

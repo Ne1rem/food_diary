@@ -52,7 +52,7 @@ export const updateUser = createAsyncThunk(
           console.log(pair[0] + ', ' + pair[1]);
         }
 
-        const { data } = await instance.put('/user/update', formData, {
+        const { data } = await instance.put('user/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -61,7 +61,7 @@ export const updateUser = createAsyncThunk(
         console.log(formData);
         return data;
       } else {
-        const { data } = await instance.put('/user/update', values);
+        const { data } = await instance.put('user/update', values);
         return data;
       }
     } catch (e) {
