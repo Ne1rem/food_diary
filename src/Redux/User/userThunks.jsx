@@ -2,39 +2,15 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ErrorToast, SuccessToast } from './toast';
 import instance from '../Auth/authThunks';
-// import axios from 'axios';
-// import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { selectToken } from '../Auth/selectors';
+axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
-// axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
-
-const currentUser = createAsyncThunk(
-  'user/current',
-  async (_, thunkAPI) => {
-    try {
-      const response = await instance.get('user/current');
-      return response.data;
-    } catch (e) {
-      toast.error(e.response.statusText);
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-
-// export const currentUser = createAsyncThunk(
+// const currentUser = createAsyncThunk(
 //   'user/current',
 //   async (_, thunkAPI) => {
 //     try {
-//       const persistedToken = useSelector((state) => state.auth.accessToken)
-
-//       const axiosInstance = axios.create({
-//         baseURL: 'https://food-diary-backend-kr1b.onrender.com/api',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization: `Bearer ${persistedToken}`,
-//         },
-//       });
-
-//       const response = await axiosInstance.get('/user/current');
+//       const response = await instance.get('user/current');
 //       return response.data;
 //     } catch (e) {
 //       toast.error(e.response.statusText);
@@ -42,6 +18,28 @@ const currentUser = createAsyncThunk(
 //     }
 //   }
 // );
+
+const currentUser = createAsyncThunk(
+  'user/current',
+  async (_, thunkAPI) => {
+    try {
+      const persistedToken = selectToken(thunkAPI.getState())
+
+      const axiosInstance = axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${persistedToken}`,
+        },
+      });
+
+      const response = await axiosInstance.get('/user/current');
+      return response.data;
+    } catch (e) {
+      console.error('Error fetching user data:', e);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 // export const updateUser = createAsyncThunk(
 //   "user/update",

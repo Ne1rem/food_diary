@@ -22,6 +22,7 @@ import MaintainGirl from '/src/assets/header/Maintain-girl.png';
 import MaintainMan from '/src/assets/header/Maintain-man.png';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 import axios from 'axios';
+import { selectToken } from '../../../Redux/Auth/selectors';
 
 const updateGoalAsync = (newGoal, persistedToken) => async (dispatch) => {
   try {
@@ -54,7 +55,7 @@ function ModalGoal({
   setCurrentGoal,
 }) {
   const dispatch = useDispatch();
-  const persistedToken = useSelector((state) => state.auth.token);
+  const persistedToken = useSelector(selectToken)
 
   const setGoalLosefat = () => setNewGoal('Lose Fat');
   const setGoalMaintain = () => setNewGoal('Maintain');
