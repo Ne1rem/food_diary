@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Redux/User/selectors';
 
@@ -21,14 +21,17 @@ import {
   DownloadButton,
   ButtonDiv,
   TabletDiv,
-  ElFormDiv,
   ElFormDivHor,
   SvgStyled,
   RadioCircle,
   RadioButtonGender,
+  InputIconStyle,
+  InputErrorStyled,
 } from './Form.styled';
 import { RadioButton } from './Form.styled';
 import { RadioLabel } from './Form.styled';
+import { InputBlock } from '../Auth/AuthStyled/InputStyle/InputStyle.styled';
+import inputSvg from 'assets/sprite.svg';
 
 export const ProfileSettings = () => {
   const dispatch = useDispatch();
@@ -40,6 +43,15 @@ export const ProfileSettings = () => {
   const userInfo = useSelector(selectUser);
 
   const fileInputRef = useRef(null);
+
+  const [validation, setValidation] = useState('');
+
+  const onClickBtnSave = () => {
+    setValidation('validation');
+    if (formik.values.age !== '' && !formik.errors.age) {
+      formik.handleSubmit;
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -54,17 +66,17 @@ export const ProfileSettings = () => {
       activity: userInfo.activity || '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Поле ім'я є обов'язковим"),
+      name: Yup.string().required('Name ir required'),
       age: Yup.number()
-        .positive('Вік повинен бути додатнім числом')
-        .required("Поле вік є обов'язковим"),
+        .positive('Age has to be positive number')
+        .required('Age is required'),
       weight: Yup.number()
-        .positive('Вага повинна бути додатнім числом')
-        .required("Поле вага є обов'язковим"),
+        .positive('Weight has to be positive number')
+        .required('Weight is required'),
       height: Yup.number()
-        .positive('Зріст повинен бути додатнім числом')
-        .required("Поле зріст є обов'язковим"),
-      activity: Yup.string().required('Оберіть рівень фізичної активності'),
+        .positive('Height has to be positive number')
+        .required('Height is required'),
+      activity: Yup.string().required('Choose activity level'),
     }),
     onSubmit: (values) => {
       dispatch(updateUser(values));
@@ -98,20 +110,45 @@ export const ProfileSettings = () => {
     <div>
       <Form onSubmit={formik.handleSubmit}>
         <TabletDiv>
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="name">Your name</LabelStyled>
             <InputStyle
+              className={
+                validation === 'validation'
+                  ? formik.errors.name
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
               type="text"
               id="name"
               name="name"
+              placeholder="Enter your name"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
             />
-            {formik.touched.name && formik.errors.name ? (
-              <div>{formik.errors.name}</div>
+            {validation === 'validation' ? (
+              formik.errors.name ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
+            {validation === 'validation' ? (
+              formik.errors.name ? (
+                <InputErrorStyled>{formik.errors.name}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Name is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
 
           <AvatarDiv>
             <ActivityTextStyled>Your photo</ActivityTextStyled>
@@ -143,21 +180,45 @@ export const ProfileSettings = () => {
           </AvatarDiv>
         </TabletDiv>
         <TabletDiv>
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="age">Your age</LabelStyled>
             <InputStyle
+              className={
+                validation === 'validation'
+                  ? formik.errors.age
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
               type="number"
               id="age"
               name="age"
+              placeholder="Enter your age"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.age}
             />
-            {formik.touched.age && formik.errors.age ? (
-              <div>{formik.errors.age}</div>
+            {validation === 'validation' ? (
+              formik.errors.age ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
-
+            {validation === 'validation' ? (
+              formik.errors.age ? (
+                <InputErrorStyled>{formik.errors.age}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Age is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
           <div>
             <LabelStyled>Gender</LabelStyled>
             <GenderDiv>
@@ -192,35 +253,86 @@ export const ProfileSettings = () => {
           </div>
         </TabletDiv>
         <TabletDiv>
-          <ElFormDiv>
+          {/* <ElFormDiv> */}
+          <InputBlock>
             <LabelStyled htmlFor="weight">Weight</LabelStyled>
             <InputStyle
+              className={
+                validation === 'validation'
+                  ? formik.errors.weight
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
               type="number"
               id="weight"
               name="weight"
+              placeholder="Enter your weight"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.weight}
             />
-            {formik.touched.weight && formik.errors.weight ? (
-              <div>{formik.errors.weight}</div>
+            {validation === 'validation' ? (
+              formik.errors.weight ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
+            {validation === 'validation' ? (
+              formik.errors.weight ? (
+                <InputErrorStyled>{formik.errors.weight}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Weight is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
 
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="height">Height</LabelStyled>
             <InputStyle
+              className={
+                validation === 'validation'
+                  ? formik.errors.height
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
               type="number"
               id="height"
               name="height"
+              placeholder="Enter your height"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.height}
             />
-            {formik.touched.height && formik.errors.height ? (
-              <div>{formik.errors.height}</div>
+            {validation === 'validation' ? (
+              formik.errors.height ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
+            {validation === 'validation' ? (
+              formik.errors.height ? (
+                <InputErrorStyled>{formik.errors.height}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Height is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
         </TabletDiv>
         <ActivityDiv>
           <ActivityTextStyled>Your activity</ActivityTextStyled>
@@ -326,7 +438,14 @@ export const ProfileSettings = () => {
           >
             Cancel
           </Button>
-          <Button type="submit">Save</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              onClickBtnSave();
+            }}
+          >
+            Save
+          </Button>
         </ButtonDiv>
       </Form>
     </div>
