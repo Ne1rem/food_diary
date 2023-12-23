@@ -1,12 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy,  useEffect } from 'react';
 import PublicRoute from './route/PublicRoute/PublicRoute';
 import PrivateRoute from './route/PrivateRoutes/PrivateRoutes';
 import './main.css';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import { selectIsLoggedIn } from './Redux/Auth/selectors';
-import { useSelector} from 'react-redux';
-// import { refresh } from './Redux/Auth/authThunks';
+import { useSelector, useDispatch } from 'react-redux';
+import { refresh } from './Redux/Auth/authThunks';
 
 const Welcome = lazy(() => import('./pages/PublicPage/Welcome/Welcome'));
 const SignUp = lazy(() => import('./pages/PublicPage/SignUp/SignUp'));
@@ -23,12 +23,12 @@ const RecommendedFood = lazy(() =>
 );
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  // useEffect(() => {
-  //   dispatch(refresh());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
 
   return (
     <div>
