@@ -127,13 +127,16 @@ const userStatistics = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instance.get('user/statistics');
+      console.log('Response from userStatistics:', response.data);
       return response.data;
     } catch (e) {
+      console.error('Error in userStatistics:', e);
       toast.error(e.response.statusText);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
+
 
 
 export { currentUser, updateUser, updateUserGoal, addUserWeight, userStatistics }
