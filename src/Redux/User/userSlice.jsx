@@ -11,7 +11,11 @@ const initialState = {
   user: [],
   goal: [],
   weight: [],
-  statistics: [],
+  statistics: {
+    caloriesData: [],
+    waterData: [],
+    weightData: [],
+  },
   isLoading: false,
   isError: null,
 };
@@ -47,8 +51,6 @@ const userSlice = createSlice({
         handlePending(state);
       })
 
-
-
       .addCase(currentUser.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
@@ -64,8 +66,6 @@ const userSlice = createSlice({
       .addCase(userStatistics.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
-
-
 
       .addCase(currentUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -88,10 +88,10 @@ const userSlice = createSlice({
         state.weight = payload;
       })
       .addCase(userStatistics.fulfilled, (state, { payload }) => {
+        console.log('Payload from userStatistics:', payload);
         state.isLoading = false;
         state.isError = null;
         state.statistics = payload;
-        console.log(payload);
       });
   },
 });
