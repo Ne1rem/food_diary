@@ -113,13 +113,14 @@ const addUserWeight = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('user/weight', credentials);
-      return data;
+      return { ...data, date: credentials.date }; //
     } catch (e) {
       toast.error('Invalid email!');
       return rejectWithValue(e.message);
     }
   }
 );
+
 
 
 const userStatistics = createAsyncThunk(
@@ -129,7 +130,6 @@ const userStatistics = createAsyncThunk(
       const response = await axios.get('user/statistics');
       return response.data;
     } catch (e) {
-      console.error('Error in userStatistics:', e);
       toast.error(e.response.statusText);
       return thunkAPI.rejectWithValue(e.message);
     }

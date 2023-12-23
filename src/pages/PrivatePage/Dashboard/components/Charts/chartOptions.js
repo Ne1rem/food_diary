@@ -17,7 +17,7 @@ export const caloriesOptions = {
       type: 'linear',
       position: 'bottom',
       min: 1,
-      max: 30,
+      max: 31,
       ticks: {
         stepSize: 1,
       },
@@ -42,7 +42,6 @@ export const caloriesOptions = {
         borderWidth: 0.5,
       },
       onClick: function (e) {
-        // Дії при кліці на анотацію
       },
     },
   },
@@ -65,12 +64,22 @@ export const waterOptions = {
   },
   scales: {
     x: {
+      type: 'linear',
+      position: 'bottom',
+      min: 1,
+      max: 31,
+      ticks: {
+        stepSize: 1,
+      },
       grid: {
         display: true,
         color: 'rgba(41, 41, 40, 1)',
+        borderWidth: 0.5,
       },
     },
     y: {
+      type: 'linear',
+      position: 'left',
       min: 0,
       max: 3000,
       ticks: {
@@ -80,16 +89,15 @@ export const waterOptions = {
       grid: {
         display: true,
         color: 'rgba(41, 41, 40, 1)',
+        borderWidth: 0.5,
       },
       onClick: function (e) {
-        // Дії при кліці на анотацію
       },
     },
   },
   maintainAspectRatio: false,
 };
 
-// Функція для отримання одиниць вимірювання для вспливаючої анотації
 function TooltipUnit(label) {
   if (label === 'Calories') {
     return 'calories';
