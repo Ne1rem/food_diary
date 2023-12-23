@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { saveUserWaterIntake, deleteWaterIntakeCurrentDate } from './FoodThunks'
+import { saveUserWaterIntake, deleteWaterIntakeCurrentDate } from './WaterThunks'
 
 const initialState = {
     water: [],
