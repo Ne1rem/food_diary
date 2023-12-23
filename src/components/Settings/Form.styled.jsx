@@ -56,13 +56,21 @@ export const Button = styled.button`
   border: none;
   border-radius: 12px;
   line-height: 1.4;
-  color: #b6b6b6;
+  color: var(--color-crimary-grey);
   background: transparent;
+
+  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
+   color 0.4s cubic-bezier(0, 0, 1, 1);
 
   &:hover {
     background: var(--color-primary-green-lite);
     color: var(--color-primary-black-2);
   }
+
+  &.btn-active {
+  color: var(--color-primary-black-2);
+  background: var(--color-primary-green-lite);
+}
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
