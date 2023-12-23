@@ -2,11 +2,8 @@ import { useFormik } from 'formik';
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Redux/User/selectors';
-
 import { currentUser, updateUser } from '../../Redux/User/userThunks';
-
 import * as Yup from 'yup';
-import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
   AvatarDiv,
   Button,
@@ -32,6 +29,8 @@ import { RadioButton } from './Form.styled';
 import { RadioLabel } from './Form.styled';
 import { InputBlock } from '../Auth/AuthStyled/InputStyle/InputStyle.styled';
 import inputSvg from 'assets/sprite.svg';
+import inboxSvg from '/src/assets/settings/symbol-defs.svg';
+import LoaderBtn from '../Auth/Loader/LoaderBtn';
 
 export const ProfileSettings = () => {
   const dispatch = useDispatch();
@@ -45,11 +44,17 @@ export const ProfileSettings = () => {
   const fileInputRef = useRef(null);
 
   const [validation, setValidation] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onClickBtnSave = () => {
+  const onClickBtnSave = async () => {
     setValidation('validation');
     if (formik.values.age !== '' && !formik.errors.age) {
-      formik.handleSubmit;
+      try {
+        setIsLoading(true);
+       await formik.handleSubmit();
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -253,7 +258,6 @@ export const ProfileSettings = () => {
           </div>
         </TabletDiv>
         <TabletDiv>
-          {/* <ElFormDiv> */}
           <InputBlock>
             <LabelStyled htmlFor="weight">Weight</LabelStyled>
             <InputStyle
@@ -439,12 +443,14 @@ export const ProfileSettings = () => {
             Cancel
           </Button>
           <Button
+            className="btn-active"
             type="submit"
+            // disabled={isLoading}
             onClick={() => {
               onClickBtnSave();
             }}
           >
-            Save
+            {isLoading ? <LoaderBtn /> : 'Save'}
           </Button>
         </ButtonDiv>
       </Form>
