@@ -53,26 +53,11 @@ ChartJS.register(
   Filler
 );
 
-// BackEnd
-// {
-//    "date": "2023-12-20",
-//    "water": 2000,
-//    "weight": 40,
-//    "totalCalories": 5250
-// },
-// {
-//    "date": "2023-12-21",
-//    "water": 0,
-//    "weight": 0,
-//    "totalCalories": 0
-// }
-
 const Charts = () => {
   const dispatch = useDispatch();
   const caloriesData = useSelector(selectCaloriesData);
   const waterData = useSelector(selectWaterData);
   const weightData = useSelector(selectWeightData);
-
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [months, setMonths] = useState([]);
   const [currentMonth, setCurrentMonth] = useState('');
@@ -80,6 +65,7 @@ const Charts = () => {
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
 
+  // Chart options
   const caloriesChartOptions = {
     ...caloriesOptions,
   };
@@ -87,15 +73,17 @@ const Charts = () => {
     ...waterOptions,
   };
 
+  // Function to initialize chart data
   const initializeChartData = (selectedMonth) => {
     dispatch(userStatistics(selectedMonth)).then((data) => {
       console.log('Data from userStatistics:', data);
-      updateCaloriesChartData(data.caloriesData);
-      updateWaterChartData(data.waterData);
-      updateWeightChartData(data.weightData);
+      updateCaloriesChartData(data);
+      updateWaterChartData(data);
+      updateWeightChartData(data);
     });
   };
 
+  // Initial setup on component mount
   useEffect(() => {
     const monthNames = [
       'January',
@@ -111,11 +99,9 @@ const Charts = () => {
       'November',
       'December',
     ];
-
     const currentDate = new Date();
     const currentMonthIndex = currentDate.getMonth();
     const currentMonthName = monthNames[currentMonthIndex];
-
     setCurrentMonth(currentMonthName);
     setMonths(
       Array.from(
@@ -123,26 +109,26 @@ const Charts = () => {
         (_, i) => monthNames[(currentMonthIndex - i + 12) % 12]
       )
     );
-
     setSelectedMonth({ value: currentMonthName, label: currentMonthName });
-
     initializeChartData(currentMonthName);
   }, []);
 
+  // Handle select change
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
     initializeChartData(selectedOption.value);
   };
 
+  // Function to update calories chart data
   const updateCaloriesChartData = (data) => {
-  console.log('Data for calories:', data);
+    console.log('Data for calories:', data);
 
-    if (!data || !data.stats) {
+    if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
 
-    const dataForSelectedMonth = data.stats;
+    const dataForSelectedMonth = data.payload.stats;
 
     setChartData((prevData) => ({
       ...prevData,
@@ -169,17 +155,19 @@ const Charts = () => {
       ],
     }));
 
-    console.log('Updating calories chart data:', data);
+    console.log('Updating calories chart data:', dataForSelectedMonth);
   };
 
+  // Function to update water chart data
   const updateWaterChartData = (data) => {
-  console.log('Data for water:', data);
-    if (!data || !data[selectedMonth?.value]) {
-      console.error(`Data for ${selectedMonth?.value} is not available.`);
+    console.log('Data for water:', data);
+
+    if (!data || !data.payload || !data.payload.stats) {
+      console.error('Data is missing or does not have the expected format.');
       return;
     }
 
-    const dataForSelectedMonth = data[selectedMonth.value];
+    const dataForSelectedMonth = data.payload.stats;
 
     setWaterChartData((prevData) => ({
       ...prevData,
@@ -187,7 +175,7 @@ const Charts = () => {
       datasets: [
         {
           label: 'Water',
-          data: dataForSelectedMonth || [],
+          data: dataForSelectedMonth.map((entry) => entry.water),
           backgroundColor: 'transparent',
           borderColor: '#E3FFA8',
           borderWidth: 1,
@@ -206,39 +194,44 @@ const Charts = () => {
       ],
     }));
 
-    console.log('Updating water chart data:', data);
+    console.log('Updating water chart data:', dataForSelectedMonth);
   };
 
+  // Function to update weight chart data
   const updateWeightChartData = (data) => {
-  console.log('Data for weight:', data);
+    console.log('Data for weight:', data);
 
-    if (!data || !data.stats) {
+    if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
 
-    const dataForSelectedMonth = data.stats;
+    const dataForSelectedMonth = data.payload.stats;
 
     setWeightChartData((prevData) => ({
       ...prevData,
       upperRowValues: dataForSelectedMonth.map((entry) => entry.weight),
-      lowerRowValues: dataForSelectedMonth.map((entry) => entry.day),
+      lowerRowValues: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
     }));
 
     console.log('Updating weight chart data:', dataForSelectedMonth);
   };
 
-  const selectOptions = months.map((month) => ({ value: month, label: month }));
+  // Generate select options
+  const selectOptions = months.map((month) => ({
+    value: month,
+    label: month,
+  }));
 
   return (
     <>
       <ContainerSelect>
         <BackIconContainer>
-          {/* --Icon back to main-- */}
+          {/* Icon back to main */}
           <BackIconLink to="/main">
             <FaArrowLeftLong />
           </BackIconLink>
-          {/* ---Select--- */}
+          {/* Select */}
           <label>
             <Select
               value={{ value: selectedMonth?.value, label: 'Month' }}
@@ -251,17 +244,17 @@ const Charts = () => {
             />
           </label>
         </BackIconContainer>
-        {/* --Сurrent month-- */}
+        {/* Current month */}
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
       <>
         <Wrapper>
-          {/* ---Calories Chart Container--- */}
+          {/* Calories Chart Container */}
           <ChartsWrapper>
             <ContainerValue>
               <TitleCalories>Calories</TitleCalories>
-              {/* --Average value-- */}
+              {/* Average value */}
               {chartData && (
                 <Value>
                   <Span>Average value:</Span>{' '}
@@ -275,20 +268,19 @@ const Charts = () => {
                 </Value>
               )}
             </ContainerValue>
-            {/* --Calories Chart-- */}
+            {/* Calories Chart */}
             <ContainerChart>
               {chartData && (
-                <Line data={chartData} options={caloriesOptions}></Line>
+                <Line data={chartData} options={caloriesChartOptions} />
               )}
             </ContainerChart>
           </ChartsWrapper>
 
-          {/* ---Water Chart Container--- */}
-
+          {/* Water Chart Container */}
           <ChartsWrapper>
             <ContainerValue>
               <TitleWater>Water</TitleWater>
-              {/* --Average value-- */}
+              {/* Average value */}
               {waterChartData && (
                 <Value>
                   <Span>Average value:</Span>{' '}
@@ -302,20 +294,20 @@ const Charts = () => {
                 </Value>
               )}
             </ContainerValue>
-            {/* --Water Chart-- */}
+            {/* Water Chart */}
             <ContainerChart>
               {waterChartData && (
-                <Line data={waterChartData} options={waterOptions} />
+                <Line data={waterChartData} options={waterChartOptions} />
               )}
             </ContainerChart>
           </ChartsWrapper>
         </Wrapper>
 
-        {/* ---Weight Chart Container--- */}
+        {/* Weight Chart Container */}
         <WeightWrapper>
           <ContainerValue>
             <TitleWeight>Weight</TitleWeight>
-            {/* --Average value-- */}
+            {/* Average value */}
             {weightChartData && (
               <Value>
                 <Span>Average value:</Span>{' '}
@@ -330,7 +322,7 @@ const Charts = () => {
             )}
           </ContainerValue>
 
-          {/* --Weight Chart-- */}
+          {/* Weight Chart */}
           {weightChartData && (
             <ContainerWeightChart>
               <WeightWrap>
