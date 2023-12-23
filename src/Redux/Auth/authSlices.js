@@ -30,7 +30,7 @@ const handlePending = (state) => {
 const handleRejected = (state, payload) => {
   state.isLoggedIn = false;
   state.isLoading = false;
-  state.token = null;
+  // state.token = null;
   state.isError = payload;
 };
 
