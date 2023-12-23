@@ -3,7 +3,7 @@ import { DailyStatistics } from '../../../components/Main/DailyStatistics';
 import { MainHeader, Title } from './Main.styled';
 
 import GoalButtonOnMain from '../../../components/GoalButtonOnMain/GoalButtonOnMain';
-import FoodCharts from '../../../components/FoodCharts/FoodCharts';
+// import FoodCharts from '../../../components/FoodCharts/FoodCharts';
 import RecommendedFoodOnMain from '../RecommendedFood/RecFoodOnMain/RecFoodOnMain';
 
 const Main = () => {
@@ -15,7 +15,7 @@ const Main = () => {
           <GoalButtonOnMain />
         </MainHeader>
         <DailyStatistics />
-        <FoodCharts />
+        {/* <FoodCharts /> */}
         <RecommendedFoodOnMain />
       </Container>
     </section>
