@@ -18,7 +18,7 @@ const initialState = {
   };
 
 
-  const foodSlice = createSlice({
+  const waterSlice = createSlice({
     name: 'water',
     initialState,
     extraReducers: (builder) => {
@@ -53,4 +53,4 @@ const initialState = {
     },
 });
 
-export const foodReducer = foodSlice.reducer;
+export const waterReducer = waterSlice.reducer;
