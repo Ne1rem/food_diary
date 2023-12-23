@@ -15,10 +15,10 @@ const initialState = {
     avatarUrl: null,
     BMR: null,
   },
-  token: null,
+  accessToken: null,
   isLoggedIn: false,
   isLoading: false,
-  isError: null
+  isError: null,
 };
 
 const handlePending = (state) => {
@@ -47,6 +47,9 @@ const authSlice = createSlice({
       .addCase(forgotPassword.pending, (state) => {
         handlePending(state);
       })
+      .addCase(logOut.pending, (state) => {
+        handlePending(state);
+      })
 
       .addCase(signUp.rejected, (state, { payload }) => {
         handleRejected(state, payload);
@@ -57,9 +60,9 @@ const authSlice = createSlice({
       .addCase(forgotPassword.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
-      // .addCase(refresh.rejected, (state, { payload }) => {
-      //   handleRejected(state, payload);
-      // })
+      .addCase(logOut.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+      })
 
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.user = payload.user;
@@ -76,39 +79,25 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         toast.success(`Successful Loginned.`);
       })
+      .addCase(logOut.fulfilled, (state) => {
+        state.accessToken = null;
+        state.isLoggedIn = false;
+      })
 
-      // .addCase(refresh.fulfilled, (state, { payload }) => {
-      //   state.user = payload;
-      //   state.isLoading = false;
-      //   state.isLoggedIn = true;
-      // })
       .addCase(forgotPassword.fulfilled, (state) => {
         state.isLoading = false;
         toast.success('Request successful');
-      })
+      });
 
-    // .addCase(checkEmail.fulfilled, (state, { payload }) => {})
-    // .addCase(checkEmail.rejected, (state, { payload }) => {})
-
-    .addCase(logOut.pending, (state) => {
-      handlePending(state);
-    })
-    .addCase(logOut.fulfilled, (state) => {
-      state.accessToken = null;
-      state.isLoggedIn = false;
-    })
-    .addCase(logOut.rejected, (state, { payload }) => {
-      handleRejected(state, payload);
-    });
-
-    //CheckEmail
-    // .addCase(forgotPassword.pending, () => {
+    // .addCase(refresh.fulfilled, (state, { payload }) => {
+    //   state.user = payload;
+    //   state.isLoading = false;
+    //   state.isLoggedIn = true;
     // })
 
-    //UpdateUser
-    // .addCase(updateUser.pending, (state, { payload }) => {})
-    // .addCase(updateUser.fulfilled, (state, { payload }) => {})
-    // .addCase(updateUser.rejected, (state, { payload }) => {})
+    // .addCase(refresh.rejected, (state, { payload }) => {
+    //   handleRejected(state, payload);
+    // })
   },
 });
 

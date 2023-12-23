@@ -2,17 +2,40 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ErrorToast, SuccessToast } from './toast';
 import instance from '../Auth/authThunks';
+import axios from 'axios';
+import { selectToken } from '../Auth/selectors';
+axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
-// axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
+// const currentUser = createAsyncThunk(
+//   'user/current',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await instance.get('user/current');
+//       return response.data;
+//     } catch (e) {
+//       toast.error(e.response.statusText);
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
 
-export const currentUser = createAsyncThunk(
+const currentUser = createAsyncThunk(
   'user/current',
   async (_, thunkAPI) => {
     try {
-      const response = await instance.get('user/current');
+      const persistedToken = selectToken(thunkAPI.getState())
+
+      const axiosInstance = axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${persistedToken}`,
+        },
+      });
+
+      const response = await axiosInstance.get('/user/current');
       return response.data;
     } catch (e) {
-      toast.error(e.response.statusText);
+      console.error('Error fetching user data:', e);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -31,8 +54,7 @@ export const currentUser = createAsyncThunk(
 //   }
 // );
 
-
-export const updateUser = createAsyncThunk(
+const updateUser = createAsyncThunk(
   'user/update',
   async (values, thunkAPI) => {
     try {
@@ -52,7 +74,7 @@ export const updateUser = createAsyncThunk(
           console.log(pair[0] + ', ' + pair[1]);
         }
 
-        const { data } = await instance.put('/user/update', formData, {
+        const { data } = await instance.put('user/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -61,7 +83,7 @@ export const updateUser = createAsyncThunk(
         console.log(formData);
         return data;
       } else {
-        const { data } = await instance.put('/user/update', values);
+        const { data } = await instance.put('user/update', values);
         return data;
       }
     } catch (e) {
@@ -70,3 +92,48 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+
+const updateUserGoal = createAsyncThunk(
+  "user/goal",
+  async (value, thunkAPI) => {
+    try {
+      const { data } = await instance.put(`user/goal`, value);
+      return data;
+    } catch (e) {
+      toast.error(e.response.statusText);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+
+const addUserWeight = createAsyncThunk(
+  'user/weight',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post('user/weight', credentials);
+      return data;
+    } catch (e) {
+      toast.error('Invalid email!');
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+
+const userStatistics = createAsyncThunk(
+  'user/statistics',
+  async (_, thunkAPI) => {
+    try {
+      const response = await instance.get('user/statistics');
+      return response.data;
+    } catch (e) {
+      toast.error(e.response.statusText);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+
+export { currentUser, updateUser, updateUserGoal, addUserWeight, userStatistics }

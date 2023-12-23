@@ -4,15 +4,10 @@ import { ModalButtonSettigns, ModalPartButtonSettigns, ModalSettigns, ModalSvgSe
 import HeaderSvg from '/src/assets/header/headerSvg.svg'
 
 function ModalUserHeader ({setIsUserModalOpen})  {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
     
   const handleLogout = () => {
-    dispatch(logOut())
-      .then(() => {
-      })
-      .catch(error => {
-        console.error('Error logging out:', error);
-      });
+      dispatch(logOut());
   };
 
     return(

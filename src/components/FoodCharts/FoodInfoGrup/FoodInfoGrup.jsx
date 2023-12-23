@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { ChartCard } from '../ChartCard/ChartCard.jsx';
 import { DoughnutChart } from '../DoughnutChart/DoughnutChart.jsx';
 import {
@@ -6,20 +7,53 @@ import {
   FoodInfoCard,
   InfoWrap,
 } from './FoodInfoGrup.styled.js';
+import { useEffect, useState } from 'react';
+import { currentUser } from '../../../Redux/User/userThunks.jsx';
 
 const carbBcg = '#FFC4F7';
 const proteinBcg = '#FFF3B7';
 const fatBcg = '#B6B6B6';
 
 export const FoodInfoGrup = () => {
-  let dailyCalories = 1700;
-  let diaryCalories = 1360;
-  let proteinSum = 119.5;
-  let carbonohidratesSum = 136;
-  let fatsSum = 44.8;
-  let carbsGoal = 170;
-  let protGoal = 135.5;
-  let fatsGoal = 56;
+  const [recommendedCalories, setRecommendedCalories] = useState();
+  const [recommendedCarbs, setRecommendedCarbs] = useState();
+  const [recommendedFat, setRecommendedFat] = useState();
+  const [recommendedProtein, setRecommendedProtein] = useState();
+  const [totalCalories, setTotalCalories] = useState();
+  const [totalCarbs, setTotalCarbs] = useState();
+  const [totalFat, setTotalFat] = useState();
+  const [totalProtein, setTotalProtein] = useState();
+
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(currentUser())
+      .then((response) => {
+        const {
+          recommendedCalories,
+          recommendedCarbs,
+          recommendedFat,
+          recommendedProtein,
+          totalCalories,
+          totalCarbs,
+          totalFat,
+          totalProtein,
+        } = response.payload;
+
+        setRecommendedCalories(recommendedCalories);
+        setRecommendedCarbs(recommendedCarbs);
+        setRecommendedFat(recommendedFat);
+        setRecommendedProtein(recommendedProtein);
+        setTotalCalories(totalCalories);
+        setTotalCarbs(totalCarbs);
+        setTotalFat(totalFat);
+        setTotalProtein(totalProtein);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, [dispatch]);
+
   let caloriesChartBcg = '#45FFBC';
 
   return (
@@ -27,12 +61,12 @@ export const FoodInfoGrup = () => {
       <FoodInfoCard>
         <CaloriesChart>
           <DoughnutChart
-            dailyCalories={dailyCalories}
-            inputValue={diaryCalories}
+            dailyCalories={recommendedCalories}
+            inputValue={totalCalories}
             chartBcg={caloriesChartBcg}
           />
           <ChartInfoWrap>
-            <p>{diaryCalories}</p>
+            <p>{totalCalories}</p>
 
             <p>calories</p>
           </ChartInfoWrap>
@@ -41,20 +75,20 @@ export const FoodInfoGrup = () => {
           <ChartCard
             title={'Carbonohidrates'}
             chartBcg={carbBcg}
-            elementGoal={carbsGoal}
-            elementValue={carbonohidratesSum}
+            elementGoal={recommendedCarbs}
+            elementValue={totalCarbs}
           />
           <ChartCard
             title={'Protein'}
             chartBcg={proteinBcg}
-            elementGoal={protGoal}
-            elementValue={proteinSum}
+            elementGoal={recommendedProtein}
+            elementValue={totalProtein}
           />
           <ChartCard
             title={'Fat'}
             chartBcg={fatBcg}
-            elementGoal={fatsGoal}
-            elementValue={fatsSum}
+            elementGoal={recommendedFat}
+            elementValue={totalFat}
           />
         </InfoWrap>
       </FoodInfoCard>
