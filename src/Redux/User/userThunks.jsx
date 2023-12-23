@@ -1,51 +1,51 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ErrorToast, SuccessToast } from './toast';
-import instance from '../Auth/authThunks';
+// import instance from '../Auth/authThunks';
 import axios from 'axios';
-import { selectToken } from '../Auth/selectors';
+// import { selectToken } from '../Auth/selectors';
 axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
-
-// const currentUser = createAsyncThunk(
-//   'user/current',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await instance.get('user/current');
-//       return response.data;
-//     } catch (e) {
-//       toast.error(e.response.statusText);
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
 
 const currentUser = createAsyncThunk(
   'user/current',
   async (_, thunkAPI) => {
     try {
-      const persistedToken = selectToken(thunkAPI.getState())
-
-      const axiosInstance = axios.create({
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${persistedToken}`,
-        },
-      });
-
-      const response = await axiosInstance.get('/user/current');
+      const response = await axios.get('user/current');
       return response.data;
     } catch (e) {
-      console.error('Error fetching user data:', e);
+      toast.error(e.response.statusText);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
+// const currentUser = createAsyncThunk(
+//   'user/current',
+//   async (_, thunkAPI) => {
+//     try {
+//       const persistedToken = selectToken(thunkAPI.getState())
+
+//       const axiosInstance = axios.create({
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Authorization: `Bearer ${persistedToken}`,
+//         },
+//       });
+
+//       const response = await axios.get('/user/current');
+//       return response.data;
+//     } catch (e) {
+//       console.error('Error fetching user data:', e);
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+
 // export const updateUser = createAsyncThunk(
 //   "user/update",
 //   async (value, thunkAPI) => {
 //     try {
-//       const { data } = await instance.put(`user/update`, value);
+//       const { data } = await axios.put(`user/update`, value);
 //       return data;
 //     } catch (e) {
 //       toast.error(e.response.statusText);
@@ -74,7 +74,7 @@ const updateUser = createAsyncThunk(
           console.log(pair[0] + ', ' + pair[1]);
         }
 
-        const { data } = await instance.put('user/update', formData, {
+        const { data } = await axios.put('user/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -83,7 +83,7 @@ const updateUser = createAsyncThunk(
         console.log(formData);
         return data;
       } else {
-        const { data } = await instance.put('user/update', values);
+        const { data } = await axios.put('user/update', values);
         return data;
       }
     } catch (e) {
@@ -98,7 +98,7 @@ const updateUserGoal = createAsyncThunk(
   "user/goal",
   async (value, thunkAPI) => {
     try {
-      const { data } = await instance.put(`user/goal`, value);
+      const { data } = await axios.put(`user/goal`, value);
       return data;
     } catch (e) {
       toast.error(e.response.statusText);
@@ -112,7 +112,7 @@ const addUserWeight = createAsyncThunk(
   'user/weight',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post('user/weight', credentials);
+      const { data } = await axios.post('user/weight', credentials);
       return data;
     } catch (e) {
       toast.error('Invalid email!');
@@ -126,7 +126,7 @@ const userStatistics = createAsyncThunk(
   'user/statistics',
   async (_, thunkAPI) => {
     try {
-      const response = await instance.get('user/statistics');
+      const response = await axios.get('user/statistics');
       return response.data;
     } catch (e) {
       toast.error(e.response.statusText);

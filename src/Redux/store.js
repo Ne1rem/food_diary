@@ -18,7 +18,7 @@ import { foodReducer } from './Food/FoodSlices';
 const tokenPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['accessToken', 'isLoggedIn'],
+  whitelist: ['token', 'isLoggedIn'],
 };
 
 const userPersistorConfig = {
