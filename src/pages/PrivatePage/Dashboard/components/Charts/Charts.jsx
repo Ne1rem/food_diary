@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { SuccessToast, ErrorToast } from '../../../../../Redux/User/toast';
 import { Line } from 'react-chartjs-2';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import Select from 'react-select';
@@ -43,6 +46,7 @@ import {
   selectWeightData,
 } from '../../../../../Redux/User/selectors';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
+
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -52,6 +56,11 @@ ChartJS.register(
   Tooltip,
   Filler
 );
+
+const getCurrentDayOfMonth = () => {
+  const currentDate = new Date();
+  return currentDate.getDate();
+};
 
 const Charts = () => {
   const dispatch = useDispatch();
@@ -70,14 +79,21 @@ const Charts = () => {
   const waterChartOptions = {
     ...waterOptions,
   };
-  const initializeChartData = (selectedMonth) => {
-    dispatch(userStatistics(selectedMonth)).then((data) => {
-      console.log('Data from userStatistics:', data);
-      updateCaloriesChartData(data);
-      updateWaterChartData(data);
-      updateWeightChartData(data);
-    });
+
+    const initializeChartData = (selectedMonth) => {
+    dispatch(userStatistics(selectedMonth))
+      .then((data) => {
+        console.log('Data from userStatistics:', data);
+        updateCaloriesChartData(data);
+        updateWaterChartData(data);
+        updateWeightChartData(data);
+      })
+      .catch((e) => {
+        console.error('Error fetching user statistics:', e);
+        toast.error(e.response?.statusText || 'An error occurred', ErrorToast);
+      });
   };
+
   useEffect(() => {
     const monthNames = [
       'January',
@@ -106,17 +122,18 @@ const Charts = () => {
     setSelectedMonth({ value: currentMonthName, label: currentMonthName });
     initializeChartData(currentMonthName);
   }, []);
+
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
     initializeChartData(selectedOption.value);
   };
 
-  // Function to update calories chart data
   const updateCaloriesChartData = (data) => {
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
+
     const dataForSelectedMonth = data.payload.stats;
     const numberOfDaysInMonth = dataForSelectedMonth.length;
     setChartData((prevData) => ({
@@ -145,12 +162,12 @@ const Charts = () => {
     }));
   };
 
-  // Function to update water chart data
   const updateWaterChartData = (data) => {
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
+
     const dataForSelectedMonth = data.payload.stats;
     const numberOfDaysInMonth = dataForSelectedMonth.length;
     setWaterChartData((prevData) => ({
@@ -179,40 +196,43 @@ const Charts = () => {
     }));
   };
 
-  // Function to update weight chart data
   const updateWeightChartData = (data) => {
-  console.log('Дані для ваги:', data);
+    console.log('Data for weight:', data);
 
-  if (!data || !data.payload || !data.payload.stats) {
-    console.error('Дані відсутні або не мають очікуваного формату.');
-    return;
-  }
+    if (!data || !data.payload || !data.payload.stats) {
+      console.error('Data is missing or does not have the expected format.');
+      return;
+    }
 
-  const dataForSelectedMonth = data.payload.stats;
+    const dataForSelectedMonth = data.payload.stats;
 
-  // Фільтруємо дані лише для поточного місяця
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    // Filter data only for the current month
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  const filteredData = dataForSelectedMonth.filter(entry => {
-    const entryDate = new Date(entry.date);
-    return entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear;
-  });
+    const filteredData = dataForSelectedMonth.filter((entry) => {
+      const entryDate = new Date(entry.date);
+      return (
+        entryDate.getMonth() === currentMonth &&
+        entryDate.getFullYear() === currentYear
+      );
+    });
 
-  setWeightChartData((prevData) => ({
-    ...prevData,
-    upperRowValues: Array.from({ length: daysInMonth }, (_, i) => {
-      const dayEntry = filteredData.find(entry => new Date(entry.date).getDate() === i + 1);
-      return dayEntry ? dayEntry.weight : 0;
-    }),
-    lowerRowValues: Array.from({ length: daysInMonth }, (_, i) => `${i + 1}`),
-  }));
+    setWeightChartData((prevData) => ({
+      ...prevData,
+      upperRowValues: Array.from({ length: daysInMonth }, (_, i) => {
+        const dayEntry = filteredData.find(
+          (entry) => new Date(entry.date).getDate() === i + 1
+        );
+        return dayEntry ? dayEntry.weight : 0;
+      }),
+      lowerRowValues: Array.from({ length: daysInMonth }, (_, i) => `${i + 1}`),
+    }));
 
-  console.log('Оновлення даних графіка ваги:', filteredData);
-};
-
+    console.log('Weight chart data updated:', filteredData);
+  };
 
   const selectOptions = months.map((month) => ({
     value: month,
@@ -258,7 +278,7 @@ const Charts = () => {
                     chartData.datasets[0].data.reduce(
                       (acc, val) => acc + val,
                       0
-                    ) / 30
+                    ) / getCurrentDayOfMonth()
                   )}{' '}
                   <>calories</>
                 </Value>
@@ -284,7 +304,7 @@ const Charts = () => {
                     waterChartData.datasets[0].data.reduce(
                       (acc, val) => acc + val,
                       0
-                    ) / 30
+                    ) / getCurrentDayOfMonth()
                   )}{' '}
                   <>ml</>
                 </Value>
@@ -311,7 +331,7 @@ const Charts = () => {
                   weightChartData.upperRowValues.reduce(
                     (acc, val) => acc + val,
                     0
-                  ) / 30
+                  ) / getCurrentDayOfMonth()
                 )}{' '}
                 kg
               </Value>
