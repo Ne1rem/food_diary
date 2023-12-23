@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   ButtonCloseModalGoal,
   ConfirmModalGoal,
@@ -21,30 +21,7 @@ import LoseFatMan from '/src/assets/header/Lose-fat-man.png';
 import MaintainGirl from '/src/assets/header/Maintain-girl.png';
 import MaintainMan from '/src/assets/header/Maintain-man.png';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-import axios from 'axios';
-import { selectToken } from '../../../Redux/Auth/selectors';
-
-const updateGoalAsync = (newGoal, persistedToken) => async (dispatch) => {
-  try {
-    if (!persistedToken) {
-      throw new Error('Token not found');
-    }
-
-    const axiosInstance = axios.create({
-      baseURL: 'https://food-diary-backend-kr1b.onrender.com/api',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${persistedToken}`,
-      },
-    });
-
-    const response = await axiosInstance.put('/user/goal', { goal: newGoal });
-
-    dispatch({ type: 'GOAL_UPDATED', payload: response.data.goal });
-  } catch (error) {
-    console.error('Error updating goal:', error);
-  }
-};
+import { updateUserGoal } from '../../../Redux/User/userThunks';
 
 function ModalGoal({
   setIsGoalModalOpen,
@@ -55,7 +32,6 @@ function ModalGoal({
   setCurrentGoal,
 }) {
   const dispatch = useDispatch();
-  const persistedToken = useSelector(selectToken)
 
   const setGoalLosefat = () => setNewGoal('Lose Fat');
   const setGoalMaintain = () => setNewGoal('Maintain');
@@ -63,7 +39,7 @@ function ModalGoal({
 
   const handleSubmit = () => {
     if (newGoal === currentGoal) return setIsGoalModalOpen(false);
-    dispatch(updateGoalAsync(newGoal, persistedToken));
+    dispatch(updateUserGoal(newGoal));
     setCurrentGoal(newGoal);
     setIsGoalModalOpen(false);
   };
