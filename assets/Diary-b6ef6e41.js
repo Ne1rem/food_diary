@@ -1,4 +1,4 @@
-import{r as o,j as e}from"./index-e5cb8d10.js";import{n as i,L as p,M as x,d as l,l as m,e as c,f as h}from"./snack-3cf897e0.js";import"./emotion-element-c39617d8.browser.esm-9e2a5f4a.js";import"./index.esm-3b848afb.js";import"./hoist-non-react-statics.cjs-49f2f62f.js";const g=i.div`
+import{r as o,j as e}from"./index-80391330.js";import{n as i,L as p,M as x,d as l,l as m,e as c,f as h}from"./snack-b89ba9f0.js";import"./emotion-element-c39617d8.browser.esm-1da5bc8e.js";import"./index.esm-d617a63b.js";import"./hoist-non-react-statics.cjs-15f4f394.js";const g=i.div`
 @media screen and (min-width: 1440px) {
     flex-basis: calc((100% - 40px) / 2);
   }`,w=i.div`
