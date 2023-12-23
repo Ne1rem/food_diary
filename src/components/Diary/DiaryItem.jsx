@@ -9,7 +9,7 @@ import {
     ModalLink} from './DiaryItem.styled';
 
 import ListNutritients from './ListNutritients';
-import ModalDiary from './ModalDiary';
+import ModalDiary from '../ModalIntake/ModalDiary';
     
 const DiaryItem = ({name, img}) => {
     const[showModal, setShowModal] = useState(false);
@@ -25,7 +25,7 @@ const DiaryItem = ({name, img}) => {
         <img src={img}/>
         <Title>{name}</Title>
     </Wrapper>
-    <ListNutritients/>
+    <ListNutritients  name={name}/>
     </WrapperItemHeader>
     <ListToComplete>
         <ItemToComplete>1<ModalLink onClick={toggleModal}>+ Record your meal</ModalLink></ItemToComplete>

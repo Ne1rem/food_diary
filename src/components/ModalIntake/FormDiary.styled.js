@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ErrorMessage } from "formik";
 
 export const ContainerInputs = styled.div`
 display: flex;
@@ -55,3 +56,10 @@ background-color: transparent;
 border: none;
 padding: 0;
 `
+
+export const StyledError = styled(ErrorMessage)`
+padding: 0 5px;
+font-size: 8px;
+font-weight: 400;
+line-height: 10px;
+color: red;`

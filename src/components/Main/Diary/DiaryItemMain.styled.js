@@ -39,3 +39,15 @@ export const ButtonSvg = styled.button`
 background-color: transparent;
 border: none;
 `
+export const ModalLink = styled.button`
+background: none;
+border: none;
+margin-left: 0;
+color: var(--color-primary-green-lite);
+font-size: 14px;
+font-weight: 500;
+line-height: 1.42;
+@media screen and (min-width: 834px) {
+    margin-right: 250px;
+    margin-left: 16px;
+  }`

@@ -1,3 +1,5 @@
+
+
 import DiaryItem from "../../../components/Diary/DiaryItem";
 import { Conteiner, Wrapper, ImgArrow, Header, ListDiary } from "./Diary.styled";
 import arrow from '../../../assets/diary/arrow-right.svg';
@@ -7,6 +9,46 @@ import dinnerImg from '../../../assets/diary/dinner.svg'
 import snackImg from '../../../assets/diary/snack.svg'
 
 const Diary = () => {
+
+
+    // useEffect(() => {
+    //         const initialState = {
+    //             breakfast: {
+    //               dish: [],
+    //               totalCalories: 0,
+    //               totalCarbs: 0,
+    //               totalProtein: 0,
+    //               totalFat: 0
+    //             },
+    //             lunch: {
+    //               dish: [],
+    //               totalCalories: 0,
+    //               totalCarbs: 0,
+    //               totalProtein: 0,
+    //               totalFat: 0
+    //             },
+    //             dinner: {
+    //               dish: [],
+    //               totalCalories: 0,
+    //               totalCarbs: 0,
+    //               totalProtein: 0,
+    //               totalFat: 0
+    //             },
+    //             snack: {
+    //               dish: [],
+    //               totalCalories: 0,
+    //               totalCarbs: 0,
+    //               totalProtein: 0,
+    //               totalFat: 0
+    //             },
+    //             totalCalories: 0,
+    //             totalCarbs: 0,
+    //             totalProtein: 0,
+    //             totalFat: 0,
+    //           };
+    
+    //     dispatch(addFoodIntake(initialState));
+    //   }, [dispatch]);
 
     const FoodArray = [
         { name: 'breakfast', img: breakfastImg },

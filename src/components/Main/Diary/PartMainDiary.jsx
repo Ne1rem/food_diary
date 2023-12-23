@@ -1,9 +1,9 @@
 
 import DiaryItemMain from './DiaryItemMain';
-import breakfastImg from '../../assets/diary/breakfast.svg';
-import lunchImg from '../../assets/diary/lunch.svg';
-import dinnerImg from '../../assets/diary/dinner.svg';
-import snackImg from '../../assets/diary/snack.svg';
+import breakfastImg from '../../../assets/diary/breakfast.svg';
+import lunchImg from '../../../assets/diary/lunch.svg';
+import dinnerImg from '../../../assets/diary/dinner.svg';
+import snackImg from '../../../assets/diary/snack.svg';
 import { Header, LinkStyled, ListDiary, ConteinerDiary } from './PartMainDiary.styled';
 
 const PartMainDiary = () => {
