@@ -15,6 +15,7 @@ import { authReducer } from './Auth/authSlices';
 import { userReducer } from './User/userSlice';
 import { foodReducer } from './Food/FoodSlices';
 import { intakeReducer } from './Diary/diarySlice';
+import { waterReducer } from './Water/WaterSlices';
 
 const tokenPersistConfig = {
   key: 'auth',
@@ -34,6 +35,7 @@ export const store = configureStore({
     user: persistReducer(userPersistorConfig, userReducer),
     food: foodReducer,
     intake: intakeReducer,
+    water: waterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

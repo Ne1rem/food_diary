@@ -18,9 +18,9 @@ const DiaryItemMain = ({name, img}) => {
         setShowModal(!showModal);
     };
 
-    useEffect(() => {
-        dispatch(requestFoodIntakeThunk())
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(requestFoodIntakeThunk())
+    // },[dispatch])
 
     const breakfast = useSelector(selectorIntakeBreakfast);
     const lunch = useSelector(selectorIntakeLunch);
