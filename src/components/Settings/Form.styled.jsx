@@ -166,6 +166,14 @@ export const InputStyle = styled.input`
   @media screen and (min-width: 1440px) {
     width: 192px;
   }
+
+  &.error{
+    border: 1px solid #E74A3B;
+  }
+
+  &.correct{
+    border: 1px solid #3CBC81;
+  }
 `;
 
 export const ActivityTextStyled = styled.p`
@@ -322,3 +330,23 @@ export const RadioLabel = styled.span`
     max-width: 420px;
   }
 `;
+
+
+export const InputIconStyle = styled.svg`
+position: absolute;
+width: 16px;
+height: 16px;
+top: 39px;
+right: 10px;
+`;
+
+export const InputErrorStyled = styled.div`
+position: absolute;
+top: 68px;
+left: 2px;
+color: #E74A3B;
+
+font-size: 12px;
+font-weight: 400;
+line-height: 1.1
+`
