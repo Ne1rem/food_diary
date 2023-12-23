@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signUp, forgotPassword, logOut } from './authThunks';
+import { signIn, signUp, refresh, forgotPassword, logOut } from './authThunks';
+
 
 const initialState = {
   user: {
@@ -15,7 +16,7 @@ const initialState = {
     avatarUrl: null,
     BMR: null,
   },
-  accessToken: null,
+  token: null,
   isLoggedIn: false,
   isLoading: false,
   isError: null,
@@ -29,7 +30,7 @@ const handlePending = (state) => {
 const handleRejected = (state, payload) => {
   state.isLoggedIn = false;
   state.isLoading = false;
-  state.accessToken = null;
+  state.token = null;
   state.isError = payload;
 };
 
@@ -66,7 +67,7 @@ const authSlice = createSlice({
 
       .addCase(signUp.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.accessToken = payload.accessToken;
+        state.token = payload.token;
         state.isLoading = false;
         // state.isLoggedIn = true;
         toast.success(`Successful Registration.`);
@@ -74,30 +75,30 @@ const authSlice = createSlice({
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.accessToken = payload.accessToken;
+        state.token = payload.token;
         state.isLoading = false;
         state.isLoggedIn = true;
         toast.success(`Successful Loginned.`);
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.accessToken = null;
+        state.token = null;
         state.isLoggedIn = false;
       })
 
       .addCase(forgotPassword.fulfilled, (state) => {
         state.isLoading = false;
         toast.success('Request successful');
-      });
+      })
 
-    // .addCase(refresh.fulfilled, (state, { payload }) => {
-    //   state.user = payload;
-    //   state.isLoading = false;
-    //   state.isLoggedIn = true;
-    // })
+    .addCase(refresh.fulfilled, (state, { payload }) => {
+      state.user = payload;
+      state.isLoading = false;
+      state.isLoggedIn = true;
+    })
 
-    // .addCase(refresh.rejected, (state, { payload }) => {
-    //   handleRejected(state, payload);
-    // })
+    .addCase(refresh.rejected, (state, { payload }) => {
+      handleRejected(state, payload);
+    })
   },
 });
 

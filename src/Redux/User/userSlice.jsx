@@ -91,7 +91,6 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.isError = null;
         state.statistics = payload;
-        console.log(payload);
       });
   },
 });
