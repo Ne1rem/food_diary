@@ -89,10 +89,7 @@ export const waterOptions = {
   maintainAspectRatio: false,
 };
 
-const randomWeightData = Array.from({ length: 31 }, () =>
-  (Math.random() * (80 - 60) + 60).toFixed(0)
-);
-
+// Функція для отримання одиниць вимірювання для вспливаючої анотації
 function TooltipUnit(label) {
   if (label === 'Calories') {
     return 'calories';
