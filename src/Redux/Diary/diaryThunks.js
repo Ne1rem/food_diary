@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import instance from "../Auth/authThunks";
+import axios from "axios";
 
 
 export const requestFoodIntakeThunk = createAsyncThunk(
     'foodIntake/get',
     async (_, thunkApi) => {
         try {
-            const { data } = await instance.get('user/food-intake');
+            const { data } = await axios.get('user/food-intake');
             return data;
             
         } catch (error) {
@@ -18,7 +18,7 @@ export const addFoodIntakeThunk = createAsyncThunk(
     'foodIntake/post',
     async (intakeData, thunkApi) => {
         try {
-            const { data } = await instance.post('user/food-intake', intakeData);
+            const { data } = await axios.post('user/food-intake', intakeData);
             return data;
             
         } catch (error) {
