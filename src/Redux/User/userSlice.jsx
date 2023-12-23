@@ -88,7 +88,6 @@ const userSlice = createSlice({
         state.weight = payload;
       })
       .addCase(userStatistics.fulfilled, (state, { payload }) => {
-        console.log('Payload from userStatistics:', payload);
         state.isLoading = false;
         state.isError = null;
         state.statistics = payload;

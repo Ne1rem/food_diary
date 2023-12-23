@@ -95,31 +95,60 @@ const updateUser = createAsyncThunk(
 
 
 const updateUserGoal = createAsyncThunk(
-  "user/goal",
-  async (value, thunkAPI) => {
+  'user/goal',
+  async (newGoal, { rejectWithValue, getState }) => {
     try {
-      const { data } = await axios.put(`user/goal`, value);
-      return data;
-    } catch (e) {
-      toast.error(e.response.statusText);
-      return thunkAPI.rejectWithValue(e.message);
+      const persistedToken = getState().auth.token;
+      if (!persistedToken) {
+        throw new Error('Token not found');
+      }
+
+      const axiosInstance = axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${persistedToken}`,
+        },
+      });
+
+      const response = await axiosInstance.put('/user/goal', { goal: newGoal });
+
+      return response.data;
+    } catch (error) {
+      console.error('Error updating goal:', error);
+      toast.error('Error updating goal');
+      return rejectWithValue(error.message);
     }
   }
 );
-
 
 const addUserWeight = createAsyncThunk(
   'user/weight',
-  async (credentials, { rejectWithValue }) => {
+  async (enteredWeight, { rejectWithValue, getState }) => {
     try {
-      const { data } = await axios.post('user/weight', credentials);
-      return data;
-    } catch (e) {
-      toast.error('Invalid email!');
-      return rejectWithValue(e.message);
+      const persistedToken = getState().auth.token;
+
+      if (!persistedToken) {
+        throw new Error('Token not found');
+      }
+
+      const axiosInstance = axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${persistedToken}`,
+        },
+      });
+
+      const response = await axiosInstance.post('/user/weight', { weight: enteredWeight });
+
+      return response.data;
+    } catch (error) {
+      console.error('Error updating weight:', error);
+      toast.error('Error updating weight');
+      return rejectWithValue(error.message);
     }
   }
 );
+
 
 
 const userStatistics = createAsyncThunk(
@@ -129,7 +158,6 @@ const userStatistics = createAsyncThunk(
       const response = await axios.get('user/statistics');
       return response.data;
     } catch (e) {
-      console.error('Error in userStatistics:', e);
       toast.error(e.response.statusText);
       return thunkAPI.rejectWithValue(e.message);
     }

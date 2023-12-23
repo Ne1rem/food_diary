@@ -64,16 +64,12 @@ const Charts = () => {
   const [chartData, setChartData] = useState(null);
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
-
-  // Chart options
   const caloriesChartOptions = {
     ...caloriesOptions,
   };
   const waterChartOptions = {
     ...waterOptions,
   };
-
-  // Function to initialize chart data
   const initializeChartData = (selectedMonth) => {
     dispatch(userStatistics(selectedMonth)).then((data) => {
       console.log('Data from userStatistics:', data);
@@ -82,8 +78,6 @@ const Charts = () => {
       updateWeightChartData(data);
     });
   };
-
-  // Initial setup on component mount
   useEffect(() => {
     const monthNames = [
       'January',
@@ -112,8 +106,6 @@ const Charts = () => {
     setSelectedMonth({ value: currentMonthName, label: currentMonthName });
     initializeChartData(currentMonthName);
   }, []);
-
-  // Handle select change
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
     initializeChartData(selectedOption.value);
@@ -121,18 +113,15 @@ const Charts = () => {
 
   // Function to update calories chart data
   const updateCaloriesChartData = (data) => {
-    console.log('Data for calories:', data);
-
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
-
     const dataForSelectedMonth = data.payload.stats;
-
+    const numberOfDaysInMonth = dataForSelectedMonth.length;
     setChartData((prevData) => ({
       ...prevData,
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: 'Calories',
@@ -154,24 +143,19 @@ const Charts = () => {
         },
       ],
     }));
-
-    console.log('Updating calories chart data:', dataForSelectedMonth);
   };
 
   // Function to update water chart data
   const updateWaterChartData = (data) => {
-    console.log('Data for water:', data);
-
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
-
     const dataForSelectedMonth = data.payload.stats;
-
+    const numberOfDaysInMonth = dataForSelectedMonth.length;
     setWaterChartData((prevData) => ({
       ...prevData,
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+      labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: 'Water',
@@ -193,31 +177,43 @@ const Charts = () => {
         },
       ],
     }));
-
-    console.log('Updating water chart data:', dataForSelectedMonth);
   };
 
   // Function to update weight chart data
   const updateWeightChartData = (data) => {
-    console.log('Data for weight:', data);
+  console.log('Дані для ваги:', data);
 
-    if (!data || !data.payload || !data.payload.stats) {
-      console.error('Data is missing or does not have the expected format.');
-      return;
-    }
+  if (!data || !data.payload || !data.payload.stats) {
+    console.error('Дані відсутні або не мають очікуваного формату.');
+    return;
+  }
 
-    const dataForSelectedMonth = data.payload.stats;
+  const dataForSelectedMonth = data.payload.stats;
 
-    setWeightChartData((prevData) => ({
-      ...prevData,
-      upperRowValues: dataForSelectedMonth.map((entry) => entry.weight),
-      lowerRowValues: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
-    }));
+  // Фільтруємо дані лише для поточного місяця
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-    console.log('Updating weight chart data:', dataForSelectedMonth);
-  };
+  const filteredData = dataForSelectedMonth.filter(entry => {
+    const entryDate = new Date(entry.date);
+    return entryDate.getMonth() === currentMonth && entryDate.getFullYear() === currentYear;
+  });
 
-  // Generate select options
+  setWeightChartData((prevData) => ({
+    ...prevData,
+    upperRowValues: Array.from({ length: daysInMonth }, (_, i) => {
+      const dayEntry = filteredData.find(entry => new Date(entry.date).getDate() === i + 1);
+      return dayEntry ? dayEntry.weight : 0;
+    }),
+    lowerRowValues: Array.from({ length: daysInMonth }, (_, i) => `${i + 1}`),
+  }));
+
+  console.log('Оновлення даних графіка ваги:', filteredData);
+};
+
+
   const selectOptions = months.map((month) => ({
     value: month,
     label: month,
