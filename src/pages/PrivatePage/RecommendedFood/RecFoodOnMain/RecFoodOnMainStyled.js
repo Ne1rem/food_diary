@@ -30,7 +30,7 @@ export const RecommendedFoodWrapper = styled.div`
 
 export const Title = styled.h2`
   margin-bottom: 16px;
-  color: #ffffff;
+  color: var(--color-primary-white);
   font-size: 22px;
 
   @media (max-width: 833px) {
@@ -66,7 +66,7 @@ export const FoodCard = styled.div`
   display: flex;
   flex-direction: row;
   background-color: #0f0f0f;
-  color: #ffffff;
+  color: var(--color-primary-white);
   border-radius: 12px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -91,7 +91,7 @@ export const FoodCard = styled.div`
 export const SeeMoreButton = styled.p`
   display: block;
   margin-top: 16px;
-  color: #b6b6b6;
+  color: var(--color-primary-grey);
   font-size: 16px;
 
   @media (max-width: 833px) {
@@ -115,5 +115,5 @@ export const WeightOfCalorieContainer = styled.div`
 `;
 
 export const Calories = styled.p`
-  color: #b6b6b6;
+  color: var(--color-primary-grey);
 `;
