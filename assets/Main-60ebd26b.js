@@ -1,4 +1,4 @@
-import{s as t,j as e,r as d,g as T,a as P,h as K,c as f,i as X,L as w}from"./index-ad2fa4ef.js";import{i as S}from"./sprite-0146f6d6.js";import{C as Y,A as q,p as J,a as Q,D as Z,F as ee}from"./index.esm-9a03204b.js";import{n as p,s as te,a as ne,b as ie,c as re,L as oe,t as ae,M as se,d as de,l as ce,e as le,f as pe}from"./snack-3c60bbe7.js";import"./emotion-element-c39617d8.browser.esm-a771ea9f.js";import"./index.esm-59eae639.js";import"./hoist-non-react-statics.cjs-1fae1394.js";const xe=t.div`
+import{s as t,j as e,r as d,g as T,a as P,h as K,c as f,i as X,L as w}from"./index-a7e9d0ca.js";import{i as S}from"./sprite-d49c71ab.js";import{C as Y,A as q,p as J,a as Q,D as Z,F as ee}from"./index.esm-560cb19f.js";import{n as p,s as te,a as ne,b as ie,c as re,L as oe,t as ae,M as se,d as de,l as ce,e as le,f as pe}from"./snack-3733e229.js";import"./emotion-element-c39617d8.browser.esm-6a57bd8d.js";import"./index.esm-ed418c77.js";import"./hoist-non-react-statics.cjs-00b37efe.js";const xe=t.div`
   width: 100%;
   padding: 0 10px;
 
@@ -455,7 +455,7 @@ import{s as t,j as e,r as d,g as T,a as P,h as K,c as f,i as X,L as w}from"./ind
 `,dt=()=>e.jsx(e.Fragment,{children:e.jsxs(st,{to:"/dashboard",children:[e.jsx("p",{children:"On the way to the goal"}),e.jsx(E,{children:e.jsx(ee,{})})]})}),ct=t.div`
   padding: 20px 34px 52px 138px;
 
-  @media (min-width: 835px) and (max-width: 1440px) {
+  @media (min-width: 834px) and (max-width: 1440px) {
     /* Стилі для планшетів */
 
     padding: 20px 27px 40px 27px;
@@ -467,7 +467,7 @@ import{s as t,j as e,r as d,g as T,a as P,h as K,c as f,i as X,L as w}from"./ind
     padding: 20px 10px 80px 10px;
   }
 `,lt=t.div`
-  @media (min-width: 835px) and (max-width: 1440px) {
+  @media (min-width: 834px) and (max-width: 1440px) {
     /* Стилі для планшетів */
     width: 780px;
   }
@@ -491,7 +491,7 @@ import{s as t,j as e,r as d,g as T,a as P,h as K,c as f,i as X,L as w}from"./ind
   flex-wrap: wrap;
   width: 676px;
 
-  @media (min-width: 835px) and (max-width: 1440px) {
+  @media (min-width: 834px) and (max-width: 1440px) {
     /* Стилі для планшетів */
     width: 780px;
   }
@@ -526,7 +526,7 @@ import{s as t,j as e,r as d,g as T,a as P,h as K,c as f,i as X,L as w}from"./ind
     margin: 2px 0;
   }
 
-  @media (min-width: 835px) and (max-width: 1440px) {
+  @media (min-width: 834px) and (max-width: 1440px) {
     /* Стилі для планшетів */
     width: 380px;
   }
