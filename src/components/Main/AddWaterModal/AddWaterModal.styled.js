@@ -50,10 +50,23 @@ export const InputLabel = styled.span`
   line-height: 1.43;
 `;
 
+export const InnerInputWrapper = styled.span`
+  display: block;
+  position: relative;
+
+  & input {
+    border-color: ${(props) => props.$isError && '#E74A3B'};
+  }
+
+  & input {
+    border-color: ${(props) => props.$isCorrect && '#3CBC81'};
+  }
+`;
+
 export const Input = styled.input`
   display: block;
   width: 100%;
-  padding: 8px 10px;
+  padding: 8px 30px 8px 10px;
   border: 1px solid var(--color-primary-green-lite);
 
   font-weight: 400;
@@ -64,6 +77,23 @@ export const Input = styled.input`
   &::placeholder {
     color: var(--color-primary-grey);
   }
+`;
+
+export const InputIcon = styled.span`
+  display: block;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+`;
+
+export const ErrorText = styled.p`
+  padding-left: 10px;
+  color: #e74a3b;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.17;
 `;
 
 export const ConfirmBtn = styled.button`

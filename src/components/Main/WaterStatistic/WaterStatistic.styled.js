@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   padding: 16px 22px 16px 12px;
   display: flex;
   gap: 20px;
+  position: relative;
   align-items: center;
 
   @media screen and (min-width: 834px) {
@@ -13,6 +14,17 @@ export const Wrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     padding: 24px 24px 24px 40px;
+  }
+`;
+
+export const ClearButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  @media screen and (min-width: 834px) {
+    top: 24px;
+    right: 24px;
   }
 `;
 
