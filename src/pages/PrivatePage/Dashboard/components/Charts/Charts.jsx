@@ -41,18 +41,9 @@ import {
   waterOptions,
   chartLineOptions,
 } from './chartOptions';
-import { getStatistics } from '../../../../../Redux/Statistics/statisticThunks';
-import {
-  selectTotalCalories,
-  selectTotalWater,
-  selectTotalWeight,
-  selectMonth,
-  selectRequiredMonth,
-  selectError,
-  selectStatus,
-} from '../../../../../Redux/Statistics/selectors';
-import { currentMonth } from '../../../../../Redux/Statistics/utilities/currentMonth';
-import { setRequiredMonth } from '../../../../../Redux/Statistics/statisticSlice';
+import { currentMonth } from '../../../../../utilities/currentMonth';
+import { userStatistics } from '../../../../../Redux/User/userThunks';
+import { selectRequiredMonth } from '../../../../../Redux/User/selectors';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -79,15 +70,6 @@ const months = [
 
 const Charts = () => {
   const dispatch = useDispatch();
-
-  const totalCalories = useSelector(selectTotalCalories);
-  const totalWater = useSelector(selectTotalWater);
-  const totalWeight = useSelector(selectTotalWeight);
-  const month = useSelector(selectMonth);
-  const requiredMonth = useSelector(selectRequiredMonth);
-  const error = useSelector(selectError);
-  const status = useSelector(selectStatus);
-
   const [selectedMonth, setSelectedMonth] = useState(currentMonth());
   const [chartData, setChartData] = useState(null);
   const [chartKey, setChartKey] = useState(0);
@@ -100,8 +82,8 @@ const Charts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await dispatch(getStatistics({ month: selectedMonth }));
-        // console.log('Fetched data:', data); // 
+        const data = await dispatch(userStatistics({ month: selectedMonth }));
+        console.log('Fetched data:', data); // 
         updateCaloriesChartData(data);
         updateWaterChartData(data);
         updateWeightChartData(data);
@@ -114,7 +96,7 @@ const Charts = () => {
 
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption.label);
-    dispatch(setRequiredMonth(selectedOption.label));
+    dispatch(selectRequiredMonth(selectedOption.label));
   };
 
   const getCurrentDayOfMonth = () => {
@@ -125,7 +107,7 @@ const Charts = () => {
   // CALORIES CONFIG
 
   const updateCaloriesChartData = ({ payload }) => {
-    // console.log('Updating CALORIES data:', payload);
+    console.log('Updating CALORIES data:', payload);
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
@@ -151,7 +133,7 @@ const Charts = () => {
   // WATER CONFIG
 
   const updateWaterChartData = ({ payload }) => {
-    // console.log('Updating WATER data:', payload); //
+    console.log('Updating WATER data:', payload); //
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
@@ -179,7 +161,7 @@ const Charts = () => {
   // WEIGHT CONFIG
 
   const updateWeightChartData = (data) => {
-    // console.log('Updating WEIGHT data:', data); //
+    console.log('Updating WEIGHT data:', data); //
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
@@ -233,7 +215,7 @@ const Charts = () => {
       ),
       averageWeight: averageWeight !== null ? averageWeight.toFixed(0) : null,
     });
-    // console.log('Weight UPDATED:', dayEntries); //
+    console.log('Weight UPDATED:', dayEntries); //
   };
 
   // SELECT CONFIG
