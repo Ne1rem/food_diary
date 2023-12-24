@@ -68,14 +68,14 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoading = false;
-        // state.isLoggedIn = true;
+        state.isLoggedIn = true;
         toast.success(`Successful registration!.`);
       })
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.user = payload.user;
         state.token = payload.token;
-        state.isLoading = false;
         state.isLoggedIn = true;
         toast.success(`Successful authorization!.`);
       })
