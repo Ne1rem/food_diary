@@ -176,11 +176,11 @@ export const UserNameHeader = styled.p`
   line-height: 20px;
   letter-spacing: 0em;
   text-align: right;
-  padding-right: 6px;
+  margin-right: 6px;
 `;
 
 export const UserAvatar = styled.img`
-  padding-right: 4px;
+  margin-right: 4px;
   height: 28px;
   width: 28px;
   border-radius: 50%;
