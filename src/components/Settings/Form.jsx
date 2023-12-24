@@ -44,18 +44,21 @@ export const ProfileSettings = () => {
   const fileInputRef = useRef(null);
 
   const [validation, setValidation] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState('');
 
   const onClickBtnSave = async () => {
     setValidation('validation');
-    if (formik.values.age !== '' && !formik.errors.age) {
+    // if (formik.values.age !== '' && !formik.errors.age) {
       try {
-        setIsLoading(true);
-       await formik.handleSubmit();
+        setIsLoading('loading');
+        //  await formik.handleSubmit();
+        await dispatch(updateUser(formik.values)).unwrap();
+      } catch (err) {
+        console.log(err);
       } finally {
-        setIsLoading(false);
+        setIsLoading('');
       }
-    }
+    // }
   };
 
   const formik = useFormik({
@@ -445,12 +448,12 @@ export const ProfileSettings = () => {
           <Button
             className="btn-active"
             type="submit"
-            // disabled={isLoading}
+            disabled={isLoading}
             onClick={() => {
               onClickBtnSave();
             }}
           >
-            {isLoading ? <LoaderBtn /> : 'Save'}
+            {isLoading === 'loading' ? <LoaderBtn/> : 'Send'}
           </Button>
         </ButtonDiv>
       </Form>
