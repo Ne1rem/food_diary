@@ -1,4 +1,4 @@
-import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
+import{s as i,r as t,j as d,h as a}from"./index-567a1809.js";const n=i.div`
   padding: 20px 34px 60px 34px;
 
   @media (min-width: 834px) and (max-width: 1440px) {
@@ -6,7 +6,7 @@ import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
     padding: 24px 27px 290px 27px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     padding: 16px 10px 40px 10px;
   }
@@ -20,7 +20,7 @@ import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
     margin-bottom: 20px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 24px;
     margin-bottom: 16px;
@@ -36,7 +36,7 @@ import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
     height: 396px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
     height: 312px;
@@ -54,7 +54,7 @@ import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
     gap: 24px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     flex-direction: column;
     gap: 24px;
@@ -71,9 +71,10 @@ import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
     width: 780px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     flex-direction: column;
+    width: 300px;
   }
 `,h=i.div`
   width: 328px;
@@ -102,7 +103,7 @@ import{s as i,r as t,j as d,h as a}from"./index-add2fbe4.js";const n=i.div`
     width: 380px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
   }
