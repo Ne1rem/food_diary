@@ -1,4 +1,4 @@
-import{s as t,a as z,r as h,i as E,c as D,w as C,j as e}from"./index-a701e68c.js";import{u as q,c as A,a as k,b as v}from"./index.esm-00e4d48f.js";import{I as m,L as N}from"./LoaderBtn-e04b4284.js";import{i as a}from"./sprite-0d7bcf7c.js";import"./hoist-non-react-statics.cjs-e64c1948.js";const H=d=>d.user.user,W=t.form`
+import{s as t,a as z,r as h,i as D,c as E,w as C,j as e}from"./index-e9f80351.js";import{u as q,c as N,a as k,b as v}from"./index.esm-a43c21e5.js";import{I as m,L as A}from"./LoaderBtn-1cb62b18.js";import{i as a}from"./sprite-67373541.js";import"./hoist-non-react-statics.cjs-713eceb0.js";const H=d=>d.user.user,W=t.form`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -49,8 +49,9 @@ import{s as t,a as z,r as h,i as E,c as D,w as C,j as e}from"./index-a701e68c.js
   color: var(--color-crimary-grey);
   background: transparent;
 
-  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1);
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
 
   &:hover {
     background: var(--color-primary-green-lite);
@@ -58,9 +59,9 @@ import{s as t,a as z,r as h,i as E,c as D,w as C,j as e}from"./index-a701e68c.js
   }
 
   &.btn-active {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -98,6 +99,7 @@ import{s as t,a as z,r as h,i as E,c as D,w as C,j as e}from"./index-a701e68c.js
   @media screen and (min-width: 1440px) {
     width: 212px;
     margin: 0;
+    justify-content: flex-start;
   }
 `,G=t.div`
   display: flex;
@@ -153,12 +155,12 @@ import{s as t,a as z,r as h,i as E,c as D,w as C,j as e}from"./index-a701e68c.js
     width: 192px;
   }
 
-  &.error{
-    border: 1px solid #E74A3B;
+  &.error {
+    border: 1px solid #e74a3b;
   }
 
-  &.correct{
-    border: 1px solid #3CBC81;
+  &.correct {
+    border: 1px solid #3cbc81;
   }
 `,S=t.p`
   font-size: 14px;
@@ -294,21 +296,21 @@ import{s as t,a as z,r as h,i as E,c as D,w as C,j as e}from"./index-a701e68c.js
     max-width: 420px;
   }
 `,o=t.svg`
-position: absolute;
-width: 16px;
-height: 16px;
-top: 39px;
-right: 10px;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 39px;
+  right: 10px;
 `,s=t.div`
-position: absolute;
-top: 68px;
-left: 2px;
-color: #E74A3B;
+  position: absolute;
+  top: 68px;
+  left: 2px;
+  color: #e74a3b;
 
-font-size: 12px;
-font-weight: 400;
-line-height: 1.1
-`,J="/food_diary/assets/symbol-defs-a36e553a.svg",K=()=>{const d=z();h.useEffect(()=>{d(E())},[d]);const n=D(H),j=h.useRef(null),[r,L]=h.useState(""),[w,b]=h.useState(""),F=async()=>{L("validation");try{b("loading"),await d(C(i.values)).unwrap()}catch(c){console.log(c)}finally{b("")}},i=q({initialValues:{name:n.name||"",avatarURL:n.avatarURL||"https://cdn-icons-png.flaticon.com/256/805/805439.png",age:n.age||0,gender:n.gender||"",weight:n.weight||"",height:n.height||"",activity:n.activity||""},validationSchema:A({name:k().required("Name ir required"),age:v().positive("Age has to be positive number").required("Age is required"),weight:v().positive("Weight has to be positive number").required("Weight is required"),height:v().positive("Height has to be positive number").required("Height is required"),activity:k().required("Choose activity level")}),onSubmit:c=>{d(C(c))}});h.useEffect(()=>{i.setValues({name:n.name||"",avatarURL:n.avatarURL||"https://cdn-icons-png.flaticon.com/256/805/805439.png",age:n.age||0,gender:n.gender||"",weight:n.weight||"",height:n.height||"",activity:n.activity||""})},[n]);const I=c=>{const $=c.currentTarget.files[0];i.setFieldValue("avatarURL",URL.createObjectURL($))},U=()=>{j.current.click()};return e.jsx("div",{children:e.jsxs(W,{onSubmit:i.handleSubmit,children:[e.jsxs(y,{children:[e.jsxs(m,{children:[e.jsx(p,{htmlFor:"name",children:"Your name"}),e.jsx(x,{className:r==="validation"?i.errors.name?"error":"correct":"",type:"text",id:"name",name:"name",placeholder:"Enter your name",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.name}),r==="validation"?i.errors.name?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.name?e.jsx(s,{children:i.errors.name}):e.jsx(s,{style:{color:"#3CBC81"},children:"Name is valid"}):null]}),e.jsxs(V,{children:[e.jsx(S,{children:"Your photo"}),e.jsxs(O,{children:[i.values.avatarURL?e.jsx("img",{src:i.values.avatarURL,alt:"User Avatar",style:{width:"36px",height:"36px",borderRadius:"50%"}}):null,e.jsx(G,{children:e.jsxs(Y,{type:"button",onClick:U,children:[e.jsx(x,{type:"file",ref:j,style:{display:"none"},onChange:I}),e.jsx(_,{width:"16",height:"16",children:e.jsx("use",{href:`${J}#icon-inbox`})}),e.jsx(u,{children:"Download new photo"})]})})]})]})]}),e.jsxs(y,{children:[e.jsxs(m,{children:[e.jsx(p,{htmlFor:"age",children:"Your age"}),e.jsx(x,{className:r==="validation"?i.errors.age?"error":"correct":"",id:"age",name:"age",placeholder:"Enter your age",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.age}),r==="validation"?i.errors.age?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.age?e.jsx(s,{children:i.errors.age}):e.jsx(s,{style:{color:"#3CBC81"},children:"Age is valid"}):null]}),e.jsxs("div",{children:[e.jsx(p,{children:"Gender"}),e.jsxs(T,{children:[e.jsxs(R,{children:[e.jsx("input",{type:"radio",name:"gender",value:"male",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.gender==="male"}),e.jsx(l,{}),e.jsx(u,{children:"Male"})]}),e.jsxs(R,{children:[e.jsx("input",{type:"radio",name:"gender",value:"female",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.gender==="female"}),e.jsx(l,{}),e.jsx(u,{children:"Female"})]})]}),i.touched.gender&&i.errors.gender?e.jsx("div",{children:i.errors.gender}):null]})]}),e.jsxs(y,{children:[e.jsxs(m,{children:[e.jsx(p,{htmlFor:"weight",children:"Weight"}),e.jsx(x,{className:r==="validation"?i.errors.weight?"error":"correct":"",id:"weight",name:"weight",placeholder:"Enter your weight",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.weight}),r==="validation"?i.errors.weight?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.weight?e.jsx(s,{children:i.errors.weight}):e.jsx(s,{style:{color:"#3CBC81"},children:"Weight is valid"}):null]}),e.jsxs(m,{children:[e.jsx(p,{htmlFor:"height",children:"Height"}),e.jsx(x,{className:r==="validation"?i.errors.height?"error":"correct":"",id:"height",name:"height",placeholder:"Enter your height",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.height}),r==="validation"?i.errors.height?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.height?e.jsx(s,{children:i.errors.height}):e.jsx(s,{style:{color:"#3CBC81"},children:"Height is valid"}):null]})]}),e.jsxs(M,{children:[e.jsx(S,{children:"Your activity"}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.2",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.2||i.values.activity==="1.2"}),e.jsx(l,{}),e.jsx(f,{children:"1.2 - if you do not have physical activity and sedentary work"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.375",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.375||i.values.activity==="1.375"}),e.jsx(l,{}),e.jsx(f,{children:"1.375 - if you do short runs or light gymnastics 1-3 times a week"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.55",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.55||i.values.activity==="1.55"}),e.jsx(l,{}),e.jsx(f,{children:"1.55 - if you play sports with average loads 3-5 times a week"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.725",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.725||i.values.activity==="1.725"}),e.jsx(l,{}),e.jsx(u,{children:"1.725 - if you train fully 6-7 times a week"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.9",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.9||i.values.activity==="1.9"}),e.jsx(l,{}),e.jsx(f,{children:"1.9 - if your work is related to physical labor, you train 2 times a day and include strength exercises in your training program"})]}),i.touched.activityLevel&&i.errors.activity?e.jsx("div",{children:i.errors.activity}):null]}),e.jsxs(P,{children:[e.jsx(B,{type:"button",onClick:()=>i.resetForm({values:n}),children:"Cancel"}),e.jsx(B,{className:"btn-active",type:"submit",disabled:w,onClick:()=>{F()},children:w==="loading"?e.jsx(N,{}):"Send"})]})]})})},Q=t.img`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.1;
+`,J="/food_diary/assets/symbol-defs-a36e553a.svg",K=()=>{const d=z();h.useEffect(()=>{d(D())},[d]);const n=E(H),j=h.useRef(null),[r,L]=h.useState(""),[w,b]=h.useState(""),F=async()=>{L("validation");try{b("loading"),await d(C(i.values)).unwrap()}catch(c){console.log(c)}finally{b("")}},i=q({initialValues:{name:n.name||"",avatarURL:n.avatarURL||"https://cdn-icons-png.flaticon.com/256/805/805439.png",age:n.age||0,gender:n.gender||"",weight:n.weight||"",height:n.height||"",activity:n.activity||""},validationSchema:N({name:k().required("Name ir required"),age:v().positive("Age has to be positive number").required("Age is required"),weight:v().positive("Weight has to be positive number").required("Weight is required"),height:v().positive("Height has to be positive number").required("Height is required"),activity:k().required("Choose activity level")}),onSubmit:c=>{d(C(c))}});h.useEffect(()=>{i.setValues({name:n.name||"",avatarURL:n.avatarURL||"https://cdn-icons-png.flaticon.com/256/805/805439.png",age:n.age||0,gender:n.gender||"",weight:n.weight||"",height:n.height||"",activity:n.activity||""})},[n]);const I=c=>{const $=c.currentTarget.files[0];i.setFieldValue("avatarURL",URL.createObjectURL($))},U=()=>{j.current.click()};return e.jsx("div",{children:e.jsxs(W,{onSubmit:i.handleSubmit,children:[e.jsxs(y,{children:[e.jsxs(m,{children:[e.jsx(p,{htmlFor:"name",children:"Your name"}),e.jsx(x,{className:r==="validation"?i.errors.name?"error":"correct":"",type:"text",id:"name",name:"name",placeholder:"Enter your name",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.name}),r==="validation"?i.errors.name?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.name?e.jsx(s,{children:i.errors.name}):e.jsx(s,{style:{color:"#3CBC81"},children:"Name is valid"}):null]}),e.jsxs(V,{children:[e.jsx(S,{children:"Your photo"}),e.jsxs(O,{children:[i.values.avatarURL?e.jsx("img",{src:i.values.avatarURL,alt:"User Avatar",style:{width:"36px",height:"36px",borderRadius:"50%"}}):null,e.jsx(G,{children:e.jsxs(Y,{type:"button",onClick:U,children:[e.jsx(x,{type:"file",ref:j,style:{display:"none"},onChange:I}),e.jsx(_,{width:"16",height:"16",children:e.jsx("use",{href:`${J}#icon-inbox`})}),e.jsx(u,{children:"Download new photo"})]})})]})]})]}),e.jsxs(y,{children:[e.jsxs(m,{children:[e.jsx(p,{htmlFor:"age",children:"Your age"}),e.jsx(x,{className:r==="validation"?i.errors.age?"error":"correct":"",id:"age",name:"age",placeholder:"Enter your age",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.age}),r==="validation"?i.errors.age?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.age?e.jsx(s,{children:i.errors.age}):e.jsx(s,{style:{color:"#3CBC81"},children:"Age is valid"}):null]}),e.jsxs("div",{children:[e.jsx(p,{children:"Gender"}),e.jsxs(T,{children:[e.jsxs(R,{children:[e.jsx("input",{type:"radio",name:"gender",value:"male",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.gender==="male"}),e.jsx(l,{}),e.jsx(u,{children:"Male"})]}),e.jsxs(R,{children:[e.jsx("input",{type:"radio",name:"gender",value:"female",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.gender==="female"}),e.jsx(l,{}),e.jsx(u,{children:"Female"})]})]}),i.touched.gender&&i.errors.gender?e.jsx("div",{children:i.errors.gender}):null]})]}),e.jsxs(y,{children:[e.jsxs(m,{children:[e.jsx(p,{htmlFor:"weight",children:"Weight"}),e.jsx(x,{className:r==="validation"?i.errors.weight?"error":"correct":"",id:"weight",name:"weight",placeholder:"Enter your weight",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.weight}),r==="validation"?i.errors.weight?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.weight?e.jsx(s,{children:i.errors.weight}):e.jsx(s,{style:{color:"#3CBC81"},children:"Weight is valid"}):null]}),e.jsxs(m,{children:[e.jsx(p,{htmlFor:"height",children:"Height"}),e.jsx(x,{className:r==="validation"?i.errors.height?"error":"correct":"",id:"height",name:"height",placeholder:"Enter your height",onChange:i.handleChange,onBlur:i.handleBlur,value:i.values.height}),r==="validation"?i.errors.height?e.jsx(o,{children:e.jsx("use",{href:`${a}#error`})}):e.jsx(o,{children:e.jsx("use",{href:`${a}#correct`})}):null,r==="validation"?i.errors.height?e.jsx(s,{children:i.errors.height}):e.jsx(s,{style:{color:"#3CBC81"},children:"Height is valid"}):null]})]}),e.jsxs(M,{children:[e.jsx(S,{children:"Your activity"}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.2",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.2||i.values.activity==="1.2"}),e.jsx(l,{}),e.jsx(f,{children:"1.2 - if you do not have physical activity and sedentary work"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.375",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.375||i.values.activity==="1.375"}),e.jsx(l,{}),e.jsx(f,{children:"1.375 - if you do short runs or light gymnastics 1-3 times a week"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.55",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.55||i.values.activity==="1.55"}),e.jsx(l,{}),e.jsx(f,{children:"1.55 - if you play sports with average loads 3-5 times a week"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.725",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.725||i.values.activity==="1.725"}),e.jsx(l,{}),e.jsx(u,{children:"1.725 - if you train fully 6-7 times a week"})]}),e.jsxs(g,{children:[e.jsx("input",{type:"radio",name:"activity",value:"1.9",onChange:i.handleChange,onBlur:i.handleBlur,checked:i.values.activity===1.9||i.values.activity==="1.9"}),e.jsx(l,{}),e.jsx(f,{children:"1.9 - if your work is related to physical labor, you train 2 times a day and include strength exercises in your training program"})]}),i.touched.activityLevel&&i.errors.activity?e.jsx("div",{children:i.errors.activity}):null]}),e.jsxs(P,{children:[e.jsx(B,{type:"button",onClick:()=>i.resetForm({values:n}),children:"Cancel"}),e.jsx(B,{className:"btn-active",type:"submit",disabled:w,onClick:()=>{F()},children:w==="loading"?e.jsx(A,{}):"Send"})]})]})})},Q=t.img`
   width: 300px;
   height: 296px;
   margin-bottom: 24px;
