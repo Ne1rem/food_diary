@@ -8,7 +8,7 @@ export const Container = styled.div`
     padding: 24px 27px 290px 27px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     padding: 16px 10px 40px 10px;
   }
@@ -24,7 +24,7 @@ export const Title = styled.h2`
     margin-bottom: 20px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 24px;
     margin-bottom: 16px;
@@ -42,7 +42,7 @@ export const Photo = styled.img`
     height: 396px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
     height: 312px;
@@ -62,7 +62,7 @@ export const RecommendedFoodWrapper = styled.div`
     gap: 24px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     flex-direction: column;
     gap: 24px;
@@ -81,9 +81,10 @@ export const FoodCardsWrapper = styled.div`
     width: 780px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     flex-direction: column;
+    width: 300px;
   }
 `;
 
@@ -114,7 +115,7 @@ export const FoodCard = styled.div`
     width: 380px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
   }

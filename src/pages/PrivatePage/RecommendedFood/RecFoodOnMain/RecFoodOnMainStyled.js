@@ -9,7 +9,7 @@ export const Container = styled.div`
     padding: 20px 27px 40px 27px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
 
     padding: 20px 10px 80px 10px;
@@ -22,7 +22,7 @@ export const RecommendedFoodWrapper = styled.div`
     width: 780px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
   }
@@ -33,7 +33,7 @@ export const Title = styled.h2`
   color: #ffffff;
   font-size: 22px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 18px;
   }
@@ -50,7 +50,7 @@ export const FoodCardsWrapper = styled.div`
     width: 780px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
     gap: 10px;
@@ -94,7 +94,7 @@ export const SeeMoreButton = styled.p`
   color: #b6b6b6;
   font-size: 16px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 14px;
   }
