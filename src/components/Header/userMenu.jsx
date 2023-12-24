@@ -121,6 +121,8 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     setIsUserModalOpen((prevState) => !prevState);
   }
 
+
+  
   return (
     <UserMenuContainer>
       <GoalHeader>
@@ -134,7 +136,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             <DivGoal>
               <GoalPName>Goal</GoalPName>
               <GoalP>{currentGoal}</GoalP>
-            </DivGoal>
+            </DivGoal>  
             <GoalSvg>
               <use href={`${HeaderSvg}#change-your-goal`} />
             </GoalSvg>
@@ -213,7 +215,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                 <MobileDivGoalPart>
                   <MobileDivGoal>
                     <GoalPName>Goal</GoalPName>
-                    <GoalP>{goal}</GoalP>
+                    <GoalP>{currentGoal}</GoalP>
                   </MobileDivGoal>
                   <MobileGoalSvg>
                     <use href={`${HeaderSvg}#icon-right-converted`} />
