@@ -9,3 +9,7 @@ export const selectCaloriesData = (state) => state.user.caloriesData;
 export const selectWaterData = (state) => state.user.waterData;
 
 export const selectWeightData = (state) => state.user.weightData;
+
+export const selectWeights = (state) => state.user.weight;
+
+export const selectGoal = (state) => state.user.goal;
