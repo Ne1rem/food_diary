@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { AddWaterModal } from '../AddWaterModal';
 import {
@@ -20,8 +20,12 @@ import {
 import iconsSprite from '../../../assets/sprite.svg';
 
 export const WaterStatistic = ({ dailyWater, water }) => {
-  const [currentWater, setCurrentWater] = useState(() => water);
+  const [currentWater, setCurrentWater] = useState(null);
   const [isModalShown, setIsModalShown] = useState(false);
+
+  useEffect(() => {
+    setCurrentWater(water);
+  }, [water]);
 
   const closeModal = () => {
     setIsModalShown(false);
