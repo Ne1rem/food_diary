@@ -198,7 +198,7 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              type="number"
+              // type="number"
               id="age"
               name="age"
               placeholder="Enter your age"
@@ -271,7 +271,7 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              type="number"
+              // type="number"
               id="weight"
               name="weight"
               placeholder="Enter your weight"
@@ -311,7 +311,7 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              type="number"
+              // type="number"
               id="height"
               name="height"
               placeholder="Enter your height"
