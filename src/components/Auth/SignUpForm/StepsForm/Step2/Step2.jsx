@@ -1,14 +1,7 @@
-import {
-  Button,
-  Title,
-  Text,
-} from '../../../AuthStyled/GeneralStyles/GeneralStyles';
-import {
-  RadioButton,
-  RadioCircle,
-  RadioLabel,
-} from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
 import { Goals, ButtonList, RadioList } from './Step2.styled';
+import { Button, Title, Text } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
+import { RadioButton, RadioCircle, RadioLabel } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
+
 
 const Step2 = ({ formik, increment, decrement }) => {
   return (
@@ -22,7 +15,7 @@ const Step2 = ({ formik, increment, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="goal"
-              defaultChecked={formik.values.goal=== "Lose Fat"}
+              defaultChecked={formik.values.goal === 'Lose Fat'}
               value="Lose Fat"
             />
             <RadioCircle></RadioCircle>
@@ -35,7 +28,7 @@ const Step2 = ({ formik, increment, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="goal"
-              defaultChecked={formik.values.goal === "Maintain"}
+              defaultChecked={formik.values.goal === 'Maintain'}
               value="Maintain"
             />
             <RadioCircle></RadioCircle>
@@ -48,7 +41,7 @@ const Step2 = ({ formik, increment, decrement }) => {
               onChange={formik.handleChange}
               type="radio"
               name="goal"
-              defaultChecked={formik.values.goal === "Gain Muscle"}
+              defaultChecked={formik.values.goal === 'Gain Muscle'}
               value="Gain Muscle"
             />
             <RadioCircle></RadioCircle>
@@ -59,10 +52,20 @@ const Step2 = ({ formik, increment, decrement }) => {
 
       <ButtonList>
         <li>
-          <Button onClick={() => {increment()}} className='btn-active' type="button">Next</Button>
+          <Button
+            onClick={() => {increment()}}
+            className="btn-active"
+            type="button"
+          >
+            Next
+          </Button>
         </li>
         <li>
-          <Button onClick={() => {decrement()}} type="button">Back</Button>
+          <Button
+            onClick={() => {decrement()}}
+            type="button">
+            Back
+          </Button>
         </li>
       </ButtonList>
     </Goals>

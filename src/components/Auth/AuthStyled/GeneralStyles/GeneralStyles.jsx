@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const Title = styled.h2`
   margin-bottom: 16px;
@@ -40,9 +39,7 @@ const Text = styled.p`
   }
 `;
 
-
 const Button = styled.button`
-/* position: relative; */
   width: 300px;
   height: 36px;
 
@@ -57,10 +54,10 @@ const Button = styled.button`
   line-height: 1.4;
   background-color: transparent;
   color: var(--color-crimary-grey);
-  
-  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1);
 
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -74,27 +71,25 @@ const Button = styled.button`
   }
 
   &:hover {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 
-&.btn-active {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+  &.btn-active {
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 `;
 
 const InputError = styled.div`
-position: absolute;
-top: 40px;
-left: 10px;
-color: #E74A3B;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  color: #e74a3b;
 
-font-size: 12px;
-font-weight: 400;
-line-height: 1.1
-`
-
-
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.1;
+`;
 
 export { Button, Title, Text, InputError };
