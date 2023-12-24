@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const BodyForm = styled.div`
   @media screen and (min-width: 1440px) {
@@ -8,11 +7,11 @@ const BodyForm = styled.div`
 `;
 
 const InputList = styled.ul`
-display: flex;
-flex-direction: column;
-gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-@media screen and (min-width: 834px) {
+  @media screen and (min-width: 834px) {
     padding-left: 32px;
   }
 
@@ -20,7 +19,6 @@ gap: 24px;
     padding-left: 0;
   }
 `;
-
 
 const Label = styled.label`
   display: block;

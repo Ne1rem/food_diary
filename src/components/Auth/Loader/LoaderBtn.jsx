@@ -1,11 +1,13 @@
-import { LoaderBtnStyle } from "./LoaderBtn.styled";
+import { LoaderBtnStyle } from './LoaderBtn.styled';
 
 const LoaderBtn = () => {
-    return ( <>
-    <LoaderBtnStyle/>
-    <LoaderBtnStyle/>
-    <LoaderBtnStyle/>
-    </> );
-}
- 
+  return (
+    <>
+      <LoaderBtnStyle />
+      <LoaderBtnStyle />
+      <LoaderBtnStyle />
+    </>
+  );
+};
+
 export default LoaderBtn;

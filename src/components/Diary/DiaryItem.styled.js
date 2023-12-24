@@ -42,6 +42,7 @@ export const ItemNutrients = styled.li`
 padding-left: 20px;`
 
 export const ListToComplete = styled.ul`
+position: relative;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -63,6 +64,7 @@ width: 100%;
   }`
   
 export const ItemToComplete = styled.li`
+display: flex;
 font-size: 14px;
 color: var(--color-primary-white);
 font-weight: 600;
@@ -77,3 +79,29 @@ color: var(--color-primary-green-lite);
 font-size: 14px;
 font-weight: 500;
 line-height: 1.42;`
+
+export const EditLink = styled.button`
+position: absolute;
+top: 16px;
+right: 12px;
+display: flex;
+align-items: center;
+background: none;
+border: none;
+margin-left: 14px;
+color: var(--color-primary-grey);
+font-size: 14px;
+font-weight: 400;
+line-height: 1.42;
+&:hover{
+    color: var(--color-primary-green-lite);
+} `
+
+export const EditSvg = styled.svg`
+width: 16px;
+height: 16px;
+stroke: var(--color-primary-grey);
+&:hover{
+  stroke: var(--color-primary-green-lite)
+}
+`

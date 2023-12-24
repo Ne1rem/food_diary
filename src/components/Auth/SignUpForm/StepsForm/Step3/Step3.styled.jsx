@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
-
 const AgeGender = styled.div`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
 `;
-
 
 const RadioList = styled.ul`
   display: flex;

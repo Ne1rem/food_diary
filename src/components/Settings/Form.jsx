@@ -2,11 +2,8 @@ import { useFormik } from 'formik';
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Redux/User/selectors';
-
 import { currentUser, updateUser } from '../../Redux/User/userThunks';
-
 import * as Yup from 'yup';
-import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
   AvatarDiv,
   Button,
@@ -32,6 +29,8 @@ import { RadioButton } from './Form.styled';
 import { RadioLabel } from './Form.styled';
 import { InputBlock } from '../Auth/AuthStyled/InputStyle/InputStyle.styled';
 import inputSvg from 'assets/sprite.svg';
+import inboxSvg from '/src/assets/settings/symbol-defs.svg';
+import LoaderBtn from '../Auth/Loader/LoaderBtn';
 
 export const ProfileSettings = () => {
   const dispatch = useDispatch();
@@ -45,12 +44,21 @@ export const ProfileSettings = () => {
   const fileInputRef = useRef(null);
 
   const [validation, setValidation] = useState('');
+  const [isLoading, setIsLoading] = useState('');
 
-  const onClickBtnSave = () => {
+  const onClickBtnSave = async () => {
     setValidation('validation');
-    if (formik.values.age !== '' && !formik.errors.age) {
-      formik.handleSubmit;
-    }
+    // if (formik.values.age !== '' && !formik.errors.age) {
+      try {
+        setIsLoading('loading');
+        //  await formik.handleSubmit();
+        await dispatch(updateUser(formik.values)).unwrap();
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading('');
+      }
+    // }
   };
 
   const formik = useFormik({
@@ -190,7 +198,7 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              type="number"
+              // type="number"
               id="age"
               name="age"
               placeholder="Enter your age"
@@ -253,7 +261,6 @@ export const ProfileSettings = () => {
           </div>
         </TabletDiv>
         <TabletDiv>
-          {/* <ElFormDiv> */}
           <InputBlock>
             <LabelStyled htmlFor="weight">Weight</LabelStyled>
             <InputStyle
@@ -264,7 +271,7 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              type="number"
+              // type="number"
               id="weight"
               name="weight"
               placeholder="Enter your weight"
@@ -304,7 +311,7 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              type="number"
+              // type="number"
               id="height"
               name="height"
               placeholder="Enter your height"
@@ -439,12 +446,14 @@ export const ProfileSettings = () => {
             Cancel
           </Button>
           <Button
+            className="btn-active"
             type="submit"
+            disabled={isLoading}
             onClick={() => {
               onClickBtnSave();
             }}
           >
-            Save
+            {isLoading === 'loading' ? <LoaderBtn/> : 'Send'}
           </Button>
         </ButtonDiv>
       </Form>

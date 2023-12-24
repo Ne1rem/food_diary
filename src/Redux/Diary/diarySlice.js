@@ -25,7 +25,9 @@ const initialState = {
         state.intake = payload;
     }
 
-    const handleFulfilledPut = () => {
+    const handleFulfilledPut = (state,{ payload }) => {
+        state.isLoading = false;
+        state.intake = payload;
     }
 
     const handleFulfilledDelete = (state,{ payload }) => {
