@@ -1,13 +1,10 @@
-import {InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
-import { BodyForm, InputList, Label, ButtonList } from './Step4.styled';
-import {
-  Button,
-  Title,
-  Text,
-  InputError,
-} from '../../../AuthStyled/GeneralStyles/GeneralStyles';
 import { useState } from 'react';
+
 import  inputSvg  from 'assets/sprite.svg';
+
+import { BodyForm, InputList, Label, ButtonList } from './Step4.styled';
+import { Button, Title, Text, InputError } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
+import { InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
 
 
 const Step4 = ({ formik, increment, decrement }) => {
@@ -68,22 +65,16 @@ const Step4 = ({ formik, increment, decrement }) => {
       <ButtonList>
         <li>
           <Button
-            onClick={() => {
-              onClickBtnNext();
-            }}
+            onClick={() => {onClickBtnNext()}}
             className="btn-active"
-            type="submit"
-          >
+            type="submit">
             Next
           </Button>
         </li>
         <li>
-          <Button
-            onClick={() => {
-              decrement();
-            }}
-            type="button"
-          >
+          <Button 
+            onClick={() => {decrement()}}
+            type="button">
             Back
           </Button>
         </li>

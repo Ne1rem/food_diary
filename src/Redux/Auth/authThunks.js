@@ -9,7 +9,7 @@ const token = {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = "";
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -21,7 +21,11 @@ const signUp = createAsyncThunk(
       // token.set(data.token);
       return data;
     } catch (e) {
-      toast.error('User creation error!');
+      if (e.request.status === 409) {
+        toast.error('Email is already in use!');
+      } else {
+        toast.error('Invalid user data!');
+      }
       return rejectWithValue(e.message);
     }
   }
@@ -35,7 +39,7 @@ const signIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (e) {
-      toast.error('Invalid email or password!');
+      toast.error('Incorrect email or password!');
       return rejectWithValue(e.message);
     }
   }
@@ -48,7 +52,7 @@ const forgotPassword = createAsyncThunk(
       const { data } = await axios.post('auth/forgot-password', credentials);
       return data;
     } catch (e) {
-      toast.error('Invalid email!');
+      toast.error(`Email doesn't exist`);
       return rejectWithValue(e.message);
     }
   }
@@ -60,7 +64,7 @@ const logOut = createAsyncThunk('auth/signout', async () => {
     token.unset();
     return data;
   } catch (e) {
-    toast.error(e);
+    return e.message;
   }
 });
 

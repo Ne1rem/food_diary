@@ -14,28 +14,11 @@ const signUpSchema = Yup.object().shape({
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
       'Invalid email"'
     ),
-  password: Yup.string()
-    .min(6)
-    .max(15)
-    .required('Password required'),
-    // .matches(
-    //   /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-    //   'Invalid password. It must contain letters and numbers only.'
-    // ),
-    age: Yup.number()
-    .required("Age required")
-    .integer(),
-    height: Yup.number()
-    .required("Height required")
-    .min(50)
-    .max(230),
-    weight: Yup.number()
-    .required("Weight required")
-    .min(50)
-    .max(200),
-    activity: Yup.number()
-    .min(1.2)
-    .max(1.9),
+  password: Yup.string().min(6).max(15).required('Password required'),
+  age: Yup.number().required('Age required').integer(),
+  height: Yup.number().required('Height required').min(50).max(230),
+  weight: Yup.number().required('Weight required').min(50).max(200),
+  activity: Yup.number().min(1.2).max(1.9),
 });
 
 const signInSchema = Yup.object().shape({
@@ -58,6 +41,5 @@ const forgotShema = Yup.object().shape({
       'Invalid email"'
     ),
 });
-
 
 export { signUpSchema, signInSchema, forgotShema };
