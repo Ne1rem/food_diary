@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { requestFoodIntakeThunk } from "../../../Redux/Diary/diaryThunks";
-import { selectorIntakeBreakfast,
-         selectorIntakeLunch,
-         selectorIntakeDinner,
-         selectorIntakeSnack } from "../../../Redux/Diary/selectors";
+import { selectorIntake } from "../../../Redux/Diary/selectors";
 import { WrapperComponent, Title, WrapperTitle, TrashSvg, ButtonSvg, ModalLink } from "./DiaryItemMain.styled";
 import ListNutritients from "../../Diary/ListNutritients";
 import ModalDiary from "../../ModalIntake/ModalDiary";
@@ -18,28 +15,25 @@ const DiaryItemMain = ({name, img}) => {
         setShowModal(!showModal);
     };
 
-    // useEffect(() => {
-    //     dispatch(requestFoodIntakeThunk())
-    // },[dispatch])
+    useEffect(() => {
+        dispatch(requestFoodIntakeThunk())
+    },[dispatch])
 
-    const breakfast = useSelector(selectorIntakeBreakfast);
-    const lunch = useSelector(selectorIntakeLunch);
-    const dinner = useSelector(selectorIntakeDinner);
-    const snack = useSelector(selectorIntakeSnack);
+    const intake = useSelector(selectorIntake);
 
     let selectedIntake;
     switch (name) {
       case "breakfast":
-        selectedIntake = breakfast;
+        selectedIntake = intake?.breakfast;
         break;
       case "lunch":
-        selectedIntake = lunch;
+        selectedIntake = intake?.lunch;
         break;
       case "dinner":
-        selectedIntake = dinner;
+        selectedIntake = intake?.dinner;
         break;
       case "snack":
-        selectedIntake = snack;
+        selectedIntake = intake?.snack;
         break;
       default:
         selectedIntake = null;

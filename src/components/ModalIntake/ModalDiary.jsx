@@ -1,5 +1,12 @@
 import FormDiary from "./FormDiary";
 import { useEffect } from "react";
+<<<<<<< Updated upstream
+=======
+// import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectorIntake } from "../../Redux/Diary/selectors";
+// import { useState } from "react";
+>>>>>>> Stashed changes
 import { Formik, Form, FieldArray } from "formik";
 import * as yup from 'yup';
 
@@ -47,6 +54,8 @@ const intakeTemplate = {
 
 const ModalDiary = ({ name, img, onClose }) => {
 
+  // const dispatch = useDispatch();
+
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     const handleKeyDown = (e) => {
@@ -72,49 +81,56 @@ const ModalDiary = ({ name, img, onClose }) => {
     console.log('handleFormSubmit');
   };
 
-  const handleAddMore = (e, { values, setFieldValue }) => {
+  const maxFormsCount = 4;
+
+  const handleAddMore = (e, { values, setFieldValue, errors }) => {
     e.preventDefault();
-    const lastIndex = values.dish.length - 1;
-    const lastItemForm = values.dish[lastIndex];
   
-    foodSchema
-      .validate(lastItemForm, { abortEarly: false })
-      .then(() => {
-        // Усі дані є валідними
-        console.log('Form is valid');
-        setFieldValue('dish', [...values.dish, intakeTemplate]);
-      })
-      .catch(validationErrors => {
-        // Усі дані не є валідними
-        console.log('Errors:', validationErrors.errors);
-        console.log('Form is invalid');
-      });
+    const hasErrors = values.dish.some((product, index) => {
+      const productErrors = errors.dish && errors.dish[index];
+      return !!productErrors;
+    });
   
-    console.log('handleAddMore');
+    if (hasErrors) {    
+      console.log('Cannot add more items due to validation errors');
+      return;
+    }
+
+    if (values.dish.length < maxFormsCount) {
+      const lastIndex = values.dish.length - 1;
+      const lastItemForm = values.dish[lastIndex];
+  
+      foodSchema
+        .validate(lastItemForm, { abortEarly: false })
+        .then(() => {
+          setFieldValue('dish', [...values.dish, intakeTemplate]);
+        })
+    } else {
+      console.log('Cannot add more than 4 items');
+    }
   };
+
+  const intake = useSelector(selectorIntake);
+
+  let selectedIntakeDish;
+  switch (name) {
+    case "breakfast":
+      selectedIntakeDish = intake?.breakfast?.dish;
+      break;
+    case "lunch":
+      selectedIntakeDish = intake?.lunch?.dish;
+      break;
+    case "dinner":
+      selectedIntakeDish = intake?.dinner?.dish;
+      break;
+    case "snack":
+      selectedIntakeDish = intake?.snack?.dish;
+      break;
+    default:
+      selectedIntakeDish = null;
+      break;
+  }
   
-
-// template
-
-const todayIntake = [
-          {
-              "name": "new",
-              "carbonohidrates": 30,
-              "protein": 25,
-              "fat": 23,
-              "calories": 750,
-              "_id": "6583100f05cec9e389439301"
-          },
-          {
-            "name": "new",
-            "carbonohidrates": 30,
-            "protein": 25,
-            "fat": 23,
-            "calories": 750,
-            "_id": "6583100f05cec9e389439301"
-        }
-      ];
-
   return(
     <Overlay onClick={handleOverlayClick}>
       <ModalWindow>
@@ -126,8 +142,8 @@ const todayIntake = [
         <Formik
         initialValues={{
           dish: 
-          todayIntake && todayIntake
-            ? todayIntake.map((product) => ({
+          selectedIntakeDish && selectedIntakeDish.length
+            ? selectedIntakeDish.map((product) => ({
                 name: product.name || '',
                 carbonohidrates: product.carbonohidrates || '',
                 protein: product.protein || '',
