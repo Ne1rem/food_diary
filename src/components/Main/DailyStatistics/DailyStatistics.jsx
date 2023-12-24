@@ -14,7 +14,7 @@ import { selectUserInfo } from '../../../Redux/Auth/selectors';
 
 export const DailyStatistics = () => {
   const user = useSelector(selectUserInfo);
-  const { recommendedCalories, recommendedWater } = user;
+  const { recommendedWater, recommendedCalories, totalWater } = user;
 
   return (
     <Wrapper>
@@ -31,7 +31,10 @@ export const DailyStatistics = () => {
       <StatisticSection>
         <StatisticTitle>Water</StatisticTitle>
         <StatisticBlock>
-          <WaterStatistic dailyWater={recommendedWater * 1000} />
+          <WaterStatistic
+            water={totalWater}
+            dailyWater={recommendedWater * 1000}
+          />
         </StatisticBlock>
       </StatisticSection>
 
