@@ -1,4 +1,4 @@
-import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
+import{s as d,r as t,j as i,h as a}from"./index-363651c0.js";const n=d.div`
   padding: 20px 34px 60px 34px;
 
   @media (min-width: 834px) and (max-width: 1439px) {
@@ -10,10 +10,10 @@ import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
     /* Стилі для телефонів */
     padding: 16px 10px 40px 10px;
   }
-`,r=i.h2`
+`,r=d.h2`
   margin-bottom: 16px;
   font-size: 30px;
-  color: #fff;
+  color: var(--color-primary-white);
 
   @media (min-width: 834px) and (max-width: 1439px) {
     /* Стилі для планшетів */
@@ -25,7 +25,7 @@ import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
     font-size: 24px;
     margin-bottom: 16px;
   }
-`,s=i.img`
+`,s=d.img`
   width: 536px;
   height: 560px;
   margin-top: 8px;
@@ -41,7 +41,7 @@ import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
     width: 300px;
     height: 312px;
   }
-`,m=i.div`
+`,c=d.div`
   display: flex;
   gap: 44px;
   padding-left: 116px;
@@ -63,7 +63,7 @@ import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
     gap: 24px;
     padding-left: 0px;
   }
-`,c=i.div`
+`,m=d.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -79,13 +79,13 @@ import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
     flex-direction: column;
     width: 300px;
   }
-`,h=i.div`
+`,h=d.div`
   width: 328px;
   height: 86px;
   display: flex;
   flex-direction: row;
   background-color: #0f0f0f;
-  color: #ffffff;
+  color: var(--color-primary-white);
   border-radius: 12px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -110,16 +110,16 @@ import{s as i,r as t,j as d,h as a}from"./index-6630076f.js";const n=i.div`
     /* Стилі для телефонів */
     width: 300px;
   }
-`,l=i.div`
+`,l=d.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
   font-size: 18px;
-`,f=i.div`
+`,f=d.div`
   display: flex;
   flex-direction: row;
   gap: 6px;
   font-size: 14px;
-`,g=i.p`
-  color: #b6b6b6;
-`,w="/food_diary/assets/PhotoRecFood-be261e60.png",u=()=>{const[x,p]=t.useState([]);return t.useEffect(()=>{(async()=>{try{const o=await a.get("https://food-diary-backend-kr1b.onrender.com/api/recommended-food");p(o.data.slice(0,10))}catch(o){console.error("Error fetching recommended food:",o)}})()},[]),d.jsxs(n,{children:[d.jsx(r,{children:"Recommended Food"}),d.jsxs(m,{children:[d.jsx(s,{src:w,alt:"Фото"}),d.jsx(c,{children:x.map((e,o)=>d.jsxs(h,{children:[d.jsx("img",{src:e.img,alt:e.name}),d.jsxs(l,{children:[d.jsx("h3",{children:e.name}),d.jsxs(f,{children:[d.jsx("p",{children:e.amount}),d.jsx(g,{children:e.calories})]})]})]},o))})]})]})};export{u as default};
+`,g=d.p`
+  color: var(--color-primary-grey);
+`,w="/food_diary/assets/PhotoRecFood-be261e60.png",y=()=>{const[p,x]=t.useState([]);return t.useEffect(()=>{(async()=>{try{const o=await a.get("https://food-diary-backend-kr1b.onrender.com/api/recommended-food");x(o.data.slice(0,10))}catch(o){console.error("Error fetching recommended food:",o)}})()},[]),i.jsxs(n,{children:[i.jsx(r,{children:"Recommended Food"}),i.jsxs(c,{children:[i.jsx(s,{src:w,alt:"Фото"}),i.jsx(m,{children:p.map((e,o)=>i.jsxs(h,{children:[i.jsx("img",{src:e.img,alt:e.name}),i.jsxs(l,{children:[i.jsx("h3",{children:e.name}),i.jsxs(f,{children:[i.jsx("p",{children:e.amount}),i.jsxs(g,{children:[e.calories," calories"]})]})]})]},o))})]})]})};export{y as default};
