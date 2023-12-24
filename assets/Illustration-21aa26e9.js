@@ -1,6 +1,6 @@
-import{s as t,j as e}from"./index-e5363258.js";const r=t.div`
-margin-left: auto;
-margin-right: auto;
+import{s as t,j as e}from"./index-7f6f3372.js";const r=t.div`
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +73,6 @@ margin-right: auto;
     }
   }
 `,s=t.button`
-/* position: relative; */
   width: 300px;
   height: 36px;
 
@@ -88,10 +87,10 @@ margin-right: auto;
   line-height: 1.4;
   background-color: transparent;
   color: var(--color-crimary-grey);
-  
-  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1);
 
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -105,21 +104,21 @@ margin-right: auto;
   }
 
   &:hover {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 
-&.btn-active {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+  &.btn-active {
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 `,c=t.div`
-position: absolute;
-top: 40px;
-left: 10px;
-color: #E74A3B;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  color: #e74a3b;
 
-font-size: 12px;
-font-weight: 400;
-line-height: 1.1
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.1;
 `,l="/food_diary/assets/Illustration-9c0f4b06.png";export{p as A,s as B,c as I,x as T,d as a,l as i};

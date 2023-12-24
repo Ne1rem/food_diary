@@ -1,4 +1,4 @@
-import{s as i,N as t,j as e}from"./index-e5363258.js";import{T as o,a as s,A as a,i as l}from"./Illustration-1a6daa81.js";const c=i.div`
+import{s as i,N as t,j as e}from"./index-7f6f3372.js";import{T as o,a as s,A as a,i as l}from"./Illustration-21aa26e9.js";const c=i.div`
   padding-top: 20px;
 
   @media screen and (min-width: 1440px) {
@@ -24,20 +24,20 @@ import{s as i,N as t,j as e}from"./index-e5363258.js";import{T as o,a as s,A as 
 
   border-radius: 12px;
   line-height: 1.4;
-  
-  color: var(--color-primary-white);
-  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1);
 
+  color: var(--color-primary-white);
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
 
   @media screen and (min-width: 834px) {
     width: 192px;
   }
 
   &:hover {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 
   &.active {
     background-color: var(--color-primary-green-lite);
