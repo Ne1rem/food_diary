@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DivModalGoal = styled.div`
-  position: fixed;
+  position: absolute;
   width: 392px;
   height: 352px;
   top: 100px;

@@ -235,7 +235,7 @@ export const ButtonsMobileModals = styled.div`
 `;
 
 export const MobileOpenModal = styled.div`
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   /* width: 300px; */
