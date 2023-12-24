@@ -7,6 +7,7 @@ import SharedLayout from './components/SharedLayout/SharedLayout';
 import { selectIsLoggedIn } from './Redux/Auth/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 import { refresh } from './Redux/Auth/authThunks';
+import { selectGoal, selectWeights } from './Redux/User/selectors';
 
 const Welcome = lazy(() => import('./pages/PublicPage/Welcome/Welcome'));
 const SignUp = lazy(() => import('./pages/PublicPage/SignUp/SignUp'));
@@ -25,10 +26,12 @@ const RecommendedFood = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const weight = useSelector(selectWeights);
+  const goal = useSelector(selectGoal);
 
   useEffect(() => {
     dispatch(refresh());
-  }, [dispatch]);
+  }, [dispatch, weight, goal]);
 
   return (
     <div>
