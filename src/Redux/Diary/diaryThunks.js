@@ -28,8 +28,24 @@ export const addFoodIntakeThunk = createAsyncThunk(
 
 export const updateFoodIntakeThunk = createAsyncThunk(
     'foodIntake/update',
+    async (idIntake, thunkApi) => {
+        try{
+           const { data } = await axios.put(`/user/food-intake/${idIntake}`);
+           return data;
+        }catch (error) {
+            return thunkApi.rejectWithValue(error.message); 
+        }
+    }
 );
 
 export const deleteFoodIntakeThunk = createAsyncThunk(
     'foodIntake/delete',
+    async (credential, thunkApi) => {
+        try{
+            const { data } = await axios.delete('user/food-intake', credential);
+            return data;
+        }catch (error) {
+            return thunkApi.rejectWithValue(error.message);
+        }
+    }
 );
