@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const ModalSettigns = styled.div`
-  position: fixed;
+  position: absolute;
   top: 80px;
   right: 34px;
   width: 158px;

@@ -1,25 +1,15 @@
-import {InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
-import {
-  Button,
-  Title,
-  Text,
-  InputError,
-} from '../../../AuthStyled/GeneralStyles/GeneralStyles';
-import {
-  RadioButton,
-  RadioCircle,
-  RadioLabel,
-} from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
-import {
-  AgeGender,
-  RadioList,
-  GenderSpan,
-  FormBlock,
-  ButtonList,
-  AgeLabel,
-} from './Step3.styled';
-import  inputSvg  from 'assets/sprite.svg';
 import { useState } from 'react';
+
+import inputSvg from 'assets/sprite.svg';
+
+import { Button, Title, Text, InputError } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
+import { AgeGender, RadioList, GenderSpan, FormBlock, ButtonList, AgeLabel } from './Step3.styled';
+import { InputBlock, InputStyle, InputSvgStyle } from '../../../AuthStyled/InputStyle/InputStyle.styled';
+import { RadioButton, RadioCircle, RadioLabel } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
+
+
+
+
 
 const Step3 = ({ formik, increment, decrement }) => {
   const [validation, setValidation] = useState('');
@@ -48,7 +38,7 @@ const Step3 = ({ formik, increment, decrement }) => {
                 type="radio"
                 name="gender"
                 value="male"
-                defaultChecked={formik.values.gender === "male"}
+                defaultChecked={formik.values.gender === 'male'}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Male</RadioLabel>
@@ -61,7 +51,7 @@ const Step3 = ({ formik, increment, decrement }) => {
                 type="radio"
                 name="gender"
                 value="female"
-                defaultChecked={formik.values.gender === "female"}
+                defaultChecked={formik.values.gender === 'female'}
               />
               <RadioCircle></RadioCircle>
               <RadioLabel>Female</RadioLabel>
@@ -72,38 +62,52 @@ const Step3 = ({ formik, increment, decrement }) => {
         <AgeLabel htmlFor="age">Your age</AgeLabel>
         <InputBlock>
           <InputStyle
-          className={validation === 'validation' ? formik.errors.age ? "error" : "correct" : ''}
+            className={
+              validation === 'validation'
+                ? formik.errors.age
+                  ? 'error'
+                  : 'correct'
+                : ''
+            }
             id="age"
             name="age"
             placeholder="Enter your age"
             onChange={formik.handleChange}
             value={formik.values.age}
           />
-          {validation === 'validation' ? (formik.errors.age ? <InputSvgStyle><use href={`${inputSvg}#error`} /></InputSvgStyle> :
-           <InputSvgStyle><use href={`${inputSvg}#correct`} /></InputSvgStyle>) : null}
-          {validation === 'validation' ? (formik.errors.age ? (<InputError>{formik.errors.age}</InputError>) :
-           (<InputError style={{ color: '#3CBC81' }}>Age is valid</InputError>)) : null}
+          {validation === 'validation' ? (
+            formik.errors.age ? (
+              <InputSvgStyle>
+                <use href={`${inputSvg}#error`} />
+              </InputSvgStyle>
+            ) : (
+              <InputSvgStyle>
+                <use href={`${inputSvg}#correct`} />
+              </InputSvgStyle>
+            )
+          ) : null}
+          {validation === 'validation' ? (
+            formik.errors.age ? (
+              <InputError>{formik.errors.age}</InputError>
+            ) : (
+              <InputError style={{ color: '#3CBC81' }}>Age is valid</InputError>
+            )
+          ) : null}
         </InputBlock>
       </FormBlock>
-      <ButtonList>  
+      <ButtonList>
         <li>
           <Button
-            onClick={() => {
-              onClickBtnNext();
-            }}
+            onClick={() => {onClickBtnNext()}}
             className="btn-active"
-            type="submit"
-          >
+            type="submit">
             Next
           </Button>
         </li>
         <li>
           <Button
-            onClick={() => {
-              decrement();
-            }}
-            type="button"
-          >
+            onClick={() => {decrement()}}
+            type="button">
             Back
           </Button>
         </li>

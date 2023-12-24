@@ -1,23 +1,32 @@
-import {
-  Button,
-  Title,
-  Text,
-} from '../../../AuthStyled/GeneralStyles/GeneralStyles';
-import {
-  RadioButton,
-  RadioCircle,
-  RadioLabel,
-} from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
-import { Activity, RadioList, ButtonList } from './Step5.styled';
-import { selectIsError } from '../../../../../Redux/Auth/selectors';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { signUp } from '../../../../../Redux/Auth/authThunks';
 
-const Step5 = ({ formik, decrement }) => {
-  const errorAuth = useSelector(selectIsError);
-const onClickBtnSignUp = ( ) => {
-console.log(errorAuth);
-}
-  
+import LoaderBtn from '../../../Loader/LoaderBtn';
+import { Activity, RadioList, ButtonList } from './Step5.styled';
+import { Button, Title, Text } from '../../../AuthStyled/GeneralStyles/GeneralStyles';
+import { RadioButton, RadioCircle, RadioLabel } from '../../../AuthStyled/RadioButtonStyle/RadioButton.styled';
+
+
+const Step5 = ({ formik, decrement, currentStep }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [pending, setPending] = useState('');
+
+  const onClickBtnSignUp = async () => {
+    try {
+      setPending('loading');
+      await dispatch(signUp(formik.values)).unwrap();
+      navigate('/signin');
+    } catch (err) {
+      currentStep(1);
+      return err;
+    } finally {
+      setPending('');
+    }
+  };
+
   return (
     <Activity>
       <Title>Your Activity</Title>
@@ -32,7 +41,7 @@ console.log(errorAuth);
               onChange={formik.handleChange}
               type="radio"
               name="activity"
-              defaultChecked={formik.values.activity === "1.2"}
+              defaultChecked={formik.values.activity === '1.2'}
               value="1.2"
             />
             <RadioCircle></RadioCircle>
@@ -47,7 +56,7 @@ console.log(errorAuth);
               onChange={formik.handleChange}
               type="radio"
               name="activity"
-              defaultChecked={formik.values.activity === "1.375"}
+              defaultChecked={formik.values.activity === '1.375'}
               value="1.375"
             />
             <RadioCircle></RadioCircle>
@@ -62,7 +71,7 @@ console.log(errorAuth);
               onChange={formik.handleChange}
               type="radio"
               name="activity"
-              defaultChecked={formik.values.activity === "1.55"}
+              defaultChecked={formik.values.activity === '1.55'}
               value="1.55"
             />
             <RadioCircle></RadioCircle>
@@ -77,7 +86,7 @@ console.log(errorAuth);
               onChange={formik.handleChange}
               type="radio"
               name="activity"
-              defaultChecked={formik.values.activity === "1.725"}
+              defaultChecked={formik.values.activity === '1.725'}
               value="1.725"
             />
             <RadioCircle></RadioCircle>
@@ -90,7 +99,7 @@ console.log(errorAuth);
               onChange={formik.handleChange}
               type="radio"
               name="activity"
-              defaultChecked={formik.values.activity === "1.9"}
+              defaultChecked={formik.values.activity === '1.9'}
               value="1.9"
             />
             <RadioCircle></RadioCircle>
@@ -102,8 +111,17 @@ console.log(errorAuth);
         </li>
       </RadioList>
       <ButtonList>
-        <Button className='btn-active'  onClick={() => { onClickBtnSignUp() }} type="submit">Sign Up</Button>
-        <Button onClick={() => {decrement()}} type="button">Back</Button>
+        <Button
+          className="btn-active"
+          onClick={() => {onClickBtnSignUp()}}
+          type="button">
+          {pending === 'loading' ? <LoaderBtn /> : 'Sign Up'}
+        </Button>
+        <Button
+          onClick={() => {decrement()}}
+          type="button">
+          Back
+        </Button>
       </ButtonList>
     </Activity>
   );

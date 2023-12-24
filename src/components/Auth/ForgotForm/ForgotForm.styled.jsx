@@ -47,10 +47,4 @@ const InputWrapper = styled.div`
   }
 `;
 
-export {
-  Forgot,
-  NavToSignInBlock,
-  NavToSignInText,
-  NavToSignIn,
-  InputWrapper,
-};
+export { Forgot, NavToSignInBlock, NavToSignInText, NavToSignIn, InputWrapper };

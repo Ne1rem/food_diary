@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 const InputBlock = styled.div`
-position: relative;
-width: 300px;
+  position: relative;
+  width: 300px;
 
-@media screen and (min-width: 834px) {
+  @media screen and (min-width: 834px) {
     width: 380px;
   }
 
@@ -38,23 +38,21 @@ const InputStyle = styled.input`
     width: 212px;
   }
 
-
-  &.error{
-    border: 1px solid #E74A3B;
+  &.error {
+    border: 1px solid #e74a3b;
   }
 
-  &.correct{
-    border: 1px solid #3CBC81;
+  &.correct {
+    border: 1px solid #3cbc81;
   }
 `;
 
-
 const InputSvgStyle = styled.svg`
-position: absolute;
-width: 16px;
-height: 16px;
-top: 10px;
-right: 10px;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 10px;
+  right: 10px;
 `;
 
 export { InputStyle, InputBlock, InputSvgStyle };
