@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   margin-bottom: 16px;
   font-size: 30px;
-  color: #fff;
+  color: var(--color-primary-white);
 
   @media (min-width: 834px) and (max-width: 1439px) {
     /* Стилі для планшетів */
@@ -97,7 +97,7 @@ export const FoodCard = styled.div`
   display: flex;
   flex-direction: row;
   background-color: #0f0f0f;
-  color: #ffffff;
+  color: var(--color-primary-white);
   border-radius: 12px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -139,5 +139,5 @@ export const WeightOfCalorieContainer = styled.div`
 `;
 
 export const Calories = styled.p`
-  color: #b6b6b6;
+  color: var(--color-primary-grey);
 `;

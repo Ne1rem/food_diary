@@ -44,7 +44,7 @@ const RecommendedFood = () => {
                 <h3>{item.name}</h3>
                 <WeightOfCalorieContainer>
                   <p>{item.amount}</p>
-                  <Calories>{item.calories}</Calories>
+                  <Calories>{item.calories} calories</Calories>
                 </WeightOfCalorieContainer>
               </CharacteristicsContainer>
             </FoodCard>
