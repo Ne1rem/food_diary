@@ -17,4 +17,5 @@ const getStatistics = createAsyncThunk(
   }
 );
 
+
 export { getStatistics };

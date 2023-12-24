@@ -42,7 +42,15 @@ import {
   chartLineOptions,
 } from './chartOptions';
 import { getStatistics } from '../../../../../Redux/Statistics/statisticThunks';
-import { selectRequiredMonth } from '../../../../../Redux/Statistics/selectors';
+import {
+  selectTotalCalories,
+  selectTotalWater,
+  selectTotalWeight,
+  selectMonth,
+  selectRequiredMonth,
+  selectError,
+  selectStatus,
+} from '../../../../../Redux/Statistics/selectors';
 import { currentMonth } from '../../../../../Redux/Statistics/utilities/currentMonth';
 import { setRequiredMonth } from '../../../../../Redux/Statistics/statisticSlice';
 ChartJS.register(
@@ -71,9 +79,18 @@ const months = [
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const requestedMonth = useSelector(selectRequiredMonth);
+
+  const totalCalories = useSelector(selectTotalCalories);
+  const totalWater = useSelector(selectTotalWater);
+  const totalWeight = useSelector(selectTotalWeight);
+  const month = useSelector(selectMonth);
+  const requiredMonth = useSelector(selectRequiredMonth);
+  const error = useSelector(selectError);
+  const status = useSelector(selectStatus);
+
   const [selectedMonth, setSelectedMonth] = useState(currentMonth());
   const [chartData, setChartData] = useState(null);
+  const [chartKey, setChartKey] = useState(0);
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState({
     upperRowValues: [],
@@ -83,8 +100,8 @@ const Charts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('Selected Month before dispatch:', selectedMonth);
         const data = await dispatch(getStatistics({ month: selectedMonth }));
+        // console.log('Fetched data:', data); // 
         updateCaloriesChartData(data);
         updateWaterChartData(data);
         updateWeightChartData(data);
@@ -98,7 +115,6 @@ const Charts = () => {
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption.label);
     dispatch(setRequiredMonth(selectedOption.label));
-    console.log('Selected Month after change:', selectedOption.label);
   };
 
   const getCurrentDayOfMonth = () => {
@@ -109,6 +125,7 @@ const Charts = () => {
   // CALORIES CONFIG
 
   const updateCaloriesChartData = ({ payload }) => {
+    // console.log('Updating CALORIES data:', payload);
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
@@ -134,6 +151,7 @@ const Charts = () => {
   // WATER CONFIG
 
   const updateWaterChartData = ({ payload }) => {
+    // console.log('Updating WATER data:', payload); //
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
@@ -155,20 +173,25 @@ const Charts = () => {
         },
       ],
     }));
+    setChartKey((prevKey) => prevKey + 1);
   };
 
   // WEIGHT CONFIG
 
   const updateWeightChartData = (data) => {
+    // console.log('Updating WEIGHT data:', data); //
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
+
     const dataForSelectedMonth = data.payload.stats;
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
+    const currentDay = currentDate.getDate();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
     const dayEntries = Array.from({ length: daysInMonth }, (_, i) => {
       const entryDate = new Date(currentYear, currentMonth, i + 1);
       const dayEntry = dataForSelectedMonth.find(
@@ -178,27 +201,31 @@ const Charts = () => {
       );
       return dayEntry;
     });
+
     let lastEnteredValue = null;
     const weightValues = dayEntries.map((entry, index) => {
-      if (entry && entry.weight === 0) {
-        return lastEnteredValue !== null ? lastEnteredValue : null;
-      }
       if (entry && entry.weight !== undefined) {
         lastEnteredValue = entry.weight;
         return entry.weight;
+      } else if (index + 1 === currentDay) {
+        return lastEnteredValue !== null ? lastEnteredValue : null;
       }
       return null;
     });
+
     const validWeightValues = weightValues
-      .slice(0, daysInMonth)
+      .slice(0, currentDay)
       .filter((value) => value !== null);
+
     const sumWeight = validWeightValues.reduce(
       (acc, val) => acc + (val || 0),
       0
     );
-    const averageWeight = validWeightValues.length
-      ? sumWeight / validWeightValues.length
-      : null;
+    const averageWeight =
+      validWeightValues.length > 0
+        ? sumWeight / validWeightValues.length
+        : null;
+
     setWeightChartData({
       upperRowValues: weightValues,
       lowerRowValues: Array.from({ length: daysInMonth }, (_, i) =>
@@ -206,7 +233,7 @@ const Charts = () => {
       ),
       averageWeight: averageWeight !== null ? averageWeight.toFixed(0) : null,
     });
-    console.log('Weight UPDATED:', dayEntries);
+    // console.log('Weight UPDATED:', dayEntries); //
   };
 
   // SELECT CONFIG
@@ -295,7 +322,9 @@ const Charts = () => {
           </ContainerValue>
 
           {/* WATER Chart */}
-          <ContainerChart>
+          <ContainerChart key={chartKey}>
+            {' '}
+            {/* Додайте ключ для примусового перерендерингу */}
             {waterChartData && waterChartData.datasets && (
               <Line data={waterChartData} options={waterOptions} />
             )}
