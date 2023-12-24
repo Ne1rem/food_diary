@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy,  useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import PublicRoute from './route/PublicRoute/PublicRoute';
 import PrivateRoute from './route/PrivateRoutes/PrivateRoutes';
 import './main.css';
