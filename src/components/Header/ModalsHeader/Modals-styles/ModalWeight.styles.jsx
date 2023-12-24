@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalChangeWeight = styled.div`
-  position: fixed;
+  position: absolute;
   top: 100px;
   right: 36px;
   border: 1px;
@@ -9,7 +9,7 @@ export const ModalChangeWeight = styled.div`
   box-shadow: 0px 4px 14px 0px #e3ffa833;
   background-color: var(--color-primary-black-2);
   z-index: 2;
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
 width: auto;
 inset: 0;
 top: 60px;
@@ -25,7 +25,7 @@ right: 32px;
 background-color: transparent;
 border-style: none;
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 700px) {
 display: none;
 
   }
@@ -67,7 +67,7 @@ text-align: left;
 export const TodayModalChangeWeight = styled.p`
 padding: 16px 0px;
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 700px) {
 
   padding: 20px 0px;
 }
@@ -77,7 +77,7 @@ export const InputPartModalChangeWeight = styled.div`
 display: flex;
 flex-direction: row;
 gap: 12px;
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 700px) {
 
   flex-direction: column;
   }
@@ -89,7 +89,7 @@ border: 1px solid var(--color-primary-green-lite);
 background-color: transparent;
 padding: 8px 10px;
 color: var(--color-primary-white);
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 700px) {
 width: auto;
 }
 `
@@ -106,7 +106,7 @@ export const InputPartButtonModalChangeWeight = styled.button`
   padding: 8px 10px;
   border-radius: 12px;
   background-color: var(--color-primary-green-lite);
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
 width: auto;
 }
 
@@ -125,7 +125,7 @@ color: var(--color-primary-grey);
 padding-top: 24px;
 display: flex;
 margin: 0 auto;
-  @media only screen and (min-width: 650px) {
+  @media only screen and (min-width: 700px) {
 display: none;
   }
 `

@@ -56,13 +56,21 @@ export const Button = styled.button`
   border: none;
   border-radius: 12px;
   line-height: 1.4;
-  color: #b6b6b6;
+  color: var(--color-crimary-grey);
   background: transparent;
+
+  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
+   color 0.4s cubic-bezier(0, 0, 1, 1);
 
   &:hover {
     background: var(--color-primary-green-lite);
     color: var(--color-primary-black-2);
   }
+
+  &.btn-active {
+  color: var(--color-primary-black-2);
+  background: var(--color-primary-green-lite);
+}
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -166,6 +174,14 @@ export const InputStyle = styled.input`
   @media screen and (min-width: 1440px) {
     width: 192px;
   }
+
+  &.error{
+    border: 1px solid #E74A3B;
+  }
+
+  &.correct{
+    border: 1px solid #3CBC81;
+  }
 `;
 
 export const ActivityTextStyled = styled.p`
@@ -227,7 +243,6 @@ export const ElFormDiv = styled.div`
 `;
 
 export const ElFormDivHor = styled.div`
- 
   display: flex;
   align-items: center;
   justify-content: start;
@@ -268,7 +283,7 @@ export const RadioButton = styled.label`
 export const RadioButtonGender = styled.label`
   display: flex;
   align-items: center;
-   cursor: pointer;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
@@ -312,14 +327,34 @@ export const RadioCircle = styled.div`
 `;
 
 export const RadioLabel = styled.span`
-color: var(--color-primary-white);
-margin-left: 6px;
-max-width: 260px;
-font-weight: 400;
-line-height: 1.2;
-font-size: 14px;
+  color: var(--color-primary-white);
+  margin-left: 6px;
+  max-width: 260px;
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 14px;
 
-@media screen and (min-width: 834px) {
-  max-width: 420px;
+  @media screen and (min-width: 834px) {
+    max-width: 420px;
   }
 `;
+
+
+export const InputIconStyle = styled.svg`
+position: absolute;
+width: 16px;
+height: 16px;
+top: 39px;
+right: 10px;
+`;
+
+export const InputErrorStyled = styled.div`
+position: absolute;
+top: 68px;
+left: 2px;
+color: #E74A3B;
+
+font-size: 12px;
+font-weight: 400;
+line-height: 1.1
+`

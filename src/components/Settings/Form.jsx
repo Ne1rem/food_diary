@@ -1,11 +1,9 @@
 import { useFormik } from 'formik';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Redux/User/selectors';
-
 import { currentUser, updateUser } from '../../Redux/User/userThunks';
 import * as Yup from 'yup';
-import inboxSvg from '/src/assets/settings/symbol-defs.svg';
 import {
   AvatarDiv,
   Button,
@@ -15,22 +13,24 @@ import {
   IconDiv,
   InputStyle,
   LabelStyled,
-  // LabelRadioStyled,
   ActivityTextStyled,
   ActivityDiv,
   DownloadButton,
   ButtonDiv,
   TabletDiv,
-  ElFormDiv,
   ElFormDivHor,
-  // LabelStyledGender,
   SvgStyled,
   RadioCircle,
-  RadioButtonGender
+  RadioButtonGender,
+  InputIconStyle,
+  InputErrorStyled,
 } from './Form.styled';
 import { RadioButton } from './Form.styled';
 import { RadioLabel } from './Form.styled';
-
+import { InputBlock } from '../Auth/AuthStyled/InputStyle/InputStyle.styled';
+import inputSvg from 'assets/sprite.svg';
+import inboxSvg from '/src/assets/settings/symbol-defs.svg';
+import LoaderBtn from '../Auth/Loader/LoaderBtn';
 
 export const ProfileSettings = () => {
   const dispatch = useDispatch();
@@ -43,10 +43,30 @@ export const ProfileSettings = () => {
 
   const fileInputRef = useRef(null);
 
+  const [validation, setValidation] = useState('');
+  const [isLoading, setIsLoading] = useState('');
+
+  const onClickBtnSave = async () => {
+    setValidation('validation');
+    // if (formik.values.age !== '' && !formik.errors.age) {
+      try {
+        setIsLoading('loading');
+        //  await formik.handleSubmit();
+        await dispatch(updateUser(formik.values)).unwrap();
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading('');
+      }
+    // }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: userInfo.name || '',
-      avatarURL: userInfo.avatarURL || '',
+      avatarURL:
+        userInfo.avatarURL ||
+        'https://cdn-icons-png.flaticon.com/256/805/805439.png',
       age: userInfo.age || 0,
       gender: userInfo.gender || '',
       weight: userInfo.weight || '',
@@ -54,68 +74,89 @@ export const ProfileSettings = () => {
       activity: userInfo.activity || '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Поле ім'я є обов'язковим"),
+      name: Yup.string().required('Name ir required'),
       age: Yup.number()
-        .positive('Вік повинен бути додатнім числом')
-        .required("Поле вік є обов'язковим"),
+        .positive('Age has to be positive number')
+        .required('Age is required'),
       weight: Yup.number()
-        .positive('Вага повинна бути додатнім числом')
-        .required("Поле вага є обов'язковим"),
+        .positive('Weight has to be positive number')
+        .required('Weight is required'),
       height: Yup.number()
-        .positive('Зріст повинен бути додатнім числом')
-        .required("Поле зріст є обов'язковим"),
-      activity: Yup.string().required('Оберіть рівень фізичної активності'),
+        .positive('Height has to be positive number')
+        .required('Height is required'),
+      activity: Yup.string().required('Choose activity level'),
     }),
     onSubmit: (values) => {
       dispatch(updateUser(values));
-      // console.log('Збережено:', values);
     },
   });
 
-  // fot base64 coding
+  useEffect(() => {
+    formik.setValues({
+      name: userInfo.name || '',
+      avatarURL:
+        userInfo.avatarURL ||
+        'https://cdn-icons-png.flaticon.com/256/805/805439.png',
+      age: userInfo.age || 0,
+      gender: userInfo.gender || '',
+      weight: userInfo.weight || '',
+      height: userInfo.height || '',
+      activity: userInfo.activity || '',
+    });
+  }, [userInfo]);
 
-  // const [Image, setImage] = useState();
-  
   const handleFileInputChange = (event) => {
     const file = event.currentTarget.files[0];
-    // const reader = new FileReader();
-   
-    // reader.onload = (e) => {
-    //   const base64Image = e.target.result;
-    //   setImage(base64Image);
-    //   formik.setFieldValue('avatarURL', base64Image);
-    // };
-  
-    // reader.readAsDataURL(file);
-
     formik.setFieldValue('avatarURL', URL.createObjectURL(file));
   };
 
-  
   const handleDownloadNewPhoto = () => {
     fileInputRef.current.click();
   };
-
-  // console.log(Image);
 
   return (
     <div>
       <Form onSubmit={formik.handleSubmit}>
         <TabletDiv>
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="name">Your name</LabelStyled>
             <InputStyle
+              className={
+                validation === 'validation'
+                  ? formik.errors.name
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
               type="text"
               id="name"
               name="name"
+              placeholder="Enter your name"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
             />
-            {formik.touched.name && formik.errors.name ? (
-              <div>{formik.errors.name}</div>
+            {validation === 'validation' ? (
+              formik.errors.name ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
+            {validation === 'validation' ? (
+              formik.errors.name ? (
+                <InputErrorStyled>{formik.errors.name}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Name is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
 
           <AvatarDiv>
             <ActivityTextStyled>Your photo</ActivityTextStyled>
@@ -147,21 +188,45 @@ export const ProfileSettings = () => {
           </AvatarDiv>
         </TabletDiv>
         <TabletDiv>
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="age">Your age</LabelStyled>
             <InputStyle
-              type="number"
+              className={
+                validation === 'validation'
+                  ? formik.errors.age
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
+              // type="number"
               id="age"
               name="age"
+              placeholder="Enter your age"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.age}
             />
-            {formik.touched.age && formik.errors.age ? (
-              <div>{formik.errors.age}</div>
+            {validation === 'validation' ? (
+              formik.errors.age ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
-
+            {validation === 'validation' ? (
+              formik.errors.age ? (
+                <InputErrorStyled>{formik.errors.age}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Age is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
           <div>
             <LabelStyled>Gender</LabelStyled>
             <GenderDiv>
@@ -196,129 +261,200 @@ export const ProfileSettings = () => {
           </div>
         </TabletDiv>
         <TabletDiv>
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="weight">Weight</LabelStyled>
             <InputStyle
-              type="number"
+              className={
+                validation === 'validation'
+                  ? formik.errors.weight
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
+              // type="number"
               id="weight"
               name="weight"
+              placeholder="Enter your weight"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.weight}
             />
-            {formik.touched.weight && formik.errors.weight ? (
-              <div>{formik.errors.weight}</div>
+            {validation === 'validation' ? (
+              formik.errors.weight ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
+            {validation === 'validation' ? (
+              formik.errors.weight ? (
+                <InputErrorStyled>{formik.errors.weight}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Weight is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
 
-          <ElFormDiv>
+          <InputBlock>
             <LabelStyled htmlFor="height">Height</LabelStyled>
             <InputStyle
-              type="number"
+              className={
+                validation === 'validation'
+                  ? formik.errors.height
+                    ? 'error'
+                    : 'correct'
+                  : ''
+              }
+              // type="number"
               id="height"
               name="height"
+              placeholder="Enter your height"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.height}
             />
-            {formik.touched.height && formik.errors.height ? (
-              <div>{formik.errors.height}</div>
+            {validation === 'validation' ? (
+              formik.errors.height ? (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#error`} />
+                </InputIconStyle>
+              ) : (
+                <InputIconStyle>
+                  <use href={`${inputSvg}#correct`} />
+                </InputIconStyle>
+              )
             ) : null}
-          </ElFormDiv>
+            {validation === 'validation' ? (
+              formik.errors.height ? (
+                <InputErrorStyled>{formik.errors.height}</InputErrorStyled>
+              ) : (
+                <InputErrorStyled style={{ color: '#3CBC81' }}>
+                  Height is valid
+                </InputErrorStyled>
+              )
+            ) : null}
+          </InputBlock>
         </TabletDiv>
         <ActivityDiv>
           <ActivityTextStyled>Your activity</ActivityTextStyled>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.2"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.2}
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.2 - if you do not have physical activity and sedentary work
-              </RadioLabel>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.375"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.375}
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.375 - if you do short runs or light gymnastics 1-3 times a
-                week
-              </RadioLabel>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.55"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                // checked={formik.values.activity === '1.55'}
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.55 - if you play sports with average loads 3-5 times a week
-              </RadioLabel>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.725"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.725}
-              />
-              <RadioCircle></RadioCircle>
-              <Span>1.725 - if you train fully 6-7 times a week</Span>
-            </RadioButton>
-          </div>
-          <div>
-            <RadioButton>
-              <input
-                type="radio"
-                name="activity"
-                value="1.9"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                // checked={formik.values.activity === 1.9}
-              />
-              <RadioCircle></RadioCircle>
-              <RadioLabel>
-                1.9 - if your work is related to physical labor, you train 2
-                times a day and include strength exercises in your training
-                program
-              </RadioLabel>
-            </RadioButton>
-          </div>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.2"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.2 ||
+                formik.values.activity === '1.2'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.2 - if you do not have physical activity and sedentary work
+            </RadioLabel>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.375"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.375 ||
+                formik.values.activity === '1.375'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.375 - if you do short runs or light gymnastics 1-3 times a week
+            </RadioLabel>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.55"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.55 ||
+                formik.values.activity === '1.55'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.55 - if you play sports with average loads 3-5 times a week
+            </RadioLabel>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.725"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.725 ||
+                formik.values.activity === '1.725'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <Span>1.725 - if you train fully 6-7 times a week</Span>
+          </RadioButton>
+
+          <RadioButton>
+            <input
+              type="radio"
+              name="activity"
+              value="1.9"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              checked={
+                formik.values.activity === 1.9 ||
+                formik.values.activity === '1.9'
+              }
+            />
+            <RadioCircle></RadioCircle>
+            <RadioLabel>
+              1.9 - if your work is related to physical labor, you train 2 times
+              a day and include strength exercises in your training program
+            </RadioLabel>
+          </RadioButton>
+
           {formik.touched.activityLevel && formik.errors.activity ? (
             <div>{formik.errors.activity}</div>
           ) : null}
         </ActivityDiv>
 
         <ButtonDiv>
-          <Button type="button" onClick={formik.handleReset}>
+          <Button
+            type="button"
+            onClick={() => formik.resetForm({ values: userInfo })}
+          >
             Cancel
           </Button>
-          <Button type="submit">Save</Button>
+          <Button
+            className="btn-active"
+            type="submit"
+            disabled={isLoading}
+            onClick={() => {
+              onClickBtnSave();
+            }}
+          >
+            {isLoading === 'loading' ? <LoaderBtn/> : 'Send'}
+          </Button>
         </ButtonDiv>
       </Form>
     </div>

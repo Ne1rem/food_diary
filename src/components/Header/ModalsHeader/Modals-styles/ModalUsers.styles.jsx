@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const ModalSettigns = styled.div`
-  position: fixed;
+  position: absolute;
   top: 80px;
   right: 34px;
   width: 158px;
@@ -12,7 +12,7 @@ export const ModalSettigns = styled.div`
   box-shadow: 0px 4px 14px 0px #e3ffa833;
   background-color: var(--color-primary-black-2);
   z-index: 5;
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     top: 54px;
     right: 10px;
   }

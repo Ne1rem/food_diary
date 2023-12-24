@@ -7,10 +7,10 @@ export const ContainerSelect = styled.div`
   align-items: center;
   margin: 16px 0 16px;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     margin: 24px 0 16px;
   }
-  @media only screen and (min-width: 1441px) {
+  @media only screen and (min-width: 1440px) {
     margin: 20px 0 16px;
   }
 `;
@@ -21,7 +21,7 @@ export const BackIconContainer = styled.div`
   justify-content: space-between;
   gap: 8px;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     gap: 12px;
   }
 `;
@@ -39,7 +39,7 @@ export const BackIconLink = styled(Link)`
     color: var(--color-primary-green-lite);
   }
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     width: 24px;
     height: 24px;
   }
@@ -116,7 +116,7 @@ export const Month = styled.p`
   line-height: 1.37;
   margin: 0;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     font-size: 18px;
     line-height: 1.33;
   }
@@ -127,13 +127,13 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 27px;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     gap: 40px;
     align-items: center;
     justify-content: center;
   }
 
-  @media only screen and (min-width: 1441px) {
+  @media only screen and (min-width: 1440px) {
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -151,7 +151,7 @@ export const ContainerValue = styled.div`
   align-items: center;
   margin: 0 0 6px;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     justify-content: start;
     align-items: center;
     gap: 40px;
@@ -164,7 +164,7 @@ export const TitleCalories = styled.h1`
   font-weight: 400;
   line-height: 1.44;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     font-size: 22px;
     line-height: 1.45;
   }
@@ -175,7 +175,7 @@ export const ContainerWaterValue = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     justify-content: start;
     gap: 40px;
   }
@@ -187,7 +187,7 @@ export const TitleWater = styled.h2`
   font-weight: 400;
   line-height: 1.44;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     font-size: 22px;
     line-height: 1.45;
   }
@@ -216,52 +216,42 @@ export const ContainerChart = styled.div`
   display: flex;
   justify-content: start;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     width: 735px;
     height: 333px;
     padding: 25px 31px 24px 14px;
   }
 
-  @media only screen and (min-width: 1441px) {
+  @media only screen and (min-width: 1440px) {
     width: 642px;
     height: 333px;
     padding: 25px 20px 24px 14px;
   }
 `;
 
-// ---------------------------------------Layout------------------!!!
-export const ChartContainer = styled(ContainerChart)`
-  /* width: 100%;
-  max-width: 382px;
-  padding: 24px 14px;
-  border-radius: 12px;
-  background-color: var(--color-primary-black-2);
-  overflow-x: auto; */
-`;
-
 export const ContainerWeightValue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 0 6px 0;
+  margin: 0 0 6px 0;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     justify-content: start;
     gap: 40px;
   }
 `;
 
 export const WeightWrapper = styled.div`
-  align-items: center;
   padding: 0 0 60px;
-  margin-top: 27px;
 
-  @media only screen and (min-width: 835px) {
-    margin-top: 40px;
+  margin: 27px 0 0;
+
+  @media only screen and (min-width: 834px) {
+    margin: 40px 0 0;
   }
 
-  @media only screen and (min-width: 1441px) {
-    margin-top: 20px;
+  @media only screen and (min-width: 1440px) {
+    margin: 20px 0 0;
   }
 `;
 
@@ -273,53 +263,140 @@ export const TitleWeight = styled.h3`
   margin: 0;
   align-items: center;
 
-  @media only screen and (min-width: 835px) {
+  @media only screen and (min-width: 834px) {
     font-size: 22px;
     line-height: 1.45;
   }
 `;
 
-export const ContainerWeightChart = styled.h3`
-  width: 1372px;
+export const ContainerWeightChart = styled.div`
+`;
+
+export const WeightWrap = styled.div`
+  width: 1310px;
   height: 110px;
   padding: 24px 41px 36px 21px;
   margin: 0;
   border-radius: 12px;
   background: var(--color-primary-black-2);
   display: flex;
-  justify-content: start;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
 
-  /* з [835px */
-  @media only screen and (min-width: 835px) {
-    width: 780px;
+  /* position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch; */
+
+  @media only screen and (min-width: 834px) {
+    width: 738px;
     height: 110px;
     padding: 24px 20px 44px 22px;
+    gap: 12px;
   }
 
-  /* з [1441px */
-  @media only screen and (min-width: 1441px) {
-    width: 1372px;
+  @media only screen and (min-width: 1440px) {
+    width: 1310px;
     height: 110px;
     padding: 24px 41px 36px 21px;
+    gap: 16px;
   }
 `;
 
-const WeightLabel = styled.div`
-  color: var(color-primary-white);
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
+export const Upper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
+  gap: 23px;
   font-size: 14px;
-  font-style: normal;
+  line-height: 1.42;
   font-weight: 400;
-  line-height: 20px;
+  color: var(--color-primary-whit);
+  /* padding: 0 41px 0 21px; */
+
+  @media only screen and (min-width: 834px) {
+    gap: 6px;
+    font-size: 10px;
+    line-height: 1.6;
+    /* padding: 0 20px 0 22px; */
+  }
+
+  @media only screen and (min-width: 1440px) {
+    gap: 23px;
+    font-size: 14px;
+    line-height: 1.42;
+    font-weight: 400;
+    /* padding: 0 41px 0 21px; */
+  }
 `;
 
-const DateLabel = styled.div`
-  color: var(--color-primary-grey);
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 14px;
+export const UpperValue = styled.div`
+  font-size: 14px;
+  line-height: 1.42;
+
+  @media only screen and (min-width: 834px) {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    font-size: 14px;
+    line-height: 1.42;
+  }
 `;
+
+export const LowerWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: inherit;
+  gap: 29px;
+  color: var(--color-primary-grey);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  /* padding: 0 44px 0 24px; */
+
+  @media only screen and (min-width: 834px) {
+    gap: 10px;
+    /* padding: 0 22px 0 24px; */
+  }
+
+  @media only screen and (min-width: 1440px) {
+    gap: 29px;
+    /* padding: 0 44px 0 24px; */
+  }
+`;
+
+export const LowerValue = styled.div`
+  font-size: 10px;
+  line-height: 1.4;
+`;
+
+// export const ScrollContainer = styled.div`
+//   overflow-x: auto;
+//   white-space: nowrap;
+//   -webkit-overflow-scrolling: touch;
+//   position: relative;
+
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: 8px;
+//     right: 0;
+//     width: 8px;
+//     height: calc(100% - 8px);
+//     transform: rotate(-90deg);
+//     flex-shrink: 0;
+//     border-radius: 12px;
+//     background: #0f0f0f;
+//   }
+
+//   @media only screen and (min-width: 834px) {
+//     overflow-x: hidden;
+//     &::after {
+//       display: none;
+//     }
+//   }
+// `;

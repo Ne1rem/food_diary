@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 
-export const Title = styled.h2`
-  color: var(--color-primary-white);
-  font-size: 18px;
-  // font-weight: 400;
-  line-height: 1.33;
-  margin-bottom: 6px;
-
-  @media screen and (min-width: 834px) {
-    font-size: 22px;
-    line-height: 32px;
-  }
-`;
-
 export const FoodInfoCard = styled.div`
   display: flex;
   flex-direction: column;

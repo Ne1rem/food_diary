@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DivModalGoal = styled.div`
-  position: fixed;
+  position: absolute;
   width: 392px;
   height: 352px;
   top: 100px;
@@ -12,7 +12,7 @@ export const DivModalGoal = styled.div`
   background-color: var(--color-primary-black-2);
   z-index: 1;
 
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     width: auto;
     inset: 0;
     top: 60px;
@@ -26,7 +26,7 @@ export const ButtonCloseModalGoal = styled.button`
   border-style: none;
   top: 20px;
   right: 32px;
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -44,7 +44,7 @@ export const DivButtonCancellGoal = styled.button`
   padding-top: 24px;
   display: flex;
   margin: 0 auto;
-  @media only screen and (min-width: 650px) {
+  @media only screen and (min-width: 700px) {
     display: none;
   }
 `;
@@ -62,7 +62,7 @@ export const DivModalGoalTextPart = styled.div`
   gap: 16px;
   flex-direction: column;
   padding: 20px 24px 40px 24px;
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 700px) {
     padding: 24px 10px;
     height: auto;
     width: auto;
@@ -144,7 +144,7 @@ export const ConfirmModalGoal = styled.button`
   border-radius: 12px;
   background-color: var(--color-primary-green-lite);
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 700px) {
     width: 100%;
   }
 `;

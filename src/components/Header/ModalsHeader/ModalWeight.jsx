@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   CloseModalChangeWeight,
   DivButtonCancellWeight,
@@ -14,39 +13,23 @@ import {
   TodayModalChangeWeight,
 } from './Modals-styles/ModalWeight.styles';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { addUserWeight } from '../../../Redux/User/userThunks';
 
 function ModalWeight({ setIsWeightModalOpen, setWeight }) {
   const dispatch = useDispatch();
-  const persistedToken = useSelector((state) => state.auth.token);
   const [enteredWeight, setEnteredWeight] = useState('');
-
+  
   const handleSubmit = async () => {
     try {
-      if (!persistedToken) {
-        throw new Error('Token not found');
-      }
-
-      const axiosInstance = axios.create({
-        baseURL: 'https://food-diary-backend-kr1b.onrender.com/api',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${persistedToken}`,
-        },
-      });
-
-      const response = await axiosInstance.post('/user/weight', {
-        weight: enteredWeight,
-      });
-
-      dispatch({ type: 'WEIGHT_UPDATED', payload: response.data.weight });
+      await dispatch(addUserWeight(enteredWeight));
       setWeight(enteredWeight);
       setIsWeightModalOpen(false);
     } catch (error) {
-      console.error('Error updating weight:', error);
+      console.error('Error adding user weight:', error);
     }
-  };
+  }
 
   const today = new Date();
   const formattedDate = `${String(today.getDate()).padStart(2, '0')}.${String(

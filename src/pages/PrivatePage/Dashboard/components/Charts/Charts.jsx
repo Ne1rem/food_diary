@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FaArrowLeftLong } from 'react-icons/fa6';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { SuccessToast, ErrorToast } from '../../../../../Redux/User/toast';
 import { Line } from 'react-chartjs-2';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 import Select from 'react-select';
 import {
   Chart as ChartJS,
@@ -28,8 +32,21 @@ import {
   Span,
   ContainerWeightChart,
   WeightWrapper,
+  Upper,
+  WeightWrap,
+  LowerWrap,
+  UpperValue,
+  LowerValue,
 } from './Charts.styled';
 import { customSelectStyles } from './Charts.styled';
+import { caloriesOptions, waterOptions } from './chartOptions';
+import {
+  selectCaloriesData,
+  selectWaterData,
+  selectWeightData,
+} from '../../../../../Redux/User/selectors';
+import { userStatistics } from '../../../../../Redux/User/userThunks';
+
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -40,22 +57,43 @@ ChartJS.register(
   Filler
 );
 
+const getCurrentDayOfMonth = () => {
+  const currentDate = new Date();
+  return currentDate.getDate();
+};
+
 const Charts = () => {
+  const dispatch = useDispatch();
+  const caloriesData = useSelector(selectCaloriesData);
+  const waterData = useSelector(selectWaterData);
+  const weightData = useSelector(selectWeightData);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [months, setMonths] = useState([]);
   const [currentMonth, setCurrentMonth] = useState('');
   const [chartData, setChartData] = useState(null);
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState(null);
-
-  const initializeChartData = (selected) => {
-    // Викликати функції для ініціалізації даних графіка на підставі обраного місяця
-    updateCaloriesChartData(selected);
-    updateWaterChartData(selected);
-    updateWeightChartData(selected);
+  const caloriesChartOptions = {
+    ...caloriesOptions,
+  };
+  const waterChartOptions = {
+    ...waterOptions,
   };
 
-  // --- Month selet setings ---
+    const initializeChartData = (selectedMonth) => {
+    dispatch(userStatistics(selectedMonth))
+      .then((data) => {
+        console.log('Data from userStatistics:', data);
+        updateCaloriesChartData(data);
+        updateWaterChartData(data);
+        updateWeightChartData(data);
+      })
+      .catch((e) => {
+        console.error('Error fetching user statistics:', e);
+        toast.error(e.response?.statusText || 'An error occurred', ErrorToast);
+      });
+  };
+
   useEffect(() => {
     const monthNames = [
       'January',
@@ -71,11 +109,9 @@ const Charts = () => {
       'November',
       'December',
     ];
-
     const currentDate = new Date();
     const currentMonthIndex = currentDate.getMonth();
     const currentMonthName = monthNames[currentMonthIndex];
-
     setCurrentMonth(currentMonthName);
     setMonths(
       Array.from(
@@ -83,36 +119,30 @@ const Charts = () => {
         (_, i) => monthNames[(currentMonthIndex - i + 12) % 12]
       )
     );
-
     setSelectedMonth({ value: currentMonthName, label: currentMonthName });
-
-    updateCaloriesChartData(currentMonthName);
-    updateWaterChartData(currentMonthName);
-    updateWeightChartData(currentMonthName);
     initializeChartData(currentMonthName);
   }, []);
 
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption);
-    updateCaloriesChartData(selectedOption.value);
-    updateWaterChartData(selectedOption.value);
-    updateWeightChartData(selectedOption.value);
     initializeChartData(selectedOption.value);
   };
-  // --- /Month selet setings ---
 
-  // --- Calories setings ---
-  const updateCaloriesChartData = (selected) => {
-    const randomData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
-    };
+  const updateCaloriesChartData = (data) => {
+    if (!data || !data.payload || !data.payload.stats) {
+      console.error('Data is missing or does not have the expected format.');
+      return;
+    }
 
-    setChartData({
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+    const dataForSelectedMonth = data.payload.stats;
+    const numberOfDaysInMonth = dataForSelectedMonth.length;
+    setChartData((prevData) => ({
+      ...prevData,
+      labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: 'Calories',
-          data: randomData(),
+          data: dataForSelectedMonth.map((entry) => entry.totalCalories),
           backgroundColor: 'transparent',
           borderColor: '#E3FFA8',
           borderWidth: 1,
@@ -125,57 +155,28 @@ const Charts = () => {
           pointHoverBorderWidth: 1,
           pointRadius: 2,
           pointHitRadius: 20,
-          fill: true,
+          fill: false,
           tension: 0.5,
         },
       ],
-    });
+    }));
   };
 
-  const caloriesOptions = {
-    responsive: true,
-    plugins: {
-      legend: false,
-    },
-    scales: {
-      x: {
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-      },
-      y: {
-        min: 0,
-        max: 3000,
-        ticks: {
-          stepSize: 1000,
-          callback: (value) => (value === 0 ? value : value / 1000 + 'k'),
-        },
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-        onClick: function (e) {
-          // Дії при кліці на анотацію
-        },
-      },
-    },
-    maintainAspectRatio: false,
-  };
-  // --- /Calories setings ---
+  const updateWaterChartData = (data) => {
+    if (!data || !data.payload || !data.payload.stats) {
+      console.error('Data is missing or does not have the expected format.');
+      return;
+    }
 
-  // --- Water setings ---
-  const updateWaterChartData = (selected) => {
-    const randomWaterData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 3000));
-    };
-
-    setWaterChartData({
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
+    const dataForSelectedMonth = data.payload.stats;
+    const numberOfDaysInMonth = dataForSelectedMonth.length;
+    setWaterChartData((prevData) => ({
+      ...prevData,
+      labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: 'Water',
-          data: randomWaterData(),
+          data: dataForSelectedMonth.map((entry) => entry.water),
           backgroundColor: 'transparent',
           borderColor: '#E3FFA8',
           borderWidth: 1,
@@ -192,112 +193,61 @@ const Charts = () => {
           tension: 0.5,
         },
       ],
+    }));
+  };
+
+  const updateWeightChartData = (data) => {
+    console.log('Data for weight:', data);
+
+    if (!data || !data.payload || !data.payload.stats) {
+      console.error('Data is missing or does not have the expected format.');
+      return;
+    }
+
+    const dataForSelectedMonth = data.payload.stats;
+
+    // Filter data only for the current month
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    const filteredData = dataForSelectedMonth.filter((entry) => {
+      const entryDate = new Date(entry.date);
+      return (
+        entryDate.getMonth() === currentMonth &&
+        entryDate.getFullYear() === currentYear
+      );
     });
+
+    setWeightChartData((prevData) => ({
+      ...prevData,
+      upperRowValues: Array.from({ length: daysInMonth }, (_, i) => {
+        const dayEntry = filteredData.find(
+          (entry) => new Date(entry.date).getDate() === i + 1
+        );
+        return dayEntry ? dayEntry.weight : 0;
+      }),
+      lowerRowValues: Array.from({ length: daysInMonth }, (_, i) => `${i + 1}`),
+    }));
+
+    console.log('Weight chart data updated:', filteredData);
   };
 
-  const waterOptions = {
-    responsive: true,
-    plugins: {
-      legend: false,
-    },
-    scales: {
-      x: {
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-      },
-      y: {
-        min: 0,
-        max: 3000,
-        ticks: {
-          stepSize: 1000,
-          callback: (value) => (value === 0 ? value : value / 1000 + 'L'),
-        },
-        grid: {
-          display: true,
-          color: 'rgba(41, 41, 40, 1)',
-        },
-        onClick: function (e) {
-          // Дії при кліці на анотацію
-        },
-      },
-    },
-    maintainAspectRatio: false,
-  };
-  // --- /Water setings ---
-
-  // --- Weight setings ---
-  const updateWeightChartData = (selected) => {
-    const randomWeightData = () => {
-      return Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
-    };
-
-    setWeightChartData({
-      labels: Array.from({ length: 30 }, (_, i) => `${i + 1}`),
-      datasets: [
-        {
-          label: 'Weight',
-          data: randomWeightData(),
-          backgroundColor: 'transparent',
-          borderColor: '#E3FFA8',
-          borderWidth: 0,
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          pointHoverBackgroundColor: '#E3FFA8',
-          pointBorderColor: '#transparent',
-          pointBorderWidth: 30,
-          fill: false,
-          tension: 0,
-        },
-      ],
-    });
-  };
-
-  const weightOptions = {
-    plugins: {
-      legend: false,
-      annotation: {
-        annotations: Array.from({ length: 30 }, (_, i) => ({
-          type: 'text',
-          position: 'top',
-          content: 'randomWeightData()', // backend
-          x: i + 1,
-          y: 0,
-          font: {
-            size: 10,
-          },
-          onClick: function (e) {
-            // Дії при кліці на анотацію
-          },
-        })),
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        display: false,
-      },
-    },
-    maintainAspectRatio: false,
-  };
-  // --- /Weight setings ---
-
-  const selectOptions = months.map((month) => ({ value: month, label: month }));
+  const selectOptions = months.map((month) => ({
+    value: month,
+    label: month,
+  }));
 
   return (
     <>
       <ContainerSelect>
         <BackIconContainer>
-          {/* --Icon back to main-- */}
+          {/* Icon back to main */}
           <BackIconLink to="/main">
             <FaArrowLeftLong />
           </BackIconLink>
-          {/* ---Select--- */}
+          {/* Select */}
           <label>
             <Select
               value={{ value: selectedMonth?.value, label: 'Month' }}
@@ -310,90 +260,103 @@ const Charts = () => {
             />
           </label>
         </BackIconContainer>
-        {/* --Сurrent month-- */}
+        {/* Current month */}
         {selectedMonth && <Month>{selectedMonth.label}</Month>}
       </ContainerSelect>
 
-      <Wrapper>
-        {/* ---Calories Chart Container--- */}
-        <ChartsWrapper>
+      <>
+        <Wrapper>
+          {/* Calories Chart Container */}
+          <ChartsWrapper>
+            <ContainerValue>
+              <TitleCalories>Calories</TitleCalories>
+              {/* Average value */}
+              {chartData && (
+                <Value>
+                  <Span>Average value:</Span>{' '}
+                  {Math.round(
+                    chartData.datasets[0].data.reduce(
+                      (acc, val) => acc + val,
+                      0
+                    ) / getCurrentDayOfMonth()
+                  )}{' '}
+                  <>calories</>
+                </Value>
+              )}
+            </ContainerValue>
+            {/* Calories Chart */}
+            <ContainerChart>
+              {chartData && (
+                <Line data={chartData} options={caloriesChartOptions} />
+              )}
+            </ContainerChart>
+          </ChartsWrapper>
+
+          {/* Water Chart Container */}
+          <ChartsWrapper>
+            <ContainerValue>
+              <TitleWater>Water</TitleWater>
+              {/* Average value */}
+              {waterChartData && (
+                <Value>
+                  <Span>Average value:</Span>{' '}
+                  {Math.round(
+                    waterChartData.datasets[0].data.reduce(
+                      (acc, val) => acc + val,
+                      0
+                    ) / getCurrentDayOfMonth()
+                  )}{' '}
+                  <>ml</>
+                </Value>
+              )}
+            </ContainerValue>
+            {/* Water Chart */}
+            <ContainerChart>
+              {waterChartData && (
+                <Line data={waterChartData} options={waterChartOptions} />
+              )}
+            </ContainerChart>
+          </ChartsWrapper>
+        </Wrapper>
+
+        {/* Weight Chart Container */}
+        <WeightWrapper>
           <ContainerValue>
-            <TitleCalories>Calories</TitleCalories>
-            {/* --Average value-- */}
-            {chartData && (
+            <TitleWeight>Weight</TitleWeight>
+            {/* Average value */}
+            {weightChartData && (
               <Value>
                 <Span>Average value:</Span>{' '}
                 {Math.round(
-                  chartData.datasets[0].data.reduce(
+                  weightChartData.upperRowValues.reduce(
                     (acc, val) => acc + val,
                     0
-                  ) / 30
+                  ) / getCurrentDayOfMonth()
                 )}{' '}
-                <>calories</>
+                kg
               </Value>
             )}
           </ContainerValue>
-          {/* --Calories Chart-- */}
-          <ContainerChart>
-            {chartData && (
-              <Line data={chartData} options={caloriesOptions}></Line>
-            )}
-          </ContainerChart>
-        </ChartsWrapper>
 
-        {/* ---Water Chart Container--- */}
-        <ChartsWrapper>
-          <ContainerValue>
-            <TitleWater>Water</TitleWater>
-            {/* --Average value-- */}
-            {waterChartData && (
-              <Value>
-                <Span>Average value:</Span>{' '}
-                {Math.round(
-                  waterChartData.datasets[0].data.reduce(
-                    (acc, val) => acc + val,
-                    0
-                  ) / 30
-                )}{' '}
-                <>ml</>
-              </Value>
-            )}
-          </ContainerValue>
-          {/* --Water Chart-- */}
-          <ContainerChart>
-            {waterChartData && (
-              <Line data={waterChartData} options={waterOptions} />
-            )}
-          </ContainerChart>
-        </ChartsWrapper>
-      </Wrapper>
-
-      {/* ---Weight Chart Container--- */}
-      <WeightWrapper>
-        <ContainerValue>
-          <TitleWeight>Weight</TitleWeight>
-          {/* --Average value-- */}
+          {/* Weight Chart */}
           {weightChartData && (
-            <Value>
-              <Span>Average value:</Span>{' '}
-              {Math.round(
-                weightChartData.datasets[0].data.reduce(
-                  (acc, val) => acc + val,
-                  0
-                ) / 30
-              )}{' '}
-              kg
-            </Value>
+            <ContainerWeightChart>
+              <WeightWrap>
+                <Upper>
+                  {weightChartData.upperRowValues.map((value, index) => (
+                    <UpperValue key={index}>{value}</UpperValue>
+                  ))}
+                </Upper>
+                <LowerWrap>
+                  {weightChartData.lowerRowValues.map((value, index) => (
+                    <LowerValue key={index}>{value}</LowerValue>
+                  ))}
+                </LowerWrap>
+              </WeightWrap>
+            </ContainerWeightChart>
           )}
-        </ContainerValue>
-
-        {/* --Weight Chart-- */}
-        <ContainerWeightChart>
-          {weightChartData && (
-            <Line data={weightChartData} options={weightOptions} />
-          )}
-        </ContainerWeightChart>
-      </WeightWrapper>
+        </WeightWrapper>
+      </>
     </>
   );
 };
