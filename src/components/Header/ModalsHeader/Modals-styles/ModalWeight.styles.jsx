@@ -10,6 +10,7 @@ export const ModalChangeWeight = styled.div`
   background-color: var(--color-primary-black-2);
   z-index: 2;
   @media only screen and (max-width: 700px) {
+    position: fixed;
 width: auto;
 inset: 0;
 top: 60px;

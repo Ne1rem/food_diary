@@ -13,10 +13,12 @@ export const DivModalGoal = styled.div`
   z-index: 1;
 
   @media only screen and (max-width: 700px) {
+    position: fixed;
     width: auto;
     inset: 0;
     top: 60px;
     height: auto;
+    
   }
 `;
 

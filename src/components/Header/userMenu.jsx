@@ -86,15 +86,14 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           console.error('Error fetching user data:', error);
         });
     };
-  
+
     const timeout = setTimeout(() => {
       fetchUserData();
     }, 200);
-  
+
     return () => clearTimeout(timeout);
   }, [dispatch]);
-  
-  
+
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Maintain female': MaintainGirl,
@@ -130,8 +129,31 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     setIsUserModalOpen((prevState) => !prevState);
   }
 
+  const backdropStyle = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  };
+  
+  function handleCloseModal() {
+    setIsGoalModalOpen(false);
+    setIsWeightModalOpen(false);
+    setIsUserModalOpen(false);
+  }
+
   return (
     <UserMenuContainer>
+      {isGoalModalOpen || isWeightModalOpen || isUserModalOpen ? (
+        <div
+          className="backdrop"
+          style={backdropStyle}
+          onClick={() => {
+            handleCloseModal();
+          }}
+        />
+      ) : null}
       <GoalHeader>
         <GoalButton
           onClick={() => {
@@ -205,7 +227,9 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             <use href={`${HeaderSvg}#change-your-goal`} />
           </AvatarSvg>
         </UserHeaderButton>
-        {isUserModalOpen && <ModalUserHeader setIsUserModalOpen={setIsUserModalOpen} />}
+        {isUserModalOpen && (
+          <ModalUserHeader setIsUserModalOpen={setIsUserModalOpen} />
+        )}
       </UserHeader>
       {isMobileModalOpen && (
         <MobileOpenModal>
