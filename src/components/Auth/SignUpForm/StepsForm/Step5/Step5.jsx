@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { signUp } from '../../../../../Redux/Auth/authThunks';
 
 import LoaderBtn from '../../../Loader/LoaderBtn';
@@ -10,7 +9,6 @@ import { RadioButton, RadioCircle, RadioLabel } from '../../../AuthStyled/RadioB
 
 
 const Step5 = ({ formik, decrement, currentStep }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [pending, setPending] = useState('');
 
@@ -18,7 +16,6 @@ const Step5 = ({ formik, decrement, currentStep }) => {
     try {
       setPending('loading');
       await dispatch(signUp(formik.values)).unwrap();
-      navigate('/signin');
     } catch (err) {
       currentStep(1);
       return err;
