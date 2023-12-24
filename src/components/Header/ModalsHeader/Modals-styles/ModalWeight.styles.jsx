@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalChangeWeight = styled.div`
-  position: fixed;
+  position: absolute;
   top: 100px;
   right: 36px;
   border: 1px;
