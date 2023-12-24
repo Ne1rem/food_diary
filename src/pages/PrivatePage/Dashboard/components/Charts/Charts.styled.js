@@ -210,6 +210,7 @@ export const Span = styled.span`
 export const ContainerChart = styled.div`
   width: 642px;
   height: 333px;
+  flex-shrink: 0;
   padding: 25px 20px 24px 14px;
   border-radius: 12px;
   background: var(--color-primary-black-2);
@@ -293,14 +294,14 @@ export const WeightWrap = styled.div`
     width: 738px;
     height: 110px;
     padding: 24px 20px 44px 22px;
-    gap: 12px;
+    /* gap: 12px; */
   }
 
   @media only screen and (min-width: 1440px) {
     width: 1310px;
     height: 110px;
     padding: 24px 41px 36px 21px;
-    gap: 16px;
+    /* gap: 16px; */
   }
 `;
 
@@ -308,7 +309,7 @@ export const Upper = styled.div`
   display: flex;
   align-items: center;
   justify-content: inherit;
-  gap: 23px;
+  /* gap: 23px; */
   font-size: 14px;
   line-height: 1.42;
   font-weight: 400;
@@ -316,14 +317,14 @@ export const Upper = styled.div`
   /* padding: 0 41px 0 21px; */
 
   @media only screen and (min-width: 834px) {
-    gap: 6px;
+    /* gap: 6px; */
     font-size: 10px;
     line-height: 1.6;
     /* padding: 0 20px 0 22px; */
   }
 
   @media only screen and (min-width: 1440px) {
-    gap: 23px;
+    /* gap: 23px; */
     font-size: 14px;
     line-height: 1.42;
     font-weight: 400;
@@ -351,7 +352,7 @@ export const LowerWrap = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: inherit;
-  gap: 29px;
+  /* gap: 29px; */
   color: var(--color-primary-grey);
   font-size: 10px;
   font-weight: 400;
@@ -359,12 +360,12 @@ export const LowerWrap = styled.div`
   /* padding: 0 44px 0 24px; */
 
   @media only screen and (min-width: 834px) {
-    gap: 10px;
+    /* gap: 10px; */
     /* padding: 0 22px 0 24px; */
   }
 
   @media only screen and (min-width: 1440px) {
-    gap: 29px;
+    /* gap: 29px; */
     /* padding: 0 44px 0 24px; */
   }
 `;

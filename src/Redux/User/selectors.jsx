@@ -13,3 +13,6 @@ export const selectWeightData = (state) => state.user.weightData;
 export const selectWeights = (state) => state.user.weight;
 
 export const selectGoal = (state) => state.user.goal;
+
+export const selectRequiredMonth = (state) => state.statistic.requestMonth;
+

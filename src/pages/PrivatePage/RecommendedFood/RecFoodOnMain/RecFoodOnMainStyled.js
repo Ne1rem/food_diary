@@ -9,7 +9,7 @@ export const Container = styled.div`
     padding: 20px 27px 40px 27px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
 
     padding: 20px 10px 80px 10px;
@@ -22,7 +22,7 @@ export const RecommendedFoodWrapper = styled.div`
     width: 780px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
   }
@@ -30,10 +30,10 @@ export const RecommendedFoodWrapper = styled.div`
 
 export const Title = styled.h2`
   margin-bottom: 16px;
-  color: #ffffff;
+  color: var(--color-primary-white);
   font-size: 22px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 18px;
   }
@@ -50,7 +50,7 @@ export const FoodCardsWrapper = styled.div`
     width: 780px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     width: 300px;
     gap: 10px;
@@ -66,7 +66,7 @@ export const FoodCard = styled.div`
   display: flex;
   flex-direction: row;
   background-color: #0f0f0f;
-  color: #ffffff;
+  color: var(--color-primary-white);
   border-radius: 12px;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -91,10 +91,10 @@ export const FoodCard = styled.div`
 export const SeeMoreButton = styled.p`
   display: block;
   margin-top: 16px;
-  color: #b6b6b6;
+  color: var(--color-primary-grey);
   font-size: 16px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 14px;
   }
@@ -115,5 +115,5 @@ export const WeightOfCalorieContainer = styled.div`
 `;
 
 export const Calories = styled.p`
-  color: #b6b6b6;
+  color: var(--color-primary-grey);
 `;
