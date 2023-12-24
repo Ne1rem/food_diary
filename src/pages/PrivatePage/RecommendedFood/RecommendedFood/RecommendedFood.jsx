@@ -37,8 +37,8 @@ const RecommendedFood = () => {
       <RecommendedFoodWrapper>
         <Photo src={PhotoRecFood} alt="Фото" />
         <FoodCardsWrapper>
-          {foodItems.map((item) => (
-            <FoodCard key={item.id}>
+          {foodItems.map((item, index) => (
+            <FoodCard key={index}>
               <img src={item.img} alt={item.name} />
               <CharacteristicsContainer>
                 <h3>{item.name}</h3>
