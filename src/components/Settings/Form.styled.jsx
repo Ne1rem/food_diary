@@ -59,8 +59,9 @@ export const Button = styled.button`
   color: var(--color-crimary-grey);
   background: transparent;
 
-  transition: background-color 0.4s cubic-bezier(0, 0, 1, 1),
-   color 0.4s cubic-bezier(0, 0, 1, 1);
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
 
   &:hover {
     background: var(--color-primary-green-lite);
@@ -68,9 +69,9 @@ export const Button = styled.button`
   }
 
   &.btn-active {
-  color: var(--color-primary-black-2);
-  background: var(--color-primary-green-lite);
-}
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 
   @media screen and (min-width: 834px) {
     margin-left: auto;
@@ -112,6 +113,7 @@ export const DownloadButton = styled.button`
   @media screen and (min-width: 1440px) {
     width: 212px;
     margin: 0;
+    justify-content: flex-start;
   }
 `;
 
@@ -175,12 +177,12 @@ export const InputStyle = styled.input`
     width: 192px;
   }
 
-  &.error{
-    border: 1px solid #E74A3B;
+  &.error {
+    border: 1px solid #e74a3b;
   }
 
-  &.correct{
-    border: 1px solid #3CBC81;
+  &.correct {
+    border: 1px solid #3cbc81;
   }
 `;
 
@@ -339,22 +341,21 @@ export const RadioLabel = styled.span`
   }
 `;
 
-
 export const InputIconStyle = styled.svg`
-position: absolute;
-width: 16px;
-height: 16px;
-top: 39px;
-right: 10px;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 39px;
+  right: 10px;
 `;
 
 export const InputErrorStyled = styled.div`
-position: absolute;
-top: 68px;
-left: 2px;
-color: #E74A3B;
+  position: absolute;
+  top: 68px;
+  left: 2px;
+  color: #e74a3b;
 
-font-size: 12px;
-font-weight: 400;
-line-height: 1.1
-`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.1;
+`;
