@@ -43,7 +43,6 @@ import { chartLineOptions } from './chartOptions';
 import { monthCurrent } from '../../../../../utilities/monthCurrent';
 import { monthValue } from '../../../../../utilities/monthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
-
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -53,7 +52,6 @@ ChartJS.register(
   Tooltip,
   Filler
 );
-
 const months = [
   'January',
   'February',
@@ -68,8 +66,7 @@ const months = [
   'November',
   'December',
 ];
-
-export const numberOfDaysInMonth = (selectedMonth) => {
+const numberOfDaysInMonth = (selectedMonth) => {
   const year = new Date().getFullYear();
   return new Date(year, monthValue(selectedMonth), 0).getDate();
 };
@@ -95,6 +92,7 @@ const Charts = () => {
         updateWaterChartData(data);
         updateWeightChartData(data);
 
+        // CALORIES chart config
         const caloriesOptions = {
           responsive: true,
           plugins: {
@@ -146,6 +144,7 @@ const Charts = () => {
           maintainAspectRatio: false,
         };
 
+        // WATER chart config
         const waterOptions = {
           responsive: true,
           plugins: {
@@ -246,16 +245,12 @@ const Charts = () => {
       );
       return;
     }
-
     const dataForSelectedMonth = payload.stats;
-
     const numberOfDays = numberOfDaysInMonth(selectedMonth);
-
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
         new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
-
     setChartData({
       labels: Array.from({ length: numberOfDays }, (_, i) => i + 1),
       datasets: [
@@ -278,16 +273,12 @@ const Charts = () => {
       );
       return;
     }
-
     const dataForSelectedMonth = payload.stats;
-
     const numberOfDays = numberOfDaysInMonth(selectedMonth);
-
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
         new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
-
     setWaterChartData({
       labels: Array.from({ length: numberOfDays }, (_, i) => `${i + 1}`),
       datasets: [
@@ -300,8 +291,6 @@ const Charts = () => {
     });
   };
 
-  // WEIGHT CONFIG
-
   const findLastNonZeroIndex = (array, end) => {
     for (let i = end - 1; i >= 0; i--) {
       if (array[i] !== null) {
@@ -311,6 +300,8 @@ const Charts = () => {
     return -1;
   };
 
+  // WEIGHT CONFIG
+
   const updateWeightChartData = (data) => {
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
@@ -319,10 +310,8 @@ const Charts = () => {
       );
       return;
     }
-
     const dataForSelectedMonth = data.payload.stats;
     const daysInMonth = new Date(year, monthValue(selectedMonth), 0).getDate();
-
     const dayEntries = Array.from({ length: daysInMonth }, (_, i) => {
       const entryDate = new Date(year, monthValue(selectedMonth) - 1, i + 1);
       const dayEntry = dataForSelectedMonth.find(
@@ -332,7 +321,6 @@ const Charts = () => {
       );
       return dayEntry;
     });
-
     let lastEnteredValue = null;
     const weightValues = dayEntries.map((entry, index) => {
       if (entry && entry.weight !== undefined) {
@@ -344,7 +332,6 @@ const Charts = () => {
         return null;
       }
     });
-
     const futureDaysIndex = getCurrentDayOfMonth();
     const lastNonZeroValueIndex = findLastNonZeroIndex(
       weightValues,
@@ -352,16 +339,12 @@ const Charts = () => {
     );
     const lastNonZeroValue =
       lastNonZeroValueIndex !== -1 ? weightValues[lastNonZeroValueIndex] : null;
-
-    // Замінюємо всі нулі в минулому на undefined
     weightValues.forEach((value, index) => {
       if (value === 0 && index + 1 < getCurrentDayOfMonth()) {
         weightValues[index] = lastEnteredValue;
       }
     });
-
     const startOfFutureDaysIndex = futureDaysIndex - 1;
-
     for (let i = startOfFutureDaysIndex; i >= 0; i--) {
       if (weightValues[i] === null) {
         weightValues[i] = 0;
@@ -369,25 +352,20 @@ const Charts = () => {
         break;
       }
     }
-
     const filledWeightValues = weightValues.map((value, index) => {
       if (value === null && index + 1 <= futureDaysIndex) {
-        // Замінюємо null для минулих днів на останнє ненульове значення
         return lastNonZeroValue !== null ? lastNonZeroValue : undefined;
       }
       return value;
     });
-
     const validWeightValues = filledWeightValues.filter(
       (value) => value !== null && value !== undefined
     );
-
     const sumWeight = validWeightValues.reduce((acc, val) => acc + val, 0);
     const averageWeight =
       validWeightValues.length > 0
         ? sumWeight / validWeightValues.length
         : null;
-
     setWeightChartData({
       weightValues: filledWeightValues,
       dateValues: Array.from({ length: daysInMonth }, (_, i) =>
@@ -525,6 +503,5 @@ const Charts = () => {
     </>
   );
 };
-
 
 export default Charts;
