@@ -45,3 +45,7 @@ button {
   border: none;
   background-color: transparent;
 }
+
+.noOverflow {
+  overflow: hidden;
+}
