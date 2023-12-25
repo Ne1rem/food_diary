@@ -302,6 +302,15 @@ const Charts = () => {
 
   // WEIGHT CONFIG
 
+  const findLastNonZeroIndex = (array, end) => {
+    for (let i = end - 1; i >= 0; i--) {
+      if (array[i] !== null) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
   const updateWeightChartData = (data) => {
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
@@ -330,25 +339,57 @@ const Charts = () => {
         lastEnteredValue = entry.weight;
         return entry.weight;
       } else if (entry && index + 1 === getCurrentDayOfMonth()) {
-        return lastEnteredValue !== null ? lastEnteredValue : null;
-      } else {
         return lastEnteredValue !== null ? lastEnteredValue : undefined;
+      } else {
+        return null;
       }
     });
 
-    const validWeightValues = weightValues
-      .slice(0, getCurrentDayOfMonth())
-      .filter((value) => value !== null);
-    const sumWeight = validWeightValues.reduce(
-      (acc, val) => acc + (val || 0),
-      0
+    const futureDaysIndex = getCurrentDayOfMonth();
+    const lastNonZeroValueIndex = findLastNonZeroIndex(
+      weightValues,
+      futureDaysIndex
     );
+    const lastNonZeroValue =
+      lastNonZeroValueIndex !== -1 ? weightValues[lastNonZeroValueIndex] : null;
+
+    // Замінюємо всі нулі в минулому на undefined
+    weightValues.forEach((value, index) => {
+      if (value === 0 && index + 1 < getCurrentDayOfMonth()) {
+        weightValues[index] = lastEnteredValue;
+      }
+    });
+
+    const startOfFutureDaysIndex = futureDaysIndex - 1;
+
+    for (let i = startOfFutureDaysIndex; i >= 0; i--) {
+      if (weightValues[i] === null) {
+        weightValues[i] = 0;
+      } else {
+        break;
+      }
+    }
+
+    const filledWeightValues = weightValues.map((value, index) => {
+      if (value === null && index + 1 <= futureDaysIndex) {
+        // Замінюємо null для минулих днів на останнє ненульове значення
+        return lastNonZeroValue !== null ? lastNonZeroValue : undefined;
+      }
+      return value;
+    });
+
+    const validWeightValues = filledWeightValues.filter(
+      (value) => value !== null && value !== undefined
+    );
+
+    const sumWeight = validWeightValues.reduce((acc, val) => acc + val, 0);
     const averageWeight =
       validWeightValues.length > 0
         ? sumWeight / validWeightValues.length
         : null;
+
     setWeightChartData({
-      weightValues: weightValues,
+      weightValues: filledWeightValues,
       dateValues: Array.from({ length: daysInMonth }, (_, i) =>
         (i + 1).toString()
       ),
