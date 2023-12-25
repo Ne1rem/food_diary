@@ -42,7 +42,6 @@ export const ItemNutrients = styled.li`
 padding-left: 20px;`
 
 export const ListToComplete = styled.ul`
-position: relative;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -80,9 +79,12 @@ font-size: 14px;
 font-weight: 500;
 line-height: 1.42;`
 
+export const StyledDiv = styled.div`
+position: relative;`
+
 export const EditLink = styled.button`
 position: absolute;
-top: 16px;
+top: 0;
 right: 12px;
 display: flex;
 align-items: center;

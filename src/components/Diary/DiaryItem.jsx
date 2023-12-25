@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
-// import { useEffect } from 'react';
-// import { requestFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { requestFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
 import { selectorIntake } from '../../Redux/Diary/selectors';
 import { useState } from 'react';
 import { 
@@ -12,7 +12,8 @@ import {
     ModalLink,
     ItemToComplete,
     EditLink,
-    EditSvg} from './DiaryItem.styled';
+    EditSvg,
+    StyledDiv} from './DiaryItem.styled';
 
 import ListNutritients from './ListNutritients';
 import ItemListToComplete from './ItemListToComplete';
@@ -21,11 +22,11 @@ import editSvg from "../../assets/diary/edit.svg";
 
 const DiaryItem = ({name, img}) => {
     const[showModal, setShowModal] = useState(false);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(requestFoodIntakeThunk())
-    // },[dispatch])
+    useEffect(() => {
+        dispatch(requestFoodIntakeThunk())
+    },[dispatch])
 
     const intake = useSelector(selectorIntake);
     let selectedIntakeDish;
@@ -63,7 +64,7 @@ const DiaryItem = ({name, img}) => {
     </WrapperItemHeader>
     <ListToComplete>
     {indexArray.map((index) => (
-          <div key={index}>
+          <StyledDiv key={index}>
             {selectedIntakeDish && selectedIntakeDish[index] ? (
               <ItemToComplete key={index}>{index + 1}<ItemListToComplete toggleModal={toggleModal} intakeItem={selectedIntakeDish[index]} /></ItemToComplete>
             ) : index === 0 ? (
@@ -71,12 +72,16 @@ const DiaryItem = ({name, img}) => {
             ) : (
               <ItemToComplete key={index}>{index + 1}</ItemToComplete>
             )}
-          </div>
-        ))}
-           <EditLink onClick={toggleModal}>
+        {selectedIntakeDish && selectedIntakeDish[index] ? (
+              <EditLink onClick={toggleModal}>
                 <EditSvg><use href={`${editSvg}#icon-edit`} /></EditSvg>
-                Edit
-           </EditLink>
+                    Edit
+              </EditLink>
+        ) : null}
+          </StyledDiv>
+        ))}
+
+ 
     </ListToComplete>
     {showModal && <ModalDiary name={name} img={img} onClose={toggleModal}></ModalDiary>}
     </WrapperItemDiary> );
