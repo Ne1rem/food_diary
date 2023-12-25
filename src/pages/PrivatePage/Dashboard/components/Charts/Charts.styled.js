@@ -27,6 +27,7 @@ export const BackIconContainer = styled.div`
 `;
 
 export const BackIconLink = styled(Link)`
+display: flex;
   width: 16px;
   height: 16px;
   justify-content: center;
@@ -215,7 +216,7 @@ export const ContainerChart = styled.div`
   border-radius: 12px;
   background: var(--color-primary-black-2);
   display: flex;
-  justify-content: start;
+  justify-content: center;
 
   @media only screen and (min-width: 834px) {
     width: 735px;
@@ -271,6 +272,14 @@ export const TitleWeight = styled.h3`
 `;
 
 export const ContainerWeightChart = styled.div`
+  @media only screen and (min-width: 834px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const FlexContainer = styled.div`
 `;
 
 export const WeightWrap = styled.div`
@@ -282,7 +291,7 @@ export const WeightWrap = styled.div`
   background: var(--color-primary-black-2);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 16px;
 
   /* position: relative;
@@ -333,6 +342,9 @@ export const Upper = styled.div`
 `;
 
 export const UpperValue = styled.div`
+display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
   line-height: 1.42;
 
@@ -371,6 +383,9 @@ export const LowerWrap = styled.div`
 `;
 
 export const LowerValue = styled.div`
+display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 10px;
   line-height: 1.4;
 `;

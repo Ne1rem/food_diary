@@ -1,4 +1,4 @@
-export const currentMonth = () => {
+export const monthCurrent = () => {
   const months = [
     'January',
     'February',
