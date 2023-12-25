@@ -21,7 +21,10 @@ export const InputProductStyle = styled.input`
   outline: none;
   border-radius: 12px;
   border: 1px solid var(--color-primary-green-lite);
-  background: transparent;`
+  background: transparent;
+  &.error {
+    border: 1px solid #e74a3b;
+  }`
 
 export const InputStyle = styled.input`
   min-width: 61px;
@@ -33,7 +36,10 @@ export const InputStyle = styled.input`
   outline: none;
   border-radius: 12px;
   border: 1px solid var(--color-primary-green-lite);
-  background: transparent;`
+  background: transparent;
+  &.error {
+    border: 1px solid #e74a3b;
+  }`
 
 export const DivWrapper = styled.div`
 display: flex;
@@ -58,8 +64,21 @@ padding: 0;
 `
 
 export const StyledError = styled(ErrorMessage)`
+position: absolute;
 padding: 0 5px;
 font-size: 8px;
 font-weight: 400;
 line-height: 10px;
-color: red;`
+color: green;`
+
+export const InputError = styled.div`
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  color: green;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.1;
+`;
+

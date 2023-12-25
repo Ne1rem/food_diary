@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from 'react-router-dom';
 
 export const Conteiner = styled.div`
 margin-left: auto;
@@ -34,7 +35,7 @@ line-height: 1.25;
     line-height: 1.2;
   }`
 
-export const Wrapper = styled.div`
+export const LinkStyled = styled(Link)`
 display: flex;
 margin-bottom: 16px;
 align-items: center;

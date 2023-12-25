@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const WrapperComponent = styled.div`
+position: relative;
 @media screen and (min-width: 834px) {
    display: flex;
    justify-content: space-between;
@@ -36,9 +37,15 @@ stroke: var(--color-primary-green-lite);
 }`
 
 export const ButtonSvg = styled.button`
+
 background-color: transparent;
 border: none;
-`
+@media screen and (max-width: 833px) {
+  position: absolute;
+  top: 73px;
+  left: 63px;
+  }`
+  
 export const ModalLink = styled.button`
 background: none;
 border: none;

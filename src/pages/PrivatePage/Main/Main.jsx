@@ -1,6 +1,6 @@
 import { Container } from '../../../components/Container';
 import { DailyStatistics } from '../../../components/Main/DailyStatistics';
-import { MainHeader, Title } from './Main.styled';
+import { MainHeader, Title, ContainerBottom } from './Main.styled';
 
 import GoalButtonOnMain from '../../../components/GoalButtonOnMain/GoalButtonOnMain';
 import RecommendedFoodOnMain from '../RecommendedFood/RecFoodOnMain/RecFoodOnMain';
@@ -15,10 +15,10 @@ const Main = () => {
           <GoalButtonOnMain />
         </MainHeader>
         <DailyStatistics />
-        <div style={{display:"flex"}}>
+        <ContainerBottom>
         <PartMainDiary />
         <RecommendedFoodOnMain />
-        </div>
+        </ContainerBottom>
       </Container>
     </section>
   );
