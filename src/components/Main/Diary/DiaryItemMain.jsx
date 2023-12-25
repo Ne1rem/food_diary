@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { requestFoodIntakeThunk } from "../../../Redux/Diary/diaryThunks";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+// import { requestFoodIntakeThunk } from "../../../Redux/Diary/diaryThunks";
 import { selectorIntake } from "../../../Redux/Diary/selectors";
 import { WrapperComponent, Title, WrapperTitle, TrashSvg, ButtonSvg, ModalLink } from "./DiaryItemMain.styled";
 import ListNutritients from "../../Diary/ListNutritients";
@@ -9,15 +9,15 @@ import trashImg from "../../../assets/diary/trash.svg";
 
 const DiaryItemMain = ({name, img}) => {
     const[showModal, setShowModal] = useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const toggleModal = () => {
         setShowModal(!showModal);
     };
 
-    useEffect(() => {
-        dispatch(requestFoodIntakeThunk())
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(requestFoodIntakeThunk())
+    // },[dispatch])
 
     const intake = useSelector(selectorIntake);
 
