@@ -53,11 +53,11 @@ export const ProfileSettings = () => {
 
       if (Object.keys(formik.errors).length === 0) {
         setIsLoading('loading');
-        // Submit the form if it's valid
+
         await formik.handleSubmit();
       }
 
-      // await dispatch(updateUser(formik.values)).unwrap();
+      await dispatch(updateUser(formik.values)).unwrap();
     } catch (err) {
       console.log(err);
     } finally {
