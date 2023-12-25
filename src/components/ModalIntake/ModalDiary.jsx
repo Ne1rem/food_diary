@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { selectorIntake } from '../../Redux/Diary/selectors';
-// import { useState } from "react";
+import { addFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
 import { Formik, Form, FieldArray } from 'formik';
 import * as yup from 'yup';
 
@@ -18,7 +18,6 @@ import {
   ButtonAddMore,
   WrapperButton,
 } from './ModalDiary.styled';
-import { intakeFood } from '../../Redux/Food/FoodThunks';
 
 const foodSchema = yup.object({
   dish: yup.array().of(
@@ -80,18 +79,33 @@ const ModalDiary = ({ name, img, onClose }) => {
   };
 
   const handleFormSubmit = (values) => {
-    dispatch(intakeFood(values));
+    const intakeData = {
+      [name.toLowerCase()]: {
+        dish: values.dish.map((product) => ({
+          name: product.name,
+          carbonohidrates: parseFloat(product.carbonohidrates),
+          protein: parseFloat(product.protein),
+          fat: parseFloat(product.fat),
+          calories: parseFloat(product.calories),
+        })),
+      },
+    };
+    console.log(intakeData);
+    dispatch(addFoodIntakeThunk(intakeData));
+    onClose();
   };
 
   const maxFormsCount = 4;
 
   const handleAddMore = (e, { values, setFieldValue, errors }) => {
     e.preventDefault();
-
     const hasErrors = values.dish.some((product, index) => {
       const productErrors = errors.dish && errors.dish[index];
+      console.log(errors.dish[index]);
       return !!productErrors;
     });
+
+    
 
     if (hasErrors) {
       console.log('Cannot add more items due to validation errors');

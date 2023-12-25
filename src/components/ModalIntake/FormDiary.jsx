@@ -1,6 +1,13 @@
-import { ContainerInputs, InputStyle, InputProductStyle, DivWrapper, ButtonSvg, TrashSvg, StyledError } from "./FormDiary.styled";
+import { ContainerInputs,
+      InputStyle,
+      InputProductStyle,
+      DivWrapper,
+      ButtonSvg,
+      TrashSvg,
+      StyledError } from "./FormDiary.styled";
 import trashImg from "../../assets/diary/trash.svg";
 import { Field } from "formik";
+import { ErrorMessage } from "formik";
 
 const FormDiary = ({ index, errors, touched, values, remove }) => {
 
@@ -15,8 +22,9 @@ const FormDiary = ({ index, errors, touched, values, remove }) => {
         required
       />
       {errors[`name${index}`] && touched[`name${index}`] ? (
-      <StyledError name={`dish[${index}].name`} component="div" />
+      <div>{`dish[${index}].name`}</div>
       ):null}
+      <ErrorMessage name={`dish[${index}].name`} />
       <Field
         as={InputStyle}
         id={`carbonohidrates${index}`}
@@ -28,6 +36,7 @@ const FormDiary = ({ index, errors, touched, values, remove }) => {
       {errors[`carbonohidrates${index}`] && touched[`carbonohidrates${index}`] ? (
       <StyledError name={`dish[${index}].carbonohidrates`} component="div" />
       ):null}
+      <ErrorMessage name={`dish[${index}].carbonohidrates`} />
       <Field
         as={InputStyle}
         id={`protein${index}`}
@@ -39,6 +48,7 @@ const FormDiary = ({ index, errors, touched, values, remove }) => {
       {errors[`protein${index}`] && touched[`protein${index}`] ? (
       <StyledError name={`dish[${index}].protein`} component="div" />
       ):null}
+      <ErrorMessage name={`dish[${index}].protein`} />
       <DivWrapper>
         <Field
           as={InputStyle}
@@ -51,6 +61,7 @@ const FormDiary = ({ index, errors, touched, values, remove }) => {
       {errors[`fat${index}`] && touched[`fat${index}`] ? (
       <StyledError name={`dish[${index}].fat`} component="div" />
       ):null}
+      <ErrorMessage name={`dish[${index}].fat`} />
         <Field
           as={InputStyle}
           id={`calories${index}`}
@@ -62,6 +73,7 @@ const FormDiary = ({ index, errors, touched, values, remove }) => {
       {errors[`calories${index}`] && touched[`calories${index}`] ? (
       <StyledError name={`dish[${index}].calories`} component="div" />
       ):null}
+      <ErrorMessage name={`dish[${index}].calories`} />
         <ButtonSvg type="button" onClick={() => remove(index)}>
           <TrashSvg><use href={`${trashImg}#icon-trash`} /></TrashSvg>
         </ButtonSvg>

@@ -47,3 +47,9 @@ export const StyledLink = styled(Link)`
     line-height: 1.37;
   }
 `;
+
+export const ContainerBottom = styled.div`
+  @media screen and (min-width: 1440px) {
+    display: flex;
+  }
+`

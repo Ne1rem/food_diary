@@ -1,6 +1,6 @@
 import { Container } from '../../../components/Container';
 import { DailyStatistics } from '../../../components/Main/DailyStatistics';
-import { MainHeader, Title } from './Main.styled';
+import { MainHeader, Title, ContainerBottom } from './Main.styled';
 
 import GoalButtonOnMain from '../../../components/GoalButtonOnMain/GoalButtonOnMain';
 // import FoodCharts from '../../../components/FoodCharts/FoodCharts';
@@ -17,8 +17,10 @@ const Main = () => {
         </MainHeader>
         <DailyStatistics />
         {/* <FoodCharts /> */}
-        <RecommendedFoodOnMain />
+        <ContainerBottom>
         <PartMainDiary />
+        <RecommendedFoodOnMain />
+        </ContainerBottom>
       </Container>
     </section>
   );
