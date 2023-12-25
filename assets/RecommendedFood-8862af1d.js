@@ -1,4 +1,4 @@
-import{s as d,r as t,j as i,h as a}from"./index-8e0af2fb.js";const n=d.div`
+import{s as d,r as t,j as i,h as a}from"./index-fac09cbb.js";const n=d.div`
   padding: 20px 34px 60px 34px;
 
   @media (min-width: 834px) and (max-width: 1439px) {
