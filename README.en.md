@@ -14,12 +14,14 @@
 
 
 **Getting Started:**
+
 1. Clone this repository to your computer.
 2. Install the necessary dependencies using npm install.
 3. Start the development server with npm run dev.
 
 
 **Technologies Used:**
+
 - Vite
 - React
 - Redux
@@ -34,6 +36,24 @@
 - Render
 
 
+# Developers:
+
+**FrontEnd:**
+- [Olena Kosmina](https://github.com/KosminaOlena)
+- [Roman Borovyk](https://github.com/BorovChe)
+- [Oleg Malyshok](https://github.com/OlegMalyshok)
+- [Mykhailo Zykov](https://github.com/Rhilim)
+- [Ivan Bilobrov](https://github.com/ivanbilobrov07)
+- Team-lead [Anatoliy Daniluyk](https://github.com/Ne1rem)
+- Scrum-master [Anna Kotlyar](https://github.com/AnnaKotl)
+
+**BackEnd:**
+- [Anastasia Hlukhenka](https://github.com/Hlukhenka)
+- [Oleksandr Borysenko](https://github.com/allborysenko)
+- Team-lead [Svitlana Ivanchuk](https://github.com/Svitlana-Ivanchuk)
+
+
 **Links:**
+
 - [Backend Repo](https://github.com/Svitlana-Ivanchuk/Food_diary_Backend)
 - [React + Vite Template](https://github.com/IvettaGoIT/react_vite)
