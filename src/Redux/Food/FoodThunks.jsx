@@ -6,8 +6,18 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://food-diary-backend-kr1b.onrender.com/api/';
 
 
+const intakeFood = createAsyncThunk(
+  'user/food-intake', async (_, thunkAPI) => {
+  try {
+    const response = await axios.get('user/food-intake');
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
+
 const saveUserFoodIntake = createAsyncThunk(
-    'user/food-intake',
+    'user/saveFood-intake',
     async (credentials, { rejectWithValue }) => {
       try {
         const { data } = await axios.post('user/food-intake', credentials);
@@ -19,7 +29,7 @@ const saveUserFoodIntake = createAsyncThunk(
     }
   );
   
-  const userFoodIntakeById = createAsyncThunk(
+  const updateFoodIntakeById = createAsyncThunk(
     "user/food-intakeById",
     async ({value, id}, thunkAPI) => {
       try {
@@ -46,4 +56,4 @@ const saveUserFoodIntake = createAsyncThunk(
     }
   );
 
-  export { saveUserFoodIntake, userFoodIntakeById, deleteFoodIntakeCurrentDate }
+  export {intakeFood, saveUserFoodIntake, updateFoodIntakeById, deleteFoodIntakeCurrentDate }

@@ -18,7 +18,7 @@ const signUp = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('auth/signup', credentials);
-      // token.set(data.token);
+      token.set(data.token);
       return data;
     } catch (e) {
       if (e.request.status === 409) {

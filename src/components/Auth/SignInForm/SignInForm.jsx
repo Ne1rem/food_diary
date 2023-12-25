@@ -121,11 +121,15 @@ const SignInForm = () => {
 
             {passwordHidden && validation === 'validation' ? (
               formik.errors.password ? (
-                <InputSvgStyle>
+                <InputSvgStyle onClick={() => {
+                  onClickPasswordHidden();
+                }}>
                   <use href={`${inputSvg}#error`} />
                 </InputSvgStyle>
               ) : (
-                <InputSvgStyle>
+                <InputSvgStyle onClick={() => {
+                  onClickPasswordHidden();
+                }}>
                   <use href={`${inputSvg}#correct`} />
                 </InputSvgStyle>
               )
