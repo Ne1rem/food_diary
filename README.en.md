@@ -55,5 +55,6 @@
 
 **Links:**
 
+- [HealthyHub Application](https://ne1rem.github.io/food_diary/)
 - [Backend Repo](https://github.com/Svitlana-Ivanchuk/Food_diary_Backend)
 - [React + Vite Template](https://github.com/IvettaGoIT/react_vite)
