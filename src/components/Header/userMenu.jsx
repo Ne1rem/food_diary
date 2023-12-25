@@ -66,7 +66,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const [goal] = useState('');
   const [weight, setWeight] = useState('');
   const userAvatar = useSelector((state) => state.user.user.avatarURL);
-console.log(userAvatar);
+  
   const [currentGoal, setCurrentGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(currentGoal);
   
