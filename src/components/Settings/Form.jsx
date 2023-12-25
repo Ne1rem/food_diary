@@ -86,7 +86,7 @@ export const ProfileSettings = () => {
       weight: Yup.number()
         .positive('Weight has to be positive number')
         .required('Weight is required')
-        .min(30),
+        .min(20),
       height: Yup.number()
         .positive('Height has to be positive number')
         .required('Height is required')
