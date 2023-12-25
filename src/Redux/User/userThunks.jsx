@@ -38,10 +38,11 @@ const updateUser = createAsyncThunk('user/update', async (values, thunkAPI) => {
         },
       });
       toast.success('Data was updated!', SuccessToast);
-      console.log(formData);
+
       return data;
     } else {
       const { data } = await axios.put('user/update', values);
+      toast.success('Data was updated!', SuccessToast);
       return data;
     }
   } catch (e) {
@@ -49,6 +50,43 @@ const updateUser = createAsyncThunk('user/update', async (values, thunkAPI) => {
     return thunkAPI.rejectWithValue(e.message);
   }
 });
+
+// const updateUser = createAsyncThunk('user/update', async (values, thunkAPI) => {
+//   try {
+//     let data;
+
+//     if (values.avatarURL.startsWith('blob:')) {
+//       const file = await fetch(values.avatarURL).then((res) => res.blob());
+
+//       const formData = new FormData();
+//       formData.append('avatarURL', file);
+//       formData.append('name', values.name);
+//       formData.append('age', values.age);
+//       formData.append('gender', values.gender);
+//       formData.append('weight', values.weight);
+//       formData.append('height', values.height);
+//       formData.append('activity', values.activity);
+
+//       for (var pair of formData.entries()) {
+//         console.log(pair[0] + ', ' + pair[1]);
+//       }
+
+//       ({ data } = await axios.put('user/update', formData, {
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//         },
+//       })
+//     } else {
+//       ({ data } = await axios.put('user/update', values));
+//     }
+
+//     toast.success('Data was updated!', SuccessToast);
+//     return data;
+//   } catch (e) {
+//     toast.error('Update failed', ErrorToast);
+//     return thunkAPI.rejectWithValue(e.message);
+//   }
+// });
 
 const updateUserGoal = createAsyncThunk(
   'user/goal',
@@ -120,4 +158,10 @@ const userStatistics = createAsyncThunk(
   }
 );
 
-export { currentUser, updateUser, updateUserGoal, addUserWeight, userStatistics };
+export {
+  currentUser,
+  updateUser,
+  updateUserGoal,
+  addUserWeight,
+  userStatistics,
+};
