@@ -1,4 +1,4 @@
-import{s as t,j as e}from"./index-ba5b0771.js";const r=t.div`
+import{s as t,j as e}from"./index-c3d2fd6e.js";const r=t.div`
   margin-left: auto;
   margin-right: auto;
   display: flex;
