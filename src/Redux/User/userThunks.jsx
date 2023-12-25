@@ -38,10 +38,11 @@ const updateUser = createAsyncThunk('user/update', async (values, thunkAPI) => {
         },
       });
       toast.success('Data was updated!', SuccessToast);
-      console.log(formData);
+
       return data;
     } else {
       const { data } = await axios.put('user/update', values);
+      toast.success('Data was updated!', SuccessToast);
       return data;
     }
   } catch (e) {
@@ -120,4 +121,10 @@ const userStatistics = createAsyncThunk(
   }
 );
 
-export { currentUser, updateUser, updateUserGoal, addUserWeight, userStatistics };
+export {
+  currentUser,
+  updateUser,
+  updateUserGoal,
+  addUserWeight,
+  userStatistics,
+};
