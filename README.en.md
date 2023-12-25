@@ -25,15 +25,17 @@
 - Vite
 - React
 - Redux
-- Node.js
 - Chart.js
 - Axios
 - Formik
 - Yup
+- Node.js
 - Mongoose
 - Swagger
 - CORS
 - Render
+- Express
+- Cloudinary
 
 
 # Developers:
