@@ -2,7 +2,7 @@
 
 HealthyHub is a user-friendly React application designed to facilitate easy management of your journey to health and well-being. Whether you want to track calories, monitor water intake, or set fitness goals, HealthyHub has everything you need.
 
-![HealthyHub Logo](public/logo.png)
+![HealthyHub Logo](public/favicon.png)
 
 
 **Key Features:**
