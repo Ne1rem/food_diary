@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
-import { ErrorToast, SuccessToast } from '../../../../../Redux/User/toast';
+import { ErrorToast } from '../../../../../Redux/User/toast';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -31,22 +31,19 @@ import {
   Span,
   ContainerWeightChart,
   WeightWrapper,
-  Upper,
+  WeightValueContainer,
   WeightWrap,
-  LowerWrap,
-  UpperValue,
-  LowerValue,
+  DateContainer,
+  WeightValue,
+  DateValue,
   customSelectStyles,
   FlexContainer,
 } from './Charts.styled';
-import {
-  caloriesOptions,
-  waterOptions,
-  chartLineOptions,
-} from './chartOptions';
+import { chartLineOptions } from './chartOptions';
 import { monthCurrent } from '../../../../../utilities/monthCurrent';
 import { monthValue } from '../../../../../utilities/monthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
+
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -56,6 +53,7 @@ ChartJS.register(
   Tooltip,
   Filler
 );
+
 const months = [
   'January',
   'February',
@@ -71,24 +69,145 @@ const months = [
   'December',
 ];
 
+export const numberOfDaysInMonth = (selectedMonth) => {
+  const year = new Date().getFullYear();
+  return new Date(year, monthValue(selectedMonth), 0).getDate();
+};
+
 const Charts = () => {
   const dispatch = useDispatch();
   const [selectedMonth, setSelectedMonth] = useState(monthCurrent());
   const [chartData, setChartData] = useState(null);
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState({
-    upperRowValues: [],
-    lowerRowValues: [],
+    weightValues: [],
+    dateValues: [],
+    averageWeight: null,
   });
+  const [caloriesOptions, setCaloriesOptions] = useState(null);
+  const [waterOptions, setWaterOptions] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await dispatch(userStatistics({ month: selectedMonth }));
-        console.log('Fetched DATA:', data); // -------------------------------------- !
         updateCaloriesChartData(data);
         updateWaterChartData(data);
         updateWeightChartData(data);
+
+        const caloriesOptions = {
+          responsive: true,
+          plugins: {
+            legend: false,
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.dataset.label || '';
+                  const value = context.parsed.y;
+                  return `${label}: ${value} ${TooltipUnit(label)}`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              type: 'linear',
+              position: 'bottom',
+              min: 1,
+              max: numberOfDaysInMonth(selectedMonth),
+              ticks: {
+                stepSize: 1,
+              },
+              grid: {
+                display: true,
+                color: 'rgba(41, 41, 40, 1)',
+                borderWidth: 0.5,
+              },
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0,
+              max: 3000,
+              ticks: {
+                stepSize: 1000,
+                callback: (value) => (value === 0 ? value : value / 1000 + 'k'),
+              },
+              grid: {
+                display: true,
+                color: 'rgba(41, 41, 40, 1)',
+                borderWidth: 0.5,
+              },
+              onClick: function (e) {
+                //
+              },
+            },
+          },
+          maintainAspectRatio: false,
+        };
+
+        const waterOptions = {
+          responsive: true,
+          plugins: {
+            legend: false,
+            tooltip: {
+              callbacks: {
+                label: (context) => {
+                  const label = context.dataset.label || '';
+                  const value = context.parsed.y;
+                  return `${label}: ${value} ${TooltipUnit(label)}`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              type: 'linear',
+              position: 'bottom',
+              min: 1,
+              max: numberOfDaysInMonth(selectedMonth),
+              ticks: {
+                stepSize: 1,
+              },
+              grid: {
+                display: true,
+                color: 'rgba(41, 41, 40, 1)',
+                borderWidth: 0.5,
+              },
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              min: 0,
+              max: 3000,
+              ticks: {
+                stepSize: 1000,
+                callback: (value) => (value === 0 ? value : value / 1000 + 'L'),
+              },
+              grid: {
+                display: true,
+                color: 'rgba(41, 41, 40, 1)',
+                borderWidth: 0.5,
+              },
+              onClick: function (e) {
+                //
+              },
+            },
+          },
+          maintainAspectRatio: false,
+        };
+
+        function TooltipUnit(label) {
+          if (label === 'Calories') {
+            return 'calories';
+          } else if (label === 'Water') {
+            return 'milliliters';
+          }
+          return '';
+        }
+
+        setCaloriesOptions(caloriesOptions);
+        setWaterOptions(waterOptions);
       } catch (error) {
         console.error('Error fetching statistics:', error);
         toast.error(<ErrorToast message="Error fetching statistics." />);
@@ -129,12 +248,8 @@ const Charts = () => {
     }
 
     const dataForSelectedMonth = payload.stats;
-    
-    const numberOfDaysInMonth = new Date(
-      year,
-      monthValue(selectedMonth),
-      0
-    ).getDate();
+
+    const numberOfDays = numberOfDaysInMonth(selectedMonth);
 
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
@@ -142,7 +257,7 @@ const Charts = () => {
     );
 
     setChartData({
-      labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
+      labels: Array.from({ length: numberOfDays }, (_, i) => i + 1),
       datasets: [
         {
           label: selectedMonth,
@@ -165,11 +280,8 @@ const Charts = () => {
     }
 
     const dataForSelectedMonth = payload.stats;
-    const numberOfDaysInMonth = new Date(
-      year,
-      monthValue(selectedMonth),
-      0
-    ).getDate();
+
+    const numberOfDays = numberOfDaysInMonth(selectedMonth);
 
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
@@ -177,7 +289,7 @@ const Charts = () => {
     );
 
     setWaterChartData({
-      labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
+      labels: Array.from({ length: numberOfDays }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: selectedMonth,
@@ -219,8 +331,9 @@ const Charts = () => {
         return entry.weight;
       } else if (entry && index + 1 === getCurrentDayOfMonth()) {
         return lastEnteredValue !== null ? lastEnteredValue : null;
+      } else {
+        return lastEnteredValue !== null ? lastEnteredValue : undefined;
       }
-      return null;
     });
 
     const validWeightValues = weightValues
@@ -235,8 +348,8 @@ const Charts = () => {
         ? sumWeight / validWeightValues.length
         : null;
     setWeightChartData({
-      upperRowValues: weightValues,
-      lowerRowValues: Array.from({ length: daysInMonth }, (_, i) =>
+      weightValues: weightValues,
+      dateValues: Array.from({ length: daysInMonth }, (_, i) =>
         (i + 1).toString()
       ),
       averageWeight: averageWeight !== null ? averageWeight.toFixed(0) : null,
@@ -351,18 +464,18 @@ const Charts = () => {
           {weightChartData && (
             <ContainerWeightChart>
               <WeightWrap>
-                <Upper>
-                  {weightChartData.upperRowValues.map((value, index) => (
-                    <UpperValue key={index}>
+                <WeightValueContainer>
+                  {weightChartData.weightValues.map((value, index) => (
+                    <WeightValue key={index}>
                       {value !== null ? value : ''}
-                    </UpperValue>
+                    </WeightValue>
                   ))}
-                </Upper>
-                <LowerWrap>
-                  {weightChartData.lowerRowValues.map((value, index) => (
-                    <LowerValue key={index}>{value}</LowerValue>
+                </WeightValueContainer>
+                <DateContainer>
+                  {weightChartData.dateValues.map((value, index) => (
+                    <DateValue key={index}>{value}</DateValue>
                   ))}
-                </LowerWrap>
+                </DateContainer>
               </WeightWrap>
             </ContainerWeightChart>
           )}
@@ -371,5 +484,6 @@ const Charts = () => {
     </>
   );
 };
+
 
 export default Charts;
