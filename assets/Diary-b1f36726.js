@@ -1,7 +1,7 @@
-import{j as e,r as f,b as w}from"./index-c3d2fd6e.js";import{n as i,s as y,L as b,M as j,b as u,l as v,d as k,a as z}from"./snack-4a189c61.js";import"./emotion-element-c39617d8.browser.esm-17a3e82f.js";import"./index.esm-7056eb39.js";import"./hoist-non-react-statics.cjs-e0834231.js";const I=i.div`
+import{j as e,r as g,u,l as y,b as j,L as b}from"./index-8e0af2fb.js";import{n as i,s as v,L as k,M as z,b as I,l as L,d as D,a as C}from"./snack-594642eb.js";import"./emotion-element-c39617d8.browser.esm-c3a3106f.js";import"./index.esm-a9c19de0.js";import"./hoist-non-react-statics.cjs-c777fb41.js";const S=i.div`
 @media screen and (min-width: 1440px) {
     flex-basis: calc((100% - 40px) / 2);
-  }`,C=i.div`
+  }`,E=i.div`
 @media screen and (max-width: 834px) {
 width: 180px;
   }
@@ -11,14 +11,14 @@ width: 180px;
    margin-bottom:6px;
    margin-right: 54px;
    align-items: center;
-  }`,D=i.div`
+  }`,M=i.div`
 display: flex;
 align-items: center;
 text-align: left;
 @media screen and (max-width: 834px) {
     margin-bottom: 12px;
     margin-right: 20px;
-  }`,L=i.h3`
+  }`,T=i.h3`
 margin-left: 12px;
 text-transform: capitalize;
 color: var(--color-primary-white);
@@ -29,8 +29,7 @@ line-height: 1.44;
 @media screen and (min-width: 834px) {
     font-size: 22px;
   }`;i.li`
-padding-left: 20px;`;const M=i.ul`
-position: relative;
+padding-left: 20px;`;const W=i.ul`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -55,16 +54,17 @@ font-size: 14px;
 color: var(--color-primary-white);
 font-weight: 600;
 line-height: 1.42;
-width: 100%;`,S=i.button`
+width: 100%;`,A=i.button`
 background: none;
 border: none;
 margin-left: 16px;
 color: var(--color-primary-green-lite);
 font-size: 14px;
 font-weight: 500;
-line-height: 1.42;`,W=i.button`
+line-height: 1.42;`,F=i.div`
+position: relative;`,$=i.button`
 position: absolute;
-top: 16px;
+top: 0;
 right: 12px;
 display: flex;
 align-items: center;
@@ -77,23 +77,23 @@ font-weight: 400;
 line-height: 1.42;
 &:hover{
     color: var(--color-primary-green-lite);
-} `,E=i.svg`
+} `,H=i.svg`
 width: 16px;
 height: 16px;
 stroke: var(--color-primary-grey);
 &:hover{
   stroke: var(--color-primary-green-lite)
 }
-`,T=i.div`
+`,N=i.div`
 display: flex;
-flex-wrap: wrap;`,$=i.div`
+flex-wrap: wrap;`,R=i.div`
 margin-left: 16px;
 margin-bottom: 6px;
 text-transform: capitalize;
 @media screen and (min-width: 834px) {
     font-size: 14px;
     line-height: 1.42;
-  }`,A=i.ul`
+  }`,_=i.ul`
 display: flex;
 justify-content: space-between;
 font-size: 12px;
@@ -103,10 +103,12 @@ width: 210px;
 color: var(--color-primary-grey);
 margin-left: 16px;
 @media screen and (min-width: 834px) {
+  justify-content: space-around;
+  width: 350px;
     font-size: 14px;
     line-height: 1.42;
     color: var(--color-primary-white);
-  }`,F=({intakeItem:r})=>e.jsxs(T,{children:[e.jsx($,{children:r.name}),e.jsxs(A,{children:[e.jsxs("li",{children:["Carb. ",r.carbonohidrates]}),e.jsxs("li",{children:["Prot. ",r.protein]}),e.jsxs("li",{children:["Fat. ",r.fat]})]})]}),H="/food_diary/assets/edit-04fc11be.svg",N=({name:r,img:s})=>{var l,c,x,h;const[p,m]=f.useState(!1),t=w(y);let a;switch(r){case"breakfast":a=(l=t==null?void 0:t.breakfast)==null?void 0:l.dish;break;case"lunch":a=(c=t==null?void 0:t.lunch)==null?void 0:c.dish;break;case"dinner":a=(x=t==null?void 0:t.dinner)==null?void 0:x.dish;break;case"snack":a=(h=t==null?void 0:t.snack)==null?void 0:h.dish;break;default:a=null;break}const o=()=>{m(!p)},g=[0,1,2,3];return e.jsxs(I,{children:[e.jsxs(C,{children:[e.jsxs(D,{children:[e.jsx("img",{src:s}),e.jsx(L,{children:r})]}),e.jsx(b,{name:r})]}),e.jsxs(M,{children:[g.map(n=>e.jsx("div",{children:a&&a[n]?e.jsxs(d,{children:[n+1,e.jsx(F,{toggleModal:o,intakeItem:a[n]})]},n):n===0?e.jsxs(d,{children:[n+1,e.jsx(S,{onClick:o,children:"+ Record your meal"})]},n):e.jsx(d,{children:n+1},n)},n)),e.jsxs(W,{onClick:o,children:[e.jsx(E,{children:e.jsx("use",{href:`${H}#icon-edit`})}),"Edit"]})]}),p&&e.jsx(j,{name:r,img:s,onClose:o})]})},R=i.div`
+  }`,q=({intakeItem:r})=>e.jsxs(N,{children:[e.jsx(R,{children:r.name}),e.jsxs(_,{children:[e.jsxs("li",{children:["Carb. ",r.carbonohidrates]}),e.jsxs("li",{children:["Prot. ",r.protein]}),e.jsxs("li",{children:["Fat. ",r.fat]})]})]}),P="/food_diary/assets/edit-04fc11be.svg",B=({name:r,img:s})=>{var c,x,h,m;const[l,f]=g.useState(!1),p=u();g.useEffect(()=>{p(y())},[p]);const t=j(v);let a;switch(r){case"breakfast":a=(c=t==null?void 0:t.breakfast)==null?void 0:c.dish;break;case"lunch":a=(x=t==null?void 0:t.lunch)==null?void 0:x.dish;break;case"dinner":a=(h=t==null?void 0:t.dinner)==null?void 0:h.dish;break;case"snack":a=(m=t==null?void 0:t.snack)==null?void 0:m.dish;break;default:a=null;break}const o=()=>{f(!l)},w=[0,1,2,3];return e.jsxs(S,{children:[e.jsxs(E,{children:[e.jsxs(M,{children:[e.jsx("img",{src:s}),e.jsx(T,{children:r})]}),e.jsx(k,{name:r})]}),e.jsx(W,{children:w.map(n=>e.jsxs(F,{children:[a&&a[n]?e.jsxs(d,{children:[n+1,e.jsx(q,{toggleModal:o,intakeItem:a[n]})]},n):n===0?e.jsxs(d,{children:[n+1,e.jsx(A,{onClick:o,children:"+ Record your meal"})]},n):e.jsx(d,{children:n+1},n),a&&a[n]?e.jsxs($,{onClick:o,children:[e.jsx(H,{children:e.jsx("use",{href:`${P}#icon-edit`})}),"Edit"]}):null]},n))}),l&&e.jsx(z,{name:r,img:s,onClose:o})]})},G=i.div`
 margin-left: auto;
 margin-right: auto;
 text-align: left;
@@ -118,13 +120,13 @@ padding: 16px 10px 16px 10px;
   }  
    @media screen and (min-width: 1440px) {
    width: 1440px;
-   padding: 20px 34px 52px 34px;}`,_=i.img`
+   padding: 20px 34px 52px 34px;}`,J=i.img`
 width: 16px;
 height: 16px;
 @media screen and (min-width: 834px) {
     width: 24px;
     height: 24px;
-  }`,P=i.h2`
+  }`,K=i.h2`
 margin-left: 4px;
 color: var(--color-primary-white);
 font-size: 24px;
@@ -134,13 +136,13 @@ line-height: 1.25;
     margin-left: 12px;
     font-size: 30px;
     line-height: 1.2;
-  }`,q=i.div`
+  }`,O=i(b)`
 display: flex;
 margin-bottom: 16px;
 align-items: center;
-text-align: left;`,B=i.ul`
+text-align: left;`,Q=i.ul`
 @media screen and (min-width: 1440px) {
    display:flex;
    flex-wrap: wrap;
    gap: 20px;
-  }`,G="/food_diary/assets/arrow-right-1ad1ad4c.svg",V=()=>{const r=[{name:"breakfast",img:u},{name:"lunch",img:v},{name:"dinner",img:k},{name:"snack",img:z}];return e.jsxs(R,{children:[e.jsxs(q,{children:[e.jsx(_,{src:G}),e.jsx(P,{children:"Diary"})]}),e.jsx(B,{children:r.map(s=>e.jsx(N,{name:s.name,img:s.img},s.name))})]})};export{V as default};
+  }`,U="/food_diary/assets/arrow-right-1ad1ad4c.svg",ie=()=>{const r=[{name:"breakfast",img:I},{name:"lunch",img:L},{name:"dinner",img:D},{name:"snack",img:C}];return e.jsxs(G,{children:[e.jsxs(O,{to:"/",children:[e.jsx(J,{src:U}),e.jsx(K,{children:"Diary"})]}),e.jsx(Q,{children:r.map(s=>e.jsx(B,{name:s.name,img:s.img},s.name))})]})};export{ie as default};
