@@ -6,10 +6,10 @@ import {
   addUserWeight,
   userStatistics,
 } from './userThunks';
-import { currentMonth } from '../../utilities/currentMonth';
+import { monthCurrent } from '../../utilities/monthCurrent'; //
 
 const initialState = {
-  requestMonth: currentMonth(),
+  requestMonth: monthCurrent(), //
   user: [],
   goal: [],
   weight: [],
@@ -17,8 +17,8 @@ const initialState = {
     caloriesData: [],
     waterData: [],
     weightData: [],
-  },
-  month: null,
+  }, //
+  month: null, //
   isLoading: false,
   isError: null,
 };
@@ -94,11 +94,11 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.isError = null;
         state.statistics = payload;
-        state.month = payload.month;
+        state.month = payload.month; //
           state.user = {
             ...state.user,
             requestMonth: payload.month,
-          };
+          }; //
       });
   },
 });

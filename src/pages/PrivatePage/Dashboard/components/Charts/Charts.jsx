@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import Select from 'react-select';
+import { toast } from 'react-toastify';
+import { ErrorToast, SuccessToast } from '../../../../../Redux/User/toast';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -34,17 +36,17 @@ import {
   LowerWrap,
   UpperValue,
   LowerValue,
+  customSelectStyles,
+  FlexContainer,
 } from './Charts.styled';
-import { customSelectStyles } from './Charts.styled';
 import {
   caloriesOptions,
   waterOptions,
   chartLineOptions,
 } from './chartOptions';
-import { currentMonth } from '../../../../../utilities/currentMonth';
-import { getMonthValue } from '../../../../../utilities/getMonthValue';
+import { monthCurrent } from '../../../../../utilities/monthCurrent';
+import { monthValue } from '../../../../../utilities/monthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
-import { selectRequiredMonth } from '../../../../../Redux/User/selectors';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -71,7 +73,7 @@ const months = [
 
 const Charts = () => {
   const dispatch = useDispatch();
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth());
+  const [selectedMonth, setSelectedMonth] = useState(monthCurrent());
   const [chartData, setChartData] = useState(null);
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState({
@@ -83,20 +85,25 @@ const Charts = () => {
     const fetchData = async () => {
       try {
         const data = await dispatch(userStatistics({ month: selectedMonth }));
-        console.log('Fetched data:', data);
+        console.log('Fetched DATA:', data); // -------------------------------------- !
         updateCaloriesChartData(data);
         updateWaterChartData(data);
         updateWeightChartData(data);
       } catch (error) {
         console.error('Error fetching statistics:', error);
+        toast.error(<ErrorToast message="Error fetching statistics." />);
       }
     };
     fetchData();
   }, [dispatch, selectedMonth]);
 
-
   const handleSelectChange = (selectedOption) => {
-    setSelectedMonth(selectedOption.label);
+    try {
+      setSelectedMonth(selectedOption.label);
+    } catch (error) {
+      console.error('Error handling select change:', error);
+      toast.error(<ErrorToast message="Error handling select change." />);
+    }
   };
 
   const getCurrentDayOfMonth = () => {
@@ -115,20 +122,23 @@ const Charts = () => {
   const updateCaloriesChartData = ({ payload }) => {
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
+      toast.error(
+        <ErrorToast message="Data is missing or has an unexpected format." />
+      );
       return;
     }
 
     const dataForSelectedMonth = payload.stats;
+    
     const numberOfDaysInMonth = new Date(
       year,
-      getMonthValue(selectedMonth),
+      monthValue(selectedMonth),
       0
     ).getDate();
 
-    // Filter data for the selected month
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
-        new Date(entry.date).getMonth() === getMonthValue(selectedMonth) - 1
+        new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
 
     setChartData({
@@ -148,20 +158,22 @@ const Charts = () => {
   const updateWaterChartData = ({ payload }) => {
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
+      toast.error(
+        <ErrorToast message="Data is missing or has an unexpected format." />
+      );
       return;
     }
 
     const dataForSelectedMonth = payload.stats;
     const numberOfDaysInMonth = new Date(
       year,
-      getMonthValue(selectedMonth),
+      monthValue(selectedMonth),
       0
     ).getDate();
 
-    // Filter data for the selected month
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
-        new Date(entry.date).getMonth() === getMonthValue(selectedMonth) - 1
+        new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
 
     setWaterChartData({
@@ -179,21 +191,19 @@ const Charts = () => {
   // WEIGHT CONFIG
 
   const updateWeightChartData = (data) => {
-    console.log('Updating WEIGHT data:', data); //
     if (!data || !data.payload || !data.payload.stats) {
       console.error('Data is missing or does not have the expected format.');
+      toast.error(
+        <ErrorToast message="Data is missing or has an unexpected format." />
+      );
       return;
     }
 
     const dataForSelectedMonth = data.payload.stats;
-    const daysInMonth = new Date(
-      year,
-      getMonthValue(selectedMonth),
-      0
-    ).getDate();
+    const daysInMonth = new Date(year, monthValue(selectedMonth), 0).getDate();
 
     const dayEntries = Array.from({ length: daysInMonth }, (_, i) => {
-      const entryDate = new Date(year, getMonthValue(selectedMonth) - 1, i + 1);
+      const entryDate = new Date(year, monthValue(selectedMonth) - 1, i + 1);
       const dayEntry = dataForSelectedMonth.find(
         (entry) =>
           new Date(entry.date.replace(/-/g, '/')).getTime() ===
@@ -213,11 +223,9 @@ const Charts = () => {
       return null;
     });
 
-
     const validWeightValues = weightValues
       .slice(0, getCurrentDayOfMonth())
       .filter((value) => value !== null);
-
     const sumWeight = validWeightValues.reduce(
       (acc, val) => acc + (val || 0),
       0
@@ -226,7 +234,6 @@ const Charts = () => {
       validWeightValues.length > 0
         ? sumWeight / validWeightValues.length
         : null;
-
     setWeightChartData({
       upperRowValues: weightValues,
       lowerRowValues: Array.from({ length: daysInMonth }, (_, i) =>
@@ -234,13 +241,12 @@ const Charts = () => {
       ),
       averageWeight: averageWeight !== null ? averageWeight.toFixed(0) : null,
     });
-    console.log('Weight UPDATED:', dayEntries); //
   };
 
   // SELECT CONFIG
 
   const selectOptions = () => {
-    const currentIndex = months.findIndex((month) => month === currentMonth());
+    const currentIndex = months.findIndex((month) => month === monthCurrent());
     const availableMonths = months
       .slice(Math.max(0, currentIndex - 4), currentIndex + 1)
       .reverse();
@@ -254,7 +260,6 @@ const Charts = () => {
     <>
       <ContainerSelect>
         <BackIconContainer>
-          {/* Icon back to main */}
           <BackIconLink to="/main">
             <FaArrowLeftLong />
           </BackIconLink>
@@ -275,95 +280,94 @@ const Charts = () => {
         {selectedMonth && <Month>{selectedMonth}</Month>}
       </ContainerSelect>
 
-      <Wrapper>
-        {/* Calories Chart Container */}
-        <ChartsWrapper>
+      <FlexContainer>
+        <Wrapper>
+          <ChartsWrapper>
+            <ContainerValue>
+              <TitleCalories>Calories</TitleCalories>
+              {/* Average value */}
+              {chartData && (
+                <Value>
+                  <Span>Average value:</Span>{' '}
+                  {Math.round(
+                    chartData.datasets[0].data.reduce(
+                      (acc, val) => acc + val,
+                      0
+                    ) / getCurrentDayOfMonth()
+                  )}{' '}
+                  <>calories</>
+                </Value>
+              )}
+            </ContainerValue>
+
+            {/* CALORIES Chart */}
+            <ContainerChart>
+              {chartData && chartData.datasets && (
+                <Line data={chartData} options={caloriesOptions} />
+              )}
+            </ContainerChart>
+          </ChartsWrapper>
+
+          <ChartsWrapper>
+            <ContainerValue>
+              <TitleWater>Water</TitleWater>
+              {/* Average value */}
+              {waterChartData && (
+                <Value>
+                  <Span>Average value:</Span>{' '}
+                  {Math.round(
+                    waterChartData.datasets[0].data.reduce(
+                      (acc, val) => acc + val,
+                      0
+                    ) / getCurrentDayOfMonth()
+                  )}{' '}
+                  <>ml</>
+                </Value>
+              )}
+            </ContainerValue>
+
+            {/* WATER Chart */}
+            <ContainerChart>
+              {' '}
+              {waterChartData && waterChartData.datasets && (
+                <Line data={waterChartData} options={waterOptions} />
+              )}
+            </ContainerChart>
+          </ChartsWrapper>
+        </Wrapper>
+
+        <WeightWrapper>
           <ContainerValue>
-            <TitleCalories>Calories</TitleCalories>
+            <TitleWeight>Weight</TitleWeight>
             {/* Average value */}
-            {chartData && (
+            {weightChartData && weightChartData.averageWeight !== null && (
               <Value>
-                <Span>Average value:</Span>{' '}
-                {Math.round(
-                  chartData.datasets[0].data.reduce(
-                    (acc, val) => acc + val,
-                    0
-                  ) / getCurrentDayOfMonth()
-                )}{' '}
-                <>calories</>
+                <Span>Average value:</Span> {weightChartData.averageWeight} kg
               </Value>
             )}
           </ContainerValue>
 
-          {/* CALORIES Chart */}
-          <ContainerChart>
-            {chartData && chartData.datasets && (
-              <Line data={chartData} options={caloriesOptions} />
-            )}
-          </ContainerChart>
-        </ChartsWrapper>
-
-        {/* Water Chart Container */}
-        <ChartsWrapper>
-          <ContainerValue>
-            <TitleWater>Water</TitleWater>
-            {/* Average value */}
-            {waterChartData && (
-              <Value>
-                <Span>Average value:</Span>{' '}
-                {Math.round(
-                  waterChartData.datasets[0].data.reduce(
-                    (acc, val) => acc + val,
-                    0
-                  ) / getCurrentDayOfMonth()
-                )}{' '}
-                <>ml</>
-              </Value>
-            )}
-          </ContainerValue>
-
-          {/* WATER Chart */}
-          <ContainerChart>
-            {' '}
-            {waterChartData && waterChartData.datasets && (
-              <Line data={waterChartData} options={waterOptions} />
-            )}
-          </ContainerChart>
-        </ChartsWrapper>
-      </Wrapper>
-
-      {/* Weight Chart Container */}
-      <WeightWrapper>
-        <ContainerValue>
-          <TitleWeight>Weight</TitleWeight>
-          {/* Average value */}
-          {weightChartData && weightChartData.averageWeight !== null && (
-            <Value>
-              <Span>Average value:</Span> {weightChartData.averageWeight} kg
-            </Value>
+          {/* WEIGHT Chart */}
+          {weightChartData && (
+            <ContainerWeightChart>
+              <WeightWrap>
+                <Upper>
+                  {weightChartData.upperRowValues.map((value, index) => (
+                    <UpperValue key={index}>
+                      {value !== null ? value : ''}
+                    </UpperValue>
+                  ))}
+                </Upper>
+                <LowerWrap>
+                  {weightChartData.lowerRowValues.map((value, index) => (
+                    <LowerValue key={index}>{value}</LowerValue>
+                  ))}
+                </LowerWrap>
+              </WeightWrap>
+            </ContainerWeightChart>
           )}
-        </ContainerValue>
-
-        {/* WEIGHT Chart */}
-        {weightChartData && (
-          <ContainerWeightChart>
-            <WeightWrap>
-              <Upper>
-                {weightChartData.upperRowValues.map((value, index) => (
-                  <UpperValue key={index}>
-                    {value !== null ? value : ''}
-                  </UpperValue>
-                ))}
-              </Upper>
-              <LowerWrap>
-                {weightChartData.lowerRowValues.map((value, index) => (
-                  <LowerValue key={index}>{value}</LowerValue>
-                ))}
-              </LowerWrap>
-            </WeightWrap>
-          </ContainerWeightChart>
-        )}
-      </WeightWrapper>
+        </WeightWrapper>
+      </FlexContainer>
     </>
   );
 };

@@ -1,3 +1,27 @@
+// const extractDate = (dateString) => {
+//   const dateObj = new Date(dateString);
+//   return dateObj.getDate();
+// };
+// const labels = Array.from({ length: 31 }, (_, i) => i + 1);
+
+// const chartData = {
+//   labels: labels.map((day) => day),
+//   datasets: [
+//     {
+//       label: 'Calories Intake',
+    //   data: labels.map((day) => {
+    //     const caloriesIntake = totalCalories.find(
+    //       (item) => extractDate(item.date) === day
+    //     );
+    //     const caloriesValue = caloriesIntake ? caloriesIntake.totalCalories : 0;
+    //     return caloriesValue;
+    //   }),
+    // },
+//   ],
+// };
+
+
+
 export const chartLineOptions = {
   backgroundColor: 'transparent',
   borderColor: '#E3FFA8',
