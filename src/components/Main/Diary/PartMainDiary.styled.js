@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 
 export const ConteinerDiary = styled.div`
 text-align: left;
-width: 558px;`
+width: 100%;
+`
 
 export const Header = styled.h2`
 margin-bottom: 16px;

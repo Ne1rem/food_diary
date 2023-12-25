@@ -12,6 +12,10 @@ const DiaryItemMain = ({name, img}) => {
     const[showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
 
+    const requestType = 'POST';
+    const idIntake = null;
+
+
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -57,7 +61,7 @@ const DiaryItemMain = ({name, img}) => {
         </ButtonSvg>
     </>
 )}
-{showModal && <ModalDiary name={name} img={img} onClose={toggleModal}></ModalDiary>}
+{showModal && <ModalDiary name={name} img={img} onClose={toggleModal} requestType={requestType} idIntake={idIntake}></ModalDiary>}
     </WrapperComponent> );
 }
  
