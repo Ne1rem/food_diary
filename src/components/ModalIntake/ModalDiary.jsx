@@ -1,6 +1,6 @@
 import FormDiary from './FormDiary';
 import { useEffect } from 'react';
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { selectorIntake } from '../../Redux/Diary/selectors';
 // import { useState } from "react";
@@ -18,6 +18,7 @@ import {
   ButtonAddMore,
   WrapperButton,
 } from './ModalDiary.styled';
+import { intakeFood } from '../../Redux/Food/FoodThunks';
 
 const foodSchema = yup.object({
   dish: yup.array().of(
@@ -55,7 +56,7 @@ const intakeTemplate = {
 };
 
 const ModalDiary = ({ name, img, onClose }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -78,8 +79,8 @@ const ModalDiary = ({ name, img, onClose }) => {
     }
   };
 
-  const handleFormSubmit = () => {
-    console.log('handleFormSubmit');
+  const handleFormSubmit = (values) => {
+    dispatch(intakeFood(values));
   };
 
   const maxFormsCount = 4;

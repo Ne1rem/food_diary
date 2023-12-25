@@ -1,4 +1,4 @@
-export const selectFoodIntake = (state) => state.food.intake;
+export const selectFoodIntake = (state) => state.food.intakeFood;
 
 export const selectIsLoadingFood = (state) => state.food.isLoading;
 

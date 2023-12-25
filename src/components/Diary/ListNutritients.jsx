@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { requestFoodIntakeThunk } from "../../Redux/Diary/diaryThunks";
+import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { requestFoodIntakeThunk } from "../../Redux/Diary/diaryThunks";
 import { selectorIntake } from "../../Redux/Diary/selectors";
 import { ItemNutrients, NutrientsList } from "./ListNutritients.styled"
 
 const ListNutritients = ({name}) => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(requestFoodIntakeThunk())
-    },[dispatch])
+    // useEffect(() => {
+    //     dispatch(requestFoodIntakeThunk())
+    // },[dispatch])
 
     const intake = useSelector(selectorIntake);
     let selectedIntake;
