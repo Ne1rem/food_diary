@@ -16,25 +16,21 @@ export const DailyStatistics = () => {
   const user = useSelector(selectUserInfo);
   const { recommendedWater, recommendedCalories, totalWater } = user;
 
+  const formattedWater = recommendedWater && recommendedWater.toFixed(1) * 1000;
+
   return (
     <Wrapper>
       <StatisticSection>
         <StatisticTitle>Daily goal</StatisticTitle>
         <StatisticBlock>
-          <DailyGoal
-            calories={recommendedCalories}
-            water={recommendedWater * 1000}
-          />
+          <DailyGoal calories={recommendedCalories} water={formattedWater} />
         </StatisticBlock>
       </StatisticSection>
 
       <StatisticSection>
         <StatisticTitle>Water</StatisticTitle>
         <StatisticBlock>
-          <WaterStatistic
-            water={totalWater}
-            dailyWater={recommendedWater * 1000}
-          />
+          <WaterStatistic water={totalWater} dailyWater={formattedWater} />
         </StatisticBlock>
       </StatisticSection>
 

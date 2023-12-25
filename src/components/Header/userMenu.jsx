@@ -56,7 +56,7 @@ import ModalWeight from './ModalsHeader/ModalWeight';
 import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { currentUser } from '../../Redux/User/userThunks';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
@@ -65,7 +65,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const [gender, setGender] = useState('');
   const [goal] = useState('');
   const [weight, setWeight] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
+  const userAvatar = useSelector((state) => state.user.user.avatarURL);
 
   const [currentGoal, setCurrentGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(currentGoal);
@@ -74,13 +74,12 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
     const fetchUserData = () => {
       dispatch(currentUser())
         .then((response) => {
-          const { name, gender, goal, weight, avatarURL } = response.payload;
+          const { name, gender, goal, weight } = response.payload;
           setName(name);
           setGender(gender);
           setCurrentGoal(goal);
           setNewGoal(goal);
           setWeight(weight);
-          setUserAvatar(avatarURL);
         })
         .catch((error) => {
           console.error('Error fetching user data:', error);
