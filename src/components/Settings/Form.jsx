@@ -53,11 +53,9 @@ export const ProfileSettings = () => {
 
       if (Object.keys(formik.errors).length === 0) {
         setIsLoading('loading');
-
-        await formik.handleSubmit();
+        await dispatch(updateUser(formik.values)).unwrap();
+        // await formik.handleSubmit();
       }
-
-      await dispatch(updateUser(formik.values)).unwrap();
     } catch (err) {
       console.log(err);
     } finally {
@@ -205,7 +203,6 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              // type="number"
               id="age"
               name="age"
               placeholder="Enter your age"
@@ -278,7 +275,6 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              // type="number"
               id="weight"
               name="weight"
               placeholder="Enter your weight"
@@ -318,7 +314,6 @@ export const ProfileSettings = () => {
                     : 'correct'
                   : ''
               }
-              // type="number"
               id="height"
               name="height"
               placeholder="Enter your height"
