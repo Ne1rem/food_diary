@@ -42,6 +42,7 @@ import {
   chartLineOptions,
 } from './chartOptions';
 import { currentMonth } from '../../../../../utilities/currentMonth';
+import { getMonthValue } from '../../../../../utilities/getMonthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
 import { selectRequiredMonth } from '../../../../../Redux/User/selectors';
 ChartJS.register(
@@ -72,7 +73,6 @@ const Charts = () => {
   const dispatch = useDispatch();
   const [selectedMonth, setSelectedMonth] = useState(currentMonth());
   const [chartData, setChartData] = useState(null);
-  const [chartKey, setChartKey] = useState(0);
   const [waterChartData, setWaterChartData] = useState(null);
   const [weightChartData, setWeightChartData] = useState({
     upperRowValues: [],
@@ -83,7 +83,7 @@ const Charts = () => {
     const fetchData = async () => {
       try {
         const data = await dispatch(userStatistics({ month: selectedMonth }));
-        console.log('Fetched data:', data); // 
+        console.log('Fetched data:', data);
         updateCaloriesChartData(data);
         updateWaterChartData(data);
         updateWeightChartData(data);
@@ -92,11 +92,11 @@ const Charts = () => {
       }
     };
     fetchData();
-  }, [selectedMonth]);
+  }, [dispatch, selectedMonth]);
+
 
   const handleSelectChange = (selectedOption) => {
     setSelectedMonth(selectedOption.label);
-    dispatch(selectRequiredMonth(selectedOption.label));
   };
 
   const getCurrentDayOfMonth = () => {
@@ -104,58 +104,76 @@ const Charts = () => {
     return currentDate.getDate();
   };
 
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const date = `${year}-${month}-${day}`;
+
   // CALORIES CONFIG
 
   const updateCaloriesChartData = ({ payload }) => {
-    console.log('Updating CALORIES data:', payload);
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
-    const caloriesChartOptions = {
-      ...chartLineOptions,
-    };
+
     const dataForSelectedMonth = payload.stats;
-    const numberOfDaysInMonth = dataForSelectedMonth.length;
-    setChartData((prevData) => ({
-      ...prevData,
+    const numberOfDaysInMonth = new Date(
+      year,
+      getMonthValue(selectedMonth),
+      0
+    ).getDate();
+
+    // Filter data for the selected month
+    const monthEntries = dataForSelectedMonth.filter(
+      (entry) =>
+        new Date(entry.date).getMonth() === getMonthValue(selectedMonth) - 1
+    );
+
+    setChartData({
       labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
       datasets: [
         {
-          label: 'Calories',
-          data: dataForSelectedMonth.map((entry) => entry.totalCalories),
-          ...caloriesChartOptions,
+          label: selectedMonth,
+          data: monthEntries.map((entry) => entry.totalCalories),
+          ...chartLineOptions,
         },
       ],
-    }));
+    });
   };
 
   // WATER CONFIG
 
   const updateWaterChartData = ({ payload }) => {
-    console.log('Updating WATER data:', payload); //
     if (!payload || !payload.stats) {
       console.error('Data is missing or does not have the expected format.');
       return;
     }
-    const waterChartOptions = {
-      ...chartLineOptions,
-    };
 
     const dataForSelectedMonth = payload.stats;
-    const numberOfDaysInMonth = dataForSelectedMonth.length;
-    setWaterChartData((prevData) => ({
-      ...prevData,
+    const numberOfDaysInMonth = new Date(
+      year,
+      getMonthValue(selectedMonth),
+      0
+    ).getDate();
+
+    // Filter data for the selected month
+    const monthEntries = dataForSelectedMonth.filter(
+      (entry) =>
+        new Date(entry.date).getMonth() === getMonthValue(selectedMonth) - 1
+    );
+
+    setWaterChartData({
       labels: Array.from({ length: numberOfDaysInMonth }, (_, i) => `${i + 1}`),
       datasets: [
         {
-          label: 'Water',
-          data: dataForSelectedMonth.map((entry) => entry.water),
-          ...waterChartOptions,
+          label: selectedMonth,
+          data: monthEntries.map((entry) => entry.water),
+          ...chartLineOptions,
         },
       ],
-    }));
-    setChartKey((prevKey) => prevKey + 1);
+    });
   };
 
   // WEIGHT CONFIG
@@ -168,14 +186,14 @@ const Charts = () => {
     }
 
     const dataForSelectedMonth = data.payload.stats;
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
-    const currentDay = currentDate.getDate();
-    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const daysInMonth = new Date(
+      year,
+      getMonthValue(selectedMonth),
+      0
+    ).getDate();
 
     const dayEntries = Array.from({ length: daysInMonth }, (_, i) => {
-      const entryDate = new Date(currentYear, currentMonth, i + 1);
+      const entryDate = new Date(year, getMonthValue(selectedMonth) - 1, i + 1);
       const dayEntry = dataForSelectedMonth.find(
         (entry) =>
           new Date(entry.date.replace(/-/g, '/')).getTime() ===
@@ -189,14 +207,15 @@ const Charts = () => {
       if (entry && entry.weight !== undefined) {
         lastEnteredValue = entry.weight;
         return entry.weight;
-      } else if (index + 1 === currentDay) {
+      } else if (entry && index + 1 === getCurrentDayOfMonth()) {
         return lastEnteredValue !== null ? lastEnteredValue : null;
       }
       return null;
     });
 
+
     const validWeightValues = weightValues
-      .slice(0, currentDay)
+      .slice(0, getCurrentDayOfMonth())
       .filter((value) => value !== null);
 
     const sumWeight = validWeightValues.reduce(
@@ -304,9 +323,8 @@ const Charts = () => {
           </ContainerValue>
 
           {/* WATER Chart */}
-          <ContainerChart key={chartKey}>
+          <ContainerChart>
             {' '}
-            {/* Додайте ключ для примусового перерендерингу */}
             {waterChartData && waterChartData.datasets && (
               <Line data={waterChartData} options={waterOptions} />
             )}

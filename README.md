@@ -26,15 +26,17 @@
 - Vite
 - React
 - Redux
-- Node.js
 - Chart.js
 - Axios
 - Formik
 - Yup
+- Node.js
 - Mongoose
 - Swagger
 - CORS
 - Render
+- Express
+- Cloudinary
 
 
 **Початок роботи:**
@@ -63,5 +65,6 @@
 
 **Посилання:**
 
+- [Веб-додаток HealthyHub](https://ne1rem.github.io/food_diary/)
 - [Backend Repo](https://github.com/Svitlana-Ivanchuk/Food_diary_Backend)
 - [React + Vite Template](https://github.com/IvettaGoIT/react_vite)

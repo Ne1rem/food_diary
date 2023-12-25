@@ -14,5 +14,6 @@ export const selectWeights = (state) => state.user.weight;
 
 export const selectGoal = (state) => state.user.goal;
 
-export const selectRequiredMonth = (state) => state.statistic.requestMonth;
+export const selectRequiredMonth = (state) => state.user.requestMonth;
 
+// export const selectRequiredMonth = (state) => state.statistics.requestMonth;

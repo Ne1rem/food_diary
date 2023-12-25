@@ -25,15 +25,17 @@
 - Vite
 - React
 - Redux
-- Node.js
 - Chart.js
 - Axios
 - Formik
 - Yup
+- Node.js
 - Mongoose
 - Swagger
 - CORS
 - Render
+- Express
+- Cloudinary
 
 
 # Developers:
@@ -41,7 +43,7 @@
 **FrontEnd:**
 - [Olena Kosmina](https://github.com/KosminaOlena)
 - [Roman Borovyk](https://github.com/BorovChe)
-- [Oleg Malyshok](https://github.com/OlegMalyshok)
+- [Oleh Malyshok](https://github.com/OlegMalyshok)
 - [Mykhailo Zykov](https://github.com/Rhilim)
 - [Ivan Bilobrov](https://github.com/ivanbilobrov07)
 - Team-lead [Anatoliy Daniluyk](https://github.com/Ne1rem)
@@ -55,5 +57,6 @@
 
 **Links:**
 
+- [HealthyHub Application](https://ne1rem.github.io/food_diary/)
 - [Backend Repo](https://github.com/Svitlana-Ivanchuk/Food_diary_Backend)
 - [React + Vite Template](https://github.com/IvettaGoIT/react_vite)
