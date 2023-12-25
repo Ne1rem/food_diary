@@ -48,17 +48,21 @@ export const ProfileSettings = () => {
 
   const onClickBtnSave = async () => {
     setValidation('validation');
-    // if (formik.values.age !== '' && !formik.errors.age) {
-      try {
+    try {
+      await formik.validateForm();
+
+      if (Object.keys(formik.errors).length === 0) {
         setIsLoading('loading');
-        //  await formik.handleSubmit();
-        await dispatch(updateUser(formik.values)).unwrap();
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setIsLoading('');
+        // Submit the form if it's valid
+        await formik.handleSubmit();
       }
-    // }
+
+      // await dispatch(updateUser(formik.values)).unwrap();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading('');
+    }
   };
 
   const formik = useFormik({
@@ -77,13 +81,16 @@ export const ProfileSettings = () => {
       name: Yup.string().required('Name ir required'),
       age: Yup.number()
         .positive('Age has to be positive number')
-        .required('Age is required'),
+        .required('Age is required')
+        .min(16),
       weight: Yup.number()
         .positive('Weight has to be positive number')
-        .required('Weight is required'),
+        .required('Weight is required')
+        .min(30),
       height: Yup.number()
         .positive('Height has to be positive number')
-        .required('Height is required'),
+        .required('Height is required')
+        .min(100),
       activity: Yup.string().required('Choose activity level'),
     }),
     onSubmit: (values) => {
@@ -453,7 +460,7 @@ export const ProfileSettings = () => {
               onClickBtnSave();
             }}
           >
-            {isLoading === 'loading' ? <LoaderBtn/> : 'Send'}
+            {isLoading === 'loading' ? <LoaderBtn /> : 'Send'}
           </Button>
         </ButtonDiv>
       </Form>
