@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ChartCard } from '../ChartCard/ChartCard.jsx';
 import { DoughnutChart } from '../DoughnutChart/DoughnutChart.jsx';
 import {
@@ -8,53 +8,36 @@ import {
   InfoWrap,
 } from './FoodInfoGrup.styled.js';
 import { useEffect, useState } from 'react';
-import { currentUser } from '../../../Redux/User/userThunks.jsx';
+
 
 const carbBcg = '#FFC4F7';
 const proteinBcg = '#FFF3B7';
 const fatBcg = '#B6B6B6';
 
 export const FoodInfoGrup = () => {
-  const [recommendedCalories, setRecommendedCalories] = useState();
-  const [recommendedCarbs, setRecommendedCarbs] = useState();
-  const [recommendedFat, setRecommendedFat] = useState();
-  const [recommendedProtein, setRecommendedProtein] = useState();
-  const [totalCalories, setTotalCalories] = useState();
-  const [totalCarbs, setTotalCarbs] = useState();
-  const [totalFat, setTotalFat] = useState();
-  const [totalProtein, setTotalProtein] = useState();
-
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(currentUser())
-      .then((response) => {
-        const {
-          recommendedCalories,
-          recommendedCarbs,
-          recommendedFat,
-          recommendedProtein,
-          totalCalories,
-          totalCarbs,
-          totalFat,
-          totalProtein,
-        } = response.payload;
-
-        setRecommendedCalories(recommendedCalories);
-        setRecommendedCarbs(recommendedCarbs);
-        setRecommendedFat(recommendedFat);
-        setRecommendedProtein(recommendedProtein);
-        setTotalCalories(totalCalories);
-        setTotalCarbs(totalCarbs);
-        setTotalFat(totalFat);
-        setTotalProtein(totalProtein);
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-      });
-  }, [dispatch]);
+  const user = useSelector((state) => state.user.user);
+  const [recommendedCalories, setRecommendedCalories] = useState(user.recommendedCalories);
+  const [recommendedCarbs, setRecommendedCarbs] = useState(user.recommendedCarbs);
+  const [recommendedFat, setRecommendedFat] = useState(user.recommendedFat);
+  const [recommendedProtein, setRecommendedProtein] = useState(user.recommendedProtein);
+  const [totalCalories, setTotalCalories] = useState(user.totalCalories);
+  const [totalCarbs, setTotalCarbs] = useState(user.totalCarbs);
+  const [totalFat, setTotalFat] = useState(user.totalFat);
+  const [totalProtein, setTotalProtein] = useState(user.totalProtein);
 
   let caloriesChartBcg = '#45FFBC';
+
+  useEffect(() => {
+    // Fetch user data from Redux when the component mounts or user state updates
+    setRecommendedCalories(user.recommendedCalories);
+    setRecommendedCarbs(user.recommendedCarbs);
+    setRecommendedFat(user.recommendedFat);
+    setRecommendedProtein(user.recommendedProtein);
+    setTotalCalories(user.totalCalories);
+    setTotalCarbs(user.totalCarbs);
+    setTotalFat(user.totalFat);
+    setTotalProtein(user.totalProtein);
+  }, [user]);
 
   return (
     <div>
@@ -67,7 +50,6 @@ export const FoodInfoGrup = () => {
           />
           <ChartInfoWrap>
             <p>{totalCalories}</p>
-
             <p>calories</p>
           </ChartInfoWrap>
         </CaloriesChart>
