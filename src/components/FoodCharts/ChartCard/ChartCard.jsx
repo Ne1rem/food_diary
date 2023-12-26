@@ -45,11 +45,13 @@ export const ChartCard = (props) => {
           <ElementsTitle>{title}</ElementsTitle>
           <ValueWrap>
             <GoalWrap>
-              Goal: <Value>{elementGoal}</Value>
+              <span style={{ color: "white" }}>Goal:</span>
+              <Value>{elementGoal}</Value>
             </GoalWrap>
-            <p>
-              left: <Value>{left}</Value>
-            </p>
+            <GoalWrap>
+              <span style={{ color: "white" }}>left:</span>
+              <Value>{left}</Value>
+            </GoalWrap>
           </ValueWrap>
         </InfoWrapper>
       </ChartWrapper>
