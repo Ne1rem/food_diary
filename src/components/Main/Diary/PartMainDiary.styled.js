@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import styled from "@emotion/styled";
 
 export const ConteinerDiary = styled.div`
-max-width: 320px;
+width: 320px;
 text-align: left;
 @media screen and (min-width: 834px) {
-    max-width: 558px;
+    width: 558px;
   }`
 
 export const Header = styled.h2`
