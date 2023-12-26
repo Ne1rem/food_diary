@@ -6,7 +6,7 @@ export const SuccessToast = {
   pauseOnHover: true,
   draggable: true,
   progress: 0,
-  theme: 'colored',
+  theme: 'dark',
 };
 
 export const ErrorToast = {
@@ -17,5 +17,5 @@ export const ErrorToast = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-  theme: 'colored',
+  theme: 'dark',
 };

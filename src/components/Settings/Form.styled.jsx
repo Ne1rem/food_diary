@@ -45,45 +45,6 @@ export const ButtonDiv = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  width: 300px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 10px;
-
-  border: none;
-  border-radius: 12px;
-  line-height: 1.4;
-  color: var(--color-crimary-grey);
-  background: transparent;
-
-  transition:
-    background-color 0.4s cubic-bezier(0, 0, 1, 1),
-    color 0.4s cubic-bezier(0, 0, 1, 1);
-
-  &:hover {
-    background: var(--color-primary-green-lite);
-    color: var(--color-primary-black-2);
-  }
-
-  &.btn-active {
-    color: var(--color-primary-black-2);
-    background: var(--color-primary-green-lite);
-  }
-
-  @media screen and (min-width: 834px) {
-    margin-left: auto;
-    margin-right: auto;
-    width: 380px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 212px;
-    margin: 0;
-  }
-`;
 
 export const AvatarDiv = styled.div`
   display: flex;
@@ -359,3 +320,52 @@ export const InputErrorStyled = styled.div`
   font-weight: 400;
   line-height: 1.1;
 `;
+
+
+
+export const Button = styled.button`
+  width: 300px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+
+  border: none;
+  border-radius: 12px;
+  line-height: 1.4;
+  color: var(--color-primary-grey);
+  background: transparent;
+
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
+
+  &:hover {
+    background: var(--color-primary-green-lite);
+    color: var(--color-primary-black-2);
+  }
+
+  &.btn-active {
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
+
+  &.cancel-btn:hover + .save-btn {
+  color: var(--color-primary-grey);
+  background: transparent;
+  pointer-events: none; 
+}
+
+  @media screen and (min-width: 834px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 380px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 212px;
+    margin: 0;
+  }
+`;
+
