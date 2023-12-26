@@ -55,6 +55,6 @@ font-size: 14px;
 font-weight: 500;
 line-height: 1.42;
 @media screen and (min-width: 834px) {
-    margin-right: 250px;
+    margin-right: 180px;
     margin-left: 16px;
   }`
