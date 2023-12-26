@@ -212,7 +212,7 @@ export const ContainerChart = styled.div`
   width: 642px;
   height: 333px;
   flex-shrink: 0;
-  padding: 25px 20px 24px 14px;
+  padding: 25px 12px 24px 12px;
   border-radius: 12px;
   background: var(--color-primary-black-2);
   display: flex;
@@ -227,7 +227,7 @@ export const ContainerChart = styled.div`
   @media only screen and (min-width: 1440px) {
     width: 642px;
     height: 333px;
-    padding: 25px 20px 24px 14px;
+    padding: 25px 12px 24px 12px;
   }
 `;
 
@@ -282,15 +282,15 @@ export const ContainerWeightChart = styled.div`
 export const FlexContainer = styled.div``;
 
 export const WeightWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 1310px;
   height: 110px;
   padding: 24px 41px 36px 21px;
   margin: 0;
   border-radius: 12px;
   background: var(--color-primary-black-2);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   gap: 16px;
 
   @media only screen and (min-width: 834px) {
@@ -309,7 +309,7 @@ export const WeightWrap = styled.div`
 export const WeightValueContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: inherit;
+  justify-content: space-between;
   font-size: 14px;
   line-height: 1.42;
   font-weight: 400;
@@ -321,7 +321,6 @@ export const WeightValueContainer = styled.div`
   }
 
   @media only screen and (min-width: 1440px) {
-    /* gap: 23px; */
     font-size: 14px;
     line-height: 1.42;
     font-weight: 400;
@@ -331,26 +330,33 @@ export const WeightValueContainer = styled.div`
 export const WeightValue = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   font-size: 14px;
   line-height: 1.42;
+  &:not(:last-child) {
+    margin-right: 23px;
+  }
 
   @media only screen and (min-width: 834px) {
     font-size: 10px;
     line-height: 1.6;
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
   }
 
   @media only screen and (min-width: 1440px) {
     font-size: 14px;
     line-height: 1.42;
+    &:not(:last-child) {
+      margin-right: 23px;
+    }
   }
 `;
 
 export const DateContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: inherit;
+  justify-content: space-around;
   color: var(--color-primary-grey);
   font-size: 10px;
   font-weight: 400;
@@ -369,6 +375,21 @@ export const DateValue = styled.div`
   justify-content: center;
   font-size: 10px;
   line-height: 1.4;
+  &:not(:last-child) {
+    margin-right: 29px;
+  }
+
+  @media only screen and (min-width: 834px) {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    &:not(:last-child) {
+      margin-right: 29px;
+    }
+  }
 `;
 
 // export const ScrollContainer = styled.div`
