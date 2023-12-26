@@ -19,6 +19,17 @@ export const Modal = ({ children, onClose }) => {
     };
   }, [onClose]);
 
+  useEffect(() => {
+    const wasOverflowHidden = document.body.classList.contains('noOverflow');
+    document.body.classList.add('noOverflow');
+
+    return () => {
+      if (!wasOverflowHidden) {
+        document.body.classList.remove('noOverflow');
+      }
+    };
+  }, []);
+
   const onBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();

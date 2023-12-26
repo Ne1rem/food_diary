@@ -24,24 +24,24 @@ const foodSchema = yup.object({
     yup.object().shape({
       name: yup
         .string()
-        .required('Enter the name of the product or dish')
+        .required('Required*')
         .min(2, 'Very short product name'),
       carbonohidrates: yup
-        .number()
-        .required('Enter the amount of carbohydrates')
-        .max(999.99, 'Maximum number is 999.99'),
+        .number("Only number")
+        .required('Required*')
+        .max(999, 'Max 999'),
       protein: yup
-        .number()
-        .required('Enter the amount of protein')
-        .max(999.99, 'Maximum number is 999.99'),
+        .number("Only number")
+        .required('Required*')
+        .max(999, 'Max 999'),
       fat: yup
-        .number()
-        .required('Enter the amount of fat')
-        .max(999.99, 'Maximum number is 999.99'),
+        .number("Only number")
+        .required('Required*')
+        .max(999, 'Max 999'),
       calories: yup
         .number()
-        .required('Enter the amount of calories')
-        .max(999.99, 'Maximum number is 999.99'),
+        .required('Required*')
+        .max(999, 'Max 999'),
     })
   ),
 });

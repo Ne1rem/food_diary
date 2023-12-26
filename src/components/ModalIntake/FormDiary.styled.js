@@ -62,6 +62,9 @@ background-color: transparent;
 border: none;
 padding: 0;
 `
+export const InputWrapper = styled.div`
+position: relative;
+`;  
 
 export const StyledError = styled(ErrorMessage)`
 position: absolute;
