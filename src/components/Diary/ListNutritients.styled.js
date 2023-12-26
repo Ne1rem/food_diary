@@ -16,3 +16,6 @@ line-height: 1.42;
     margin-bottom: 12px;
   }
 `
+export const SpanStyled = styled.span`
+color: var(--color-primary-grey);
+font-weight: 400;`

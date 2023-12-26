@@ -1,5 +1,7 @@
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { requestFoodIntakeThunk } from "../../../Redux/Diary/diaryThunks";
+import { selectorIntake } from "../../../Redux/Diary/selectors";
 import DiaryItem from "../../../components/Diary/DiaryItem";
 import { Conteiner, LinkStyled, ImgArrow, Header, ListDiary } from "./Diary.styled";
 import arrow from '../../../assets/diary/arrow-right.svg';
@@ -9,6 +11,14 @@ import dinnerImg from '../../../assets/diary/dinner.svg'
 import snackImg from '../../../assets/diary/snack.svg'
 
 const Diary = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(requestFoodIntakeThunk())
+    },[dispatch])
+
+    const intake = useSelector(selectorIntake);
 
     const FoodArray = [
         { name: 'breakfast', img: breakfastImg },
@@ -25,7 +35,8 @@ const Diary = () => {
         {FoodArray.map(item => (<DiaryItem
         key={item.name}
         name={item.name}
-        img={item.img} />))}
+        img={item.img}
+        intake={intake} />))}
     </ListDiary> 
     </Conteiner> );
 }
