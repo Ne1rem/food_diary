@@ -51,5 +51,6 @@ export const StyledLink = styled(Link)`
 export const ContainerBottom = styled.div`
   @media screen and (min-width: 1440px) {
     display: flex;
+    justify-content: space-between;
   }
 `

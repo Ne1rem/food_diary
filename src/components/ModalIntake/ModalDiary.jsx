@@ -1,10 +1,11 @@
-import FormDiary from './FormDiary';
-import { useEffect } from 'react';
+import FormDiary from "./FormDiary";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector } from 'react-redux';
-import { selectorIntake } from '../../Redux/Diary/selectors';
+import { useSelector } from "react-redux";
+import { selectorIntake } from "../../Redux/Diary/selectors";
 import { addFoodIntakeThunk, updateFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
-import { Formik, Form, FieldArray } from 'formik';
+import { useState } from "react";
+import { Formik, Form, FieldArray } from "formik";
 import * as yup from 'yup';
 
 import {
@@ -16,32 +17,27 @@ import {
   Button,
   ButtonActive,
   ButtonAddMore,
-  WrapperButton,
-} from './ModalDiary.styled';
+  WrapperButton
+} from "./ModalDiary.styled";
 
 const foodSchema = yup.object({
   dish: yup.array().of(
     yup.object().shape({
-      name: yup
-        .string()
-        .required('Required*')
-        .min(2, 'Very short product name'),
-      carbonohidrates: yup
-        .number("Only number")
-        .required('Required*')
-        .max(999, 'Max 999'),
-      protein: yup
-        .number("Only number")
-        .required('Required*')
-        .max(999, 'Max 999'),
-      fat: yup
-        .number("Only number")
-        .required('Required*')
-        .max(999, 'Max 999'),
-      calories: yup
-        .number()
-        .required('Required*')
-        .max(999, 'Max 999'),
+      name: yup.string()
+        .required('Enter a name dish')
+        .min(2, 'Very short'),
+      carbonohidrates: yup.number()
+        .required('Enter a number')
+        .max(999.99, 'Maximum 999.99'),
+      protein: yup.number()
+        .required('Enter a number')
+        .max(999.99, 'Maximum 999.99'),
+      fat: yup.number()
+        .required('Enter a number')
+        .max(999.99, 'Maximum 999.99'),
+      calories: yup.number()
+        .required('Enter a number')
+        .max(999.99, 'Maximum 999.99'),
     })
   ),
 });
@@ -52,10 +48,16 @@ const intakeTemplate = {
   protein: '',
   fat: '',
   calories: '',
-};
+}
 
 const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
   const dispatch = useDispatch();
+
+  const [validation, setValidation] = useState('');
+
+  const onClickHandleSubmit = () => {
+  setValidation('validation');
+}
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -106,8 +108,6 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
           }],
         },
       };
-      console.log(intakeData);
-      console.log(idIntake);
       dispatch(updateFoodIntakeThunk(idIntake, intakeData));
     }
     onClose();
@@ -117,28 +117,32 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
 
   const handleAddMore = (e, { values, setFieldValue, errors }) => {
     e.preventDefault();
+
+    if (requestType === 'PUT') {
+      return;
+    }
+  
     const hasErrors = values.dish.some((product, index) => {
       const productErrors = errors.dish && errors.dish[index];
-      console.log(errors.dish[index]);
       return !!productErrors;
     });
-
-    
-
+  
     if (hasErrors) {
-      console.log('Cannot add more items due to validation errors');
+      setValidation('validation');
       return;
     }
 
     if (values.dish.length < maxFormsCount) {
       const lastIndex = values.dish.length - 1;
       const lastItemForm = values.dish[lastIndex];
-
-      foodSchema.validate(lastItemForm, { abortEarly: false }).then(() => {
-        setFieldValue('dish', [...values.dish, intakeTemplate]);
-      });
+  
+      foodSchema
+        .validate(lastItemForm, { abortEarly: false })
+        .then(() => {
+          setFieldValue('dish', [...values.dish, intakeTemplate]);
+        })
     } else {
-      console.log('Cannot add more than 4 items');
+      return;
     }
   };
 
@@ -146,16 +150,16 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
 
   let selectedIntakeDish;
   switch (name) {
-    case 'breakfast':
+    case "breakfast":
       selectedIntakeDish = intake?.breakfast?.dish;
       break;
-    case 'lunch':
+    case "lunch":
       selectedIntakeDish = intake?.lunch?.dish;
       break;
-    case 'dinner':
+    case "dinner":
       selectedIntakeDish = intake?.dinner?.dish;
       break;
-    case 'snack':
+    case "snack":
       selectedIntakeDish = intake?.snack?.dish;
       break;
     default:
@@ -163,12 +167,12 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
       break;
   }
 
-  const foundItem = selectedIntakeDish.find((item) => item._id === idIntake);
-
-  return (
+  const foundItem = requestType === 'PUT' ? selectedIntakeDish.find((item) => item._id === idIntake) : null;
+  
+  return(
     <Overlay onClick={handleOverlayClick}>
       <ModalWindow>
-        <Header>Record your meal</Header>
+      <Header>Record your meal</Header>
         <Wrapper>
           <img src={img} alt={name} />
           <Title>{name}</Title>
@@ -207,47 +211,43 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
   }
   onSubmit={handleFormSubmit}
   validationSchema={foodSchema}
->
-          {({ errors, touched, values, setFieldValue }) => (
+        >
+          {({ errors, touched, values, setFieldValue}) => (
             <Form autoComplete="off">
-              <FieldArray name="dish">
-                {({ remove }) => (
-                  <ul>
-                    {values.dish.map((product, index) => (
-                      <li key={index}>
-                        <FormDiary
-                          index={index}
-                          errors={errors}
-                          touched={touched}
-                          values={values}
-                          setFieldValue={setFieldValue}
-                          remove={remove}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </FieldArray>
-              <ButtonAddMore
-                type="button"
-                onClick={(e) =>
-                  handleAddMore(e, { values, setFieldValue, errors })
-                }
-              >
-                + Add more
-              </ButtonAddMore>
-              <WrapperButton>
-                <ButtonActive type="submit">Confirm</ButtonActive>
-                <Button type="button" onClick={onClose}>
-                  Cancel
-                </Button>
-              </WrapperButton>
+                <FieldArray name='dish'>
+                   {({ remove }) => (
+                    <ul>
+                        {values.dish.map((product, index) => (
+                         <li key={index}>
+                            <FormDiary
+                              validation={validation}
+                              index={index}
+                              errors={errors}
+                              touched={touched}
+                              values={values}
+                              setFieldValue={setFieldValue}
+                              remove={remove}
+                            />
+                         </li>
+                        ))}
+
+                     </ul>
+                   )}
+                </FieldArray>
+          <ButtonAddMore type="button" onClick={(e) => handleAddMore(e, { values, setFieldValue, errors })}>+ Add more</ButtonAddMore>
+          <WrapperButton>
+             <ButtonActive type="submit" onClick={() => {onClickHandleSubmit()}}>Confirm</ButtonActive>
+             <Button type="button" onClick={onClose}>Cancel</Button>
+             </WrapperButton>
+
             </Form>
           )}
-        </Formik>
+
+</Formik>
       </ModalWindow>
     </Overlay>
   );
 };
 
 export default ModalDiary;
+

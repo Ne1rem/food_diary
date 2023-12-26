@@ -2,6 +2,8 @@ import * as Yup from 'yup';
 
 const signUpSchema = Yup.object().shape({
   name: Yup.string()
+  .min(2, 'Min 2 symbols')
+    .max(30, 'Max 30 symbols')
     .required('Name required')
     .matches(
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
@@ -15,9 +17,9 @@ const signUpSchema = Yup.object().shape({
       'Invalid email"'
     ),
   password: Yup.string().min(6).max(15).required('Password required'),
-  age: Yup.number().required('Age required').integer(),
-  height: Yup.number().required('Height required').min(50).max(230),
-  weight: Yup.number().required('Weight required').min(50).max(200),
+  age: Yup.number().typeError("Only numbers").required('Age required').integer().min(5, "Min 5 age").max(150, "Max 150 age"),
+  height: Yup.number().typeError("Only numbers").required('Height required').min(50).max(230),
+  weight: Yup.number().typeError("Only numbers").required('Weight required').min(40).max(200),
   activity: Yup.number().min(1.2).max(1.9),
 });
 
