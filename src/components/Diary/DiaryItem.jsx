@@ -1,7 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { requestFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
-import { selectorIntake } from '../../Redux/Diary/selectors';
 import { useState } from 'react';
 import { 
     WrapperItemDiary,
@@ -20,17 +16,11 @@ import ItemListToComplete from './ItemListToComplete';
 import ModalDiary from '../ModalIntake/ModalDiary';
 import editSvg from "../../assets/diary/edit.svg";
 
-const DiaryItem = ({name, img}) => {
+const DiaryItem = ({name, img, intake}) => {
     const[showModal, setShowModal] = useState(false);
     const [requestType, setRequestType] = useState(null);
     const [itemId, setItemId] = useState(null);
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(requestFoodIntakeThunk())
-    },[dispatch])
-
-    const intake = useSelector(selectorIntake);
     let selectedIntakeDish;
     switch (name) {
       case "breakfast":
