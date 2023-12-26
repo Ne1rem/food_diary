@@ -71,7 +71,7 @@ const DiaryItem = ({name, img}) => {
           <StyledDiv key={index}>
             {selectedIntakeDish && selectedIntakeDish[index] ? (
               <ItemToComplete key={index}>{index + 1}<ItemListToComplete intakeItem={selectedIntakeDish[index]} /></ItemToComplete>
-            ) : index === 0 ? (
+            ) : index === 0 || index === selectedIntakeDish?.length ? (
               <ItemToComplete key={index}>{index + 1}<ModalLink onClick={() => toggleModal('POST', null)}>+ Record your meal</ModalLink></ItemToComplete>
             ) : (
               <ItemToComplete key={index}>{index + 1}</ItemToComplete>
