@@ -22,6 +22,8 @@ import editSvg from "../../assets/diary/edit.svg";
 
 const DiaryItem = ({name, img}) => {
     const[showModal, setShowModal] = useState(false);
+    const [requestType, setRequestType] = useState(null);
+    const [itemId, setItemId] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -48,8 +50,10 @@ const DiaryItem = ({name, img}) => {
         break;
     }
 
-    const toggleModal = () => {
+    const toggleModal = (type, id) => {
+        setRequestType(type);
         setShowModal(!showModal);
+        setItemId(id);
     };
     const indexArray = [0, 1, 2, 3];
 
@@ -66,14 +70,14 @@ const DiaryItem = ({name, img}) => {
     {indexArray.map((index) => (
           <StyledDiv key={index}>
             {selectedIntakeDish && selectedIntakeDish[index] ? (
-              <ItemToComplete key={index}>{index + 1}<ItemListToComplete toggleModal={toggleModal} intakeItem={selectedIntakeDish[index]} /></ItemToComplete>
-            ) : index === 0 ? (
-              <ItemToComplete key={index}>{index + 1}<ModalLink onClick={toggleModal}>+ Record your meal</ModalLink></ItemToComplete>
+              <ItemToComplete key={index}>{index + 1}<ItemListToComplete intakeItem={selectedIntakeDish[index]} /></ItemToComplete>
+            ) : index === 0 || index === selectedIntakeDish?.length ? (
+              <ItemToComplete key={index}>{index + 1}<ModalLink onClick={() => toggleModal('POST', null)}>+ Record your meal</ModalLink></ItemToComplete>
             ) : (
               <ItemToComplete key={index}>{index + 1}</ItemToComplete>
             )}
         {selectedIntakeDish && selectedIntakeDish[index] ? (
-              <EditLink onClick={toggleModal}>
+              <EditLink onClick={() => toggleModal('PUT', selectedIntakeDish[index]._id)}>
                 <EditSvg><use href={`${editSvg}#icon-edit`} /></EditSvg>
                     Edit
               </EditLink>
@@ -83,7 +87,7 @@ const DiaryItem = ({name, img}) => {
 
  
     </ListToComplete>
-    {showModal && <ModalDiary name={name} img={img} onClose={toggleModal}></ModalDiary>}
+    {showModal && <ModalDiary name={name} img={img} onClose={toggleModal} requestType={requestType} idIntake={itemId}></ModalDiary>}
     </WrapperItemDiary> );
 }
  

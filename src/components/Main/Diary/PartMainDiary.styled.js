@@ -6,8 +6,7 @@ max-width: 320px;
 text-align: left;
 @media screen and (min-width: 834px) {
     max-width: 558px;
-  }
-`
+  }`
 
 export const Header = styled.h2`
 margin-bottom: 16px;
