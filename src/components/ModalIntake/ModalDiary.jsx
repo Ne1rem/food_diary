@@ -1,5 +1,5 @@
 import FormDiary from './FormDiary';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { selectorIntake } from '../../Redux/Diary/selectors';
@@ -27,19 +27,19 @@ const foodSchema = yup.object({
         .required('Required*')
         .min(2, 'Very short product name'),
       carbonohidrates: yup
-        .number("Only number")
+        .number().typeError("Only number")
         .required('Required*')
         .max(999, 'Max 999'),
       protein: yup
-        .number("Only number")
+        .number().typeError("Only number")
         .required('Required*')
         .max(999, 'Max 999'),
       fat: yup
-        .number("Only number")
+        .number().typeError("Only number")
         .required('Required*')
         .max(999, 'Max 999'),
       calories: yup
-        .number()
+        .number().typeError("Only number")
         .required('Required*')
         .max(999, 'Max 999'),
     })
@@ -56,7 +56,12 @@ const intakeTemplate = {
 
 const ModalDiary = ({ name, img, onClose }) => {
   const dispatch = useDispatch();
+  const [validation, setValidation] = useState('');
 
+const onClickHandleSubmit = () => {
+  setValidation('validation');
+}
+  
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     const handleKeyDown = (e) => {
@@ -90,7 +95,7 @@ const ModalDiary = ({ name, img, onClose }) => {
         })),
       },
     };
-    console.log(intakeData);
+    // console.log(intakeData);
     dispatch(addFoodIntakeThunk(intakeData));
     onClose();
   };
@@ -101,16 +106,14 @@ const ModalDiary = ({ name, img, onClose }) => {
     e.preventDefault();
     const hasErrors = values.dish.some((product, index) => {
       const productErrors = errors.dish && errors.dish[index];
-      console.log(errors.dish[index]);
+      // console.log(errors.dish[index]);
       return !!productErrors;
     });
 
-    
-
-    if (hasErrors) {
-      console.log('Cannot add more items due to validation errors');
-      return;
-    }
+      if (hasErrors) {
+        console.log('Cannot add more items due to validation errors');
+        return;
+      }
 
     if (values.dish.length < maxFormsCount) {
       const lastIndex = values.dish.length - 1;
@@ -178,6 +181,7 @@ const ModalDiary = ({ name, img, onClose }) => {
                     {values.dish.map((product, index) => (
                       <li key={index}>
                         <FormDiary
+                          validation={validation}
                           index={index}
                           errors={errors}
                           touched={touched}
@@ -199,7 +203,7 @@ const ModalDiary = ({ name, img, onClose }) => {
                 + Add more
               </ButtonAddMore>
               <WrapperButton>
-                <ButtonActive type="submit">Confirm</ButtonActive>
+                <ButtonActive type="submit" onClick={() => {onClickHandleSubmit()}}>Confirm</ButtonActive>
                 <Button type="button" onClick={onClose}>
                   Cancel
                 </Button>

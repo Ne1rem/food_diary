@@ -7,7 +7,6 @@ text-align: left;
 @media screen and (min-width: 834px) {
     max-width: 558px;
   }
-/* width: 558px; */
 `
 
 export const Header = styled.h2`
