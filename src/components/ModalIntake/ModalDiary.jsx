@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { selectorIntake } from '../../Redux/Diary/selectors';
-import { addFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
+import { addFoodIntakeThunk, updateFoodIntakeThunk } from '../../Redux/Diary/diaryThunks';
 import { Formik, Form, FieldArray } from 'formik';
 import * as yup from 'yup';
 
@@ -24,24 +24,24 @@ const foodSchema = yup.object({
     yup.object().shape({
       name: yup
         .string()
-        .required('Enter the name of the product or dish')
+        .required('Required*')
         .min(2, 'Very short product name'),
       carbonohidrates: yup
-        .number()
-        .required('Enter the amount of carbohydrates')
-        .max(999.99, 'Maximum number is 999.99'),
+        .number("Only number")
+        .required('Required*')
+        .max(999, 'Max 999'),
       protein: yup
-        .number()
-        .required('Enter the amount of protein')
-        .max(999.99, 'Maximum number is 999.99'),
+        .number("Only number")
+        .required('Required*')
+        .max(999, 'Max 999'),
       fat: yup
-        .number()
-        .required('Enter the amount of fat')
-        .max(999.99, 'Maximum number is 999.99'),
+        .number("Only number")
+        .required('Required*')
+        .max(999, 'Max 999'),
       calories: yup
         .number()
-        .required('Enter the amount of calories')
-        .max(999.99, 'Maximum number is 999.99'),
+        .required('Required*')
+        .max(999, 'Max 999'),
     })
   ),
 });
@@ -54,7 +54,7 @@ const intakeTemplate = {
   calories: '',
 };
 
-const ModalDiary = ({ name, img, onClose }) => {
+const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -79,19 +79,37 @@ const ModalDiary = ({ name, img, onClose }) => {
   };
 
   const handleFormSubmit = (values) => {
-    const intakeData = {
-      [name.toLowerCase()]: {
-        dish: values.dish.map((product) => ({
-          name: product.name,
-          carbonohidrates: parseFloat(product.carbonohidrates),
-          protein: parseFloat(product.protein),
-          fat: parseFloat(product.fat),
-          calories: parseFloat(product.calories),
-        })),
-      },
-    };
-    console.log(intakeData);
-    dispatch(addFoodIntakeThunk(intakeData));
+
+    if (requestType === 'POST') { 
+      const intakeData = {
+        [name.toLowerCase()]: {
+          dish: values.dish.map((product) => ({
+            name: product.name,
+            carbonohidrates: parseFloat(product.carbonohidrates),
+            protein: parseFloat(product.protein),
+            fat: parseFloat(product.fat),
+            calories: parseFloat(product.calories),
+          })),
+        },
+      };
+      dispatch(addFoodIntakeThunk(intakeData));
+    } else if (requestType === 'PUT') {
+      const intakeData = {
+        [name.toLowerCase()]: {
+          dish: [
+            {
+            name: values.dish.name,
+            carbonohidrates: parseFloat(values.dish.carbonohidrates),
+            protein: parseFloat(values.dish.protein),
+            fat: parseFloat(values.dish.fat),
+            calories: parseFloat(values.dish.calories),
+          }],
+        },
+      };
+      console.log(intakeData);
+      console.log(idIntake);
+      dispatch(updateFoodIntakeThunk(idIntake, intakeData));
+    }
     onClose();
   };
 
@@ -145,6 +163,8 @@ const ModalDiary = ({ name, img, onClose }) => {
       break;
   }
 
+  const foundItem = selectedIntakeDish.find((item) => item._id === idIntake);
+
   return (
     <Overlay onClick={handleOverlayClick}>
       <ModalWindow>
@@ -154,22 +174,40 @@ const ModalDiary = ({ name, img, onClose }) => {
           <Title>{name}</Title>
         </Wrapper>
         <Formik
-          initialValues={{
-            dish:
-              selectedIntakeDish && selectedIntakeDish.length
-                ? selectedIntakeDish.map((product) => ({
-                    name: product.name || '',
-                    carbonohidrates: product.carbonohidrates || '',
-                    protein: product.protein || '',
-                    fat: product.fat || '',
-                    calories: product.calories || '',
-                    productId: product.productId || '',
-                  }))
-                : [intakeTemplate],
-          }}
-          onSubmit={handleFormSubmit}
-          validationSchema={foodSchema}
-        >
+  initialValues={
+    requestType === 'POST'
+      ? {
+          dish:
+            selectedIntakeDish && selectedIntakeDish.length
+              ? selectedIntakeDish.map((product) => ({
+                  name: product.name || '',
+                  carbonohidrates: product.carbonohidrates || '',
+                  protein: product.protein || '',
+                  fat: product.fat || '',
+                  calories: product.calories || '',
+                  productId: product.productId || '',
+                }))
+              : [intakeTemplate],
+        }
+      : {
+          dish:
+            selectedIntakeDish && selectedIntakeDish.length
+              ? [
+                  {
+                    name: foundItem.name || '',
+                    carbonohidrates: foundItem.carbonohidrates || '',
+                    protein: foundItem.protein || '',
+                    fat: foundItem.fat || '',
+                    calories: foundItem.calories || '',
+                    productId: foundItem.productId || '',
+                  },
+                ]
+              : [intakeTemplate],
+        }
+  }
+  onSubmit={handleFormSubmit}
+  validationSchema={foodSchema}
+>
           {({ errors, touched, values, setFieldValue }) => (
             <Form autoComplete="off">
               <FieldArray name="dish">
