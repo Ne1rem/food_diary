@@ -80,15 +80,18 @@ export const ProfileSettings = () => {
       age: Yup.number()
         .positive('Age has to be positive number')
         .required('Age is required')
-        .min(16),
+        .min(12)
+        .max(150),
       weight: Yup.number()
         .positive('Weight has to be positive number')
         .required('Weight is required')
-        .min(20),
+        .min(40)
+        .max(200),
       height: Yup.number()
         .positive('Height has to be positive number')
         .required('Height is required')
-        .min(100),
+        .min(50)
+        .max(230),
       activity: Yup.string().required('Choose activity level'),
     }),
     onSubmit: (values) => {
@@ -442,20 +445,21 @@ export const ProfileSettings = () => {
 
         <ButtonDiv>
           <Button
+            className="cancel-btn"
             type="button"
             onClick={() => formik.resetForm({ values: userInfo })}
           >
             Cancel
           </Button>
           <Button
-            className="btn-active"
+            className="btn-active save-btn"
             type="submit"
             disabled={isLoading}
             onClick={() => {
               onClickBtnSave();
             }}
           >
-            {isLoading === 'loading' ? <LoaderBtn /> : 'Send'}
+            {isLoading === 'loading' ? <LoaderBtn /> : 'Save'}
           </Button>
         </ButtonDiv>
       </Form>

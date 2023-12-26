@@ -37,7 +37,7 @@ const updateUser = createAsyncThunk('user/update', async (values, thunkAPI) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // toast.success('Data was updated!', SuccessToast);
+      toast.success('Data was updated!', SuccessToast);
 
       return data;
     } else {
