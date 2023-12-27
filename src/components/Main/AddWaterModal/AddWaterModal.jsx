@@ -76,10 +76,8 @@ export const AddWaterModal = ({ onClose, successHandler }) => {
               <ErrorText>{formik.errors.water}</ErrorText>
             ) : null}
           </InputWrapper>
-          <ConfirmBtn className="btn-active save-btn" type="submit">
-            Confirm
-          </ConfirmBtn>
-          <CancelBtn className="cancel-btn" type="button" onClick={onClose}>
+          <ConfirmBtn type="submit">Confirm</ConfirmBtn>
+          <CancelBtn type="button" onClick={onClose}>
             Cancel
           </CancelBtn>
         </Form>

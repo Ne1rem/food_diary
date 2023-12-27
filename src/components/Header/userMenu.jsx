@@ -263,10 +263,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               </MobileWeightButton>
             </MobileWeightHeader>
             {isWeightModalOpen && (
-              <ModalWeight
-                setIsWeightModalOpen={setIsWeightModalOpen}
-                setCurrentWeight={setCurrentWeight}
-              />
+              <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
             )}
           </ButtonsMobileModals>
         </MobileOpenModal>
