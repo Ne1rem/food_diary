@@ -43,6 +43,7 @@ import { chartLineOptions } from './chartOptions';
 import { monthCurrent } from '../../../../../utilities/monthCurrent';
 import { monthValue } from '../../../../../utilities/monthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 ChartJS.register(
   LineElement,
   CategoryScale,
