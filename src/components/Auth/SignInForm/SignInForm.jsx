@@ -1,17 +1,32 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn } from '../../../Redux/Auth/authThunks';
+import { refresh, signIn } from '../../../Redux/Auth/authThunks';
 import { selectIsLoading } from '../../../Redux/Auth/selectors';
 import { signInSchema } from '../validationSchemas/validationSchema';
 
 import inputSvg from 'assets/sprite.svg';
 import LoaderBtn from '../Loader/LoaderBtn';
 
-import { Button, Title, Text, InputError } from '../AuthStyled/GeneralStyles/GeneralStyles';
-import { InputBlock, InputStyle, InputSvgStyle } from '../AuthStyled/InputStyle/InputStyle.styled';
-import { SignIn, InputList, NavToSignUpBlock, NavToSignUpText, NavToSignUp, NavToForgotPass } from './SignInForm.styled';
-
+import {
+  Button,
+  Title,
+  Text,
+  InputError,
+} from '../AuthStyled/GeneralStyles/GeneralStyles';
+import {
+  InputBlock,
+  InputStyle,
+  InputSvgStyle,
+} from '../AuthStyled/InputStyle/InputStyle.styled';
+import {
+  SignIn,
+  InputList,
+  NavToSignUpBlock,
+  NavToSignUpText,
+  NavToSignUp,
+  NavToForgotPass,
+} from './SignInForm.styled';
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -121,15 +136,19 @@ const SignInForm = () => {
 
             {passwordHidden && validation === 'validation' ? (
               formik.errors.password ? (
-                <InputSvgStyle onClick={() => {
-                  onClickPasswordHidden();
-                }}>
+                <InputSvgStyle
+                  onClick={() => {
+                    onClickPasswordHidden();
+                  }}
+                >
                   <use href={`${inputSvg}#error`} />
                 </InputSvgStyle>
               ) : (
-                <InputSvgStyle onClick={() => {
-                  onClickPasswordHidden();
-                }}>
+                <InputSvgStyle
+                  onClick={() => {
+                    onClickPasswordHidden();
+                  }}
+                >
                   <use href={`${inputSvg}#correct`} />
                 </InputSvgStyle>
               )

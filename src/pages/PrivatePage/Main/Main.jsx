@@ -15,8 +15,8 @@ const Main = () => {
         </MainHeader>
         <DailyStatistics />
         <ContainerBottom>
-        <PartMainDiary />
-        <RecommendedFoodOnMain />
+          <PartMainDiary />
+          <RecommendedFoodOnMain />
         </ContainerBottom>
       </Container>
     </section>

@@ -121,4 +121,14 @@ export const CancelBtn = styled.button`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.43;
+  border-radius: 12px;
+
+  transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
+
+  &:hover {
+    color: var(--color-primary-black-2);
+    background: var(--color-primary-green-lite);
+  }
 `;
