@@ -49,6 +49,7 @@
 # Команда розробників:
 
 **FrontEnd:**
+
 - [Олена Косьміна](https://github.com/KosminaOlena)
 - [Роман Боровик](https://github.com/BorovChe)
 - [Олег Малишок](https://github.com/OlegMalyshok)
@@ -58,7 +59,8 @@
 - Скрам-мастер [Анна Котляр](https://github.com/AnnaKotl)
 
 **BackEnd:**
-- [Ананстасія Глухенька](https://github.com/Hlukhenka)
+
+- [Анастасія Глухенька](https://github.com/Hlukhenka)
 - [Олександр Борисенко](https://github.com/allborysenko)
 - Тім-лід [Світлана Іванчук](https://github.com/Svitlana-Ivanchuk)
 

@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom';
 import styled from "@emotion/styled";
 
 export const ConteinerDiary = styled.div`
+width: 320px;
 text-align: left;
-width: 558px;`
+@media screen and (min-width: 834px) {
+    width: 558px;
+  }`
 
 export const Header = styled.h2`
 margin-bottom: 16px;

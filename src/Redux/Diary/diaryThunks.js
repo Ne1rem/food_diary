@@ -28,9 +28,9 @@ export const addFoodIntakeThunk = createAsyncThunk(
 
 export const updateFoodIntakeThunk = createAsyncThunk(
     'foodIntake/update',
-    async (idIntake, thunkApi) => {
+    async ({ id, intakeData }, thunkApi) => {
         try{
-           const { data } = await axios.put(`/user/food-intake/${idIntake}`);
+           const { data } = await axios.put(`/user/food-intake/${id}`, intakeData);
            return data;
         }catch (error) {
             return thunkApi.rejectWithValue(error.message); 

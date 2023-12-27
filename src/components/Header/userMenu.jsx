@@ -56,43 +56,18 @@ import ModalWeight from './ModalsHeader/ModalWeight';
 import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-import { useDispatch } from 'react-redux';
-import { currentUser } from '../../Redux/User/userThunks';
+import {  useSelector } from 'react-redux';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
-  const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [gender, setGender] = useState('');
-  const [goal] = useState('');
-  const [weight, setWeight] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
+  const name = useSelector((state) => state.user.user.name);
+  const gender = useSelector((state) => state.user.user.gender);
+  const goal = useSelector((state) => state.user.user.goal);
+  const weight = useSelector((state) => state.user.user.weight);
+  const [currentWeight, setCurrentWeight] = useState(weight)
+  const userAvatar = useSelector((state) => state.user.user.avatarURL);
 
   const [currentGoal, setCurrentGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(currentGoal);
-
-  useEffect(() => {
-    const fetchUserData = () => {
-      dispatch(currentUser())
-        .then((response) => {
-          const { name, gender, goal, weight, avatarURL } = response.payload;
-          setName(name);
-          setGender(gender);
-          setCurrentGoal(goal);
-          setNewGoal(goal);
-          setWeight(weight);
-          setUserAvatar(avatarURL);
-        })
-        .catch((error) => {
-          console.error('Error fetching user data:', error);
-        });
-    };
-
-    const timeout = setTimeout(() => {
-      fetchUserData();
-    }, 200);
-
-    return () => clearTimeout(timeout);
-  }, [dispatch]);
 
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
@@ -131,17 +106,27 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
 
   const backdropStyle = {
     position: 'fixed',
-    top: 0,
+    top: 102,
     left: 0,
     width: '100%',
     height: '100%',
   };
-  
+
   function handleCloseModal() {
     setIsGoalModalOpen(false);
     setIsWeightModalOpen(false);
     setIsUserModalOpen(false);
   }
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (window.innerWidth < 700 && (isGoalModalOpen || isWeightModalOpen)) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'auto';
+    }
+  }, [isGoalModalOpen, isWeightModalOpen]);
+
 
   return (
     <UserMenuContainer>
@@ -194,7 +179,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               <WeightPName>Weight</WeightPName>
               <div style={{ display: 'flex' }}>
                 <WeightP>
-                  {weight}
+                  {currentWeight}
                   <WeightSpan>kg</WeightSpan>
                 </WeightP>
                 <WeightSvg>
@@ -207,7 +192,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
         {isWeightModalOpen && (
           <ModalWeight
             setIsWeightModalOpen={setIsWeightModalOpen}
-            setWeight={setWeight}
+            setCurrentWeight={setCurrentWeight}
           />
         )}
       </WeightHeader>
@@ -258,7 +243,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               </MobileGoalButton>
             </MobileGoalHeader>
             {isGoalModalOpen && (
-              <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} />
+              <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} isGoalModalOpen={isGoalModalOpen}/>
             )}
             <MobileWeightHeader>
               <MobileWeightButton
@@ -272,7 +257,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                     <MobileWeightPName>Weight</MobileWeightPName>
                     <div style={{ display: 'flex' }}>
                       <MobileWeightP>
-                        {weight}
+                        {currentWeight}
                         <MobileWeightSpan>kg</MobileWeightSpan>
                       </MobileWeightP>
                       <MobileWeightSvg>

@@ -34,7 +34,7 @@ export const InfoWrapper = styled.div`
 `;
 
 export const ElementsTitle = styled.h3`
-  color: var(--text-color-primary-white);
+  color: var(--color-primary-white);
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -53,4 +53,7 @@ export const Value = styled.span`
 
 export const GoalWrap = styled.p`
   width: 78px;
+  display: flex ;
+  flex-direction: row;
+  gap: 4px;
 `;

@@ -23,6 +23,8 @@ width: 210px;
 color: var(--color-primary-grey);
 margin-left: 16px;
 @media screen and (min-width: 834px) {
+  justify-content: space-around;
+  width: 350px;
     font-size: 14px;
     line-height: 1.42;
     color: var(--color-primary-white);

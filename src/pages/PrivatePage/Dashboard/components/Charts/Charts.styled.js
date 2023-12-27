@@ -27,6 +27,7 @@ export const BackIconContainer = styled.div`
 `;
 
 export const BackIconLink = styled(Link)`
+  display: flex;
   width: 16px;
   height: 16px;
   justify-content: center;
@@ -211,11 +212,11 @@ export const ContainerChart = styled.div`
   width: 642px;
   height: 333px;
   flex-shrink: 0;
-  padding: 25px 20px 24px 14px;
+  padding: 25px 12px 24px 12px;
   border-radius: 12px;
   background: var(--color-primary-black-2);
   display: flex;
-  justify-content: start;
+  justify-content: center;
 
   @media only screen and (min-width: 834px) {
     width: 735px;
@@ -226,7 +227,7 @@ export const ContainerChart = styled.div`
   @media only screen and (min-width: 1440px) {
     width: 642px;
     height: 333px;
-    padding: 25px 20px 24px 14px;
+    padding: 25px 12px 24px 12px;
   }
 `;
 
@@ -271,108 +272,124 @@ export const TitleWeight = styled.h3`
 `;
 
 export const ContainerWeightChart = styled.div`
+  @media only screen and (min-width: 834px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
+export const FlexContainer = styled.div``;
+
 export const WeightWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 1310px;
   height: 110px;
   padding: 24px 41px 36px 21px;
   margin: 0;
   border-radius: 12px;
   background: var(--color-primary-black-2);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   gap: 16px;
-
-  /* position: relative;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch; */
 
   @media only screen and (min-width: 834px) {
     width: 738px;
     height: 110px;
     padding: 24px 20px 44px 22px;
-    /* gap: 12px; */
   }
 
   @media only screen and (min-width: 1440px) {
     width: 1310px;
     height: 110px;
     padding: 24px 41px 36px 21px;
-    /* gap: 16px; */
   }
 `;
 
-export const Upper = styled.div`
+export const WeightValueContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: inherit;
-  /* gap: 23px; */
+  justify-content: space-between;
   font-size: 14px;
   line-height: 1.42;
   font-weight: 400;
   color: var(--color-primary-whit);
-  /* padding: 0 41px 0 21px; */
 
   @media only screen and (min-width: 834px) {
-    /* gap: 6px; */
     font-size: 10px;
     line-height: 1.6;
-    /* padding: 0 20px 0 22px; */
   }
 
   @media only screen and (min-width: 1440px) {
-    /* gap: 23px; */
     font-size: 14px;
     line-height: 1.42;
     font-weight: 400;
-    /* padding: 0 41px 0 21px; */
   }
 `;
 
-export const UpperValue = styled.div`
+export const WeightValue = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 14px;
   line-height: 1.42;
+  &:not(:last-child) {
+    margin-right: 23px;
+  }
 
   @media only screen and (min-width: 834px) {
     font-size: 10px;
     line-height: 1.6;
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
   }
 
   @media only screen and (min-width: 1440px) {
     font-size: 14px;
     line-height: 1.42;
+    &:not(:last-child) {
+      margin-right: 23px;
+    }
   }
 `;
 
-export const LowerWrap = styled.div`
+export const DateContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: inherit;
-  /* gap: 29px; */
+  justify-content: space-around;
   color: var(--color-primary-grey);
   font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
-  /* padding: 0 44px 0 24px; */
 
   @media only screen and (min-width: 834px) {
-    /* gap: 10px; */
-    /* padding: 0 22px 0 24px; */
   }
 
   @media only screen and (min-width: 1440px) {
-    /* gap: 29px; */
-    /* padding: 0 44px 0 24px; */
   }
 `;
 
-export const LowerValue = styled.div`
+export const DateValue = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 10px;
   line-height: 1.4;
+  &:not(:last-child) {
+    margin-right: 29px;
+  }
+
+  @media only screen and (min-width: 834px) {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    &:not(:last-child) {
+      margin-right: 29px;
+    }
+  }
 `;
 
 // export const ScrollContainer = styled.div`

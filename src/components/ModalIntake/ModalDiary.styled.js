@@ -69,12 +69,10 @@ font-style: normal;
 line-height: 1.42;
 color: var(--color-primary-black-2);
 margin-bottom: 8px;
-&:hover
-{
-    background-color: var(--secondary-color-yellow); 
-}
+
 @media only screen and (min-width: 834px){
   width: 212px; 
+  margin-bottom: 0;
   }`
 
 export const Button = styled.button`
@@ -88,9 +86,13 @@ font-style: normal;
 font-weight: 400;
 line-height: 1.42;
 color: var(--color-primary-grey);
-margin-bottom: 8px;
+
+transition:
+    background-color 0.4s cubic-bezier(0, 0, 1, 1),
+    color 0.4s cubic-bezier(0, 0, 1, 1);
 &:hover
-{ border: 1px solid var(--color-primary-green-lite);
+{ color: var(--color-primary-black-2);
+  background: var(--color-primary-green-lite);
   font-weight: 500;
 }
 @media only screen and (min-width: 834px){

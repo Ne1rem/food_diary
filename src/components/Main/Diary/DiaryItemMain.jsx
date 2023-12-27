@@ -1,25 +1,19 @@
-import { useSelector } from "react-redux";
 import { useState } from "react";
-// import { requestFoodIntakeThunk } from "../../../Redux/Diary/diaryThunks";
-import { selectorIntake } from "../../../Redux/Diary/selectors";
 import { WrapperComponent, Title, WrapperTitle, TrashSvg, ButtonSvg, ModalLink } from "./DiaryItemMain.styled";
 import ListNutritients from "../../Diary/ListNutritients";
 import ModalDiary from "../../ModalIntake/ModalDiary";
 import trashImg from "../../../assets/diary/trash.svg";
 
-const DiaryItemMain = ({name, img}) => {
+const DiaryItemMain = ({name, img, intake}) => {
     const[showModal, setShowModal] = useState(false);
-    // const dispatch = useDispatch();
+
+    const requestType = 'POST';
+    const idIntake = null;
+
 
     const toggleModal = () => {
         setShowModal(!showModal);
     };
-
-    // useEffect(() => {
-    //     dispatch(requestFoodIntakeThunk())
-    // },[dispatch])
-
-    const intake = useSelector(selectorIntake);
 
     let selectedIntake;
     switch (name) {
@@ -56,8 +50,12 @@ const DiaryItemMain = ({name, img}) => {
         </ButtonSvg>
     </>
 )}
-{showModal && <ModalDiary name={name} img={img} onClose={toggleModal}></ModalDiary>}
-    </WrapperComponent> );
+{showModal && <ModalDiary name={name}
+ img={img}
+  onClose={toggleModal}
+  requestType={requestType}
+  idIntake={idIntake}></ModalDiary>}
+  </WrapperComponent> );
 }
  
 export default DiaryItemMain;
