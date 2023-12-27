@@ -10,7 +10,7 @@ margin-left: 16px;
 margin-bottom: 6px;
 text-transform: capitalize;
 @media screen and (min-width: 834px) {
-    width: 280px;
+    width: 210px;
     font-size: 14px;
     line-height: 1.42;
   }`

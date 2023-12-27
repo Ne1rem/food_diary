@@ -31,6 +31,7 @@ color: var(--color-primary-white);
 font-size: 24px;
 line-height: 1.25;
 margin-bottom: 24px;
+font-weight: 500; 
 @media screen and (min-width: 834px) {
     font-size: 30px;
     line-height: 1.2;

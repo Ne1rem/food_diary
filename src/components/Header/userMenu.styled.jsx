@@ -201,7 +201,7 @@ export const ButtonOpenMobileModals = styled.button`
   display: flex;
   align-items: center;
   margin-left: 12px;
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 701px) {
     display: none;
   }
 `;

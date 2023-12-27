@@ -56,14 +56,14 @@ import ModalWeight from './ModalsHeader/ModalWeight';
 import ModalGoal from './ModalsHeader/ModalGoal';
 
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const name = useSelector((state) => state.user.user.name);
   const gender = useSelector((state) => state.user.user.gender);
   const goal = useSelector((state) => state.user.user.goal);
   const weight = useSelector((state) => state.user.user.weight);
-  const [currentWeight, setCurrentWeight] = useState(weight)
+  const [currentWeight, setCurrentWeight] = useState(weight);
   const userAvatar = useSelector((state) => state.user.user.avatarURL);
 
   const [currentGoal, setCurrentGoal] = useState(goal);
@@ -126,7 +126,6 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
       body.style.overflow = 'auto';
     }
   }, [isGoalModalOpen, isWeightModalOpen]);
-
 
   return (
     <UserMenuContainer>
@@ -243,7 +242,14 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               </MobileGoalButton>
             </MobileGoalHeader>
             {isGoalModalOpen && (
-              <ModalGoal setIsGoalModalOpen={setIsGoalModalOpen} isGoalModalOpen={isGoalModalOpen}/>
+              <ModalGoal
+                setIsGoalModalOpen={setIsGoalModalOpen}
+                setCurrentGoal={setCurrentGoal}
+                currentGoal={currentGoal}
+                gender={gender}
+                newGoal={newGoal}
+                setNewGoal={setNewGoal}
+              />
             )}
             <MobileWeightHeader>
               <MobileWeightButton
@@ -269,7 +275,10 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               </MobileWeightButton>
             </MobileWeightHeader>
             {isWeightModalOpen && (
-              <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
+              <ModalWeight
+                setIsWeightModalOpen={setIsWeightModalOpen}
+                setCurrentWeight={setCurrentWeight}
+              />
             )}
           </ButtonsMobileModals>
         </MobileOpenModal>
