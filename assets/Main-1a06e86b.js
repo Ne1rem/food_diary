@@ -1,4 +1,4 @@
-import{s as r,j as e,r as p,g as R,h as F,b as g,i as G,L as u,u as H,k as N}from"./index-e3d71783.js";import{i as f}from"./sprite-4d528b33.js";import{c as O,b as A,u as V}from"./index.esm-75c00be6.js";import{C as q,A as Y,p as _,a as K,D as U,F as X}from"./index.esm-20b22062.js";import{C as J,R as Q,T as Z,F as ee,a as te,b as re,S as ne,W as ie,c as oe,d as ae}from"./RecFoodOnMainStyled-99da7ce8.js";import{n as x,L as se,t as le,M as ce,s as de,b as pe,l as xe,d as he,a as me}from"./snack-ef28bcd4.js";import"./hoist-non-react-statics.cjs-fde01bef.js";import"./emotion-element-c39617d8.browser.esm-c344b027.js";const ge=r.div`
+import{s as r,j as e,r as p,g as R,h as F,b as g,i as G,L as u,u as H,k as N}from"./index-4f12c999.js";import{i as f}from"./sprite-7753dd3e.js";import{c as O,b as A,u as V}from"./index.esm-c71fe927.js";import{C as q,A as Y,p as _,a as K,D as U,F as X}from"./index.esm-f4b0cf4e.js";import{C as J,R as Q,T as Z,F as ee,a as te,b as re,S as ne,W as ie,c as oe,d as ae}from"./RecFoodOnMainStyled-78d527ac.js";import{n as x,L as se,t as le,M as ce,s as de,b as pe,l as xe,d as he,a as me}from"./snack-757237e7.js";import"./hoist-non-react-statics.cjs-b49cdb9a.js";import"./emotion-element-c39617d8.browser.esm-756ee3f6.js";const ge=r.div`
   width: 100%;
   padding: 0 10px;
 
@@ -541,8 +541,8 @@ line-height: 1.42;
 @media screen and (min-width: 834px) {
     margin-right: 180px;
     margin-left: 16px;
-  }`,Ft=({name:t,img:a,intake:n})=>{const[o,i]=p.useState(!1),s="POST",l=null,h=()=>{i(!o)};let d;switch(t){case"breakfast":d=n==null?void 0:n.breakfast;break;case"lunch":d=n==null?void 0:n.lunch;break;case"dinner":d=n==null?void 0:n.dinner;break;case"snack":d=n==null?void 0:n.snack;break;default:d=null;break}return e.jsxs(jt,{children:[e.jsxs(yt,{children:[e.jsx("img",{src:a,width:36,height:36}),e.jsx(bt,{children:t})]}),!d||d.dish.length===0?e.jsx(kt,{onClick:h,children:"+ Record your meal"}):e.jsxs(e.Fragment,{children:[e.jsx(se,{name:t}),e.jsx(Ct,{children:e.jsx(vt,{children:e.jsx("use",{href:`${le}#icon-trash`})})})]}),o&&e.jsx(ce,{name:t,img:a,onClose:h,requestType:s,idIntake:l})]})},Wt=x.div`
-width: 320px;
+  }`,Ft=({name:t,img:a,intake:n})=>{const[o,i]=p.useState(!1),s="POST",l=null,h=()=>{i(!o)};let d;switch(t){case"breakfast":d=n==null?void 0:n.breakfast;break;case"lunch":d=n==null?void 0:n.lunch;break;case"dinner":d=n==null?void 0:n.dinner;break;case"snack":d=n==null?void 0:n.snack;break;default:d=null;break}return e.jsxs(jt,{children:[e.jsxs(yt,{children:[e.jsx("img",{src:a,width:36,height:36}),e.jsx(bt,{children:t})]}),!d||d.dish.length===0?e.jsx(kt,{onClick:h,children:"+ Record your meal"}):e.jsxs(e.Fragment,{children:[e.jsx(se,{name:t}),e.jsx(Ct,{type:"button",children:e.jsx(vt,{children:e.jsx("use",{href:`${le}#icon-trash`})})})]}),o&&e.jsx(ce,{name:t,img:a,onClose:h,requestType:s,idIntake:l})]})},Wt=x.div`
+width: 300px;
 text-align: left;
 @media screen and (min-width: 834px) {
     width: 558px;

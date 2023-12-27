@@ -1,4 +1,4 @@
-import{s as i}from"./index-e3d71783.js";const a=i.div`
+import{s as i}from"./index-4f12c999.js";const a=i.div`
   padding: 0 0 138px 0;
 
   @media (min-width: 834px) and (max-width: 1440px) {

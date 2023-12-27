@@ -1,4 +1,4 @@
-import{j as e,r as d,L as v,u as I,k as z,b as S}from"./index-e3d71783.js";import{n as t,L,M as T,s as k,b as C,l as D,d as E,a as M}from"./snack-ef28bcd4.js";import"./emotion-element-c39617d8.browser.esm-c344b027.js";import"./index.esm-75c00be6.js";import"./hoist-non-react-statics.cjs-fde01bef.js";const W=t.div`
+import{j as e,r as d,L as v,u as I,k as z,b as S}from"./index-4f12c999.js";import{n as t,L,M as T,s as k,b as C,l as D,d as E,a as M}from"./snack-757237e7.js";import"./emotion-element-c39617d8.browser.esm-756ee3f6.js";import"./index.esm-c71fe927.js";import"./hoist-non-react-statics.cjs-b49cdb9a.js";const W=t.div`
 @media screen and (min-width: 1440px) {
     flex-basis: calc((100% - 40px) / 2);
   }`,q=t.div`
@@ -92,7 +92,7 @@ margin-left: 16px;
 margin-bottom: 6px;
 text-transform: capitalize;
 @media screen and (min-width: 834px) {
-    width: 280px;
+    width: 210px;
     font-size: 14px;
     line-height: 1.42;
   }`,U=t.ul`
