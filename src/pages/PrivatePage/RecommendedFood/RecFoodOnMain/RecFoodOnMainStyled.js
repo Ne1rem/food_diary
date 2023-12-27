@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 20px 34px 52px 138px;
+  padding: 0 0 138px 0;
 
   @media (min-width: 834px) and (max-width: 1440px) {
     /* Стилі для планшетів */
-
-    padding: 20px 27px 40px 27px;
+    margin-top: 20px;
+    padding: 0 0 27px 0;
   }
 
   @media (max-width: 833px) {
     /* Стилі для телефонів */
-
-    padding: 20px 10px 80px 10px;
+    margin-top: 20px;
+    padding: 0 0 10px 0;
   }
 `;
 
@@ -32,10 +32,12 @@ export const Title = styled.h2`
   margin-bottom: 16px;
   color: var(--color-primary-white);
   font-size: 22px;
+  font-weight: 400;
+  line-height: 1.45;
 
   @media (max-width: 833px) {
-    /* Стилі для телефонів */
     font-size: 18px;
+    line-height: 1.33;
   }
 `;
 
@@ -105,6 +107,18 @@ export const CharacteristicsContainer = styled.div`
   flex-direction: column;
   margin-left: 20px;
   font-size: 18px;
+
+  @media (max-width: 833px) {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.33;
+  }
+`;
+
+export const Subtitle = styled.h3`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.33;
 `;
 
 export const WeightOfCalorieContainer = styled.div`
@@ -112,6 +126,11 @@ export const WeightOfCalorieContainer = styled.div`
   flex-direction: row;
   gap: 6px;
   font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  align-items: center;
+
+  
 `;
 
 export const Calories = styled.p`
