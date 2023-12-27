@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const Unit = styled.span`
+  color: var(--color-primary-grey);
+font-size: 14px;
+font-weight: 400;
+line-height: 1.42;
+`;
+
 export const ContainerSelect = styled.div`
   display: flex;
   justify-content: space-between;
@@ -314,6 +321,7 @@ export const WeightValueContainer = styled.div`
   line-height: 1.42;
   font-weight: 400;
   color: var(--color-primary-whit);
+  flex-basis: 50%;
 
   @media only screen and (min-width: 834px) {
     font-size: 10px;
@@ -332,6 +340,7 @@ export const WeightValue = styled.div`
   align-items: center;
   font-size: 14px;
   line-height: 1.42;
+  flex-basis: 50%;
 
   @media only screen and (min-width: 834px) {
     font-size: 10px;
