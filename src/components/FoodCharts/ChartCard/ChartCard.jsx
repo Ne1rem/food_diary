@@ -14,10 +14,11 @@ export const ChartCard = (props) => {
   const { title, chartBcg, elementGoal, elementValue } = props;
 
   let left = (elementGoal - elementValue).toFixed(1);
-
+  
   if (left < 0) {
     left = 0;
   }
+
   let elementPercentage = Math.round((elementValue * 100) / elementGoal);
 
   if (elementPercentage === Infinity || isNaN(elementPercentage)) {
@@ -45,11 +46,13 @@ export const ChartCard = (props) => {
           <ElementsTitle>{title}</ElementsTitle>
           <ValueWrap>
             <GoalWrap>
-              Goal: <Value>{elementGoal}</Value>
+              <span style={{ color: "white" }}>Goal:</span>
+              <Value>{elementGoal}</Value>
             </GoalWrap>
-            <p>
-              left: <Value>{left}</Value>
-            </p>
+            <GoalWrap>
+              <span style={{ color: "white" }}>left:</span>
+              <Value>{left}</Value>
+            </GoalWrap>
           </ValueWrap>
         </InfoWrapper>
       </ChartWrapper>

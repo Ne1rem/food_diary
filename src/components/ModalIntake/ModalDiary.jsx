@@ -182,21 +182,8 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
         </Wrapper>
         <Formik
   initialValues={
-    requestType === 'POST'
+    requestType === 'PUT'
       ? {
-          dish:
-            selectedIntakeDish && selectedIntakeDish.length
-              ? selectedIntakeDish.map((product) => ({
-                  name: product.name || '',
-                  carbonohidrates: product.carbonohidrates || '',
-                  protein: product.protein || '',
-                  fat: product.fat || '',
-                  calories: product.calories || '',
-                  productId: product.productId || '',
-                }))
-              : [intakeTemplate],
-        }
-      : {
           dish:
             selectedIntakeDish && selectedIntakeDish.length
               ? [
@@ -210,6 +197,9 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
                   },
                 ]
               : [intakeTemplate],
+        }
+      : {
+        dish: [intakeTemplate],
         }
   }
   onSubmit={handleFormSubmit}
@@ -237,7 +227,10 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
                      </ul>
                    )}
                 </FieldArray>
-          <ButtonAddMore type="button" onClick={(e) => handleAddMore(e, { values, setFieldValue, errors })}>+ Add more</ButtonAddMore>
+                {requestType === 'POST' && (!selectedIntakeDish || selectedIntakeDish.length === 0)
+                &&
+                <ButtonAddMore type="button" onClick={(e) => handleAddMore(e, { values, setFieldValue, errors })}>+ Add more</ButtonAddMore>}
+          
           <WrapperButton>
              <ButtonActive type="submit" onClick={() => {onClickHandleSubmit()}}>Confirm</ButtonActive>
              <Button type="button" onClick={onClose}>Cancel</Button>

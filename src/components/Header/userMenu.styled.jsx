@@ -201,7 +201,7 @@ export const ButtonOpenMobileModals = styled.button`
   display: flex;
   align-items: center;
   margin-left: 12px;
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 701px) {
     display: none;
   }
 `;
@@ -249,6 +249,10 @@ export const MobileOpenModal = styled.div`
   box-shadow: 0px 4px 14px 0px #e3ffa833;
   background-color: var(--color-primary-black-2);
   z-index: 4;
+  max-width: 392px;
+  @media only screen and (max-width: 700px) {
+    margin: 0 auto;
+  }
 `;
 
 export const MobileGoalHeader = styled.div`

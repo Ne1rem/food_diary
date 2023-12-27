@@ -27,6 +27,7 @@ gap: 16px;
 `
 
 export const ModalButtonSettigns = styled(Link)`
+align-items: center;
 display: flex;
 flex-direction: row;
 background-color: transparent;

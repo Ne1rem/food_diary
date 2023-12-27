@@ -33,6 +33,7 @@ export const StyledLink = styled(Link)`
   letter-spacing: 0em;
   text-align: right;
   color: var(--color-primary-white);
+  transition: color 0.5s;
 
   &:hover {
     color: var(--color-primary-green-lite);

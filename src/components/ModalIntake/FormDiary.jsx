@@ -13,7 +13,20 @@ import {
 } from './FormDiary.styled';
 import trashImg from '../../assets/diary/trash.svg';
 
-const FormDiary = ({ validation, index, touched, errors, values, remove }) => {
+const FormDiary = ({ validation, index, touched, errors, values, remove, setFieldValue }) => {
+
+  const handleRemoveForm = (index, values, setFieldValue) => {
+    if (values.dish.length > 1) {
+      remove(index);
+    } else {
+      setFieldValue(`dish[${index}].name`, '');
+      setFieldValue(`dish[${index}].carbonohidrates`, '');
+      setFieldValue(`dish[${index}].protein`, '');
+      setFieldValue(`dish[${index}].fat`, '');
+      setFieldValue(`dish[${index}].calories`, '');
+    }
+  };
+
   return (
     <ContainerInputs>
       <InputWrapper>
@@ -124,7 +137,7 @@ const FormDiary = ({ validation, index, touched, errors, values, remove }) => {
             <StyledError name={`dish[${index}].calories`} component="div" />
           )}
         </InputWrapper>
-        <ButtonSvg type="button" onClick={() => remove(index)}>
+        <ButtonSvg type="button" onClick={() => handleRemoveForm(index, values, setFieldValue)}>
           <TrashSvg>
             <use href={`${trashImg}#icon-trash`} />
           </TrashSvg>

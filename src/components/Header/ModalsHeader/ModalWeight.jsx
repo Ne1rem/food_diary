@@ -17,14 +17,14 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addUserWeight } from '../../../Redux/User/userThunks';
 
-function ModalWeight({ setIsWeightModalOpen, setWeight }) {
+function ModalWeight({ setIsWeightModalOpen, setCurrentWeight }) {
   const dispatch = useDispatch();
   const [enteredWeight, setEnteredWeight] = useState('');
   
   const handleSubmit = async () => {
     try {
       await dispatch(addUserWeight(enteredWeight));
-      setWeight(enteredWeight);
+      setCurrentWeight(enteredWeight)
       setIsWeightModalOpen(false);
     } catch (error) {
       console.error('Error adding user weight:', error);
