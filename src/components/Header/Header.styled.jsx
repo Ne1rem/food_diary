@@ -7,6 +7,8 @@ export const Headerdiv = styled.header`
 `;
 
 export const HeaderContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 26px;
   display: flex;
   flex-direction: row;
@@ -33,6 +35,7 @@ export const StyledLink = styled(Link)`
   letter-spacing: 0em;
   text-align: right;
   color: var(--color-primary-white);
+  transition: color 0.5s;
 
   &:hover {
     color: var(--color-primary-green-lite);
