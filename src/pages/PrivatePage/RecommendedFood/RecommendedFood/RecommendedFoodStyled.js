@@ -147,6 +147,9 @@ export const WeightOfCalorieContainer = styled.div`
   flex-direction: row;
   gap: 6px;
   font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  align-items: center;
 `;
 
 export const Calories = styled.p`
