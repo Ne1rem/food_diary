@@ -7,8 +7,6 @@ export const Headerdiv = styled.header`
 `;
 
 export const HeaderContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 26px;
   display: flex;
   flex-direction: row;
