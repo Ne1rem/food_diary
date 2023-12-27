@@ -32,8 +32,9 @@ const RecommendedFood = () => {
   }, []);
 
   return (
-    <Container>
+    <>
       <Title>Recommended Food</Title>
+    <Container>
       <RecommendedFoodWrapper>
         <Photo src={PhotoRecFood} alt="Фото" />
         <FoodCardsWrapper>
@@ -51,7 +52,8 @@ const RecommendedFood = () => {
           ))}
         </FoodCardsWrapper>
       </RecommendedFoodWrapper>
-    </Container>
+      </Container>
+      </>
   );
 };
 
