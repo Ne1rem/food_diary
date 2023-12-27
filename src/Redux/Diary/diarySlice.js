@@ -10,7 +10,7 @@ const initialState = {
          isLoading: false,
          error: null,
       }
-    const handlePanding = (state) => {
+    const handlePending = (state) => {
         state.isLoading = true;
         state.error = null;
     }
@@ -32,7 +32,7 @@ const initialState = {
 
     const handleFulfilledDelete = (state,{ payload }) => {
         state.isLoading = false;
-        state.contacts = state.contacts.filter(el => el.id !== payload.id)
+        state.intake = state.intake.filter(el => el.id !== payload.id)
     }
 
     const handleRejected = (state,{ payload }) => {
@@ -55,7 +55,7 @@ const initialState = {
                     addFoodIntakeThunk.pending,
                     updateFoodIntakeThunk.pending,
                     deleteFoodIntakeThunk.pending,
-                ),handlePanding)
+                ),handlePending)
             .addMatcher(
                 isAnyOf(
                     requestFoodIntakeThunk.rejected,

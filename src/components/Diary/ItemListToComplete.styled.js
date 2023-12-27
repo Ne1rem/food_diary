@@ -5,10 +5,12 @@ display: flex;
 flex-wrap: wrap;`
 
 export const Title = styled.div`
+width: 170px;
 margin-left: 16px;
 margin-bottom: 6px;
 text-transform: capitalize;
 @media screen and (min-width: 834px) {
+    width: 280px;
     font-size: 14px;
     line-height: 1.42;
   }`
