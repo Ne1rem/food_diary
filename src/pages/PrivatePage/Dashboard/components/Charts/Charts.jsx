@@ -93,6 +93,7 @@ const Charts = () => {
         updateWeightChartData(data);
 
         // CALORIES chart config
+
         const caloriesOptions = {
           responsive: true,
           plugins: {
@@ -100,11 +101,30 @@ const Charts = () => {
             tooltip: {
               callbacks: {
                 label: (context) => {
-                  const label = context.dataset.label || '';
                   const value = context.parsed.y;
-                  return `${label}: ${value} ${TooltipUnit(label)}`;
+                  const unit = 'cal';
+                  return `${value} ${unit}`;
                 },
               },
+              backgroundColor: '#0F0F0F',
+              borderColor: 'rgba(227, 255, 168, 0.2)',
+              borderWidth: 1,
+              titleColor: '#B6B6B6',
+              bodyColor: '#FFF',
+              displayColors: false,
+              titleFont: {
+                size: 14,
+                weight: '400',
+                lineHeight: 1.42,
+              },
+              bodyFont: {
+                size: 20,
+                weight: '500',
+                lineHeight: 1.18,
+              },
+              displayColors: false,
+              caretSize: 0,
+              cornerRadius: 8,
             },
           },
           scales: {
@@ -142,15 +162,10 @@ const Charts = () => {
             },
           },
           maintainAspectRatio: false,
-          // elements: {
-          //   line: {
-          //     spanGaps: true,
-          //     stepped: false,
-          //   },
-          // },
         };
 
         // WATER chart config
+
         const waterOptions = {
           responsive: true,
           plugins: {
@@ -158,11 +173,30 @@ const Charts = () => {
             tooltip: {
               callbacks: {
                 label: (context) => {
-                  const label = context.dataset.label || '';
                   const value = context.parsed.y;
-                  return `${label}: ${value} ${TooltipUnit(label)}`;
+                  const unit = 'ml';
+                  return `${value} ${unit}`;
                 },
               },
+              backgroundColor: '#0F0F0F',
+              borderColor: 'rgba(227, 255, 168, 0.2)',
+              borderWidth: 1,
+              titleColor: '#B6B6B6',
+              bodyColor: '#FFF',
+              displayColors: false,
+              titleFont: {
+                size: 14,
+                weight: '400',
+                lineHeight: 1.42,
+              },
+              bodyFont: {
+                size: 20,
+                weight: '500',
+                lineHeight: 1.18,
+              },
+              displayColors: false,
+              caretSize: 0,
+              cornerRadius: 8,
             },
           },
           scales: {
@@ -193,9 +227,6 @@ const Charts = () => {
                 display: true,
                 color: 'rgba(41, 41, 40, 1)',
                 borderWidth: 0.5,
-              },
-              onClick: function (e) {
-                //
               },
             },
           },
@@ -263,7 +294,7 @@ const Charts = () => {
       const entry = monthEntries.find(
         (e) => new Date(e.date).getDate() === i + 1
       );
-      return entry ? entry.totalCalories : null;
+      return entry ? Math.round(entry.totalCalories) : null;
     });
 
     const nonZeroCaloriesData = filledCaloriesData.filter(
@@ -277,7 +308,7 @@ const Charts = () => {
 
     for (let i = 0; i < numberOfDays; i++) {
       if (filledCaloriesData[i] === null || filledCaloriesData[i] === 0) {
-        filledCaloriesData[i] = averageCalories;
+        filledCaloriesData[i] = Math.round(averageCalories);
       }
     }
 
@@ -315,7 +346,7 @@ const Charts = () => {
       const entry = monthEntries.find(
         (e) => new Date(e.date).getDate() === i + 1
       );
-      return entry ? entry.water : null;
+      return entry ? Math.round(entry.water) : null;
     });
 
     const nonZeroWaterData = filledWaterData.filter(
@@ -329,7 +360,8 @@ const Charts = () => {
 
     for (let i = 0; i < numberOfDays; i++) {
       if (filledWaterData[i] === null || filledWaterData[i] === 0) {
-        filledWaterData[i] = averageWater;
+        // Use Math.round() to round the values to the nearest integer
+        filledWaterData[i] = Math.round(averageWater);
       }
     }
 
@@ -344,7 +376,6 @@ const Charts = () => {
       ],
     });
   };
-
 
   const findLastNonZeroIndex = (array, end) => {
     for (let i = end - 1; i >= 0; i--) {
@@ -482,7 +513,7 @@ const Charts = () => {
                       0
                     ) / getCurrentDayOfMonth()
                   )}{' '}
-                  <>calories</>
+                  <>cal</>
                 </Value>
               )}
             </ContainerValue>
