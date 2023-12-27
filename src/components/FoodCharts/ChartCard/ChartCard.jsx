@@ -15,6 +15,10 @@ export const ChartCard = (props) => {
 
   let left = (elementGoal - elementValue).toFixed(1);
 
+  if(isNaN(left)){
+    left = `${elementGoal}.0`
+  }
+  
   if (left < 0) {
     left = 0;
   }
