@@ -1,4 +1,4 @@
-import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
+import{s as e,r as o,j as i,h as p}from"./index-0e3e8457.js";import{S as n}from"./RecFoodOnMainStyled-2b57290d.js";const r=e.div`
   padding: 0 34px 60px 34px;
   width: 1372px;
   margin: 0 auto;
@@ -14,7 +14,7 @@ import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
     padding: 0 10px 40px 10px;
     width: 300px;
   }
-`,r=d.h2`
+`,s=e.h2`
   display: flex;
   font-size: 30px;
   color: var(--color-primary-white);
@@ -38,7 +38,7 @@ import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
     width: 300px;
     margin: 20px auto 16px;
   }
-`,s=d.img`
+`,h=e.img`
   width: 536px;
   height: 560px;
   margin-top: 8px;
@@ -54,7 +54,7 @@ import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
     width: 300px;
     height: 312px;
   }
-`,h=d.div`
+`,c=e.div`
   display: flex;
   gap: 44px;
   justify-content: center;
@@ -74,7 +74,7 @@ import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
     gap: 24px;
     padding-left: 0px;
   }
-`,c=d.div`
+`,m=e.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -90,7 +90,7 @@ import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
     flex-direction: column;
     width: 300px;
   }
-`,m=d.div`
+`,l=e.div`
   width: 328px;
   height: 86px;
   display: flex;
@@ -121,16 +121,19 @@ import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
     /* Стилі для телефонів */
     width: 300px;
   }
-`,l=d.div`
+`,g=e.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
   font-size: 18px;
-`,g=d.div`
+`,w=e.div`
   display: flex;
   flex-direction: row;
   gap: 6px;
   font-size: 14px;
-`,w=d.p`
+  font-weight: 400;
+  line-height: 1.42;
+  align-items: center;
+`,f=e.p`
   color: var(--color-primary-grey);
-`,f="/food_diary/assets/PhotoRecFood-be261e60.png",j=()=>{const[x,a]=o.useState([]);return o.useEffect(()=>{(async()=>{try{const t=await p.get("https://food-diary-backend-kr1b.onrender.com/api/recommended-food");a(t.data.slice(0,10))}catch(t){console.error("Error fetching recommended food:",t)}})()},[]),i.jsxs(i.Fragment,{children:[i.jsx(r,{children:"Recommended Food"}),i.jsx(n,{children:i.jsxs(h,{children:[i.jsx(s,{src:f,alt:"Фото"}),i.jsx(c,{children:x.map((e,t)=>i.jsxs(m,{children:[i.jsx("img",{src:e.img,alt:e.name}),i.jsxs(l,{children:[i.jsx("h3",{children:e.name}),i.jsxs(g,{children:[i.jsx("p",{children:e.amount}),i.jsxs(w,{children:[e.calories," calories"]})]})]})]},t))})]})})]})};export{j as default};
+`,u="/food_diary/assets/PhotoRecFood-be261e60.png",F=()=>{const[a,x]=o.useState([]);return o.useEffect(()=>{(async()=>{try{const t=await p.get("https://food-diary-backend-kr1b.onrender.com/api/recommended-food");x(t.data.slice(0,10))}catch(t){console.error("Error fetching recommended food:",t)}})()},[]),i.jsxs(i.Fragment,{children:[i.jsx(s,{children:"Recommended Food"}),i.jsx(r,{children:i.jsxs(c,{children:[i.jsx(h,{src:u,alt:"Фото"}),i.jsx(m,{children:a.map((d,t)=>i.jsxs(l,{children:[i.jsx("img",{src:d.img,alt:d.name}),i.jsxs(g,{children:[i.jsx(n,{children:d.name}),i.jsxs(w,{children:[i.jsx("p",{children:d.amount}),i.jsxs(f,{children:[d.calories," calories"]})]})]})]},t))})]})})]})};export{F as default};
