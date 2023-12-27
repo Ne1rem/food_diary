@@ -55,6 +55,7 @@ export const AddWaterModal = ({ onClose, successHandler }) => {
               <Input
                 type="text"
                 name="water"
+                placeholder="Amount of vater in ml"
                 onChange={formik.handleChange}
                 value={formik.values.water}
               />
