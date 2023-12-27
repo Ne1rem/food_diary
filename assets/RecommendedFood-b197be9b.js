@@ -1,29 +1,42 @@
-import{s as d,r as t,j as i,h as a}from"./index-89a43c4b.js";const n=d.div`
-  padding: 20px 34px 60px 34px;
+import{s as d,r as o,j as i,h as p}from"./index-e5482518.js";const n=d.div`
+  padding: 0 34px 60px 34px;
+  width: 1372px;
+  margin: 0 auto;
 
   @media (min-width: 834px) and (max-width: 1439px) {
     /* Стилі для планшетів */
-    padding: 24px 27px 290px 27px;
+    padding: 0 27px 290px 27px;
+    width: 780px;
   }
 
   @media (max-width: 833px) {
     /* Стилі для телефонів */
-    padding: 16px 10px 40px 10px;
+    padding: 0 10px 40px 10px;
+    width: 300px;
   }
 `,r=d.h2`
-  margin-bottom: 16px;
+  display: flex;
   font-size: 30px;
   color: var(--color-primary-white);
 
+  font-weight: 500;
+  line-height: 1.2;
+  width: 1372px;
+  text-align: start;
+  margin: 20px auto 16px;
+
   @media (min-width: 834px) and (max-width: 1439px) {
     /* Стилі для планшетів */
-    margin-bottom: 20px;
+    width: 780px;
+    margin: 20px auto 16px;
   }
 
   @media (max-width: 833px) {
     /* Стилі для телефонів */
     font-size: 24px;
-    margin-bottom: 16px;
+    line-height: 1.25;
+    width: 300px;
+    margin: 20px auto 16px;
   }
 `,s=d.img`
   width: 536px;
@@ -41,11 +54,9 @@ import{s as d,r as t,j as i,h as a}from"./index-89a43c4b.js";const n=d.div`
     width: 300px;
     height: 312px;
   }
-`,c=d.div`
+`,h=d.div`
   display: flex;
   gap: 44px;
-  padding-left: 116px;
-  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -63,7 +74,7 @@ import{s as d,r as t,j as i,h as a}from"./index-89a43c4b.js";const n=d.div`
     gap: 24px;
     padding-left: 0px;
   }
-`,m=d.div`
+`,c=d.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -79,7 +90,7 @@ import{s as d,r as t,j as i,h as a}from"./index-89a43c4b.js";const n=d.div`
     flex-direction: column;
     width: 300px;
   }
-`,h=d.div`
+`,m=d.div`
   width: 328px;
   height: 86px;
   display: flex;
@@ -115,11 +126,11 @@ import{s as d,r as t,j as i,h as a}from"./index-89a43c4b.js";const n=d.div`
   flex-direction: column;
   margin-left: 20px;
   font-size: 18px;
-`,f=d.div`
+`,g=d.div`
   display: flex;
   flex-direction: row;
   gap: 6px;
   font-size: 14px;
-`,g=d.p`
+`,w=d.p`
   color: var(--color-primary-grey);
-`,w="/food_diary/assets/PhotoRecFood-be261e60.png",y=()=>{const[p,x]=t.useState([]);return t.useEffect(()=>{(async()=>{try{const o=await a.get("https://food-diary-backend-kr1b.onrender.com/api/recommended-food");x(o.data.slice(0,10))}catch(o){console.error("Error fetching recommended food:",o)}})()},[]),i.jsxs(n,{children:[i.jsx(r,{children:"Recommended Food"}),i.jsxs(c,{children:[i.jsx(s,{src:w,alt:"Фото"}),i.jsx(m,{children:p.map((e,o)=>i.jsxs(h,{children:[i.jsx("img",{src:e.img,alt:e.name}),i.jsxs(l,{children:[i.jsx("h3",{children:e.name}),i.jsxs(f,{children:[i.jsx("p",{children:e.amount}),i.jsxs(g,{children:[e.calories," calories"]})]})]})]},o))})]})]})};export{y as default};
+`,f="/food_diary/assets/PhotoRecFood-be261e60.png",j=()=>{const[x,a]=o.useState([]);return o.useEffect(()=>{(async()=>{try{const t=await p.get("https://food-diary-backend-kr1b.onrender.com/api/recommended-food");a(t.data.slice(0,10))}catch(t){console.error("Error fetching recommended food:",t)}})()},[]),i.jsxs(i.Fragment,{children:[i.jsx(r,{children:"Recommended Food"}),i.jsx(n,{children:i.jsxs(h,{children:[i.jsx(s,{src:f,alt:"Фото"}),i.jsx(c,{children:x.map((e,t)=>i.jsxs(m,{children:[i.jsx("img",{src:e.img,alt:e.name}),i.jsxs(l,{children:[i.jsx("h3",{children:e.name}),i.jsxs(g,{children:[i.jsx("p",{children:e.amount}),i.jsxs(w,{children:[e.calories," calories"]})]})]})]},t))})]})})]})};export{j as default};
