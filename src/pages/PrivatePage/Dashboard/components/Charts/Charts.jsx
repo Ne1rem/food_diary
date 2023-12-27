@@ -43,6 +43,7 @@ import { chartLineOptions } from './chartOptions';
 import { monthCurrent } from '../../../../../utilities/monthCurrent';
 import { monthValue } from '../../../../../utilities/monthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -93,6 +94,7 @@ const Charts = () => {
         updateWeightChartData(data);
 
         // CALORIES chart config
+
         const caloriesOptions = {
           responsive: true,
           plugins: {
@@ -100,11 +102,30 @@ const Charts = () => {
             tooltip: {
               callbacks: {
                 label: (context) => {
-                  const label = context.dataset.label || '';
                   const value = context.parsed.y;
-                  return `${label}: ${value} ${TooltipUnit(label)}`;
+                  const unit = 'cal';
+                  return `${value} ${unit}`;
                 },
               },
+              backgroundColor: '#0F0F0F',
+              borderColor: 'rgba(227, 255, 168, 0.2)',
+              borderWidth: 1,
+              titleColor: '#B6B6B6',
+              bodyColor: '#FFF',
+              displayColors: false,
+              titleFont: {
+                size: 14,
+                weight: '400',
+                lineHeight: 1.42,
+              },
+              bodyFont: {
+                size: 20,
+                weight: '500',
+                lineHeight: 1.18,
+              },
+              displayColors: false,
+              caretSize: 0,
+              cornerRadius: 8,
             },
           },
           scales: {
@@ -145,6 +166,7 @@ const Charts = () => {
         };
 
         // WATER chart config
+
         const waterOptions = {
           responsive: true,
           plugins: {
@@ -152,11 +174,30 @@ const Charts = () => {
             tooltip: {
               callbacks: {
                 label: (context) => {
-                  const label = context.dataset.label || '';
                   const value = context.parsed.y;
-                  return `${label}: ${value} ${TooltipUnit(label)}`;
+                  const unit = 'ml';
+                  return `${value} ${unit}`;
                 },
               },
+              backgroundColor: '#0F0F0F',
+              borderColor: 'rgba(227, 255, 168, 0.2)',
+              borderWidth: 1,
+              titleColor: '#B6B6B6',
+              bodyColor: '#FFF',
+              displayColors: false,
+              titleFont: {
+                size: 14,
+                weight: '400',
+                lineHeight: 1.42,
+              },
+              bodyFont: {
+                size: 20,
+                weight: '500',
+                lineHeight: 1.18,
+              },
+              displayColors: false,
+              caretSize: 0,
+              cornerRadius: 8,
             },
           },
           scales: {
@@ -187,9 +228,6 @@ const Charts = () => {
                 display: true,
                 color: 'rgba(41, 41, 40, 1)',
                 borderWidth: 0.5,
-              },
-              onClick: function (e) {
-                //
               },
             },
           },
@@ -245,18 +283,42 @@ const Charts = () => {
       );
       return;
     }
+
     const dataForSelectedMonth = payload.stats;
     const numberOfDays = numberOfDaysInMonth(selectedMonth);
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
         new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
+
+    const filledCaloriesData = Array.from({ length: numberOfDays }, (_, i) => {
+      const entry = monthEntries.find(
+        (e) => new Date(e.date).getDate() === i + 1
+      );
+      return entry ? Math.round(entry.totalCalories) : null;
+    });
+
+    const nonZeroCaloriesData = filledCaloriesData.filter(
+      (value) => value !== null && value !== 0
+    );
+    const averageCalories =
+      nonZeroCaloriesData.length > 0
+        ? nonZeroCaloriesData.reduce((acc, val) => acc + val, 0) /
+          nonZeroCaloriesData.length
+        : 0;
+
+    for (let i = 0; i < numberOfDays; i++) {
+      if (filledCaloriesData[i] === null || filledCaloriesData[i] === 0) {
+        filledCaloriesData[i] = Math.round(averageCalories);
+      }
+    }
+
     setChartData({
       labels: Array.from({ length: numberOfDays }, (_, i) => i + 1),
       datasets: [
         {
           label: selectedMonth,
-          data: monthEntries.map((entry) => entry.totalCalories),
+          data: filledCaloriesData,
           ...chartLineOptions,
         },
       ],
@@ -273,18 +335,43 @@ const Charts = () => {
       );
       return;
     }
+
     const dataForSelectedMonth = payload.stats;
     const numberOfDays = numberOfDaysInMonth(selectedMonth);
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
         new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
+
+    const filledWaterData = Array.from({ length: numberOfDays }, (_, i) => {
+      const entry = monthEntries.find(
+        (e) => new Date(e.date).getDate() === i + 1
+      );
+      return entry ? Math.round(entry.water) : null;
+    });
+
+    const nonZeroWaterData = filledWaterData.filter(
+      (value) => value !== null && value !== 0
+    );
+    const averageWater =
+      nonZeroWaterData.length > 0
+        ? nonZeroWaterData.reduce((acc, val) => acc + val, 0) /
+          nonZeroWaterData.length
+        : 0;
+
+    for (let i = 0; i < numberOfDays; i++) {
+      if (filledWaterData[i] === null || filledWaterData[i] === 0) {
+        // Use Math.round() to round the values to the nearest integer
+        filledWaterData[i] = Math.round(averageWater);
+      }
+    }
+
     setWaterChartData({
       labels: Array.from({ length: numberOfDays }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: selectedMonth,
-          data: monthEntries.map((entry) => entry.water),
+          data: filledWaterData,
           ...chartLineOptions,
         },
       ],
@@ -427,7 +514,7 @@ const Charts = () => {
                       0
                     ) / getCurrentDayOfMonth()
                   )}{' '}
-                  <>calories</>
+                  <>cal</>
                 </Value>
               )}
             </ContainerValue>

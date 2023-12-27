@@ -12,5 +12,5 @@ export const chartLineOptions = {
   pointRadius: 2,
   pointHitRadius: 20,
   fill: true,
-  tension: 0.5,
+  tension: 0.4,
 };

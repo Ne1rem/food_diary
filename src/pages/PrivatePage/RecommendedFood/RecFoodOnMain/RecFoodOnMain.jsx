@@ -11,6 +11,7 @@ import {
   WeightOfCalorieContainer,
   Calories,
   Container,
+  Subtitle,
 } from './RecFoodOnMainStyled';
 
 const RecommendedFoodOnMain = () => {
@@ -40,7 +41,7 @@ const RecommendedFoodOnMain = () => {
             <FoodCard key={index}>
               <img src={item.img} alt={item.name} />
               <CharacteristicsContainer>
-                <h3>{item.name}</h3>
+                <Subtitle>{item.name}</Subtitle>
                 <WeightOfCalorieContainer>
                   <p>{item.amount}</p>
                   <Calories>{item.calories} calories</Calories>

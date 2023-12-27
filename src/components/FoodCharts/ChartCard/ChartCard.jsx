@@ -14,10 +14,11 @@ export const ChartCard = (props) => {
   const { title, chartBcg, elementGoal, elementValue } = props;
 
   let left = (elementGoal - elementValue).toFixed(1);
-
+  
   if (left < 0) {
     left = 0;
   }
+
   let elementPercentage = Math.round((elementValue * 100) / elementGoal);
 
   if (elementPercentage === Infinity || isNaN(elementPercentage)) {

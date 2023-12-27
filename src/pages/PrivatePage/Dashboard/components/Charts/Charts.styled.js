@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const Unit = styled.span`
+  color: var(--color-primary-grey);
+font-size: 14px;
+font-weight: 400;
+line-height: 1.42;
+`;
+
 export const ContainerSelect = styled.div`
   display: flex;
   justify-content: space-between;
@@ -314,6 +321,7 @@ export const WeightValueContainer = styled.div`
   line-height: 1.42;
   font-weight: 400;
   color: var(--color-primary-whit);
+  flex-basis: 50%;
 
   @media only screen and (min-width: 834px) {
     font-size: 10px;
@@ -332,31 +340,23 @@ export const WeightValue = styled.div`
   align-items: center;
   font-size: 14px;
   line-height: 1.42;
-  &:not(:last-child) {
-    margin-right: 23px;
-  }
+  flex-basis: 50%;
 
   @media only screen and (min-width: 834px) {
     font-size: 10px;
     line-height: 1.6;
-    &:not(:last-child) {
-      margin-right: 6px;
-    }
   }
 
   @media only screen and (min-width: 1440px) {
     font-size: 14px;
     line-height: 1.42;
-    &:not(:last-child) {
-      margin-right: 23px;
-    }
   }
 `;
 
 export const DateContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   color: var(--color-primary-grey);
   font-size: 10px;
   font-weight: 400;
@@ -375,46 +375,4 @@ export const DateValue = styled.div`
   justify-content: center;
   font-size: 10px;
   line-height: 1.4;
-  &:not(:last-child) {
-    margin-right: 29px;
-  }
-
-  @media only screen and (min-width: 834px) {
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
-  }
-
-  @media only screen and (min-width: 1440px) {
-    &:not(:last-child) {
-      margin-right: 29px;
-    }
-  }
 `;
-
-// export const ScrollContainer = styled.div`
-//   overflow-x: auto;
-//   white-space: nowrap;
-//   -webkit-overflow-scrolling: touch;
-//   position: relative;
-
-//   &::after {
-//     content: '';
-//     position: absolute;
-//     top: 8px;
-//     right: 0;
-//     width: 8px;
-//     height: calc(100% - 8px);
-//     transform: rotate(-90deg);
-//     flex-shrink: 0;
-//     border-radius: 12px;
-//     background: #0f0f0f;
-//   }
-
-//   @media only screen and (min-width: 834px) {
-//     overflow-x: hidden;
-//     &::after {
-//       display: none;
-//     }
-//   }
-// `;

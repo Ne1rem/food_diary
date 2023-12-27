@@ -12,6 +12,7 @@ import {
   WeightOfCalorieContainer,
 } from './RecommendedFoodStyled';
 import PhotoRecFood from '../../../../assets/recommendedfood/PhotoRecFood.png';
+import { Subtitle } from '../RecFoodOnMain/RecFoodOnMainStyled';
 
 const RecommendedFood = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -32,8 +33,9 @@ const RecommendedFood = () => {
   }, []);
 
   return (
-    <Container>
+    <>
       <Title>Recommended Food</Title>
+    <Container>
       <RecommendedFoodWrapper>
         <Photo src={PhotoRecFood} alt="Фото" />
         <FoodCardsWrapper>
@@ -41,7 +43,7 @@ const RecommendedFood = () => {
             <FoodCard key={index}>
               <img src={item.img} alt={item.name} />
               <CharacteristicsContainer>
-                <h3>{item.name}</h3>
+                <Subtitle>{item.name}</Subtitle>
                 <WeightOfCalorieContainer>
                   <p>{item.amount}</p>
                   <Calories>{item.calories} calories</Calories>
@@ -51,7 +53,8 @@ const RecommendedFood = () => {
           ))}
         </FoodCardsWrapper>
       </RecommendedFoodWrapper>
-    </Container>
+      </Container>
+      </>
   );
 };
 

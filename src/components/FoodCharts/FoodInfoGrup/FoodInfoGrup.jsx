@@ -18,10 +18,14 @@ export const FoodInfoGrup = () => {
   const recommendedCarbs = useSelector((state) => state.user.user.recommendedCarbs);
   const recommendedFat = useSelector((state) => state.user.user.recommendedFat);
   const recommendedProtein = useSelector((state) => state.user.user.recommendedProtein);
-  const totalCalories = useSelector((state) => state.user.user.totalCalories);
-  const totalCarbs = useSelector((state) => state.user.user.totalCarbs);
-  const totalFat = useSelector((state) => state.user.user.totalFat);
-  const totalProtein = useSelector((state) => state.user.user.totalProtein);
+  
+  const intake = useSelector((state) => state.intake.intake);
+
+  const totalCalories = isNaN(intake?.totalCalories) ? 0 : intake?.totalCalories;
+  const totalCarbs = isNaN(intake?.totalCarbs) ? 0 : intake?.totalCarbs;
+  const totalFat = isNaN(intake?.totalFat) ? 0 : intake?.totalFat;
+  const totalProtein = isNaN(intake?.totalProtein) ? 0 : intake?.totalProtein;
+
 
   let caloriesChartBcg = '#45FFBC';
 
