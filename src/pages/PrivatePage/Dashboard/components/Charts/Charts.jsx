@@ -142,6 +142,12 @@ const Charts = () => {
             },
           },
           maintainAspectRatio: false,
+          // elements: {
+          //   line: {
+          //     spanGaps: true,
+          //     stepped: false,
+          //   },
+          // },
         };
 
         // WATER chart config
@@ -245,18 +251,42 @@ const Charts = () => {
       );
       return;
     }
+
     const dataForSelectedMonth = payload.stats;
     const numberOfDays = numberOfDaysInMonth(selectedMonth);
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
         new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
+
+    const filledCaloriesData = Array.from({ length: numberOfDays }, (_, i) => {
+      const entry = monthEntries.find(
+        (e) => new Date(e.date).getDate() === i + 1
+      );
+      return entry ? entry.totalCalories : null;
+    });
+
+    const nonZeroCaloriesData = filledCaloriesData.filter(
+      (value) => value !== null && value !== 0
+    );
+    const averageCalories =
+      nonZeroCaloriesData.length > 0
+        ? nonZeroCaloriesData.reduce((acc, val) => acc + val, 0) /
+          nonZeroCaloriesData.length
+        : 0;
+
+    for (let i = 0; i < numberOfDays; i++) {
+      if (filledCaloriesData[i] === null || filledCaloriesData[i] === 0) {
+        filledCaloriesData[i] = averageCalories;
+      }
+    }
+
     setChartData({
       labels: Array.from({ length: numberOfDays }, (_, i) => i + 1),
       datasets: [
         {
           label: selectedMonth,
-          data: monthEntries.map((entry) => entry.totalCalories),
+          data: filledCaloriesData,
           ...chartLineOptions,
         },
       ],
@@ -273,23 +303,48 @@ const Charts = () => {
       );
       return;
     }
+
     const dataForSelectedMonth = payload.stats;
     const numberOfDays = numberOfDaysInMonth(selectedMonth);
     const monthEntries = dataForSelectedMonth.filter(
       (entry) =>
         new Date(entry.date).getMonth() === monthValue(selectedMonth) - 1
     );
+
+    const filledWaterData = Array.from({ length: numberOfDays }, (_, i) => {
+      const entry = monthEntries.find(
+        (e) => new Date(e.date).getDate() === i + 1
+      );
+      return entry ? entry.water : null;
+    });
+
+    const nonZeroWaterData = filledWaterData.filter(
+      (value) => value !== null && value !== 0
+    );
+    const averageWater =
+      nonZeroWaterData.length > 0
+        ? nonZeroWaterData.reduce((acc, val) => acc + val, 0) /
+          nonZeroWaterData.length
+        : 0;
+
+    for (let i = 0; i < numberOfDays; i++) {
+      if (filledWaterData[i] === null || filledWaterData[i] === 0) {
+        filledWaterData[i] = averageWater;
+      }
+    }
+
     setWaterChartData({
       labels: Array.from({ length: numberOfDays }, (_, i) => `${i + 1}`),
       datasets: [
         {
           label: selectedMonth,
-          data: monthEntries.map((entry) => entry.water),
+          data: filledWaterData,
           ...chartLineOptions,
         },
       ],
     });
   };
+
 
   const findLastNonZeroIndex = (array, end) => {
     for (let i = end - 1; i >= 0; i--) {
