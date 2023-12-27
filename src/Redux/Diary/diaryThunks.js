@@ -40,9 +40,9 @@ export const updateFoodIntakeThunk = createAsyncThunk(
 
 export const deleteFoodIntakeThunk = createAsyncThunk(
     'foodIntake/delete',
-    async (credential, thunkApi) => {
+    async (intakeId, thunkApi) => {
         try{
-            const { data } = await axios.delete('user/food-intake', credential);
+            const { data } = await axios.delete('user/food-intake', intakeId);
             return data;
         }catch (error) {
             return thunkApi.rejectWithValue(error.message);
