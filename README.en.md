@@ -40,7 +40,8 @@
 
 # Developers:
 
-**FrontEnd:**
+**FrontEnd**
+
 - [Olena Kosmina](https://github.com/KosminaOlena)
 - [Roman Borovyk](https://github.com/BorovChe)
 - [Oleh Malyshok](https://github.com/OlegMalyshok)
@@ -49,7 +50,8 @@
 - Team-lead [Anatoliy Daniluyk](https://github.com/Ne1rem)
 - Scrum-master [Anna Kotlyar](https://github.com/AnnaKotl)
 
-**BackEnd:**
+**BackEnd**
+
 - [Anastasia Hlukhenka](https://github.com/Hlukhenka)
 - [Oleksandr Borysenko](https://github.com/allborysenko)
 - Team-lead [Svitlana Ivanchuk](https://github.com/Svitlana-Ivanchuk)

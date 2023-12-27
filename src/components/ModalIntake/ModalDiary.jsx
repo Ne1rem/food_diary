@@ -100,15 +100,18 @@ const ModalDiary = ({ name, img, onClose, requestType, idIntake }) => {
         [name.toLowerCase()]: {
           dish: [
             {
-            name: values.dish.name,
-            carbonohidrates: parseFloat(values.dish.carbonohidrates),
-            protein: parseFloat(values.dish.protein),
-            fat: parseFloat(values.dish.fat),
-            calories: parseFloat(values.dish.calories),
+            name: values.dish[0].name,
+            carbonohidrates: parseFloat(values.dish[0].carbonohidrates),
+            protein: parseFloat(values.dish[0].protein),
+            fat: parseFloat(values.dish[0].fat),
+            calories: parseFloat(values.dish[0].calories),
           }],
         },
       };
-      dispatch(updateFoodIntakeThunk(idIntake, intakeData));
+      console.log(idIntake);
+      console.log(intakeData);
+
+      dispatch(updateFoodIntakeThunk({id: idIntake, intakeData}));
     }
     onClose();
   };

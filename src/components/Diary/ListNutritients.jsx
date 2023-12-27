@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { requestFoodIntakeThunk } from "../../Redux/Diary/diaryThunks";
 import { selectorIntake } from "../../Redux/Diary/selectors";
-import { ItemNutrients, NutrientsList } from "./ListNutritients.styled"
+import { ItemNutrients, NutrientsList, SpanStyled } from "./ListNutritients.styled"
 
 const ListNutritients = ({name}) => {
     const dispatch = useDispatch();
@@ -37,9 +37,9 @@ const ListNutritients = ({name}) => {
 
     return(
     <NutrientsList>
-        <ItemNutrients>Carbonohidrates: <span>{totalCarbs}</span></ItemNutrients>
-        <ItemNutrients>Protein: <span>{totalProtein}</span></ItemNutrients>
-        <ItemNutrients>Fat: <span>{totalFat}</span></ItemNutrients>
+        <ItemNutrients>Carbonohidrates: <SpanStyled>{totalCarbs}</SpanStyled></ItemNutrients>
+        <ItemNutrients>Protein: <SpanStyled>{totalProtein}</SpanStyled></ItemNutrients>
+        <ItemNutrients>Fat: <SpanStyled>{totalFat}</SpanStyled></ItemNutrients>
     </NutrientsList>
     )
 }

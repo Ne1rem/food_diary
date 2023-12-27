@@ -69,7 +69,6 @@ const authSlice = createSlice({
         state.token = payload.token;
         state.isLoading = false;
         state.isLoggedIn = true;
-        toast.success(`Successful registration!.`);
       })
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
@@ -77,11 +76,12 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
-        toast.success(`Successful authorization!.`);
       })
       .addCase(logOut.fulfilled, (state) => {
         state.token = null;
         state.isLoggedIn = false;
+        state.user = initialState;
+        state.requestMonth = null
       })
 
       .addCase(forgotPassword.fulfilled, (state) => {
