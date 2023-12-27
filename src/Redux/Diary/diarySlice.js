@@ -32,7 +32,7 @@ const initialState = {
 
     const handleFulfilledDelete = (state,{ payload }) => {
         state.isLoading = false;
-        state.intake = state.intake.filter(el => el.id !== payload.id)
+        state.intake = payload;
     }
 
     const handleRejected = (state,{ payload }) => {

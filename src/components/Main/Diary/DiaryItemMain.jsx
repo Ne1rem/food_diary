@@ -3,13 +3,15 @@ import { WrapperComponent, Title, WrapperTitle, TrashSvg, ButtonSvg, ModalLink }
 import ListNutritients from "../../Diary/ListNutritients";
 import ModalDiary from "../../ModalIntake/ModalDiary";
 import trashImg from "../../../assets/diary/trash.svg";
+// import { useDispatch } from "react-redux";
+// import { deleteFoodIntakeThunk } from "../../../Redux/Diary/diaryThunks";
 
 const DiaryItemMain = ({name, img, intake}) => {
     const[showModal, setShowModal] = useState(false);
+    // const dispatch = useDispatch();
 
     const requestType = 'POST';
     const idIntake = null;
-
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -34,6 +36,13 @@ const DiaryItemMain = ({name, img, intake}) => {
         break;
     }
 
+    // const handleDelete = () =>
+    // {
+    //   const requestBody = {_id:selectedIntake._id};
+    //   dispatch(deleteFoodIntakeThunk(requestBody));
+    //   console.log(requestBody);
+    // }
+
     return ( 
     <WrapperComponent>
     <WrapperTitle>
@@ -45,7 +54,9 @@ const DiaryItemMain = ({name, img, intake}) => {
 ) : (
     <>
         <ListNutritients name={name}/>
-        <ButtonSvg>
+        <ButtonSvg type="button"
+        //  onClick={handleDelete}
+         >
             <TrashSvg><use href={`${trashImg}#icon-trash`} /></TrashSvg>
         </ButtonSvg>
     </>
