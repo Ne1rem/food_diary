@@ -104,20 +104,18 @@ background: none;
 border: none;
 text-align: left;
 margin-top: 20px;
-margin-bottom: 64px;
 color: var(--color-primary-green-lite);
 font-size: 14px;
 font-weight: 500;
-line-height: 1.42;
-@media only screen and (min-width: 834px){
-  margin-bottom: 120px; 
-  }`
+line-height: 1.42;`
 
 export const WrapperButton = styled.div`
+margin-top: 64px;
 @media only screen and (min-width: 834px){
   display: flex;
   flex-direction: row-reverse;
   gap: 12px;
+  margin-top: 120px; 
   }`
 
 
