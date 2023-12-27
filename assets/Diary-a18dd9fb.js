@@ -1,4 +1,4 @@
-import{j as e,r as l,L as v,u as I,k as z,b as S}from"./index-adeb5ac8.js";import{n as t,L,M as T,s as k,b as C,l as D,d as E,a as M}from"./snack-3a51e16e.js";import"./emotion-element-c39617d8.browser.esm-f1e79178.js";import"./index.esm-4b57a045.js";import"./hoist-non-react-statics.cjs-ff3f184d.js";const W=t.div`
+import{j as e,r as d,L as v,u as I,k as z,b as S}from"./index-450960a9.js";import{n as t,L,M as T,s as k,b as C,l as D,d as E,a as M}from"./snack-18c14aa9.js";import"./emotion-element-c39617d8.browser.esm-02d0516f.js";import"./index.esm-3727a046.js";import"./hoist-non-react-statics.cjs-9a276d61.js";const W=t.div`
 @media screen and (min-width: 1440px) {
     flex-basis: calc((100% - 40px) / 2);
   }`,q=t.div`
@@ -87,10 +87,12 @@ stroke: var(--color-primary-grey);
 `,N=t.div`
 display: flex;
 flex-wrap: wrap;`,O=t.div`
+width: 170px;
 margin-left: 16px;
 margin-bottom: 6px;
 text-transform: capitalize;
 @media screen and (min-width: 834px) {
+    width: 280px;
     font-size: 14px;
     line-height: 1.42;
   }`,U=t.ul`
@@ -108,7 +110,7 @@ margin-left: 16px;
     font-size: 14px;
     line-height: 1.42;
     color: var(--color-primary-white);
-  }`,B=({intakeItem:s})=>e.jsxs(N,{children:[e.jsx(O,{children:s.name}),e.jsxs(U,{children:[e.jsxs("li",{children:["Carb. ",s.carbonohidrates]}),e.jsxs("li",{children:["Prot. ",s.protein]}),e.jsxs("li",{children:["Fat. ",s.fat]})]})]}),G="/food_diary/assets/edit-04fc11be.svg",J=({name:s,img:o,intake:r})=>{var c,x,h,m;const[a,g]=l.useState(!1),[f,w]=l.useState(null),[u,y]=l.useState(null);let n;switch(s){case"breakfast":n=(c=r==null?void 0:r.breakfast)==null?void 0:c.dish;break;case"lunch":n=(x=r==null?void 0:r.lunch)==null?void 0:x.dish;break;case"dinner":n=(h=r==null?void 0:r.dinner)==null?void 0:h.dish;break;case"snack":n=(m=r==null?void 0:r.snack)==null?void 0:m.dish;break;default:n=null;break}const d=(i,b)=>{w(i),g(!a),y(b)},j=[0,1,2,3];return e.jsxs(W,{children:[e.jsxs(q,{children:[e.jsxs(A,{children:[e.jsx("img",{src:o}),e.jsx(F,{children:s})]}),e.jsx(L,{name:s})]}),e.jsx(P,{children:j.map(i=>e.jsxs(_,{children:[n&&n[i]?e.jsxs(p,{children:[i+1,e.jsx(B,{intakeItem:n[i]})]},i):i===0||i===(n==null?void 0:n.length)?e.jsxs(p,{children:[i+1,e.jsx(R,{onClick:()=>d("POST",null),children:"+ Record your meal"})]},i):e.jsx(p,{children:i+1},i),n&&n[i]?e.jsxs($,{onClick:()=>d("PUT",n[i]._id),children:[e.jsx(H,{children:e.jsx("use",{href:`${G}#icon-edit`})}),"Edit"]}):null]},i))}),a&&e.jsx(T,{name:s,img:o,onClose:d,requestType:f,idIntake:u})]})},K=t.div`
+  }`,B=({intakeItem:s})=>e.jsxs(N,{children:[e.jsx(O,{children:s.name}),e.jsxs(U,{children:[e.jsxs("li",{children:["Carb. ",s.carbonohidrates]}),e.jsxs("li",{children:["Prot. ",s.protein]}),e.jsxs("li",{children:["Fat. ",s.fat]})]})]}),G="/food_diary/assets/edit-04fc11be.svg",J=({name:s,img:o,intake:r})=>{var c,x,h,m;const[a,g]=d.useState(!1),[f,w]=d.useState(null),[u,y]=d.useState(null);let n;switch(s){case"breakfast":n=(c=r==null?void 0:r.breakfast)==null?void 0:c.dish;break;case"lunch":n=(x=r==null?void 0:r.lunch)==null?void 0:x.dish;break;case"dinner":n=(h=r==null?void 0:r.dinner)==null?void 0:h.dish;break;case"snack":n=(m=r==null?void 0:r.snack)==null?void 0:m.dish;break;default:n=null;break}const l=(i,b)=>{w(i),g(!a),y(b)},j=[0,1,2,3];return e.jsxs(W,{children:[e.jsxs(q,{children:[e.jsxs(A,{children:[e.jsx("img",{src:o}),e.jsx(F,{children:s})]}),e.jsx(L,{name:s})]}),e.jsx(P,{children:j.map(i=>e.jsxs(_,{children:[n&&n[i]?e.jsxs(p,{children:[i+1,e.jsx(B,{intakeItem:n[i]})]},i):i===0||i===(n==null?void 0:n.length)?e.jsxs(p,{children:[i+1,e.jsx(R,{onClick:()=>l("POST",null),children:"+ Record your meal"})]},i):e.jsx(p,{children:i+1},i),n&&n[i]?e.jsxs($,{onClick:()=>l("PUT",n[i]._id),children:[e.jsx(H,{children:e.jsx("use",{href:`${G}#icon-edit`})}),"Edit"]}):null]},i))}),a&&e.jsx(T,{name:s,img:o,onClose:l,requestType:f,idIntake:u})]})},K=t.div`
 margin-left: auto;
 margin-right: auto;
 text-align: left;
@@ -145,4 +147,4 @@ text-align: left;`,Y=t.ul`
    display:flex;
    flex-wrap: wrap;
    gap: 20px;
-  }`,Z="/food_diary/assets/arrow-right-1ad1ad4c.svg",se=()=>{const s=I();l.useEffect(()=>{s(z())},[s]);const o=S(k),r=[{name:"breakfast",img:C},{name:"lunch",img:D},{name:"dinner",img:E},{name:"snack",img:M}];return e.jsxs(K,{children:[e.jsxs(X,{to:"/",children:[e.jsx(Q,{src:Z}),e.jsx(V,{children:"Diary"})]}),e.jsx(Y,{children:r.map(a=>e.jsx(J,{name:a.name,img:a.img,intake:o},a.name))})]})};export{se as default};
+  }`,Z="/food_diary/assets/arrow-right-1ad1ad4c.svg",se=()=>{const s=I();d.useEffect(()=>{s(z())},[s]);const o=S(k),r=[{name:"breakfast",img:C},{name:"lunch",img:D},{name:"dinner",img:E},{name:"snack",img:M}];return e.jsxs(K,{children:[e.jsxs(X,{to:"/",children:[e.jsx(Q,{src:Z}),e.jsx(V,{children:"Diary"})]}),e.jsx(Y,{children:r.map(a=>e.jsx(J,{name:a.name,img:a.img,intake:o},a.name))})]})};export{se as default};
