@@ -36,11 +36,10 @@ const DiaryItemMain = ({name, img, intake}) => {
         break;
     }
 
-    // const handleDelete = () =>
-    // {
+    // const handleDelete = () => {
     //   const requestBody = {_id:selectedIntake._id};
-    //   dispatch(deleteFoodIntakeThunk(requestBody));
-    //   console.log(requestBody);
+    //   dispatch(deleteFoodIntakeThunk(requestBody._id));
+    //   console.log(requestBody._id);
     // }
 
     return ( 
@@ -55,7 +54,7 @@ const DiaryItemMain = ({name, img, intake}) => {
     <>
         <ListNutritients name={name}/>
         <ButtonSvg type="button"
-        //  onClick={handleDelete}
+        //  onClick={() => {handleDelete()}}
          >
             <TrashSvg><use href={`${trashImg}#icon-trash`} /></TrashSvg>
         </ButtonSvg>

@@ -98,7 +98,7 @@ const SignInForm = () => {
               )
             ) : null}
             {validation === 'validation' ? (
-              formik.errors.email || formik.values.password === '' ? (
+              formik.errors.email || formik.values.email === '' ? (
                 <InputError>
                   {formik.errors.email || 'Email required'}
                 </InputError>
