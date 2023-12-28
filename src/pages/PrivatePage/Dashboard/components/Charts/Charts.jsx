@@ -567,7 +567,7 @@ const Charts = () => {
 
           {/* WEIGHT Chart */}
           {weightChartData && (        
-            <ContainerWeightChart style={{ maxWidth: '833px', overflowX: 'auto' }}>
+            <ContainerWeightChart>
               <WeightWrap>
                 <WeightValueContainer>
                   {weightChartData.weightValues.map((value, index) => (
