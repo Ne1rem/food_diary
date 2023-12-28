@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signIn } from '../../../Redux/Auth/authThunks';
-import { selectIsLoading } from '../../../Redux/Auth/selectors';
 import { signInSchema } from '../validationSchemas/validationSchema';
 
 import inputSvg from 'assets/sprite.svg';
@@ -30,7 +29,7 @@ import {
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(selectIsLoading);
+  const [pending, setPending] = useState('');
   const [validation, setValidation] = useState('');
   const [passwordHidden, setPasswordHidden] = useState(false);
 
@@ -41,13 +40,25 @@ const SignInForm = () => {
     },
     validationSchema: signInSchema,
     isValidating: false,
-    onSubmit: (values) => {
-      dispatch(signIn(values));
-    },
   });
 
-  const onClickSubmit = () => {
+  const onClickSubmit = async () => {
     setValidation('validation');
+    if (
+      formik.values.email !== '' &&
+      !formik.errors.email &&
+      formik.values.password !== '' &&
+      !formik.errors.password
+    ) {
+      try {
+        setPending('loading');
+        await dispatch(signIn(formik.values)).unwrap();
+      } catch (e) {
+        return;
+      } finally {
+        setPending('');
+      }
+    }
   };
 
   const onClickPasswordHidden = () => {
@@ -64,7 +75,7 @@ const SignInForm = () => {
             <InputStyle
               className={
                 validation === 'validation'
-                  ? formik.errors.email
+                  ? formik.errors.email || formik.values.email === ''
                     ? 'error'
                     : 'correct'
                   : ''
@@ -76,7 +87,7 @@ const SignInForm = () => {
               value={formik.values.email}
             />
             {validation === 'validation' ? (
-              formik.errors.email ? (
+              formik.errors.email || formik.values.email === '' ? (
                 <InputSvgStyle>
                   <use href={`${inputSvg}#error`} />
                 </InputSvgStyle>
@@ -87,8 +98,10 @@ const SignInForm = () => {
               )
             ) : null}
             {validation === 'validation' ? (
-              formik.errors.email ? (
-                <InputError>{formik.errors.email}</InputError>
+              formik.errors.email || formik.values.password === '' ? (
+                <InputError>
+                  {formik.errors.email || 'Email required'}
+                </InputError>
               ) : (
                 <InputError style={{ color: '#3CBC81' }}>
                   E-mail is valid
@@ -102,7 +115,7 @@ const SignInForm = () => {
             <InputStyle
               className={
                 validation === 'validation'
-                  ? formik.errors.password
+                  ? formik.errors.password || formik.values.password === ''
                     ? 'error'
                     : 'correct'
                   : ''
@@ -135,7 +148,7 @@ const SignInForm = () => {
             )}
 
             {passwordHidden && validation === 'validation' ? (
-              formik.errors.password ? (
+              formik.errors.password || formik.values.password === '' ? (
                 <InputSvgStyle
                   onClick={() => {
                     onClickPasswordHidden();
@@ -154,8 +167,10 @@ const SignInForm = () => {
               )
             ) : null}
             {passwordHidden && validation === 'validation' ? (
-              formik.errors.password ? (
-                <InputError>{formik.errors.password}</InputError>
+              formik.errors.password || formik.values.password === '' ? (
+                <InputError>
+                  {formik.errors.password || 'Password required'}
+                </InputError>
               ) : (
                 <InputError style={{ color: '#3CBC81' }}>
                   Password is valid
@@ -167,13 +182,13 @@ const SignInForm = () => {
       </InputList>
       <Button
         className="btn-active"
-        disabled={loading}
+        disabled={pending === 'loading'}
         onClick={() => {
           onClickSubmit();
         }}
-        type="submit"
+        type="button"
       >
-        {loading ? <LoaderBtn /> : 'Sign in'}
+        {pending === 'loading' ? <LoaderBtn /> : 'Sign in'}
       </Button>
       <NavToForgotPass to="/forgot-password">
         Forgot your password?
