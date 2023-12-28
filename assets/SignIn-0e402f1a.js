@@ -1,4 +1,4 @@
-import{s as n,N as x,u as f,r as d,j as e,b as y}from"./index-7032b86a.js";import{T as S,a as C,I as t,B as k,A as I,i as b}from"./Illustration-47347410.js";import{u as N}from"./index.esm-d17eb980.js";import{a as T}from"./validationSchema-dc07fa3f.js";import{i}from"./sprite-a4f270cb.js";import{I as h,a as u,b as r,L as B}from"./LoaderBtn-91c7d59e.js";import"./hoist-non-react-statics.cjs-738f918e.js";const P=n.form`
+import{s as n,N as x,u as f,r as d,j as e,b as y}from"./index-0b6dadc8.js";import{T as S,a as C,I as t,B as k,A as I,i as b}from"./Illustration-1570fdc8.js";import{u as N}from"./index.esm-e4972ff7.js";import{a as T}from"./validationSchema-4ae7bbe4.js";import{i}from"./sprite-d0cc3e44.js";import{I as h,a as u,b as r,L as B}from"./LoaderBtn-fdd81993.js";import"./hoist-non-react-statics.cjs-a692ac98.js";const P=n.form`
   @media screen and (min-width: 1440px) {
     padding-top: 80px;
   }
