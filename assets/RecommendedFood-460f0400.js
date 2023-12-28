@@ -1,4 +1,4 @@
-import{s as e,r as o,j as i,e as p}from"./index-19637d3b.js";import{S as n}from"./RecFoodOnMainStyled-48a3aac7.js";const r=e.div`
+import{s as e,r as o,j as i,e as p}from"./index-4c571dd1.js";import{S as n}from"./RecFoodOnMainStyled-030db74d.js";const r=e.div`
   padding: 0 34px 60px 34px;
   width: 1372px;
   margin: 0 auto;
