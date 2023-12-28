@@ -63,11 +63,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const gender = useSelector((state) => state.user.user.gender);
   const goal = useSelector((state) => state.user.user.goal);
   const weight = useSelector((state) => state.user.user.weight);
-  const [currentWeight, setCurrentWeight] = useState(weight);
   const userAvatar = useSelector((state) => state.user.user.avatarURL);
-
-  const [currentGoal, setCurrentGoal] = useState(goal);
-  const [newGoal, setNewGoal] = useState(currentGoal);
 
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
@@ -78,9 +74,9 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   };
 
   const selectedImage =
-    currentGoal === 'Gain Muscle'
+    goal === 'Gain Muscle'
       ? imagesPath[`Gain Muscle`]
-      : imagesPath[`${currentGoal} ${gender}`];
+      : imagesPath[`${goal} ${gender}`];
 
   const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
   const [isWeightModalOpen, setIsWeightModalOpen] = useState(false);
@@ -121,9 +117,9 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   useEffect(() => {
     const body = document.querySelector('body');
     if (window.innerWidth < 700 && (isGoalModalOpen || isWeightModalOpen)) {
-      body.style.overflow = 'hidden';
+      body.classList.add('noOverflow');
     } else {
-      body.style.overflow = 'auto';
+      body.classList.remove('noOverflow');
     }
   }, [isGoalModalOpen, isWeightModalOpen]);
 
@@ -148,7 +144,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           <DivGoalPart>
             <DivGoal>
               <GoalPName>Goal</GoalPName>
-              <GoalP>{currentGoal}</GoalP>
+              <GoalP>{goal}</GoalP>
             </DivGoal>
             <GoalSvg>
               <use href={`${HeaderSvg}#change-your-goal`} />
@@ -158,11 +154,8 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
         {isGoalModalOpen && (
           <ModalGoal
             setIsGoalModalOpen={setIsGoalModalOpen}
-            setCurrentGoal={setCurrentGoal}
-            currentGoal={currentGoal}
             gender={gender}
-            newGoal={newGoal}
-            setNewGoal={setNewGoal}
+            goal={goal}
           />
         )}
       </GoalHeader>
@@ -178,7 +171,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               <WeightPName>Weight</WeightPName>
               <div style={{ display: 'flex' }}>
                 <WeightP>
-                  {currentWeight}
+                  {weight}
                   <WeightSpan>kg</WeightSpan>
                 </WeightP>
                 <WeightSvg>
@@ -189,10 +182,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
           </DivWeightPart>
         </WeightButton>
         {isWeightModalOpen && (
-          <ModalWeight
-            setIsWeightModalOpen={setIsWeightModalOpen}
-            setCurrentWeight={setCurrentWeight}
-          />
+          <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
         )}
       </WeightHeader>
       <UserHeader>
@@ -233,7 +223,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                 <MobileDivGoalPart>
                   <MobileDivGoal>
                     <GoalPName>Goal</GoalPName>
-                    <GoalP>{currentGoal}</GoalP>
+                    <GoalP>{goal}</GoalP>
                   </MobileDivGoal>
                   <MobileGoalSvg>
                     <use href={`${HeaderSvg}#icon-right-converted`} />
@@ -244,11 +234,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
             {isGoalModalOpen && (
               <ModalGoal
                 setIsGoalModalOpen={setIsGoalModalOpen}
-                setCurrentGoal={setCurrentGoal}
-                currentGoal={currentGoal}
-                gender={gender}
-                newGoal={newGoal}
-                setNewGoal={setNewGoal}
+                isGoalModalOpen={isGoalModalOpen}
               />
             )}
             <MobileWeightHeader>
@@ -263,7 +249,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
                     <MobileWeightPName>Weight</MobileWeightPName>
                     <div style={{ display: 'flex' }}>
                       <MobileWeightP>
-                        {currentWeight}
+                        {weight}
                         <MobileWeightSpan>kg</MobileWeightSpan>
                       </MobileWeightP>
                       <MobileWeightSvg>
@@ -275,10 +261,7 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
               </MobileWeightButton>
             </MobileWeightHeader>
             {isWeightModalOpen && (
-              <ModalWeight
-                setIsWeightModalOpen={setIsWeightModalOpen}
-                setCurrentWeight={setCurrentWeight}
-              />
+              <ModalWeight setIsWeightModalOpen={setIsWeightModalOpen} />
             )}
           </ButtonsMobileModals>
         </MobileOpenModal>

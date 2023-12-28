@@ -22,25 +22,20 @@ import MaintainGirl from '/src/assets/header/Maintain-girl.png';
 import MaintainMan from '/src/assets/header/Maintain-man.png';
 import HeaderSvg from '/src/assets/header/headerSvg.svg';
 import { updateUserGoal } from '../../../Redux/User/userThunks';
+import { useState } from 'react';
 
-function ModalGoal({
-  setIsGoalModalOpen,
-  gender,
-  currentGoal,
-  newGoal,
-  setNewGoal,
-  setCurrentGoal,
-}) {
+function ModalGoal({ setIsGoalModalOpen, gender, goal }) {
   const dispatch = useDispatch();
+  const [newGoal, setNewGoal] = useState(null);
 
   const setGoalLosefat = () => setNewGoal('Lose Fat');
   const setGoalMaintain = () => setNewGoal('Maintain');
   const setGoalGailMuscle = () => setNewGoal('Gain Muscle');
 
   const handleSubmit = () => {
-    if (newGoal === currentGoal) return setIsGoalModalOpen(false);
+    if (newGoal === goal) return setIsGoalModalOpen(false);
+
     dispatch(updateUserGoal(newGoal));
-    setCurrentGoal(newGoal);
     setIsGoalModalOpen(false);
   };
 
@@ -84,7 +79,7 @@ function ModalGoal({
                   src={selectedImageLoseFat}
                   alt="LoseFat"
                 />
-                <UlPButtonModalGoal 
+                <UlPButtonModalGoal
                   className={newGoal == 'Lose Fat' ? 'active' : ''}
                 >
                   Lose fat

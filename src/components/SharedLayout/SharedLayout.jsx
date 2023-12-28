@@ -11,7 +11,7 @@ const SharedLayout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };

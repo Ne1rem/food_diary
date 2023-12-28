@@ -75,7 +75,6 @@ const refresh = createAsyncThunk('user/current', async (_, thunkAPI) => {
   if (persistedToken === null) {
     return thunkAPI.rejectWithValue();
   }
-
   token.set(persistedToken);
   try {
     const response = await axios.get('user/current');
