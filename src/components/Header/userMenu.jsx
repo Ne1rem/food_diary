@@ -65,8 +65,6 @@ const UserMenu = ({ isMobileModalOpen, setIsMobileModalOpen }) => {
   const weight = useSelector((state) => state.user.user.weight);
   const userAvatar = useSelector((state) => state.user.user.avatarURL);
 
-  console.log(weight);
-
   const imagesPath = {
     'Lose Fat female': LoseFatGirl,
     'Maintain female': MaintainGirl,
