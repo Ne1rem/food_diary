@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { refresh, signIn } from '../../../Redux/Auth/authThunks';
+import { signIn } from '../../../Redux/Auth/authThunks';
 import { selectIsLoading } from '../../../Redux/Auth/selectors';
 import { signInSchema } from '../validationSchemas/validationSchema';
 
