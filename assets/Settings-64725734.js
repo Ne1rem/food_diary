@@ -1,4 +1,4 @@
-import{s as n,u as z,r as c,w as D,g as E,x as q,y as k,j as e}from"./index-5ad1ae35.js";import{u as N,c as A,a as C,b as v}from"./index.esm-a6b15326.js";import{I as m,L as H}from"./LoaderBtn-f520e80d.js";import{i as a}from"./sprite-66bd857e.js";import"./hoist-non-react-statics.cjs-9a4c795b.js";const W=n.form`
+import{s as n,u as z,r as c,w as D,g as E,x as q,y as k,j as e}from"./index-7032b86a.js";import{u as N,c as A,a as C,b as v}from"./index.esm-d17eb980.js";import{I as m,L as H}from"./LoaderBtn-91c7d59e.js";import{i as a}from"./sprite-a4f270cb.js";import"./hoist-non-react-statics.cjs-738f918e.js";const W=n.form`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -336,7 +336,6 @@ import{s as n,u as z,r as c,w as D,g as E,x as q,y as k,j as e}from"./index-5ad1
     margin-left: 86px;
   }
 `,X=n.div`
-  
   @media screen and (min-width: 1440px) {
     display: flex;
     flex-direction: column;
@@ -352,7 +351,6 @@ import{s as n,u as z,r as c,w as D,g as E,x as q,y as k,j as e}from"./index-5ad1
   font-weight: 500;
   color: #ffffff;
 
-  /* з [835px */
   @media only screen and (min-width: 835px) {
     min-width: 206px;
     height: 36px;
@@ -362,7 +360,6 @@ import{s as n,u as z,r as c,w as D,g as E,x as q,y as k,j as e}from"./index-5ad1
     font-size: 30px;
   }
 
-  /* з [1441px */
   @media only screen and (min-width: 1441px) {
     margin-top: 20px;
     margin-left: 0;
