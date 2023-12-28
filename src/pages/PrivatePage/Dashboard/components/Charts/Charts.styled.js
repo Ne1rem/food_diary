@@ -284,6 +284,15 @@ export const ContainerWeightChart = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
+  @media only screen and (max-width: 833px) {
+    max-width: 833px;
+    overflow-x: auto;
+  }
+
+  @media only screen and (min-width: 834px) {
+    overflow-x: hidden;
+  }
 `;
 
 export const FlexContainer = styled.div``;
