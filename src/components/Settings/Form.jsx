@@ -54,7 +54,6 @@ export const ProfileSettings = () => {
       if (Object.keys(formik.errors).length === 0) {
         setIsLoading('loading');
         await dispatch(updateUser(formik.values)).unwrap();
-        // await formik.handleSubmit();
       }
     } catch (err) {
       console.log(err);

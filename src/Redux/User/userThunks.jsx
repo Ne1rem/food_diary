@@ -28,10 +28,6 @@ const updateUser = createAsyncThunk('user/update', async (values, thunkAPI) => {
       formData.append('height', values.height);
       formData.append('activity', values.activity);
 
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-      }
-
       const { data } = await axios.put('user/update', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

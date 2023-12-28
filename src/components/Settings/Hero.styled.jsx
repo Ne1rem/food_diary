@@ -22,7 +22,6 @@ export const ImageStyled = styled.img`
 `;
 
 export const Wrapper = styled.div`
-  
   @media screen and (min-width: 1440px) {
     display: flex;
     flex-direction: column;
