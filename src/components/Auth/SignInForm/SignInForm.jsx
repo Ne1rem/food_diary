@@ -75,7 +75,7 @@ const SignInForm = () => {
             <InputStyle
               className={
                 validation === 'validation'
-                  ? formik.errors.email || formik.values.email === '' 
+                  ? formik.errors.email || formik.values.email === ''
                     ? 'error'
                     : 'correct'
                   : ''
@@ -99,7 +99,9 @@ const SignInForm = () => {
             ) : null}
             {validation === 'validation' ? (
               formik.errors.email || formik.values.password === '' ? (
-                <InputError>{formik.errors.email || 'Email required'}</InputError>
+                <InputError>
+                  {formik.errors.email || 'Email required'}
+                </InputError>
               ) : (
                 <InputError style={{ color: '#3CBC81' }}>
                   E-mail is valid
@@ -113,7 +115,7 @@ const SignInForm = () => {
             <InputStyle
               className={
                 validation === 'validation'
-                  ? formik.errors.password || formik.values.password === '' 
+                  ? formik.errors.password || formik.values.password === ''
                     ? 'error'
                     : 'correct'
                   : ''
@@ -146,7 +148,7 @@ const SignInForm = () => {
             )}
 
             {passwordHidden && validation === 'validation' ? (
-              formik.errors.password || formik.values.password === ''  ? (
+              formik.errors.password || formik.values.password === '' ? (
                 <InputSvgStyle
                   onClick={() => {
                     onClickPasswordHidden();
@@ -165,8 +167,10 @@ const SignInForm = () => {
               )
             ) : null}
             {passwordHidden && validation === 'validation' ? (
-              formik.errors.password || formik.values.password === ''  ? (
-                <InputError>{formik.errors.password || 'Password required'}</InputError>
+              formik.errors.password || formik.values.password === '' ? (
+                <InputError>
+                  {formik.errors.password || 'Password required'}
+                </InputError>
               ) : (
                 <InputError style={{ color: '#3CBC81' }}>
                   Password is valid

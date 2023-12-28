@@ -19,6 +19,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   isError: null,
+  needGetCurrentUser: true,
 };
 
 const handlePending = (state) => {
@@ -72,6 +73,7 @@ const authSlice = createSlice({
         state.token = payload.token;
         state.isLoading = false;
         state.isLoggedIn = true;
+        state.needGetCurrentUser = true;
       })
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
@@ -79,12 +81,14 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
+        state.needGetCurrentUser = true;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.token = null;
         state.isLoggedIn = false;
         state.user = initialState;
         state.requestMonth = null;
+        state.needGetCurrentUser = false;
       })
 
       .addCase(forgotPassword.fulfilled, (state) => {
@@ -97,6 +101,7 @@ const authSlice = createSlice({
         state.user = payload;
         state.isLoading = false;
         state.isLoggedIn = true;
+        state.needGetCurrentUser = false;
       })
 
       .addCase(refresh.rejected, (state, { payload }) => {

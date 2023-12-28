@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect } from 'react';
 import PublicRoute from './route/PublicRoute/PublicRoute';
 import PrivateRoute from './route/PrivateRoutes/PrivateRoutes';
 import './main.css';
@@ -24,7 +24,6 @@ const RecommendedFood = lazy(() =>
 );
 
 const App = () => {
-  const [isFirstRender, setIsFirstRender] = useState(true);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const weight = useSelector(selectWeights);
@@ -33,14 +32,6 @@ const App = () => {
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch, weight, goal]);
-
-  useEffect(() => {
-    if (isLoggedIn && isFirstRender) {
-      dispatch(refresh());
-
-      setIsFirstRender(false);
-    }
-  }, [isLoggedIn, dispatch, isFirstRender]);
 
   return (
     <div>
