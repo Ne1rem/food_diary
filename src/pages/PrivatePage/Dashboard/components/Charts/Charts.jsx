@@ -43,7 +43,6 @@ import { chartLineOptions } from './chartOptions';
 import { monthCurrent } from '../../../../../utilities/monthCurrent';
 import { monthValue } from '../../../../../utilities/monthValue';
 import { userStatistics } from '../../../../../Redux/User/userThunks';
-import { Scrollbars } from 'react-custom-scrollbars-2';
 ChartJS.register(
   LineElement,
   CategoryScale,
@@ -501,7 +500,7 @@ const Charts = () => {
 
       <FlexContainer>
         <Wrapper>
-          <ChartsWrapper>
+          <ChartsWrapper  style={{ maxWidth: '833px', overflowX: 'auto' }}>
             <ContainerValue>
               <TitleCalories>Calories</TitleCalories>
               {/* Average value */}
@@ -527,7 +526,7 @@ const Charts = () => {
             </ContainerChart>
           </ChartsWrapper>
 
-          <ChartsWrapper>
+          <ChartsWrapper style={{ maxWidth: '833px', overflowX: 'auto' }}>
             <ContainerValue>
               <TitleWater>Water</TitleWater>
               {/* Average value */}
@@ -567,8 +566,8 @@ const Charts = () => {
           </ContainerValue>
 
           {/* WEIGHT Chart */}
-          {weightChartData && (
-            <ContainerWeightChart>
+          {weightChartData && (        
+            <ContainerWeightChart style={{ maxWidth: '833px', overflowX: 'auto' }}>
               <WeightWrap>
                 <WeightValueContainer>
                   {weightChartData.weightValues.map((value, index) => (
@@ -583,7 +582,7 @@ const Charts = () => {
                   ))}
                 </DateContainer>
               </WeightWrap>
-            </ContainerWeightChart>
+              </ContainerWeightChart>             
           )}
         </WeightWrapper>
       </FlexContainer>
