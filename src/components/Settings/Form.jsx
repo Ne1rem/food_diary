@@ -76,7 +76,7 @@ export const ProfileSettings = () => {
     },
     validationSchema: Yup.object({
     name: Yup.string()
-      .matches(/^[A-Za-z]+$/, 'Only letters are allowed in the name field')
+      .matches(/^[A-Za-z]+$/, 'Only letters are allowed in this field')
       .required("Name is required"),
       age: Yup.number()
         .positive('Age has to be positive number')
